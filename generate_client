@@ -1,0 +1,3 @@
+#!/bin/bash
+
+swagger generate client -f $(dirname $0)/swagger.json  -A quay -a quay
