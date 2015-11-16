@@ -20,7 +20,7 @@ type UpdateApp struct {
 
 	Required: true
 	*/
-	ApplicationURI string `json:"application_uri"`
+	ApplicationURI string `json:"application_uri,omitempty"`
 
 	/* The e-mail address of the avatar to use for the application
 	 */
@@ -34,18 +34,17 @@ type UpdateApp struct {
 
 	Required: true
 	*/
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 
 	/* The URI for the application's OAuth redirect
 
 	Required: true
 	*/
-	RedirectURI string `json:"redirect_uri"`
+	RedirectURI string `json:"redirect_uri,omitempty"`
 }
 
 // Validate validates this update app
 func (m *UpdateApp) Validate(formats strfmt.Registry) error {
-
 	var res []error
 
 	if err := m.validateApplicationURI(formats); err != nil {
@@ -63,7 +62,6 @@ func (m *UpdateApp) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-
 	return nil
 }
 

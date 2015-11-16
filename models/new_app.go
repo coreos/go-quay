@@ -32,7 +32,7 @@ type NewApp struct {
 
 	Required: true
 	*/
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 
 	/* The URI for the application's OAuth redirect
 	 */
@@ -41,7 +41,6 @@ type NewApp struct {
 
 // Validate validates this new app
 func (m *NewApp) Validate(formats strfmt.Registry) error {
-
 	var res []error
 
 	if err := m.validateName(formats); err != nil {
@@ -51,7 +50,6 @@ func (m *NewApp) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-
 	return nil
 }
 

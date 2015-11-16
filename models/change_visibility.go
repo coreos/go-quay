@@ -22,12 +22,11 @@ type ChangeVisibility struct {
 
 	Required: true
 	*/
-	Visibility string `json:"visibility"`
+	Visibility string `json:"visibility,omitempty"`
 }
 
 // Validate validates this change visibility
 func (m *ChangeVisibility) Validate(formats strfmt.Registry) error {
-
 	var res []error
 
 	if err := m.validateVisibility(formats); err != nil {
@@ -37,7 +36,6 @@ func (m *ChangeVisibility) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-
 	return nil
 }
 

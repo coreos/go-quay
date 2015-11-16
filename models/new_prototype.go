@@ -26,18 +26,17 @@ type NewPrototype struct {
 
 	Required: true
 	*/
-	Delegate *NewPrototypeDelegate `json:"delegate"`
+	Delegate *NewPrototypeDelegate `json:"delegate,omitempty"`
 
 	/* Role that should be applied to the delegate
 
 	Required: true
 	*/
-	Role string `json:"role"`
+	Role string `json:"role,omitempty"`
 }
 
 // Validate validates this new prototype
 func (m *NewPrototype) Validate(formats strfmt.Registry) error {
-
 	var res []error
 
 	if err := m.validateActivatingUser(formats); err != nil {
@@ -55,14 +54,16 @@ func (m *NewPrototype) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-
 	return nil
 }
 
 func (m *NewPrototype) validateActivatingUser(formats strfmt.Registry) error {
 
-	if err := m.ActivatingUser.Validate(formats); err != nil {
-		return err
+	if m.ActivatingUser != nil {
+
+		if err := m.ActivatingUser.Validate(formats); err != nil {
+			return err
+		}
 	}
 
 	return nil
@@ -70,8 +71,11 @@ func (m *NewPrototype) validateActivatingUser(formats strfmt.Registry) error {
 
 func (m *NewPrototype) validateDelegate(formats strfmt.Registry) error {
 
-	if err := m.Delegate.Validate(formats); err != nil {
-		return err
+	if m.Delegate != nil {
+
+		if err := m.Delegate.Validate(formats); err != nil {
+			return err
+		}
 	}
 
 	return nil
@@ -116,12 +120,11 @@ type NewPrototypeActivatingUser struct {
 
 	Required: true
 	*/
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 }
 
 // Validate validates this new prototype activating user
 func (m *NewPrototypeActivatingUser) Validate(formats strfmt.Registry) error {
-
 	var res []error
 
 	if err := m.validateName(formats); err != nil {
@@ -131,7 +134,6 @@ func (m *NewPrototypeActivatingUser) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-
 	return nil
 }
 
@@ -155,18 +157,17 @@ type NewPrototypeDelegate struct {
 
 	Required: true
 	*/
-	Kind string `json:"kind"`
+	Kind string `json:"kind,omitempty"`
 
 	/* The name for the delegate team or user
 
 	Required: true
 	*/
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 }
 
 // Validate validates this new prototype delegate
 func (m *NewPrototypeDelegate) Validate(formats strfmt.Registry) error {
-
 	var res []error
 
 	if err := m.validateKind(formats); err != nil {
@@ -180,7 +181,6 @@ func (m *NewPrototypeDelegate) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-
 	return nil
 }
 

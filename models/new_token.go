@@ -20,12 +20,11 @@ type NewToken struct {
 
 	Required: true
 	*/
-	FriendlyName string `json:"friendlyName"`
+	FriendlyName string `json:"friendlyName,omitempty"`
 }
 
 // Validate validates this new token
 func (m *NewToken) Validate(formats strfmt.Registry) error {
-
 	var res []error
 
 	if err := m.validateFriendlyName(formats); err != nil {
@@ -35,7 +34,6 @@ func (m *NewToken) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-
 	return nil
 }
 

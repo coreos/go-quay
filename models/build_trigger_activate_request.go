@@ -19,7 +19,7 @@ type BuildTriggerActivateRequest struct {
 
 	Required: true
 	*/
-	Config map[string]interface{} `json:"config"`
+	Config interface{} `json:"config,omitempty"`
 
 	/* The name of the robot that will be used to pull images.
 	 */
@@ -28,7 +28,6 @@ type BuildTriggerActivateRequest struct {
 
 // Validate validates this build trigger activate request
 func (m *BuildTriggerActivateRequest) Validate(formats strfmt.Registry) error {
-
 	var res []error
 
 	if err := m.validateConfig(formats); err != nil {
@@ -38,7 +37,6 @@ func (m *BuildTriggerActivateRequest) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-
 	return nil
 }
 

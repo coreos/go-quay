@@ -22,7 +22,7 @@ type NewRepo struct {
 
 	Required: true
 	*/
-	Description string `json:"description"`
+	Description string `json:"description,omitempty"`
 
 	/* Namespace in which the repository should be created. If omitted, the username of the caller is used
 	 */
@@ -32,18 +32,17 @@ type NewRepo struct {
 
 	Required: true
 	*/
-	Repository string `json:"repository"`
+	Repository string `json:"repository,omitempty"`
 
 	/* Visibility which the repository will start with
 
 	Required: true
 	*/
-	Visibility string `json:"visibility"`
+	Visibility string `json:"visibility,omitempty"`
 }
 
 // Validate validates this new repo
 func (m *NewRepo) Validate(formats strfmt.Registry) error {
-
 	var res []error
 
 	if err := m.validateDescription(formats); err != nil {
@@ -61,7 +60,6 @@ func (m *NewRepo) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-
 	return nil
 }
 

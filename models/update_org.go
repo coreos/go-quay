@@ -34,7 +34,6 @@ type UpdateOrg struct {
 
 // Validate validates this update org
 func (m *UpdateOrg) Validate(formats strfmt.Registry) error {
-
 	var res []error
 
 	if err := m.validateTagExpiration(formats); err != nil {
@@ -44,7 +43,6 @@ func (m *UpdateOrg) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-
 	return nil
 }
 

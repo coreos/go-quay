@@ -22,7 +22,7 @@ type RunParameters struct {
 
 	/* (SCM Only) If specified, the ref to build.
 	 */
-	Refs map[string]interface{} `json:"refs,omitempty"`
+	Refs interface{} `json:"refs,omitempty"`
 }
 
 // Validate validates this run parameters

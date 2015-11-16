@@ -20,18 +20,17 @@ type NewStarredRepository struct {
 
 	Required: true
 	*/
-	Namespace string `json:"namespace"`
+	Namespace string `json:"namespace,omitempty"`
 
 	/* Repository name
 
 	Required: true
 	*/
-	Repository string `json:"repository"`
+	Repository string `json:"repository,omitempty"`
 }
 
 // Validate validates this new starred repository
 func (m *NewStarredRepository) Validate(formats strfmt.Registry) error {
-
 	var res []error
 
 	if err := m.validateNamespace(formats); err != nil {
@@ -45,7 +44,6 @@ func (m *NewStarredRepository) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-
 	return nil
 }
 

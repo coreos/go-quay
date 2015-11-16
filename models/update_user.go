@@ -42,7 +42,6 @@ type UpdateUser struct {
 
 // Validate validates this update user
 func (m *UpdateUser) Validate(formats strfmt.Registry) error {
-
 	var res []error
 
 	if err := m.validateTagExpiration(formats); err != nil {
@@ -52,7 +51,6 @@ func (m *UpdateUser) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-
 	return nil
 }
 

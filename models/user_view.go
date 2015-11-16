@@ -20,13 +20,13 @@ type UserView struct {
 
 	Required: true
 	*/
-	Anonymous bool `json:"anonymous"`
+	Anonymous bool `json:"anonymous,omitempty"`
 
 	/* Avatar data representing the user's icon
 
 	Required: true
 	*/
-	Avatar map[string]interface{} `json:"avatar"`
+	Avatar interface{} `json:"avatar,omitempty"`
 
 	/* Whether the user has permission to create repositories
 	 */
@@ -38,11 +38,11 @@ type UserView struct {
 
 	/* The list of external login providers against which the user has authenticated
 	 */
-	Logins []map[string]interface{} `json:"logins,omitempty"`
+	Logins []interface{} `json:"logins,omitempty"`
 
 	/* Information about the organizations in which the user is a member
 	 */
-	Organizations []map[string]interface{} `json:"organizations,omitempty"`
+	Organizations []interface{} `json:"organizations,omitempty"`
 
 	/* If true, the user's namespace is the preferred namespace to display
 	 */
@@ -52,12 +52,11 @@ type UserView struct {
 
 	Required: true
 	*/
-	Verified bool `json:"verified"`
+	Verified bool `json:"verified,omitempty"`
 }
 
 // Validate validates this user view
 func (m *UserView) Validate(formats strfmt.Registry) error {
-
 	var res []error
 
 	if err := m.validateAnonymous(formats); err != nil {
@@ -75,7 +74,6 @@ func (m *UserView) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-
 	return nil
 }
 

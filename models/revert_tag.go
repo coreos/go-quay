@@ -20,12 +20,11 @@ type RevertTag struct {
 
 	Required: true
 	*/
-	Image string `json:"image"`
+	Image string `json:"image,omitempty"`
 }
 
 // Validate validates this revert tag
 func (m *RevertTag) Validate(formats strfmt.Registry) error {
-
 	var res []error
 
 	if err := m.validateImage(formats); err != nil {
@@ -35,7 +34,6 @@ func (m *RevertTag) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-
 	return nil
 }
 

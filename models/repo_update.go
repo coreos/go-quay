@@ -20,12 +20,11 @@ type RepoUpdate struct {
 
 	Required: true
 	*/
-	Description string `json:"description"`
+	Description string `json:"description,omitempty"`
 }
 
 // Validate validates this repo update
 func (m *RepoUpdate) Validate(formats strfmt.Registry) error {
-
 	var res []error
 
 	if err := m.validateDescription(formats); err != nil {
@@ -35,7 +34,6 @@ func (m *RepoUpdate) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-
 	return nil
 }
 

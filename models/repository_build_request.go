@@ -42,7 +42,6 @@ type RepositoryBuildRequest struct {
 
 // Validate validates this repository build request
 func (m *RepositoryBuildRequest) Validate(formats strfmt.Registry) error {
-
 	var res []error
 
 	if err := m.validateDockerTags(formats); err != nil {
@@ -52,7 +51,6 @@ func (m *RepositoryBuildRequest) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-
 	return nil
 }
 

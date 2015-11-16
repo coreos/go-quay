@@ -81,9 +81,17 @@ func (o *GetLoggedInUserOK) readResponse(response client.Response, consumer http
 Bad Request
 */
 type GetLoggedInUserBadRequest struct {
+	Payload *models.GeneralError
 }
 
 func (o *GetLoggedInUserBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.GeneralError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+		return err
+	}
 
 	return nil
 }

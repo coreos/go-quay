@@ -22,12 +22,11 @@ type TokenPermission struct {
 
 	Required: true
 	*/
-	Role string `json:"role"`
+	Role string `json:"role,omitempty"`
 }
 
 // Validate validates this token permission
 func (m *TokenPermission) Validate(formats strfmt.Registry) error {
-
 	var res []error
 
 	if err := m.validateRole(formats); err != nil {
@@ -37,7 +36,6 @@ func (m *TokenPermission) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-
 	return nil
 }
 

@@ -7,6 +7,8 @@ import (
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
+
+	"github.com/coreos/go-quay/models"
 )
 
 type GetBuildTriggerReader struct {
@@ -71,9 +73,17 @@ func (o *GetBuildTriggerOK) readResponse(response client.Response, consumer http
 Bad Request
 */
 type GetBuildTriggerBadRequest struct {
+	Payload *models.GeneralError
 }
 
 func (o *GetBuildTriggerBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.GeneralError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+		return err
+	}
 
 	return nil
 }

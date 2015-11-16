@@ -20,23 +20,23 @@ type NotificationCreateRequest struct {
 
 	Required: true
 	*/
-	Config map[string]interface{} `json:"config"`
+	Config interface{} `json:"config,omitempty"`
 
 	/* The event on which the notification will respond
 
 	Required: true
 	*/
-	Event string `json:"event"`
+	Event string `json:"event,omitempty"`
 
 	/* JSON config information for the specific event of notification
 	 */
-	EventConfig map[string]interface{} `json:"eventConfig,omitempty"`
+	EventConfig interface{} `json:"eventConfig,omitempty"`
 
 	/* The method of notification (such as email or web callback)
 
 	Required: true
 	*/
-	Method string `json:"method"`
+	Method string `json:"method,omitempty"`
 
 	/* The human-readable title of the notification
 	 */
@@ -45,7 +45,6 @@ type NotificationCreateRequest struct {
 
 // Validate validates this notification create request
 func (m *NotificationCreateRequest) Validate(formats strfmt.Registry) error {
-
 	var res []error
 
 	if err := m.validateConfig(formats); err != nil {
@@ -63,7 +62,6 @@ func (m *NotificationCreateRequest) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-
 	return nil
 }
 

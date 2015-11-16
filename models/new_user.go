@@ -20,7 +20,7 @@ type NewUser struct {
 
 	Required: true
 	*/
-	Email string `json:"email"`
+	Email string `json:"email,omitempty"`
 
 	/* The optional invite code
 	 */
@@ -30,18 +30,17 @@ type NewUser struct {
 
 	Required: true
 	*/
-	Password string `json:"password"`
+	Password string `json:"password,omitempty"`
 
 	/* The user's username
 
 	Required: true
 	*/
-	Username string `json:"username"`
+	Username string `json:"username,omitempty"`
 }
 
 // Validate validates this new user
 func (m *NewUser) Validate(formats strfmt.Registry) error {
-
 	var res []error
 
 	if err := m.validateEmail(formats); err != nil {
@@ -59,7 +58,6 @@ func (m *NewUser) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-
 	return nil
 }
 
