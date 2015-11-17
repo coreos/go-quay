@@ -176,6 +176,11 @@ func (a *Client) ListRepoUserPermissions(params ListRepoUserPermissionsParams, a
 	return result.(*ListRepoUserPermissionsOK), nil
 }
 
+// SetTransport changes the transport on the client
+func (a *Client) SetTransport(transport client.Transport) {
+	a.transport = transport
+}
+
 // NewAPIError creates a new API error
 func NewAPIError(opName string, response interface{}, code int) APIError {
 	return APIError{

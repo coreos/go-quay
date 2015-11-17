@@ -56,6 +56,11 @@ func (a *Client) ListPlans(params ListPlansParams) (*ListPlansOK, error) {
 	return result.(*ListPlansOK), nil
 }
 
+// SetTransport changes the transport on the client
+func (a *Client) SetTransport(transport client.Transport) {
+	a.transport = transport
+}
+
 // NewAPIError creates a new API error
 func NewAPIError(opName string, response interface{}, code int) APIError {
 	return APIError{

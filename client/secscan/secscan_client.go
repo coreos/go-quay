@@ -57,6 +57,11 @@ func (a *Client) GetRepoTagVulnerabilities(params GetRepoTagVulnerabilitiesParam
 	return result.(*GetRepoTagVulnerabilitiesOK), nil
 }
 
+// SetTransport changes the transport on the client
+func (a *Client) SetTransport(transport client.Transport) {
+	a.transport = transport
+}
+
 // NewAPIError creates a new API error
 func NewAPIError(opName string, response interface{}, code int) APIError {
 	return APIError{

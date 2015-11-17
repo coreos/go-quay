@@ -34,7 +34,7 @@ var Default = NewHTTPClient(nil)
 
 // NewHTTPClient creates a new quay API HTTP client.
 func NewHTTPClient(formats strfmt.Registry) *QuayAPI {
-	swaggerSpec, err := spec.New(swaggerJSON, "")
+	swaggerSpec, err := spec.New(SwaggerJSON, "")
 	if err != nil {
 		// the swagger spec is valid because it was used to generated this code.
 		panic(err)
@@ -48,6 +48,7 @@ func NewHTTPClient(formats strfmt.Registry) *QuayAPI {
 // New creates a new quay API client
 func New(transport client.Transport, formats strfmt.Registry) *QuayAPI {
 	cli := new(QuayAPI)
+	cli.Transport = transport
 
 	cli.Billing = billing.New(transport, formats)
 
@@ -125,4 +126,48 @@ type QuayAPI struct {
 	Trigger *trigger.Client
 
 	User *user.Client
+
+	Transport client.Transport
+}
+
+// SetTransport changes the transport on the client and all its subresources
+func (c *QuayAPI) SetTransport(transport client.Transport) {
+	c.Transport = transport
+
+	c.Billing.SetTransport(transport)
+
+	c.Build.SetTransport(transport)
+
+	c.Discovery.SetTransport(transport)
+
+	c.Image.SetTransport(transport)
+
+	c.Logs.SetTransport(transport)
+
+	c.Organization.SetTransport(transport)
+
+	c.Permission.SetTransport(transport)
+
+	c.Prototype.SetTransport(transport)
+
+	c.Repository.SetTransport(transport)
+
+	c.Repositorynotification.SetTransport(transport)
+
+	c.Repotoken.SetTransport(transport)
+
+	c.Robot.SetTransport(transport)
+
+	c.Search.SetTransport(transport)
+
+	c.Secscan.SetTransport(transport)
+
+	c.Tag.SetTransport(transport)
+
+	c.Team.SetTransport(transport)
+
+	c.Trigger.SetTransport(transport)
+
+	c.User.SetTransport(transport)
+
 }

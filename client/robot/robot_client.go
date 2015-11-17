@@ -220,6 +220,11 @@ func (a *Client) RegenerateUserRobotToken(params RegenerateUserRobotTokenParams)
 	return result.(*RegenerateUserRobotTokenOK), nil
 }
 
+// SetTransport changes the transport on the client
+func (a *Client) SetTransport(transport client.Transport) {
+	a.transport = transport
+}
+
 // NewAPIError creates a new API error
 func NewAPIError(opName string, response interface{}, code int) APIError {
 	return APIError{

@@ -39,6 +39,11 @@ func (a *Client) Discovery(params DiscoveryParams) (*DiscoveryOK, error) {
 	return result.(*DiscoveryOK), nil
 }
 
+// SetTransport changes the transport on the client
+func (a *Client) SetTransport(transport client.Transport) {
+	a.transport = transport
+}
+
 // NewAPIError creates a new API error
 func NewAPIError(opName string, response interface{}, code int) APIError {
 	return APIError{
