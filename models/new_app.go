@@ -9,8 +9,7 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-Description of a new organization application.
+/*Description of a new organization application.
 
 swagger:model NewApp
 */
@@ -44,6 +43,7 @@ func (m *NewApp) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateName(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 

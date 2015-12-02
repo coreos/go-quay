@@ -9,8 +9,7 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-Description of a new token.
+/*Description of a new token.
 
 swagger:model NewToken
 */
@@ -28,6 +27,7 @@ func (m *NewToken) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateFriendlyName(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 

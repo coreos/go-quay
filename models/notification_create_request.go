@@ -9,8 +9,7 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-Information for creating a notification on a repository
+/*Information for creating a notification on a repository
 
 swagger:model NotificationCreateRequest
 */
@@ -48,14 +47,17 @@ func (m *NotificationCreateRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateConfig(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateEvent(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateMethod(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 

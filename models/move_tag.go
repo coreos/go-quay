@@ -9,8 +9,7 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-Description of to which image a new or existing tag should point
+/*Description of to which image a new or existing tag should point
 
 swagger:model MoveTag
 */
@@ -28,6 +27,7 @@ func (m *MoveTag) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateImage(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 

@@ -9,8 +9,7 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-Fields which can be updated in a user.
+/*Fields which can be updated in a user.
 
 swagger:model UpdateUser
 */
@@ -45,6 +44,7 @@ func (m *UpdateUser) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateTagExpiration(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 

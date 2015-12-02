@@ -9,8 +9,7 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-Reverts a tag to a specific image
+/*Reverts a tag to a specific image
 
 swagger:model RevertTag
 */
@@ -28,6 +27,7 @@ func (m *RevertTag) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateImage(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 

@@ -9,8 +9,7 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-Description of updates for an existing organization
+/*Description of updates for an existing organization
 
 swagger:model UpdateOrg
 */
@@ -37,6 +36,7 @@ func (m *UpdateOrg) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateTagExpiration(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 

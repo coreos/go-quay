@@ -9,8 +9,7 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-NewStarredRepository new starred repository
+/*NewStarredRepository new starred repository
 
 swagger:model NewStarredRepository
 */
@@ -34,10 +33,12 @@ func (m *NewStarredRepository) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateNamespace(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateRepository(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 

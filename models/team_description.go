@@ -11,8 +11,7 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-Description of a team
+/*Description of a team
 
 swagger:model TeamDescription
 */
@@ -34,6 +33,7 @@ func (m *TeamDescription) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateRole(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -55,7 +55,10 @@ func (m *TeamDescription) validateRoleEnum(path, location string, value string) 
 			teamDescriptionRoleEnum = append(teamDescriptionRoleEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, teamDescriptionRoleEnum)
+	if err := validate.Enum(path, location, value, teamDescriptionRoleEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *TeamDescription) validateRole(formats strfmt.Registry) error {
