@@ -3945,18 +3945,10 @@
         },
         "parameters": [
           {
-            "description": "The name of the organization",
-            "required": true,
-            "type": "string",
-            "name": "orgname",
-            "in": "path"
+            "$ref": "#/parameters/OrgName"
           },
           {
-            "description": "The short name for the robot, without any user or organization prefix",
-            "required": true,
-            "type": "string",
-            "name": "robot_shortname",
-            "in": "path"
+            "$ref": "#/parameters/RobotShortName"
           }
         ],
         "tags": [
@@ -6391,6 +6383,28 @@
           "type": "string"
         }
       }
+    }
+  },
+  "parameters": {
+    "OrgName": {
+      "description": "The name of the organization",
+      "required": true,
+      "type": "string",
+      "name": "orgname",
+      "in": "path",
+      "minLength": 4,
+      "maxLength": 30,
+      "pattern": "[a-z0-9_]+"
+    },
+    "RobotShortName": {
+      "description": "The short name for the robot, without any user or organization prefix",
+      "required": true,
+      "type": "string",
+      "name": "robot_shortname",
+      "in": "path",
+      "minLength": 4,
+      "maxLength": 30,
+      "pattern": "[a-z0-9_]+"
     }
   },
   "basePath": "/",
