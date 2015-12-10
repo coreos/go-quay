@@ -25,7 +25,7 @@ type Client struct {
 
 /*Create a new robot in the organization.
  */
-func (a *Client) CreateOrgRobot(params CreateOrgRobotParams, authInfo client.AuthInfoWriter) (*CreateOrgRobotOK, error) {
+func (a *Client) CreateOrgRobot(params CreateOrgRobotParams, authInfo client.AuthInfoWriter) (*CreateOrgRobotCreated, error) {
 	// TODO: Validate the params before sending
 
 	result, err := a.transport.Submit(&client.Operation{
@@ -37,7 +37,7 @@ func (a *Client) CreateOrgRobot(params CreateOrgRobotParams, authInfo client.Aut
 	if err != nil {
 		return nil, err
 	}
-	return result.(*CreateOrgRobotOK), nil
+	return result.(*CreateOrgRobotCreated), nil
 }
 
 /*Create a new user robot with the specified name.

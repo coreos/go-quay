@@ -18,8 +18,8 @@ type CreateOrgRobotReader struct {
 func (o *CreateOrgRobotReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
-	case 200:
-		var result CreateOrgRobotOK
+	case 201:
+		var result CreateOrgRobotCreated
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -58,14 +58,22 @@ func (o *CreateOrgRobotReader) ReadResponse(response client.Response, consumer h
 	}
 }
 
-/*CreateOrgRobotOK
+/*CreateOrgRobotCreated
 
-Successful invocation
+Succesfully created
 */
-type CreateOrgRobotOK struct {
+type CreateOrgRobotCreated struct {
+	Payload *models.Robot
 }
 
-func (o *CreateOrgRobotOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateOrgRobotCreated) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Robot)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+		return err
+	}
 
 	return nil
 }

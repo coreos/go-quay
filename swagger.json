@@ -3924,8 +3924,11 @@
       "x-tag": "robot",
       "put": {
         "responses": {
-          "200": {
-            "description": "Successful invocation"
+          "201": {
+            "description": "Succesfully created",
+            "schema": {
+              "$ref": "#/definitions/Robot"
+            }
           },
           "404": {
             "description": "Not found"
@@ -5832,6 +5835,18 @@
     }
   ],
   "definitions": {
+    "Robot": {
+      "type": "object",
+      "description": "A robot account",
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
     "RepositoryBuildRequest": {
       "type": "object",
       "description": "Description of a new repository build.",
