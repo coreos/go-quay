@@ -3873,7 +3873,10 @@
       "get": {
         "responses": {
           "200": {
-            "description": "Successful invocation"
+            "description": "Successful invocation",
+            "schema": {
+              "$ref": "#/definitions/Robot"
+            }
           },
           "404": {
             "description": "Not found"

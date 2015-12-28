@@ -62,9 +62,17 @@ func (o *GetOrgRobotReader) ReadResponse(response client.Response, consumer http
 Successful invocation
 */
 type GetOrgRobotOK struct {
+	Payload *models.Robot
 }
 
 func (o *GetOrgRobotOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Robot)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+		return err
+	}
 
 	return nil
 }
