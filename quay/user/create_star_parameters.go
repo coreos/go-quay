@@ -11,14 +11,13 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*CreateStarParams contains all the parameters to send to the API endpoint
+/*
+CreateStarParams contains all the parameters to send to the API endpoint
 for the create star operation typically these are written to a http.Request
 */
 type CreateStarParams struct {
-
-	/*Body
+	/*
 	  Request body contents.
-
 	*/
 	Body *models.NewStarredRepository
 }

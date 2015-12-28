@@ -9,19 +9,17 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*DeleteFullTagParams contains all the parameters to send to the API endpoint
+/*
+DeleteFullTagParams contains all the parameters to send to the API endpoint
 for the delete full tag operation typically these are written to a http.Request
 */
 type DeleteFullTagParams struct {
-
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
-	/*Tag
+	/*
 	  The name of the tag
-
 	*/
 	Tag string
 }

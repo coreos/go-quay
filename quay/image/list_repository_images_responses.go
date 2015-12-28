@@ -58,8 +58,7 @@ func (o *ListRepositoryImagesReader) ReadResponse(response client.Response, cons
 	}
 }
 
-/*ListRepositoryImagesOK
-
+/*
 Successful invocation
 */
 type ListRepositoryImagesOK struct {
@@ -70,8 +69,7 @@ func (o *ListRepositoryImagesOK) readResponse(response client.Response, consumer
 	return nil
 }
 
-/*ListRepositoryImagesBadRequest
-
+/*
 Bad Request
 */
 type ListRepositoryImagesBadRequest struct {
@@ -90,8 +88,7 @@ func (o *ListRepositoryImagesBadRequest) readResponse(response client.Response, 
 	return nil
 }
 
-/*ListRepositoryImagesUnauthorized
-
+/*
 Session required
 */
 type ListRepositoryImagesUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *ListRepositoryImagesUnauthorized) readResponse(response client.Response
 	return nil
 }
 
-/*ListRepositoryImagesForbidden
-
+/*
 Unauthorized access
 */
 type ListRepositoryImagesForbidden struct {
@@ -114,8 +110,7 @@ func (o *ListRepositoryImagesForbidden) readResponse(response client.Response, c
 	return nil
 }
 
-/*ListRepositoryImagesNotFound
-
+/*
 Not found
 */
 type ListRepositoryImagesNotFound struct {

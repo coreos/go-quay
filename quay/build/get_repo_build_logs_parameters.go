@@ -9,19 +9,17 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*GetRepoBuildLogsParams contains all the parameters to send to the API endpoint
+/*
+GetRepoBuildLogsParams contains all the parameters to send to the API endpoint
 for the get repo build logs operation typically these are written to a http.Request
 */
 type GetRepoBuildLogsParams struct {
-
-	/*BuildUUID
+	/*
 	  The UUID of the build
-
 	*/
 	BuildUUID string
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
 }

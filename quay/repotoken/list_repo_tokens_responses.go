@@ -58,8 +58,7 @@ func (o *ListRepoTokensReader) ReadResponse(response client.Response, consumer h
 	}
 }
 
-/*ListRepoTokensOK
-
+/*
 Successful invocation
 */
 type ListRepoTokensOK struct {
@@ -70,8 +69,7 @@ func (o *ListRepoTokensOK) readResponse(response client.Response, consumer httpk
 	return nil
 }
 
-/*ListRepoTokensBadRequest
-
+/*
 Bad Request
 */
 type ListRepoTokensBadRequest struct {
@@ -90,8 +88,7 @@ func (o *ListRepoTokensBadRequest) readResponse(response client.Response, consum
 	return nil
 }
 
-/*ListRepoTokensUnauthorized
-
+/*
 Session required
 */
 type ListRepoTokensUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *ListRepoTokensUnauthorized) readResponse(response client.Response, cons
 	return nil
 }
 
-/*ListRepoTokensForbidden
-
+/*
 Unauthorized access
 */
 type ListRepoTokensForbidden struct {
@@ -114,8 +110,7 @@ func (o *ListRepoTokensForbidden) readResponse(response client.Response, consume
 	return nil
 }
 
-/*ListRepoTokensNotFound
-
+/*
 Not found
 */
 type ListRepoTokensNotFound struct {

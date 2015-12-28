@@ -9,14 +9,13 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*RegenerateUserRobotTokenParams contains all the parameters to send to the API endpoint
+/*
+RegenerateUserRobotTokenParams contains all the parameters to send to the API endpoint
 for the regenerate user robot token operation typically these are written to a http.Request
 */
 type RegenerateUserRobotTokenParams struct {
-
-	/*RobotShortname
+	/*
 	  The short name for the robot, without any user or organization prefix
-
 	*/
 	RobotShortname string
 }

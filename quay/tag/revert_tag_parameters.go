@@ -11,24 +11,21 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*RevertTagParams contains all the parameters to send to the API endpoint
+/*
+RevertTagParams contains all the parameters to send to the API endpoint
 for the revert tag operation typically these are written to a http.Request
 */
 type RevertTagParams struct {
-
-	/*Body
+	/*
 	  Request body contents.
-
 	*/
 	Body *models.RevertTag
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
-	/*Tag
+	/*
 	  The name of the tag
-
 	*/
 	Tag string
 }

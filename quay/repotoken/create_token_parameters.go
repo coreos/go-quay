@@ -11,19 +11,17 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*CreateTokenParams contains all the parameters to send to the API endpoint
+/*
+CreateTokenParams contains all the parameters to send to the API endpoint
 for the create token operation typically these are written to a http.Request
 */
 type CreateTokenParams struct {
-
-	/*Body
+	/*
 	  Request body contents.
-
 	*/
 	Body *models.NewToken
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
 }

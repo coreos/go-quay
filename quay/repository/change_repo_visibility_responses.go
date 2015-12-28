@@ -58,8 +58,7 @@ func (o *ChangeRepoVisibilityReader) ReadResponse(response client.Response, cons
 	}
 }
 
-/*ChangeRepoVisibilityOK
-
+/*
 Successful invocation
 */
 type ChangeRepoVisibilityOK struct {
@@ -70,8 +69,7 @@ func (o *ChangeRepoVisibilityOK) readResponse(response client.Response, consumer
 	return nil
 }
 
-/*ChangeRepoVisibilityBadRequest
-
+/*
 Bad Request
 */
 type ChangeRepoVisibilityBadRequest struct {
@@ -90,8 +88,7 @@ func (o *ChangeRepoVisibilityBadRequest) readResponse(response client.Response, 
 	return nil
 }
 
-/*ChangeRepoVisibilityUnauthorized
-
+/*
 Session required
 */
 type ChangeRepoVisibilityUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *ChangeRepoVisibilityUnauthorized) readResponse(response client.Response
 	return nil
 }
 
-/*ChangeRepoVisibilityForbidden
-
+/*
 Unauthorized access
 */
 type ChangeRepoVisibilityForbidden struct {
@@ -114,8 +110,7 @@ func (o *ChangeRepoVisibilityForbidden) readResponse(response client.Response, c
 	return nil
 }
 
-/*ChangeRepoVisibilityNotFound
-
+/*
 Not found
 */
 type ChangeRepoVisibilityNotFound struct {

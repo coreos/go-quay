@@ -10,19 +10,17 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*GetOrgRobotsParams contains all the parameters to send to the API endpoint
+/*
+GetOrgRobotsParams contains all the parameters to send to the API endpoint
 for the get org robots operation typically these are written to a http.Request
 */
 type GetOrgRobotsParams struct {
-
-	/*Orgname
+	/*
 	  The name of the organization
-
 	*/
 	Orgname string
-	/*Permissions
+	/*
 	  Whether to include repostories and teams in which the robots have permission.
-
 	*/
 	Permissions bool
 }

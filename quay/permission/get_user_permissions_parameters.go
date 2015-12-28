@@ -9,19 +9,17 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*GetUserPermissionsParams contains all the parameters to send to the API endpoint
+/*
+GetUserPermissionsParams contains all the parameters to send to the API endpoint
 for the get user permissions operation typically these are written to a http.Request
 */
 type GetUserPermissionsParams struct {
-
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
-	/*Username
+	/*
 	  The username of the user to which the permission applies
-
 	*/
 	Username string
 }

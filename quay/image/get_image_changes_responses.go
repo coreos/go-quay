@@ -58,8 +58,7 @@ func (o *GetImageChangesReader) ReadResponse(response client.Response, consumer 
 	}
 }
 
-/*GetImageChangesOK
-
+/*
 Successful invocation
 */
 type GetImageChangesOK struct {
@@ -70,8 +69,7 @@ func (o *GetImageChangesOK) readResponse(response client.Response, consumer http
 	return nil
 }
 
-/*GetImageChangesBadRequest
-
+/*
 Bad Request
 */
 type GetImageChangesBadRequest struct {
@@ -90,8 +88,7 @@ func (o *GetImageChangesBadRequest) readResponse(response client.Response, consu
 	return nil
 }
 
-/*GetImageChangesUnauthorized
-
+/*
 Session required
 */
 type GetImageChangesUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *GetImageChangesUnauthorized) readResponse(response client.Response, con
 	return nil
 }
 
-/*GetImageChangesForbidden
-
+/*
 Unauthorized access
 */
 type GetImageChangesForbidden struct {
@@ -114,8 +110,7 @@ func (o *GetImageChangesForbidden) readResponse(response client.Response, consum
 	return nil
 }
 
-/*GetImageChangesNotFound
-
+/*
 Not found
 */
 type GetImageChangesNotFound struct {

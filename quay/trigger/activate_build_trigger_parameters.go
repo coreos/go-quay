@@ -11,24 +11,21 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*ActivateBuildTriggerParams contains all the parameters to send to the API endpoint
+/*
+ActivateBuildTriggerParams contains all the parameters to send to the API endpoint
 for the activate build trigger operation typically these are written to a http.Request
 */
 type ActivateBuildTriggerParams struct {
-
-	/*Body
+	/*
 	  Request body contents.
-
 	*/
 	Body *models.BuildTriggerActivateRequest
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
-	/*TriggerUUID
+	/*
 	  The UUID of the build trigger
-
 	*/
 	TriggerUUID string
 }

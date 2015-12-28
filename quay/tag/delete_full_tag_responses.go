@@ -58,8 +58,7 @@ func (o *DeleteFullTagReader) ReadResponse(response client.Response, consumer ht
 	}
 }
 
-/*DeleteFullTagNoContent
-
+/*
 Deleted
 */
 type DeleteFullTagNoContent struct {
@@ -70,8 +69,7 @@ func (o *DeleteFullTagNoContent) readResponse(response client.Response, consumer
 	return nil
 }
 
-/*DeleteFullTagBadRequest
-
+/*
 Bad Request
 */
 type DeleteFullTagBadRequest struct {
@@ -90,8 +88,7 @@ func (o *DeleteFullTagBadRequest) readResponse(response client.Response, consume
 	return nil
 }
 
-/*DeleteFullTagUnauthorized
-
+/*
 Session required
 */
 type DeleteFullTagUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *DeleteFullTagUnauthorized) readResponse(response client.Response, consu
 	return nil
 }
 
-/*DeleteFullTagForbidden
-
+/*
 Unauthorized access
 */
 type DeleteFullTagForbidden struct {
@@ -114,8 +110,7 @@ func (o *DeleteFullTagForbidden) readResponse(response client.Response, consumer
 	return nil
 }
 
-/*DeleteFullTagNotFound
-
+/*
 Not found
 */
 type DeleteFullTagNotFound struct {

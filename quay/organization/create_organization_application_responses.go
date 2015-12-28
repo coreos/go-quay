@@ -58,8 +58,7 @@ func (o *CreateOrganizationApplicationReader) ReadResponse(response client.Respo
 	}
 }
 
-/*CreateOrganizationApplicationOK
-
+/*
 Successful invocation
 */
 type CreateOrganizationApplicationOK struct {
@@ -70,8 +69,7 @@ func (o *CreateOrganizationApplicationOK) readResponse(response client.Response,
 	return nil
 }
 
-/*CreateOrganizationApplicationBadRequest
-
+/*
 Bad Request
 */
 type CreateOrganizationApplicationBadRequest struct {
@@ -90,8 +88,7 @@ func (o *CreateOrganizationApplicationBadRequest) readResponse(response client.R
 	return nil
 }
 
-/*CreateOrganizationApplicationUnauthorized
-
+/*
 Session required
 */
 type CreateOrganizationApplicationUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *CreateOrganizationApplicationUnauthorized) readResponse(response client
 	return nil
 }
 
-/*CreateOrganizationApplicationForbidden
-
+/*
 Unauthorized access
 */
 type CreateOrganizationApplicationForbidden struct {
@@ -114,8 +110,7 @@ func (o *CreateOrganizationApplicationForbidden) readResponse(response client.Re
 	return nil
 }
 
-/*CreateOrganizationApplicationNotFound
-
+/*
 Not found
 */
 type CreateOrganizationApplicationNotFound struct {

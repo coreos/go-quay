@@ -58,8 +58,7 @@ func (o *CancelRepoBuildReader) ReadResponse(response client.Response, consumer 
 	}
 }
 
-/*CancelRepoBuildNoContent
-
+/*
 Deleted
 */
 type CancelRepoBuildNoContent struct {
@@ -70,8 +69,7 @@ func (o *CancelRepoBuildNoContent) readResponse(response client.Response, consum
 	return nil
 }
 
-/*CancelRepoBuildBadRequest
-
+/*
 Bad Request
 */
 type CancelRepoBuildBadRequest struct {
@@ -90,8 +88,7 @@ func (o *CancelRepoBuildBadRequest) readResponse(response client.Response, consu
 	return nil
 }
 
-/*CancelRepoBuildUnauthorized
-
+/*
 Session required
 */
 type CancelRepoBuildUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *CancelRepoBuildUnauthorized) readResponse(response client.Response, con
 	return nil
 }
 
-/*CancelRepoBuildForbidden
-
+/*
 Unauthorized access
 */
 type CancelRepoBuildForbidden struct {
@@ -114,8 +110,7 @@ func (o *CancelRepoBuildForbidden) readResponse(response client.Response, consum
 	return nil
 }
 
-/*CancelRepoBuildNotFound
-
+/*
 Not found
 */
 type CancelRepoBuildNotFound struct {

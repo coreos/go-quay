@@ -58,8 +58,7 @@ func (o *GetMatchingEntitiesReader) ReadResponse(response client.Response, consu
 	}
 }
 
-/*GetMatchingEntitiesOK
-
+/*
 Successful invocation
 */
 type GetMatchingEntitiesOK struct {
@@ -70,8 +69,7 @@ func (o *GetMatchingEntitiesOK) readResponse(response client.Response, consumer 
 	return nil
 }
 
-/*GetMatchingEntitiesBadRequest
-
+/*
 Bad Request
 */
 type GetMatchingEntitiesBadRequest struct {
@@ -90,8 +88,7 @@ func (o *GetMatchingEntitiesBadRequest) readResponse(response client.Response, c
 	return nil
 }
 
-/*GetMatchingEntitiesUnauthorized
-
+/*
 Session required
 */
 type GetMatchingEntitiesUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *GetMatchingEntitiesUnauthorized) readResponse(response client.Response,
 	return nil
 }
 
-/*GetMatchingEntitiesForbidden
-
+/*
 Unauthorized access
 */
 type GetMatchingEntitiesForbidden struct {
@@ -114,8 +110,7 @@ func (o *GetMatchingEntitiesForbidden) readResponse(response client.Response, co
 	return nil
 }
 
-/*GetMatchingEntitiesNotFound
-
+/*
 Not found
 */
 type GetMatchingEntitiesNotFound struct {

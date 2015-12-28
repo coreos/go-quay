@@ -58,8 +58,7 @@ func (o *GetTeamPermissionsReader) ReadResponse(response client.Response, consum
 	}
 }
 
-/*GetTeamPermissionsOK
-
+/*
 Successful invocation
 */
 type GetTeamPermissionsOK struct {
@@ -70,8 +69,7 @@ func (o *GetTeamPermissionsOK) readResponse(response client.Response, consumer h
 	return nil
 }
 
-/*GetTeamPermissionsBadRequest
-
+/*
 Bad Request
 */
 type GetTeamPermissionsBadRequest struct {
@@ -90,8 +88,7 @@ func (o *GetTeamPermissionsBadRequest) readResponse(response client.Response, co
 	return nil
 }
 
-/*GetTeamPermissionsUnauthorized
-
+/*
 Session required
 */
 type GetTeamPermissionsUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *GetTeamPermissionsUnauthorized) readResponse(response client.Response, 
 	return nil
 }
 
-/*GetTeamPermissionsForbidden
-
+/*
 Unauthorized access
 */
 type GetTeamPermissionsForbidden struct {
@@ -114,8 +110,7 @@ func (o *GetTeamPermissionsForbidden) readResponse(response client.Response, con
 	return nil
 }
 
-/*GetTeamPermissionsNotFound
-
+/*
 Not found
 */
 type GetTeamPermissionsNotFound struct {

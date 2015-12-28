@@ -10,44 +10,37 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*ListReposParams contains all the parameters to send to the API endpoint
+/*
+ListReposParams contains all the parameters to send to the API endpoint
 for the list repos operation typically these are written to a http.Request
 */
 type ListReposParams struct {
-
-	/*LastModified
+	/*
 	  Whether to include when the repository was last modified.
-
 	*/
 	LastModified bool
-	/*Limit
+	/*
 	  Limit on the number of results (int)
-
 	*/
 	Limit int64
-	/*Namespace
+	/*
 	  Filters the repositories returned to this namespace
-
 	*/
 	Namespace string
-	/*Page
+	/*
 	  Offset page number. (int)
-
 	*/
 	Page int64
-	/*Popularity
+	/*
 	  Whether to include the repository's popularity metric.
-
 	*/
 	Popularity bool
-	/*Public
+	/*
 	  Adds any repositories visible to the user by virtue of being public
-
 	*/
 	Public bool
-	/*Starred
+	/*
 	  Filters the repositories returned to those starred by the user
-
 	*/
 	Starred bool
 }

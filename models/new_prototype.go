@@ -11,7 +11,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*Description of a new prototype
+/*
+Description of a new prototype
 
 swagger:model NewPrototype
 */
@@ -39,17 +40,14 @@ func (m *NewPrototype) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateActivatingUser(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDelegate(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateRole(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -95,10 +93,7 @@ func (m *NewPrototype) validateRoleEnum(path, location string, value string) err
 			newPrototypeRoleEnum = append(newPrototypeRoleEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, newPrototypeRoleEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, newPrototypeRoleEnum)
 }
 
 func (m *NewPrototype) validateRole(formats strfmt.Registry) error {
@@ -114,7 +109,8 @@ func (m *NewPrototype) validateRole(formats strfmt.Registry) error {
 	return nil
 }
 
-/*Repository creating user to whom the rule should apply
+/*
+Repository creating user to whom the rule should apply
 
 swagger:model NewPrototypeActivatingUser
 */
@@ -132,7 +128,6 @@ func (m *NewPrototypeActivatingUser) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -151,7 +146,8 @@ func (m *NewPrototypeActivatingUser) validateName(formats strfmt.Registry) error
 	return nil
 }
 
-/*Information about the user or team to which the rule grants access
+/*
+Information about the user or team to which the rule grants access
 
 swagger:model NewPrototypeDelegate
 */
@@ -175,12 +171,10 @@ func (m *NewPrototypeDelegate) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateKind(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -202,10 +196,7 @@ func (m *NewPrototypeDelegate) validateKindEnum(path, location string, value str
 			newPrototypeDelegateKindEnum = append(newPrototypeDelegateKindEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, newPrototypeDelegateKindEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, newPrototypeDelegateKindEnum)
 }
 
 func (m *NewPrototypeDelegate) validateKind(formats strfmt.Registry) error {

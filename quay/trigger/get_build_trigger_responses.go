@@ -58,8 +58,7 @@ func (o *GetBuildTriggerReader) ReadResponse(response client.Response, consumer 
 	}
 }
 
-/*GetBuildTriggerOK
-
+/*
 Successful invocation
 */
 type GetBuildTriggerOK struct {
@@ -70,8 +69,7 @@ func (o *GetBuildTriggerOK) readResponse(response client.Response, consumer http
 	return nil
 }
 
-/*GetBuildTriggerBadRequest
-
+/*
 Bad Request
 */
 type GetBuildTriggerBadRequest struct {
@@ -90,8 +88,7 @@ func (o *GetBuildTriggerBadRequest) readResponse(response client.Response, consu
 	return nil
 }
 
-/*GetBuildTriggerUnauthorized
-
+/*
 Session required
 */
 type GetBuildTriggerUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *GetBuildTriggerUnauthorized) readResponse(response client.Response, con
 	return nil
 }
 
-/*GetBuildTriggerForbidden
-
+/*
 Unauthorized access
 */
 type GetBuildTriggerForbidden struct {
@@ -114,8 +110,7 @@ func (o *GetBuildTriggerForbidden) readResponse(response client.Response, consum
 	return nil
 }
 
-/*GetBuildTriggerNotFound
-
+/*
 Not found
 */
 type GetBuildTriggerNotFound struct {

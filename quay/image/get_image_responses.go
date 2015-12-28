@@ -58,8 +58,7 @@ func (o *GetImageReader) ReadResponse(response client.Response, consumer httpkit
 	}
 }
 
-/*GetImageOK
-
+/*
 Successful invocation
 */
 type GetImageOK struct {
@@ -70,8 +69,7 @@ func (o *GetImageOK) readResponse(response client.Response, consumer httpkit.Con
 	return nil
 }
 
-/*GetImageBadRequest
-
+/*
 Bad Request
 */
 type GetImageBadRequest struct {
@@ -90,8 +88,7 @@ func (o *GetImageBadRequest) readResponse(response client.Response, consumer htt
 	return nil
 }
 
-/*GetImageUnauthorized
-
+/*
 Session required
 */
 type GetImageUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *GetImageUnauthorized) readResponse(response client.Response, consumer h
 	return nil
 }
 
-/*GetImageForbidden
-
+/*
 Unauthorized access
 */
 type GetImageForbidden struct {
@@ -114,8 +110,7 @@ func (o *GetImageForbidden) readResponse(response client.Response, consumer http
 	return nil
 }
 
-/*GetImageNotFound
-
+/*
 Not found
 */
 type GetImageNotFound struct {

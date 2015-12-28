@@ -58,8 +58,7 @@ func (o *CreateOrgRobotReader) ReadResponse(response client.Response, consumer h
 	}
 }
 
-/*CreateOrgRobotCreated
-
+/*
 Succesfully created
 */
 type CreateOrgRobotCreated struct {
@@ -78,8 +77,7 @@ func (o *CreateOrgRobotCreated) readResponse(response client.Response, consumer 
 	return nil
 }
 
-/*CreateOrgRobotBadRequest
-
+/*
 Bad Request
 */
 type CreateOrgRobotBadRequest struct {
@@ -98,8 +96,7 @@ func (o *CreateOrgRobotBadRequest) readResponse(response client.Response, consum
 	return nil
 }
 
-/*CreateOrgRobotUnauthorized
-
+/*
 Session required
 */
 type CreateOrgRobotUnauthorized struct {
@@ -110,8 +107,7 @@ func (o *CreateOrgRobotUnauthorized) readResponse(response client.Response, cons
 	return nil
 }
 
-/*CreateOrgRobotForbidden
-
+/*
 Unauthorized access
 */
 type CreateOrgRobotForbidden struct {
@@ -122,8 +118,7 @@ func (o *CreateOrgRobotForbidden) readResponse(response client.Response, consume
 	return nil
 }
 
-/*CreateOrgRobotNotFound
-
+/*
 Not found
 */
 type CreateOrgRobotNotFound struct {

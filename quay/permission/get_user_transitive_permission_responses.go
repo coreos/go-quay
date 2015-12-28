@@ -58,8 +58,7 @@ func (o *GetUserTransitivePermissionReader) ReadResponse(response client.Respons
 	}
 }
 
-/*GetUserTransitivePermissionOK
-
+/*
 Successful invocation
 */
 type GetUserTransitivePermissionOK struct {
@@ -70,8 +69,7 @@ func (o *GetUserTransitivePermissionOK) readResponse(response client.Response, c
 	return nil
 }
 
-/*GetUserTransitivePermissionBadRequest
-
+/*
 Bad Request
 */
 type GetUserTransitivePermissionBadRequest struct {
@@ -90,8 +88,7 @@ func (o *GetUserTransitivePermissionBadRequest) readResponse(response client.Res
 	return nil
 }
 
-/*GetUserTransitivePermissionUnauthorized
-
+/*
 Session required
 */
 type GetUserTransitivePermissionUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *GetUserTransitivePermissionUnauthorized) readResponse(response client.R
 	return nil
 }
 
-/*GetUserTransitivePermissionForbidden
-
+/*
 Unauthorized access
 */
 type GetUserTransitivePermissionForbidden struct {
@@ -114,8 +110,7 @@ func (o *GetUserTransitivePermissionForbidden) readResponse(response client.Resp
 	return nil
 }
 
-/*GetUserTransitivePermissionNotFound
-
+/*
 Not found
 */
 type GetUserTransitivePermissionNotFound struct {

@@ -10,24 +10,21 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*ListTriggerRecentBuildsParams contains all the parameters to send to the API endpoint
+/*
+ListTriggerRecentBuildsParams contains all the parameters to send to the API endpoint
 for the list trigger recent builds operation typically these are written to a http.Request
 */
 type ListTriggerRecentBuildsParams struct {
-
-	/*Limit
+	/*
 	  The maximum number of builds to return
-
 	*/
 	Limit int64
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
-	/*TriggerUUID
+	/*
 	  The UUID of the build trigger
-
 	*/
 	TriggerUUID string
 }

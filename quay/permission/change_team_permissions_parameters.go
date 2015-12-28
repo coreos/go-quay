@@ -11,24 +11,21 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*ChangeTeamPermissionsParams contains all the parameters to send to the API endpoint
+/*
+ChangeTeamPermissionsParams contains all the parameters to send to the API endpoint
 for the change team permissions operation typically these are written to a http.Request
 */
 type ChangeTeamPermissionsParams struct {
-
-	/*Body
+	/*
 	  Request body contents.
-
 	*/
 	Body *models.TeamPermission
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
-	/*Teamname
+	/*
 	  The name of the team to which the permission applies
-
 	*/
 	Teamname string
 }

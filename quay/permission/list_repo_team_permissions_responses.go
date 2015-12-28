@@ -58,8 +58,7 @@ func (o *ListRepoTeamPermissionsReader) ReadResponse(response client.Response, c
 	}
 }
 
-/*ListRepoTeamPermissionsOK
-
+/*
 Successful invocation
 */
 type ListRepoTeamPermissionsOK struct {
@@ -70,8 +69,7 @@ func (o *ListRepoTeamPermissionsOK) readResponse(response client.Response, consu
 	return nil
 }
 
-/*ListRepoTeamPermissionsBadRequest
-
+/*
 Bad Request
 */
 type ListRepoTeamPermissionsBadRequest struct {
@@ -90,8 +88,7 @@ func (o *ListRepoTeamPermissionsBadRequest) readResponse(response client.Respons
 	return nil
 }
 
-/*ListRepoTeamPermissionsUnauthorized
-
+/*
 Session required
 */
 type ListRepoTeamPermissionsUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *ListRepoTeamPermissionsUnauthorized) readResponse(response client.Respo
 	return nil
 }
 
-/*ListRepoTeamPermissionsForbidden
-
+/*
 Unauthorized access
 */
 type ListRepoTeamPermissionsForbidden struct {
@@ -114,8 +110,7 @@ func (o *ListRepoTeamPermissionsForbidden) readResponse(response client.Response
 	return nil
 }
 
-/*ListRepoTeamPermissionsNotFound
-
+/*
 Not found
 */
 type ListRepoTeamPermissionsNotFound struct {

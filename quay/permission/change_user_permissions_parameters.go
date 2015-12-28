@@ -11,24 +11,21 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*ChangeUserPermissionsParams contains all the parameters to send to the API endpoint
+/*
+ChangeUserPermissionsParams contains all the parameters to send to the API endpoint
 for the change user permissions operation typically these are written to a http.Request
 */
 type ChangeUserPermissionsParams struct {
-
-	/*Body
+	/*
 	  Request body contents.
-
 	*/
 	Body *models.UserPermission
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
-	/*Username
+	/*
 	  The username of the user to which the permission applies
-
 	*/
 	Username string
 }

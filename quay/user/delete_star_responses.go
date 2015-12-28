@@ -58,8 +58,7 @@ func (o *DeleteStarReader) ReadResponse(response client.Response, consumer httpk
 	}
 }
 
-/*DeleteStarNoContent
-
+/*
 Deleted
 */
 type DeleteStarNoContent struct {
@@ -70,8 +69,7 @@ func (o *DeleteStarNoContent) readResponse(response client.Response, consumer ht
 	return nil
 }
 
-/*DeleteStarBadRequest
-
+/*
 Bad Request
 */
 type DeleteStarBadRequest struct {
@@ -90,8 +88,7 @@ func (o *DeleteStarBadRequest) readResponse(response client.Response, consumer h
 	return nil
 }
 
-/*DeleteStarUnauthorized
-
+/*
 Session required
 */
 type DeleteStarUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *DeleteStarUnauthorized) readResponse(response client.Response, consumer
 	return nil
 }
 
-/*DeleteStarForbidden
-
+/*
 Unauthorized access
 */
 type DeleteStarForbidden struct {
@@ -114,8 +110,7 @@ func (o *DeleteStarForbidden) readResponse(response client.Response, consumer ht
 	return nil
 }
 
-/*DeleteStarNotFound
-
+/*
 Not found
 */
 type DeleteStarNotFound struct {

@@ -9,14 +9,13 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*ListRepositoryImagesParams contains all the parameters to send to the API endpoint
+/*
+ListRepositoryImagesParams contains all the parameters to send to the API endpoint
 for the list repository images operation typically these are written to a http.Request
 */
 type ListRepositoryImagesParams struct {
-
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
 }

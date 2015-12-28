@@ -10,27 +10,24 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*GetMatchingEntitiesParams contains all the parameters to send to the API endpoint
+/*
+GetMatchingEntitiesParams contains all the parameters to send to the API endpoint
 for the get matching entities operation typically these are written to a http.Request
 */
 type GetMatchingEntitiesParams struct {
-
-	/*IncludeOrgs
+	/*
 	  Whether to include orgs names.
-
 	*/
 	IncludeOrgs bool
-	/*IncludeTeams
+	/*
 	  Whether to include team names.
-
 	*/
 	IncludeTeams bool
-	/*Namespace
+	/*
 	  Namespace to use when querying for org entities.
-
 	*/
 	Namespace string
-	/*Prefix*/
+
 	Prefix string
 }
 

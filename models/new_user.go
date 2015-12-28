@@ -9,7 +9,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*Fields which must be specified for a new user.
+/*
+Fields which must be specified for a new user.
 
 swagger:model NewUser
 */
@@ -43,17 +44,14 @@ func (m *NewUser) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateEmail(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePassword(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateUsername(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 

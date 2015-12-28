@@ -9,24 +9,21 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*GetAggregateRepoLogsParams contains all the parameters to send to the API endpoint
+/*
+GetAggregateRepoLogsParams contains all the parameters to send to the API endpoint
 for the get aggregate repo logs operation typically these are written to a http.Request
 */
 type GetAggregateRepoLogsParams struct {
-
-	/*Endtime
+	/*
 	  Latest time to which to get logs (%m/%d/%Y %Z)
-
 	*/
 	Endtime string
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
-	/*Starttime
+	/*
 	  Earliest time from which to get logs (%m/%d/%Y %Z)
-
 	*/
 	Starttime string
 }

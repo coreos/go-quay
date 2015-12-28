@@ -11,24 +11,21 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*ManuallyStartBuildTriggerParams contains all the parameters to send to the API endpoint
+/*
+ManuallyStartBuildTriggerParams contains all the parameters to send to the API endpoint
 for the manually start build trigger operation typically these are written to a http.Request
 */
 type ManuallyStartBuildTriggerParams struct {
-
-	/*Body
+	/*
 	  Request body contents.
-
 	*/
 	Body *models.RunParameters
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
-	/*TriggerUUID
+	/*
 	  The UUID of the build trigger
-
 	*/
 	TriggerUUID string
 }

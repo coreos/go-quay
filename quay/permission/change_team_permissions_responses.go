@@ -58,8 +58,7 @@ func (o *ChangeTeamPermissionsReader) ReadResponse(response client.Response, con
 	}
 }
 
-/*ChangeTeamPermissionsOK
-
+/*
 Successful invocation
 */
 type ChangeTeamPermissionsOK struct {
@@ -70,8 +69,7 @@ func (o *ChangeTeamPermissionsOK) readResponse(response client.Response, consume
 	return nil
 }
 
-/*ChangeTeamPermissionsBadRequest
-
+/*
 Bad Request
 */
 type ChangeTeamPermissionsBadRequest struct {
@@ -90,8 +88,7 @@ func (o *ChangeTeamPermissionsBadRequest) readResponse(response client.Response,
 	return nil
 }
 
-/*ChangeTeamPermissionsUnauthorized
-
+/*
 Session required
 */
 type ChangeTeamPermissionsUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *ChangeTeamPermissionsUnauthorized) readResponse(response client.Respons
 	return nil
 }
 
-/*ChangeTeamPermissionsForbidden
-
+/*
 Unauthorized access
 */
 type ChangeTeamPermissionsForbidden struct {
@@ -114,8 +110,7 @@ func (o *ChangeTeamPermissionsForbidden) readResponse(response client.Response, 
 	return nil
 }
 
-/*ChangeTeamPermissionsNotFound
-
+/*
 Not found
 */
 type ChangeTeamPermissionsNotFound struct {

@@ -58,8 +58,7 @@ func (o *GetOrganizationTeamMembersReader) ReadResponse(response client.Response
 	}
 }
 
-/*GetOrganizationTeamMembersOK
-
+/*
 Successful invocation
 */
 type GetOrganizationTeamMembersOK struct {
@@ -70,8 +69,7 @@ func (o *GetOrganizationTeamMembersOK) readResponse(response client.Response, co
 	return nil
 }
 
-/*GetOrganizationTeamMembersBadRequest
-
+/*
 Bad Request
 */
 type GetOrganizationTeamMembersBadRequest struct {
@@ -90,8 +88,7 @@ func (o *GetOrganizationTeamMembersBadRequest) readResponse(response client.Resp
 	return nil
 }
 
-/*GetOrganizationTeamMembersUnauthorized
-
+/*
 Session required
 */
 type GetOrganizationTeamMembersUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *GetOrganizationTeamMembersUnauthorized) readResponse(response client.Re
 	return nil
 }
 
-/*GetOrganizationTeamMembersForbidden
-
+/*
 Unauthorized access
 */
 type GetOrganizationTeamMembersForbidden struct {
@@ -114,8 +110,7 @@ func (o *GetOrganizationTeamMembersForbidden) readResponse(response client.Respo
 	return nil
 }
 
-/*GetOrganizationTeamMembersNotFound
-
+/*
 Not found
 */
 type GetOrganizationTeamMembersNotFound struct {

@@ -58,8 +58,7 @@ func (o *CreateOrganizationPrototypePermissionReader) ReadResponse(response clie
 	}
 }
 
-/*CreateOrganizationPrototypePermissionOK
-
+/*
 Successful invocation
 */
 type CreateOrganizationPrototypePermissionOK struct {
@@ -70,8 +69,7 @@ func (o *CreateOrganizationPrototypePermissionOK) readResponse(response client.R
 	return nil
 }
 
-/*CreateOrganizationPrototypePermissionBadRequest
-
+/*
 Bad Request
 */
 type CreateOrganizationPrototypePermissionBadRequest struct {
@@ -90,8 +88,7 @@ func (o *CreateOrganizationPrototypePermissionBadRequest) readResponse(response 
 	return nil
 }
 
-/*CreateOrganizationPrototypePermissionUnauthorized
-
+/*
 Session required
 */
 type CreateOrganizationPrototypePermissionUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *CreateOrganizationPrototypePermissionUnauthorized) readResponse(respons
 	return nil
 }
 
-/*CreateOrganizationPrototypePermissionForbidden
-
+/*
 Unauthorized access
 */
 type CreateOrganizationPrototypePermissionForbidden struct {
@@ -114,8 +110,7 @@ func (o *CreateOrganizationPrototypePermissionForbidden) readResponse(response c
 	return nil
 }
 
-/*CreateOrganizationPrototypePermissionNotFound
-
+/*
 Not found
 */
 type CreateOrganizationPrototypePermissionNotFound struct {

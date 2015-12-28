@@ -9,29 +9,25 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*GetAggregateOrgLogsParams contains all the parameters to send to the API endpoint
+/*
+GetAggregateOrgLogsParams contains all the parameters to send to the API endpoint
 for the get aggregate org logs operation typically these are written to a http.Request
 */
 type GetAggregateOrgLogsParams struct {
-
-	/*Endtime
+	/*
 	  Latest time to which to get logs. (%m/%d/%Y %Z)
-
 	*/
 	Endtime string
-	/*Orgname
+	/*
 	  The name of the organization
-
 	*/
 	Orgname string
-	/*Performer
+	/*
 	  Username for which to filter logs.
-
 	*/
 	Performer string
-	/*Starttime
+	/*
 	  Earliest time from which to get logs. (%m/%d/%Y %Z)
-
 	*/
 	Starttime string
 }

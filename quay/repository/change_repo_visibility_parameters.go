@@ -11,19 +11,17 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*ChangeRepoVisibilityParams contains all the parameters to send to the API endpoint
+/*
+ChangeRepoVisibilityParams contains all the parameters to send to the API endpoint
 for the change repo visibility operation typically these are written to a http.Request
 */
 type ChangeRepoVisibilityParams struct {
-
-	/*Body
+	/*
 	  Request body contents.
-
 	*/
 	Body *models.ChangeVisibility
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
 }

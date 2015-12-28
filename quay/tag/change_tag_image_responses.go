@@ -58,8 +58,7 @@ func (o *ChangeTagImageReader) ReadResponse(response client.Response, consumer h
 	}
 }
 
-/*ChangeTagImageOK
-
+/*
 Successful invocation
 */
 type ChangeTagImageOK struct {
@@ -70,8 +69,7 @@ func (o *ChangeTagImageOK) readResponse(response client.Response, consumer httpk
 	return nil
 }
 
-/*ChangeTagImageBadRequest
-
+/*
 Bad Request
 */
 type ChangeTagImageBadRequest struct {
@@ -90,8 +88,7 @@ func (o *ChangeTagImageBadRequest) readResponse(response client.Response, consum
 	return nil
 }
 
-/*ChangeTagImageUnauthorized
-
+/*
 Session required
 */
 type ChangeTagImageUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *ChangeTagImageUnauthorized) readResponse(response client.Response, cons
 	return nil
 }
 
-/*ChangeTagImageForbidden
-
+/*
 Unauthorized access
 */
 type ChangeTagImageForbidden struct {
@@ -114,8 +110,7 @@ func (o *ChangeTagImageForbidden) readResponse(response client.Response, consume
 	return nil
 }
 
-/*ChangeTagImageNotFound
-
+/*
 Not found
 */
 type ChangeTagImageNotFound struct {

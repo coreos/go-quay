@@ -9,19 +9,17 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*DeleteOrganizationPrototypePermissionParams contains all the parameters to send to the API endpoint
+/*
+DeleteOrganizationPrototypePermissionParams contains all the parameters to send to the API endpoint
 for the delete organization prototype permission operation typically these are written to a http.Request
 */
 type DeleteOrganizationPrototypePermissionParams struct {
-
-	/*Orgname
+	/*
 	  The name of the organization
-
 	*/
 	Orgname string
-	/*Prototypeid
+	/*
 	  The ID of the prototype
-
 	*/
 	Prototypeid string
 }

@@ -58,8 +58,7 @@ func (o *ChangeOrganizationDetailsReader) ReadResponse(response client.Response,
 	}
 }
 
-/*ChangeOrganizationDetailsOK
-
+/*
 Successful invocation
 */
 type ChangeOrganizationDetailsOK struct {
@@ -70,8 +69,7 @@ func (o *ChangeOrganizationDetailsOK) readResponse(response client.Response, con
 	return nil
 }
 
-/*ChangeOrganizationDetailsBadRequest
-
+/*
 Bad Request
 */
 type ChangeOrganizationDetailsBadRequest struct {
@@ -90,8 +88,7 @@ func (o *ChangeOrganizationDetailsBadRequest) readResponse(response client.Respo
 	return nil
 }
 
-/*ChangeOrganizationDetailsUnauthorized
-
+/*
 Session required
 */
 type ChangeOrganizationDetailsUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *ChangeOrganizationDetailsUnauthorized) readResponse(response client.Res
 	return nil
 }
 
-/*ChangeOrganizationDetailsForbidden
-
+/*
 Unauthorized access
 */
 type ChangeOrganizationDetailsForbidden struct {
@@ -114,8 +110,7 @@ func (o *ChangeOrganizationDetailsForbidden) readResponse(response client.Respon
 	return nil
 }
 
-/*ChangeOrganizationDetailsNotFound
-
+/*
 Not found
 */
 type ChangeOrganizationDetailsNotFound struct {

@@ -10,24 +10,21 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*GetRepoBuildsParams contains all the parameters to send to the API endpoint
+/*
+GetRepoBuildsParams contains all the parameters to send to the API endpoint
 for the get repo builds operation typically these are written to a http.Request
 */
 type GetRepoBuildsParams struct {
-
-	/*Limit
+	/*
 	  The maximum number of builds to return
-
 	*/
 	Limit int64
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
-	/*Since
+	/*
 	  Returns all builds since the given unix timecode
-
 	*/
 	Since int64
 }

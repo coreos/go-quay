@@ -11,7 +11,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*Description of a the new prototype role
+/*
+Description of a the new prototype role
 
 swagger:model PrototypeUpdate
 */
@@ -29,7 +30,6 @@ func (m *PrototypeUpdate) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateRole(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -51,10 +51,7 @@ func (m *PrototypeUpdate) validateRoleEnum(path, location string, value string) 
 			prototypeUpdateRoleEnum = append(prototypeUpdateRoleEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, prototypeUpdateRoleEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, prototypeUpdateRoleEnum)
 }
 
 func (m *PrototypeUpdate) validateRole(formats strfmt.Registry) error {

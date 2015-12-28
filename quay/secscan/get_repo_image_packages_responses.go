@@ -58,8 +58,7 @@ func (o *GetRepoImagePackagesReader) ReadResponse(response client.Response, cons
 	}
 }
 
-/*GetRepoImagePackagesOK
-
+/*
 Successful invocation
 */
 type GetRepoImagePackagesOK struct {
@@ -70,8 +69,7 @@ func (o *GetRepoImagePackagesOK) readResponse(response client.Response, consumer
 	return nil
 }
 
-/*GetRepoImagePackagesBadRequest
-
+/*
 Bad Request
 */
 type GetRepoImagePackagesBadRequest struct {
@@ -90,8 +88,7 @@ func (o *GetRepoImagePackagesBadRequest) readResponse(response client.Response, 
 	return nil
 }
 
-/*GetRepoImagePackagesUnauthorized
-
+/*
 Session required
 */
 type GetRepoImagePackagesUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *GetRepoImagePackagesUnauthorized) readResponse(response client.Response
 	return nil
 }
 
-/*GetRepoImagePackagesForbidden
-
+/*
 Unauthorized access
 */
 type GetRepoImagePackagesForbidden struct {
@@ -114,8 +110,7 @@ func (o *GetRepoImagePackagesForbidden) readResponse(response client.Response, c
 	return nil
 }
 
-/*GetRepoImagePackagesNotFound
-
+/*
 Not found
 */
 type GetRepoImagePackagesNotFound struct {

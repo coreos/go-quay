@@ -11,19 +11,17 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*RequestRepoBuildParams contains all the parameters to send to the API endpoint
+/*
+RequestRepoBuildParams contains all the parameters to send to the API endpoint
 for the request repo build operation typically these are written to a http.Request
 */
 type RequestRepoBuildParams struct {
-
-	/*Body
+	/*
 	  Request body contents.
-
 	*/
 	Body *models.RepositoryBuildRequest
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
 }

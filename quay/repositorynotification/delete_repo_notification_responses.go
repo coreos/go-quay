@@ -58,8 +58,7 @@ func (o *DeleteRepoNotificationReader) ReadResponse(response client.Response, co
 	}
 }
 
-/*DeleteRepoNotificationNoContent
-
+/*
 Deleted
 */
 type DeleteRepoNotificationNoContent struct {
@@ -70,8 +69,7 @@ func (o *DeleteRepoNotificationNoContent) readResponse(response client.Response,
 	return nil
 }
 
-/*DeleteRepoNotificationBadRequest
-
+/*
 Bad Request
 */
 type DeleteRepoNotificationBadRequest struct {
@@ -90,8 +88,7 @@ func (o *DeleteRepoNotificationBadRequest) readResponse(response client.Response
 	return nil
 }
 
-/*DeleteRepoNotificationUnauthorized
-
+/*
 Session required
 */
 type DeleteRepoNotificationUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *DeleteRepoNotificationUnauthorized) readResponse(response client.Respon
 	return nil
 }
 
-/*DeleteRepoNotificationForbidden
-
+/*
 Unauthorized access
 */
 type DeleteRepoNotificationForbidden struct {
@@ -114,8 +110,7 @@ func (o *DeleteRepoNotificationForbidden) readResponse(response client.Response,
 	return nil
 }
 
-/*DeleteRepoNotificationNotFound
-
+/*
 Not found
 */
 type DeleteRepoNotificationNotFound struct {

@@ -58,8 +58,7 @@ func (o *ActivateBuildTriggerReader) ReadResponse(response client.Response, cons
 	}
 }
 
-/*ActivateBuildTriggerOK
-
+/*
 Successful invocation
 */
 type ActivateBuildTriggerOK struct {
@@ -70,8 +69,7 @@ func (o *ActivateBuildTriggerOK) readResponse(response client.Response, consumer
 	return nil
 }
 
-/*ActivateBuildTriggerBadRequest
-
+/*
 Bad Request
 */
 type ActivateBuildTriggerBadRequest struct {
@@ -90,8 +88,7 @@ func (o *ActivateBuildTriggerBadRequest) readResponse(response client.Response, 
 	return nil
 }
 
-/*ActivateBuildTriggerUnauthorized
-
+/*
 Session required
 */
 type ActivateBuildTriggerUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *ActivateBuildTriggerUnauthorized) readResponse(response client.Response
 	return nil
 }
 
-/*ActivateBuildTriggerForbidden
-
+/*
 Unauthorized access
 */
 type ActivateBuildTriggerForbidden struct {
@@ -114,8 +110,7 @@ func (o *ActivateBuildTriggerForbidden) readResponse(response client.Response, c
 	return nil
 }
 
-/*ActivateBuildTriggerNotFound
-
+/*
 Not found
 */
 type ActivateBuildTriggerNotFound struct {

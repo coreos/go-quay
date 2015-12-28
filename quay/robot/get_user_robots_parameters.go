@@ -10,14 +10,13 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*GetUserRobotsParams contains all the parameters to send to the API endpoint
+/*
+GetUserRobotsParams contains all the parameters to send to the API endpoint
 for the get user robots operation typically these are written to a http.Request
 */
 type GetUserRobotsParams struct {
-
-	/*Permissions
+	/*
 	  Whether to include repostories and teams in which the robots have permission.
-
 	*/
 	Permissions bool
 }

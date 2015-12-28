@@ -58,8 +58,7 @@ func (o *DeleteBuildTriggerReader) ReadResponse(response client.Response, consum
 	}
 }
 
-/*DeleteBuildTriggerNoContent
-
+/*
 Deleted
 */
 type DeleteBuildTriggerNoContent struct {
@@ -70,8 +69,7 @@ func (o *DeleteBuildTriggerNoContent) readResponse(response client.Response, con
 	return nil
 }
 
-/*DeleteBuildTriggerBadRequest
-
+/*
 Bad Request
 */
 type DeleteBuildTriggerBadRequest struct {
@@ -90,8 +88,7 @@ func (o *DeleteBuildTriggerBadRequest) readResponse(response client.Response, co
 	return nil
 }
 
-/*DeleteBuildTriggerUnauthorized
-
+/*
 Session required
 */
 type DeleteBuildTriggerUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *DeleteBuildTriggerUnauthorized) readResponse(response client.Response, 
 	return nil
 }
 
-/*DeleteBuildTriggerForbidden
-
+/*
 Unauthorized access
 */
 type DeleteBuildTriggerForbidden struct {
@@ -114,8 +110,7 @@ func (o *DeleteBuildTriggerForbidden) readResponse(response client.Response, con
 	return nil
 }
 
-/*DeleteBuildTriggerNotFound
-
+/*
 Not found
 */
 type DeleteBuildTriggerNotFound struct {

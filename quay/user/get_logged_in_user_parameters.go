@@ -9,7 +9,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*GetLoggedInUserParams contains all the parameters to send to the API endpoint
+/*
+GetLoggedInUserParams contains all the parameters to send to the API endpoint
 for the get logged in user operation typically these are written to a http.Request
 */
 type GetLoggedInUserParams struct {

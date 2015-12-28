@@ -58,8 +58,7 @@ func (o *ConductSearchReader) ReadResponse(response client.Response, consumer ht
 	}
 }
 
-/*ConductSearchOK
-
+/*
 Successful invocation
 */
 type ConductSearchOK struct {
@@ -70,8 +69,7 @@ func (o *ConductSearchOK) readResponse(response client.Response, consumer httpki
 	return nil
 }
 
-/*ConductSearchBadRequest
-
+/*
 Bad Request
 */
 type ConductSearchBadRequest struct {
@@ -90,8 +88,7 @@ func (o *ConductSearchBadRequest) readResponse(response client.Response, consume
 	return nil
 }
 
-/*ConductSearchUnauthorized
-
+/*
 Session required
 */
 type ConductSearchUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *ConductSearchUnauthorized) readResponse(response client.Response, consu
 	return nil
 }
 
-/*ConductSearchForbidden
-
+/*
 Unauthorized access
 */
 type ConductSearchForbidden struct {
@@ -114,8 +110,7 @@ func (o *ConductSearchForbidden) readResponse(response client.Response, consumer
 	return nil
 }
 
-/*ConductSearchNotFound
-
+/*
 Not found
 */
 type ConductSearchNotFound struct {

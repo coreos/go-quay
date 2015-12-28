@@ -58,8 +58,7 @@ func (o *CreateStarReader) ReadResponse(response client.Response, consumer httpk
 	}
 }
 
-/*CreateStarOK
-
+/*
 Successful invocation
 */
 type CreateStarOK struct {
@@ -70,8 +69,7 @@ func (o *CreateStarOK) readResponse(response client.Response, consumer httpkit.C
 	return nil
 }
 
-/*CreateStarBadRequest
-
+/*
 Bad Request
 */
 type CreateStarBadRequest struct {
@@ -90,8 +88,7 @@ func (o *CreateStarBadRequest) readResponse(response client.Response, consumer h
 	return nil
 }
 
-/*CreateStarUnauthorized
-
+/*
 Session required
 */
 type CreateStarUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *CreateStarUnauthorized) readResponse(response client.Response, consumer
 	return nil
 }
 
-/*CreateStarForbidden
-
+/*
 Unauthorized access
 */
 type CreateStarForbidden struct {
@@ -114,8 +110,7 @@ func (o *CreateStarForbidden) readResponse(response client.Response, consumer ht
 	return nil
 }
 
-/*CreateStarNotFound
-
+/*
 Not found
 */
 type CreateStarNotFound struct {

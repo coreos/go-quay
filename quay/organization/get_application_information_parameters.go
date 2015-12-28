@@ -9,14 +9,13 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*GetApplicationInformationParams contains all the parameters to send to the API endpoint
+/*
+GetApplicationInformationParams contains all the parameters to send to the API endpoint
 for the get application information operation typically these are written to a http.Request
 */
 type GetApplicationInformationParams struct {
-
-	/*ClientID
+	/*
 	  The OAuth client ID
-
 	*/
 	ClientID string
 }

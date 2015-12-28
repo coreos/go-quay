@@ -58,8 +58,7 @@ func (o *GetRepoBuildsReader) ReadResponse(response client.Response, consumer ht
 	}
 }
 
-/*GetRepoBuildsOK
-
+/*
 Successful invocation
 */
 type GetRepoBuildsOK struct {
@@ -70,8 +69,7 @@ func (o *GetRepoBuildsOK) readResponse(response client.Response, consumer httpki
 	return nil
 }
 
-/*GetRepoBuildsBadRequest
-
+/*
 Bad Request
 */
 type GetRepoBuildsBadRequest struct {
@@ -90,8 +88,7 @@ func (o *GetRepoBuildsBadRequest) readResponse(response client.Response, consume
 	return nil
 }
 
-/*GetRepoBuildsUnauthorized
-
+/*
 Session required
 */
 type GetRepoBuildsUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *GetRepoBuildsUnauthorized) readResponse(response client.Response, consu
 	return nil
 }
 
-/*GetRepoBuildsForbidden
-
+/*
 Unauthorized access
 */
 type GetRepoBuildsForbidden struct {
@@ -114,8 +110,7 @@ func (o *GetRepoBuildsForbidden) readResponse(response client.Response, consumer
 	return nil
 }
 
-/*GetRepoBuildsNotFound
-
+/*
 Not found
 */
 type GetRepoBuildsNotFound struct {

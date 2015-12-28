@@ -58,8 +58,7 @@ func (o *CreateUserRobotReader) ReadResponse(response client.Response, consumer 
 	}
 }
 
-/*CreateUserRobotOK
-
+/*
 Successful invocation
 */
 type CreateUserRobotOK struct {
@@ -70,8 +69,7 @@ func (o *CreateUserRobotOK) readResponse(response client.Response, consumer http
 	return nil
 }
 
-/*CreateUserRobotBadRequest
-
+/*
 Bad Request
 */
 type CreateUserRobotBadRequest struct {
@@ -90,8 +88,7 @@ func (o *CreateUserRobotBadRequest) readResponse(response client.Response, consu
 	return nil
 }
 
-/*CreateUserRobotUnauthorized
-
+/*
 Session required
 */
 type CreateUserRobotUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *CreateUserRobotUnauthorized) readResponse(response client.Response, con
 	return nil
 }
 
-/*CreateUserRobotForbidden
-
+/*
 Unauthorized access
 */
 type CreateUserRobotForbidden struct {
@@ -114,8 +110,7 @@ func (o *CreateUserRobotForbidden) readResponse(response client.Response, consum
 	return nil
 }
 
-/*CreateUserRobotNotFound
-
+/*
 Not found
 */
 type CreateUserRobotNotFound struct {

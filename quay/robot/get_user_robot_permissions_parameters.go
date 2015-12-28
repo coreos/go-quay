@@ -9,14 +9,13 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*GetUserRobotPermissionsParams contains all the parameters to send to the API endpoint
+/*
+GetUserRobotPermissionsParams contains all the parameters to send to the API endpoint
 for the get user robot permissions operation typically these are written to a http.Request
 */
 type GetUserRobotPermissionsParams struct {
-
-	/*RobotShortname
+	/*
 	  The short name for the robot, without any user or organization prefix
-
 	*/
 	RobotShortname string
 }

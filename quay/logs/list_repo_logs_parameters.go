@@ -10,29 +10,25 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*ListRepoLogsParams contains all the parameters to send to the API endpoint
+/*
+ListRepoLogsParams contains all the parameters to send to the API endpoint
 for the list repo logs operation typically these are written to a http.Request
 */
 type ListRepoLogsParams struct {
-
-	/*Endtime
+	/*
 	  Latest time to which to get logs (%m/%d/%Y %Z)
-
 	*/
 	Endtime string
-	/*Page
+	/*
 	  The page number for the logs
-
 	*/
 	Page int64
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
-	/*Starttime
+	/*
 	  Earliest time from which to get logs (%m/%d/%Y %Z)
-
 	*/
 	Starttime string
 }

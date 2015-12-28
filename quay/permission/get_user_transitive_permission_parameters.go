@@ -9,19 +9,17 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*GetUserTransitivePermissionParams contains all the parameters to send to the API endpoint
+/*
+GetUserTransitivePermissionParams contains all the parameters to send to the API endpoint
 for the get user transitive permission operation typically these are written to a http.Request
 */
 type GetUserTransitivePermissionParams struct {
-
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
-	/*Username
+	/*
 	  The username of the user to which the permissions apply
-
 	*/
 	Username string
 }

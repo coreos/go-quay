@@ -9,14 +9,13 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*GetUserRobotParams contains all the parameters to send to the API endpoint
+/*
+GetUserRobotParams contains all the parameters to send to the API endpoint
 for the get user robot operation typically these are written to a http.Request
 */
 type GetUserRobotParams struct {
-
-	/*RobotShortname
+	/*
 	  The short name for the robot, without any user or organization prefix
-
 	*/
 	RobotShortname string
 }

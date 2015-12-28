@@ -58,8 +58,7 @@ func (o *DeleteOrganizationApplicationReader) ReadResponse(response client.Respo
 	}
 }
 
-/*DeleteOrganizationApplicationNoContent
-
+/*
 Deleted
 */
 type DeleteOrganizationApplicationNoContent struct {
@@ -70,8 +69,7 @@ func (o *DeleteOrganizationApplicationNoContent) readResponse(response client.Re
 	return nil
 }
 
-/*DeleteOrganizationApplicationBadRequest
-
+/*
 Bad Request
 */
 type DeleteOrganizationApplicationBadRequest struct {
@@ -90,8 +88,7 @@ func (o *DeleteOrganizationApplicationBadRequest) readResponse(response client.R
 	return nil
 }
 
-/*DeleteOrganizationApplicationUnauthorized
-
+/*
 Session required
 */
 type DeleteOrganizationApplicationUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *DeleteOrganizationApplicationUnauthorized) readResponse(response client
 	return nil
 }
 
-/*DeleteOrganizationApplicationForbidden
-
+/*
 Unauthorized access
 */
 type DeleteOrganizationApplicationForbidden struct {
@@ -114,8 +110,7 @@ func (o *DeleteOrganizationApplicationForbidden) readResponse(response client.Re
 	return nil
 }
 
-/*DeleteOrganizationApplicationNotFound
-
+/*
 Not found
 */
 type DeleteOrganizationApplicationNotFound struct {

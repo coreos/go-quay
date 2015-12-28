@@ -58,8 +58,7 @@ func (o *DeleteTeamMemberEmailInviteReader) ReadResponse(response client.Respons
 	}
 }
 
-/*DeleteTeamMemberEmailInviteNoContent
-
+/*
 Deleted
 */
 type DeleteTeamMemberEmailInviteNoContent struct {
@@ -70,8 +69,7 @@ func (o *DeleteTeamMemberEmailInviteNoContent) readResponse(response client.Resp
 	return nil
 }
 
-/*DeleteTeamMemberEmailInviteBadRequest
-
+/*
 Bad Request
 */
 type DeleteTeamMemberEmailInviteBadRequest struct {
@@ -90,8 +88,7 @@ func (o *DeleteTeamMemberEmailInviteBadRequest) readResponse(response client.Res
 	return nil
 }
 
-/*DeleteTeamMemberEmailInviteUnauthorized
-
+/*
 Session required
 */
 type DeleteTeamMemberEmailInviteUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *DeleteTeamMemberEmailInviteUnauthorized) readResponse(response client.R
 	return nil
 }
 
-/*DeleteTeamMemberEmailInviteForbidden
-
+/*
 Unauthorized access
 */
 type DeleteTeamMemberEmailInviteForbidden struct {
@@ -114,8 +110,7 @@ func (o *DeleteTeamMemberEmailInviteForbidden) readResponse(response client.Resp
 	return nil
 }
 
-/*DeleteTeamMemberEmailInviteNotFound
-
+/*
 Not found
 */
 type DeleteTeamMemberEmailInviteNotFound struct {

@@ -58,8 +58,7 @@ func (o *ListRepoTagsReader) ReadResponse(response client.Response, consumer htt
 	}
 }
 
-/*ListRepoTagsOK
-
+/*
 Successful invocation
 */
 type ListRepoTagsOK struct {
@@ -70,8 +69,7 @@ func (o *ListRepoTagsOK) readResponse(response client.Response, consumer httpkit
 	return nil
 }
 
-/*ListRepoTagsBadRequest
-
+/*
 Bad Request
 */
 type ListRepoTagsBadRequest struct {
@@ -90,8 +88,7 @@ func (o *ListRepoTagsBadRequest) readResponse(response client.Response, consumer
 	return nil
 }
 
-/*ListRepoTagsUnauthorized
-
+/*
 Session required
 */
 type ListRepoTagsUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *ListRepoTagsUnauthorized) readResponse(response client.Response, consum
 	return nil
 }
 
-/*ListRepoTagsForbidden
-
+/*
 Unauthorized access
 */
 type ListRepoTagsForbidden struct {
@@ -114,8 +110,7 @@ func (o *ListRepoTagsForbidden) readResponse(response client.Response, consumer 
 	return nil
 }
 
-/*ListRepoTagsNotFound
-
+/*
 Not found
 */
 type ListRepoTagsNotFound struct {

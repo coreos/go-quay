@@ -9,16 +9,15 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*InviteTeamMemberEmailParams contains all the parameters to send to the API endpoint
+/*
+InviteTeamMemberEmailParams contains all the parameters to send to the API endpoint
 for the invite team member email operation typically these are written to a http.Request
 */
 type InviteTeamMemberEmailParams struct {
-
-	/*Email*/
 	Email string
-	/*Orgname*/
+
 	Orgname string
-	/*Teamname*/
+
 	Teamname string
 }
 

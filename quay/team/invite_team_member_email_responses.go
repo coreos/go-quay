@@ -58,8 +58,7 @@ func (o *InviteTeamMemberEmailReader) ReadResponse(response client.Response, con
 	}
 }
 
-/*InviteTeamMemberEmailOK
-
+/*
 Successful invocation
 */
 type InviteTeamMemberEmailOK struct {
@@ -70,8 +69,7 @@ func (o *InviteTeamMemberEmailOK) readResponse(response client.Response, consume
 	return nil
 }
 
-/*InviteTeamMemberEmailBadRequest
-
+/*
 Bad Request
 */
 type InviteTeamMemberEmailBadRequest struct {
@@ -90,8 +88,7 @@ func (o *InviteTeamMemberEmailBadRequest) readResponse(response client.Response,
 	return nil
 }
 
-/*InviteTeamMemberEmailUnauthorized
-
+/*
 Session required
 */
 type InviteTeamMemberEmailUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *InviteTeamMemberEmailUnauthorized) readResponse(response client.Respons
 	return nil
 }
 
-/*InviteTeamMemberEmailForbidden
-
+/*
 Unauthorized access
 */
 type InviteTeamMemberEmailForbidden struct {
@@ -114,8 +110,7 @@ func (o *InviteTeamMemberEmailForbidden) readResponse(response client.Response, 
 	return nil
 }
 
-/*InviteTeamMemberEmailNotFound
-
+/*
 Not found
 */
 type InviteTeamMemberEmailNotFound struct {

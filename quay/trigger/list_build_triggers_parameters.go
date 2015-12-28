@@ -9,14 +9,13 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*ListBuildTriggersParams contains all the parameters to send to the API endpoint
+/*
+ListBuildTriggersParams contains all the parameters to send to the API endpoint
 for the list build triggers operation typically these are written to a http.Request
 */
 type ListBuildTriggersParams struct {
-
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
 }

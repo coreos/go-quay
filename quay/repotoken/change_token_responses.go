@@ -58,8 +58,7 @@ func (o *ChangeTokenReader) ReadResponse(response client.Response, consumer http
 	}
 }
 
-/*ChangeTokenOK
-
+/*
 Successful invocation
 */
 type ChangeTokenOK struct {
@@ -70,8 +69,7 @@ func (o *ChangeTokenOK) readResponse(response client.Response, consumer httpkit.
 	return nil
 }
 
-/*ChangeTokenBadRequest
-
+/*
 Bad Request
 */
 type ChangeTokenBadRequest struct {
@@ -90,8 +88,7 @@ func (o *ChangeTokenBadRequest) readResponse(response client.Response, consumer 
 	return nil
 }
 
-/*ChangeTokenUnauthorized
-
+/*
 Session required
 */
 type ChangeTokenUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *ChangeTokenUnauthorized) readResponse(response client.Response, consume
 	return nil
 }
 
-/*ChangeTokenForbidden
-
+/*
 Unauthorized access
 */
 type ChangeTokenForbidden struct {
@@ -114,8 +110,7 @@ func (o *ChangeTokenForbidden) readResponse(response client.Response, consumer h
 	return nil
 }
 
-/*ChangeTokenNotFound
-
+/*
 Not found
 */
 type ChangeTokenNotFound struct {

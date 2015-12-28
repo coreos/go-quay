@@ -58,8 +58,7 @@ func (o *ManuallyStartBuildTriggerReader) ReadResponse(response client.Response,
 	}
 }
 
-/*ManuallyStartBuildTriggerOK
-
+/*
 Successful invocation
 */
 type ManuallyStartBuildTriggerOK struct {
@@ -70,8 +69,7 @@ func (o *ManuallyStartBuildTriggerOK) readResponse(response client.Response, con
 	return nil
 }
 
-/*ManuallyStartBuildTriggerBadRequest
-
+/*
 Bad Request
 */
 type ManuallyStartBuildTriggerBadRequest struct {
@@ -90,8 +88,7 @@ func (o *ManuallyStartBuildTriggerBadRequest) readResponse(response client.Respo
 	return nil
 }
 
-/*ManuallyStartBuildTriggerUnauthorized
-
+/*
 Session required
 */
 type ManuallyStartBuildTriggerUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *ManuallyStartBuildTriggerUnauthorized) readResponse(response client.Res
 	return nil
 }
 
-/*ManuallyStartBuildTriggerForbidden
-
+/*
 Unauthorized access
 */
 type ManuallyStartBuildTriggerForbidden struct {
@@ -114,8 +110,7 @@ func (o *ManuallyStartBuildTriggerForbidden) readResponse(response client.Respon
 	return nil
 }
 
-/*ManuallyStartBuildTriggerNotFound
-
+/*
 Not found
 */
 type ManuallyStartBuildTriggerNotFound struct {

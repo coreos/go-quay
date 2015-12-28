@@ -9,19 +9,17 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*GetRepoImagePackagesParams contains all the parameters to send to the API endpoint
+/*
+GetRepoImagePackagesParams contains all the parameters to send to the API endpoint
 for the get repo image packages operation typically these are written to a http.Request
 */
 type GetRepoImagePackagesParams struct {
-
-	/*Imageid
+	/*
 	  The image ID
-
 	*/
 	Imageid string
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
 }

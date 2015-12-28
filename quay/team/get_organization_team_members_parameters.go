@@ -10,24 +10,21 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*GetOrganizationTeamMembersParams contains all the parameters to send to the API endpoint
+/*
+GetOrganizationTeamMembersParams contains all the parameters to send to the API endpoint
 for the get organization team members operation typically these are written to a http.Request
 */
 type GetOrganizationTeamMembersParams struct {
-
-	/*IncludePending
+	/*
 	  Whether to include pending members
-
 	*/
 	IncludePending bool
-	/*Orgname
+	/*
 	  The name of the organization
-
 	*/
 	Orgname string
-	/*Teamname
+	/*
 	  The name of the team
-
 	*/
 	Teamname string
 }

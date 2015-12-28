@@ -58,8 +58,7 @@ func (o *ListStarredReposReader) ReadResponse(response client.Response, consumer
 	}
 }
 
-/*ListStarredReposOK
-
+/*
 Successful invocation
 */
 type ListStarredReposOK struct {
@@ -70,8 +69,7 @@ func (o *ListStarredReposOK) readResponse(response client.Response, consumer htt
 	return nil
 }
 
-/*ListStarredReposBadRequest
-
+/*
 Bad Request
 */
 type ListStarredReposBadRequest struct {
@@ -90,8 +88,7 @@ func (o *ListStarredReposBadRequest) readResponse(response client.Response, cons
 	return nil
 }
 
-/*ListStarredReposUnauthorized
-
+/*
 Session required
 */
 type ListStarredReposUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *ListStarredReposUnauthorized) readResponse(response client.Response, co
 	return nil
 }
 
-/*ListStarredReposForbidden
-
+/*
 Unauthorized access
 */
 type ListStarredReposForbidden struct {
@@ -114,8 +110,7 @@ func (o *ListStarredReposForbidden) readResponse(response client.Response, consu
 	return nil
 }
 
-/*ListStarredReposNotFound
-
+/*
 Not found
 */
 type ListStarredReposNotFound struct {

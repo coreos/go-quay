@@ -11,19 +11,17 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*CreateOrganizationPrototypePermissionParams contains all the parameters to send to the API endpoint
+/*
+CreateOrganizationPrototypePermissionParams contains all the parameters to send to the API endpoint
 for the create organization prototype permission operation typically these are written to a http.Request
 */
 type CreateOrganizationPrototypePermissionParams struct {
-
-	/*Body
+	/*
 	  Request body contents.
-
 	*/
 	Body *models.NewPrototype
-	/*Orgname
+	/*
 	  The name of the organization
-
 	*/
 	Orgname string
 }

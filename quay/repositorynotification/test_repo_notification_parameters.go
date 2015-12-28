@@ -9,19 +9,17 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*TestRepoNotificationParams contains all the parameters to send to the API endpoint
+/*
+TestRepoNotificationParams contains all the parameters to send to the API endpoint
 for the test repo notification operation typically these are written to a http.Request
 */
 type TestRepoNotificationParams struct {
-
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
-	/*UUID
+	/*
 	  The UUID of the notification
-
 	*/
 	UUID string
 }

@@ -58,8 +58,7 @@ func (o *DeleteTokenReader) ReadResponse(response client.Response, consumer http
 	}
 }
 
-/*DeleteTokenNoContent
-
+/*
 Deleted
 */
 type DeleteTokenNoContent struct {
@@ -70,8 +69,7 @@ func (o *DeleteTokenNoContent) readResponse(response client.Response, consumer h
 	return nil
 }
 
-/*DeleteTokenBadRequest
-
+/*
 Bad Request
 */
 type DeleteTokenBadRequest struct {
@@ -90,8 +88,7 @@ func (o *DeleteTokenBadRequest) readResponse(response client.Response, consumer 
 	return nil
 }
 
-/*DeleteTokenUnauthorized
-
+/*
 Session required
 */
 type DeleteTokenUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *DeleteTokenUnauthorized) readResponse(response client.Response, consume
 	return nil
 }
 
-/*DeleteTokenForbidden
-
+/*
 Unauthorized access
 */
 type DeleteTokenForbidden struct {
@@ -114,8 +110,7 @@ func (o *DeleteTokenForbidden) readResponse(response client.Response, consumer h
 	return nil
 }
 
-/*DeleteTokenNotFound
-
+/*
 Not found
 */
 type DeleteTokenNotFound struct {

@@ -11,14 +11,13 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*CreateRepoParams contains all the parameters to send to the API endpoint
+/*
+CreateRepoParams contains all the parameters to send to the API endpoint
 for the create repo operation typically these are written to a http.Request
 */
 type CreateRepoParams struct {
-
-	/*Body
+	/*
 	  Request body contents.
-
 	*/
 	Body *models.NewRepo
 }

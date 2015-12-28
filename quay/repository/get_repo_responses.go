@@ -58,8 +58,7 @@ func (o *GetRepoReader) ReadResponse(response client.Response, consumer httpkit.
 	}
 }
 
-/*GetRepoOK
-
+/*
 Successful invocation
 */
 type GetRepoOK struct {
@@ -70,8 +69,7 @@ func (o *GetRepoOK) readResponse(response client.Response, consumer httpkit.Cons
 	return nil
 }
 
-/*GetRepoBadRequest
-
+/*
 Bad Request
 */
 type GetRepoBadRequest struct {
@@ -90,8 +88,7 @@ func (o *GetRepoBadRequest) readResponse(response client.Response, consumer http
 	return nil
 }
 
-/*GetRepoUnauthorized
-
+/*
 Session required
 */
 type GetRepoUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *GetRepoUnauthorized) readResponse(response client.Response, consumer ht
 	return nil
 }
 
-/*GetRepoForbidden
-
+/*
 Unauthorized access
 */
 type GetRepoForbidden struct {
@@ -114,8 +110,7 @@ func (o *GetRepoForbidden) readResponse(response client.Response, consumer httpk
 	return nil
 }
 
-/*GetRepoNotFound
-
+/*
 Not found
 */
 type GetRepoNotFound struct {

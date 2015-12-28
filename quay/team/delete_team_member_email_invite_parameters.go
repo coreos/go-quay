@@ -9,16 +9,15 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*DeleteTeamMemberEmailInviteParams contains all the parameters to send to the API endpoint
+/*
+DeleteTeamMemberEmailInviteParams contains all the parameters to send to the API endpoint
 for the delete team member email invite operation typically these are written to a http.Request
 */
 type DeleteTeamMemberEmailInviteParams struct {
-
-	/*Email*/
 	Email string
-	/*Orgname*/
+
 	Orgname string
-	/*Teamname*/
+
 	Teamname string
 }
 

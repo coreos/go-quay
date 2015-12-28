@@ -11,24 +11,21 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*ChangeTagImageParams contains all the parameters to send to the API endpoint
+/*
+ChangeTagImageParams contains all the parameters to send to the API endpoint
 for the change tag image operation typically these are written to a http.Request
 */
 type ChangeTagImageParams struct {
-
-	/*Body
+	/*
 	  Request body contents.
-
 	*/
 	Body *models.MoveTag
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
-	/*Tag
+	/*
 	  The name of the tag
-
 	*/
 	Tag string
 }

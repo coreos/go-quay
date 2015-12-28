@@ -58,8 +58,7 @@ func (o *GetApplicationInformationReader) ReadResponse(response client.Response,
 	}
 }
 
-/*GetApplicationInformationOK
-
+/*
 Successful invocation
 */
 type GetApplicationInformationOK struct {
@@ -70,8 +69,7 @@ func (o *GetApplicationInformationOK) readResponse(response client.Response, con
 	return nil
 }
 
-/*GetApplicationInformationBadRequest
-
+/*
 Bad Request
 */
 type GetApplicationInformationBadRequest struct {
@@ -90,8 +88,7 @@ func (o *GetApplicationInformationBadRequest) readResponse(response client.Respo
 	return nil
 }
 
-/*GetApplicationInformationUnauthorized
-
+/*
 Session required
 */
 type GetApplicationInformationUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *GetApplicationInformationUnauthorized) readResponse(response client.Res
 	return nil
 }
 
-/*GetApplicationInformationForbidden
-
+/*
 Unauthorized access
 */
 type GetApplicationInformationForbidden struct {
@@ -114,8 +110,7 @@ func (o *GetApplicationInformationForbidden) readResponse(response client.Respon
 	return nil
 }
 
-/*GetApplicationInformationNotFound
-
+/*
 Not found
 */
 type GetApplicationInformationNotFound struct {

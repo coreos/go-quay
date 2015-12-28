@@ -58,8 +58,7 @@ func (o *DeleteOrganizationPrototypePermissionReader) ReadResponse(response clie
 	}
 }
 
-/*DeleteOrganizationPrototypePermissionNoContent
-
+/*
 Deleted
 */
 type DeleteOrganizationPrototypePermissionNoContent struct {
@@ -70,8 +69,7 @@ func (o *DeleteOrganizationPrototypePermissionNoContent) readResponse(response c
 	return nil
 }
 
-/*DeleteOrganizationPrototypePermissionBadRequest
-
+/*
 Bad Request
 */
 type DeleteOrganizationPrototypePermissionBadRequest struct {
@@ -90,8 +88,7 @@ func (o *DeleteOrganizationPrototypePermissionBadRequest) readResponse(response 
 	return nil
 }
 
-/*DeleteOrganizationPrototypePermissionUnauthorized
-
+/*
 Session required
 */
 type DeleteOrganizationPrototypePermissionUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *DeleteOrganizationPrototypePermissionUnauthorized) readResponse(respons
 	return nil
 }
 
-/*DeleteOrganizationPrototypePermissionForbidden
-
+/*
 Unauthorized access
 */
 type DeleteOrganizationPrototypePermissionForbidden struct {
@@ -114,8 +110,7 @@ func (o *DeleteOrganizationPrototypePermissionForbidden) readResponse(response c
 	return nil
 }
 
-/*DeleteOrganizationPrototypePermissionNotFound
-
+/*
 Not found
 */
 type DeleteOrganizationPrototypePermissionNotFound struct {

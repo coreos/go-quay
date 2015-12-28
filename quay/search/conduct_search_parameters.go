@@ -9,14 +9,13 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*ConductSearchParams contains all the parameters to send to the API endpoint
+/*
+ConductSearchParams contains all the parameters to send to the API endpoint
 for the conduct search operation typically these are written to a http.Request
 */
 type ConductSearchParams struct {
-
-	/*Query
+	/*
 	  The search query.
-
 	*/
 	Query string
 }

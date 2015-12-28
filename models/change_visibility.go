@@ -11,7 +11,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*Change the visibility for the repository.
+/*
+Change the visibility for the repository.
 
 swagger:model ChangeVisibility
 */
@@ -29,7 +30,6 @@ func (m *ChangeVisibility) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateVisibility(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -51,10 +51,7 @@ func (m *ChangeVisibility) validateVisibilityEnum(path, location string, value s
 			changeVisibilityVisibilityEnum = append(changeVisibilityVisibilityEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, changeVisibilityVisibilityEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, changeVisibilityVisibilityEnum)
 }
 
 func (m *ChangeVisibility) validateVisibility(formats strfmt.Registry) error {

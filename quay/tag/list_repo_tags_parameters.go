@@ -10,29 +10,25 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*ListRepoTagsParams contains all the parameters to send to the API endpoint
+/*
+ListRepoTagsParams contains all the parameters to send to the API endpoint
 for the list repo tags operation typically these are written to a http.Request
 */
 type ListRepoTagsParams struct {
-
-	/*Limit
+	/*
 	  Limit to the number of results to return per page. Max 100.
-
 	*/
 	Limit int64
-	/*Page
+	/*
 	  Page index for the results. Default 1.
-
 	*/
 	Page int64
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
-	/*SpecificTag
+	/*
 	  Filters the tags to the specific tag.
-
 	*/
 	SpecificTag string
 }

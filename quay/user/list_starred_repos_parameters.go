@@ -10,19 +10,17 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*ListStarredReposParams contains all the parameters to send to the API endpoint
+/*
+ListStarredReposParams contains all the parameters to send to the API endpoint
 for the list starred repos operation typically these are written to a http.Request
 */
 type ListStarredReposParams struct {
-
-	/*Limit
+	/*
 	  Limit on the number of results (int)
-
 	*/
 	Limit int64
-	/*Page
+	/*
 	  Offset page number. (int)
-
 	*/
 	Page int64
 }

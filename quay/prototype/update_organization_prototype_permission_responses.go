@@ -58,8 +58,7 @@ func (o *UpdateOrganizationPrototypePermissionReader) ReadResponse(response clie
 	}
 }
 
-/*UpdateOrganizationPrototypePermissionOK
-
+/*
 Successful invocation
 */
 type UpdateOrganizationPrototypePermissionOK struct {
@@ -70,8 +69,7 @@ func (o *UpdateOrganizationPrototypePermissionOK) readResponse(response client.R
 	return nil
 }
 
-/*UpdateOrganizationPrototypePermissionBadRequest
-
+/*
 Bad Request
 */
 type UpdateOrganizationPrototypePermissionBadRequest struct {
@@ -90,8 +88,7 @@ func (o *UpdateOrganizationPrototypePermissionBadRequest) readResponse(response 
 	return nil
 }
 
-/*UpdateOrganizationPrototypePermissionUnauthorized
-
+/*
 Session required
 */
 type UpdateOrganizationPrototypePermissionUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *UpdateOrganizationPrototypePermissionUnauthorized) readResponse(respons
 	return nil
 }
 
-/*UpdateOrganizationPrototypePermissionForbidden
-
+/*
 Unauthorized access
 */
 type UpdateOrganizationPrototypePermissionForbidden struct {
@@ -114,8 +110,7 @@ func (o *UpdateOrganizationPrototypePermissionForbidden) readResponse(response c
 	return nil
 }
 
-/*UpdateOrganizationPrototypePermissionNotFound
-
+/*
 Not found
 */
 type UpdateOrganizationPrototypePermissionNotFound struct {

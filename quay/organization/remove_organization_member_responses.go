@@ -58,8 +58,7 @@ func (o *RemoveOrganizationMemberReader) ReadResponse(response client.Response, 
 	}
 }
 
-/*RemoveOrganizationMemberNoContent
-
+/*
 Deleted
 */
 type RemoveOrganizationMemberNoContent struct {
@@ -70,8 +69,7 @@ func (o *RemoveOrganizationMemberNoContent) readResponse(response client.Respons
 	return nil
 }
 
-/*RemoveOrganizationMemberBadRequest
-
+/*
 Bad Request
 */
 type RemoveOrganizationMemberBadRequest struct {
@@ -90,8 +88,7 @@ func (o *RemoveOrganizationMemberBadRequest) readResponse(response client.Respon
 	return nil
 }
 
-/*RemoveOrganizationMemberUnauthorized
-
+/*
 Session required
 */
 type RemoveOrganizationMemberUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *RemoveOrganizationMemberUnauthorized) readResponse(response client.Resp
 	return nil
 }
 
-/*RemoveOrganizationMemberForbidden
-
+/*
 Unauthorized access
 */
 type RemoveOrganizationMemberForbidden struct {
@@ -114,8 +110,7 @@ func (o *RemoveOrganizationMemberForbidden) readResponse(response client.Respons
 	return nil
 }
 
-/*RemoveOrganizationMemberNotFound
-
+/*
 Not found
 */
 type RemoveOrganizationMemberNotFound struct {

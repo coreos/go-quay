@@ -9,7 +9,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*Fields which can be updated in a repository.
+/*
+Fields which can be updated in a repository.
 
 swagger:model RepoUpdate
 */
@@ -27,7 +28,6 @@ func (m *RepoUpdate) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateDescription(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 

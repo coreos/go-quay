@@ -8,7 +8,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*BuildTriggerActivateRequest build trigger activate request
+/*
+BuildTriggerActivateRequest build trigger activate request
 
 swagger:model BuildTriggerActivateRequest
 */
@@ -30,7 +31,6 @@ func (m *BuildTriggerActivateRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateConfig(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 

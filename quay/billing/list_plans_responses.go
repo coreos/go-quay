@@ -58,8 +58,7 @@ func (o *ListPlansReader) ReadResponse(response client.Response, consumer httpki
 	}
 }
 
-/*ListPlansOK
-
+/*
 Successful invocation
 */
 type ListPlansOK struct {
@@ -70,8 +69,7 @@ func (o *ListPlansOK) readResponse(response client.Response, consumer httpkit.Co
 	return nil
 }
 
-/*ListPlansBadRequest
-
+/*
 Bad Request
 */
 type ListPlansBadRequest struct {
@@ -90,8 +88,7 @@ func (o *ListPlansBadRequest) readResponse(response client.Response, consumer ht
 	return nil
 }
 
-/*ListPlansUnauthorized
-
+/*
 Session required
 */
 type ListPlansUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *ListPlansUnauthorized) readResponse(response client.Response, consumer 
 	return nil
 }
 
-/*ListPlansForbidden
-
+/*
 Unauthorized access
 */
 type ListPlansForbidden struct {
@@ -114,8 +110,7 @@ func (o *ListPlansForbidden) readResponse(response client.Response, consumer htt
 	return nil
 }
 
-/*ListPlansNotFound
-
+/*
 Not found
 */
 type ListPlansNotFound struct {

@@ -11,19 +11,17 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*ChangeOrganizationDetailsParams contains all the parameters to send to the API endpoint
+/*
+ChangeOrganizationDetailsParams contains all the parameters to send to the API endpoint
 for the change organization details operation typically these are written to a http.Request
 */
 type ChangeOrganizationDetailsParams struct {
-
-	/*Body
+	/*
 	  Request body contents.
-
 	*/
 	Body *models.UpdateOrg
-	/*Orgname
+	/*
 	  The name of the organization
-
 	*/
 	Orgname string
 }

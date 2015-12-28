@@ -58,8 +58,7 @@ func (o *DeleteUserPermissionsReader) ReadResponse(response client.Response, con
 	}
 }
 
-/*DeleteUserPermissionsNoContent
-
+/*
 Deleted
 */
 type DeleteUserPermissionsNoContent struct {
@@ -70,8 +69,7 @@ func (o *DeleteUserPermissionsNoContent) readResponse(response client.Response, 
 	return nil
 }
 
-/*DeleteUserPermissionsBadRequest
-
+/*
 Bad Request
 */
 type DeleteUserPermissionsBadRequest struct {
@@ -90,8 +88,7 @@ func (o *DeleteUserPermissionsBadRequest) readResponse(response client.Response,
 	return nil
 }
 
-/*DeleteUserPermissionsUnauthorized
-
+/*
 Session required
 */
 type DeleteUserPermissionsUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *DeleteUserPermissionsUnauthorized) readResponse(response client.Respons
 	return nil
 }
 
-/*DeleteUserPermissionsForbidden
-
+/*
 Unauthorized access
 */
 type DeleteUserPermissionsForbidden struct {
@@ -114,8 +110,7 @@ func (o *DeleteUserPermissionsForbidden) readResponse(response client.Response, 
 	return nil
 }
 
-/*DeleteUserPermissionsNotFound
-
+/*
 Not found
 */
 type DeleteUserPermissionsNotFound struct {

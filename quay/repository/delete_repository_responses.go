@@ -58,8 +58,7 @@ func (o *DeleteRepositoryReader) ReadResponse(response client.Response, consumer
 	}
 }
 
-/*DeleteRepositoryNoContent
-
+/*
 Deleted
 */
 type DeleteRepositoryNoContent struct {
@@ -70,8 +69,7 @@ func (o *DeleteRepositoryNoContent) readResponse(response client.Response, consu
 	return nil
 }
 
-/*DeleteRepositoryBadRequest
-
+/*
 Bad Request
 */
 type DeleteRepositoryBadRequest struct {
@@ -90,8 +88,7 @@ func (o *DeleteRepositoryBadRequest) readResponse(response client.Response, cons
 	return nil
 }
 
-/*DeleteRepositoryUnauthorized
-
+/*
 Session required
 */
 type DeleteRepositoryUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *DeleteRepositoryUnauthorized) readResponse(response client.Response, co
 	return nil
 }
 
-/*DeleteRepositoryForbidden
-
+/*
 Unauthorized access
 */
 type DeleteRepositoryForbidden struct {
@@ -114,8 +110,7 @@ func (o *DeleteRepositoryForbidden) readResponse(response client.Response, consu
 	return nil
 }
 
-/*DeleteRepositoryNotFound
-
+/*
 Not found
 */
 type DeleteRepositoryNotFound struct {

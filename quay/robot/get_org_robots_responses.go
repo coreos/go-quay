@@ -58,8 +58,7 @@ func (o *GetOrgRobotsReader) ReadResponse(response client.Response, consumer htt
 	}
 }
 
-/*GetOrgRobotsOK
-
+/*
 Successful invocation
 */
 type GetOrgRobotsOK struct {
@@ -70,8 +69,7 @@ func (o *GetOrgRobotsOK) readResponse(response client.Response, consumer httpkit
 	return nil
 }
 
-/*GetOrgRobotsBadRequest
-
+/*
 Bad Request
 */
 type GetOrgRobotsBadRequest struct {
@@ -90,8 +88,7 @@ func (o *GetOrgRobotsBadRequest) readResponse(response client.Response, consumer
 	return nil
 }
 
-/*GetOrgRobotsUnauthorized
-
+/*
 Session required
 */
 type GetOrgRobotsUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *GetOrgRobotsUnauthorized) readResponse(response client.Response, consum
 	return nil
 }
 
-/*GetOrgRobotsForbidden
-
+/*
 Unauthorized access
 */
 type GetOrgRobotsForbidden struct {
@@ -114,8 +110,7 @@ func (o *GetOrgRobotsForbidden) readResponse(response client.Response, consumer 
 	return nil
 }
 
-/*GetOrgRobotsNotFound
-
+/*
 Not found
 */
 type GetOrgRobotsNotFound struct {

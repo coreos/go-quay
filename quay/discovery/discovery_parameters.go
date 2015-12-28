@@ -10,14 +10,13 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*DiscoveryParams contains all the parameters to send to the API endpoint
+/*
+DiscoveryParams contains all the parameters to send to the API endpoint
 for the discovery operation typically these are written to a http.Request
 */
 type DiscoveryParams struct {
-
-	/*Internal
+	/*
 	  Whether to include internal APIs.
-
 	*/
 	Internal bool
 }

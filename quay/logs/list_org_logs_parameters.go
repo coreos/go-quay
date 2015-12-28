@@ -10,34 +10,29 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*ListOrgLogsParams contains all the parameters to send to the API endpoint
+/*
+ListOrgLogsParams contains all the parameters to send to the API endpoint
 for the list org logs operation typically these are written to a http.Request
 */
 type ListOrgLogsParams struct {
-
-	/*Endtime
+	/*
 	  Latest time to which to get logs. (%m/%d/%Y %Z)
-
 	*/
 	Endtime string
-	/*Orgname
+	/*
 	  The name of the organization
-
 	*/
 	Orgname string
-	/*Page
+	/*
 	  The page number for the logs
-
 	*/
 	Page int64
-	/*Performer
+	/*
 	  Username for which to filter logs.
-
 	*/
 	Performer string
-	/*Starttime
+	/*
 	  Earliest time from which to get logs. (%m/%d/%Y %Z)
-
 	*/
 	Starttime string
 }

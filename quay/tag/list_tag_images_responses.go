@@ -58,8 +58,7 @@ func (o *ListTagImagesReader) ReadResponse(response client.Response, consumer ht
 	}
 }
 
-/*ListTagImagesOK
-
+/*
 Successful invocation
 */
 type ListTagImagesOK struct {
@@ -70,8 +69,7 @@ func (o *ListTagImagesOK) readResponse(response client.Response, consumer httpki
 	return nil
 }
 
-/*ListTagImagesBadRequest
-
+/*
 Bad Request
 */
 type ListTagImagesBadRequest struct {
@@ -90,8 +88,7 @@ func (o *ListTagImagesBadRequest) readResponse(response client.Response, consume
 	return nil
 }
 
-/*ListTagImagesUnauthorized
-
+/*
 Session required
 */
 type ListTagImagesUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *ListTagImagesUnauthorized) readResponse(response client.Response, consu
 	return nil
 }
 
-/*ListTagImagesForbidden
-
+/*
 Unauthorized access
 */
 type ListTagImagesForbidden struct {
@@ -114,8 +110,7 @@ func (o *ListTagImagesForbidden) readResponse(response client.Response, consumer
 	return nil
 }
 
-/*ListTagImagesNotFound
-
+/*
 Not found
 */
 type ListTagImagesNotFound struct {

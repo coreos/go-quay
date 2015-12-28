@@ -58,8 +58,7 @@ func (o *UpdateRepoReader) ReadResponse(response client.Response, consumer httpk
 	}
 }
 
-/*UpdateRepoOK
-
+/*
 Successful invocation
 */
 type UpdateRepoOK struct {
@@ -70,8 +69,7 @@ func (o *UpdateRepoOK) readResponse(response client.Response, consumer httpkit.C
 	return nil
 }
 
-/*UpdateRepoBadRequest
-
+/*
 Bad Request
 */
 type UpdateRepoBadRequest struct {
@@ -90,8 +88,7 @@ func (o *UpdateRepoBadRequest) readResponse(response client.Response, consumer h
 	return nil
 }
 
-/*UpdateRepoUnauthorized
-
+/*
 Session required
 */
 type UpdateRepoUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *UpdateRepoUnauthorized) readResponse(response client.Response, consumer
 	return nil
 }
 
-/*UpdateRepoForbidden
-
+/*
 Unauthorized access
 */
 type UpdateRepoForbidden struct {
@@ -114,8 +110,7 @@ func (o *UpdateRepoForbidden) readResponse(response client.Response, consumer ht
 	return nil
 }
 
-/*UpdateRepoNotFound
-
+/*
 Not found
 */
 type UpdateRepoNotFound struct {

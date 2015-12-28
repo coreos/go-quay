@@ -58,8 +58,7 @@ func (o *RegenerateOrgRobotTokenReader) ReadResponse(response client.Response, c
 	}
 }
 
-/*RegenerateOrgRobotTokenOK
-
+/*
 Successful invocation
 */
 type RegenerateOrgRobotTokenOK struct {
@@ -70,8 +69,7 @@ func (o *RegenerateOrgRobotTokenOK) readResponse(response client.Response, consu
 	return nil
 }
 
-/*RegenerateOrgRobotTokenBadRequest
-
+/*
 Bad Request
 */
 type RegenerateOrgRobotTokenBadRequest struct {
@@ -90,8 +88,7 @@ func (o *RegenerateOrgRobotTokenBadRequest) readResponse(response client.Respons
 	return nil
 }
 
-/*RegenerateOrgRobotTokenUnauthorized
-
+/*
 Session required
 */
 type RegenerateOrgRobotTokenUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *RegenerateOrgRobotTokenUnauthorized) readResponse(response client.Respo
 	return nil
 }
 
-/*RegenerateOrgRobotTokenForbidden
-
+/*
 Unauthorized access
 */
 type RegenerateOrgRobotTokenForbidden struct {
@@ -114,8 +110,7 @@ func (o *RegenerateOrgRobotTokenForbidden) readResponse(response client.Response
 	return nil
 }
 
-/*RegenerateOrgRobotTokenNotFound
-
+/*
 Not found
 */
 type RegenerateOrgRobotTokenNotFound struct {

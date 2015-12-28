@@ -11,24 +11,21 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*UpdateOrganizationTeamParams contains all the parameters to send to the API endpoint
+/*
+UpdateOrganizationTeamParams contains all the parameters to send to the API endpoint
 for the update organization team operation typically these are written to a http.Request
 */
 type UpdateOrganizationTeamParams struct {
-
-	/*Body
+	/*
 	  Request body contents.
-
 	*/
 	Body *models.TeamDescription
-	/*Orgname
+	/*
 	  The name of the organization
-
 	*/
 	Orgname string
-	/*Teamname
+	/*
 	  The name of the team
-
 	*/
 	Teamname string
 }

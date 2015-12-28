@@ -10,24 +10,21 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*ListTagImagesParams contains all the parameters to send to the API endpoint
+/*
+ListTagImagesParams contains all the parameters to send to the API endpoint
 for the list tag images operation typically these are written to a http.Request
 */
 type ListTagImagesParams struct {
-
-	/*Owned
+	/*
 	  If specified, only images wholely owned by this tag are returned.
-
 	*/
 	Owned bool
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
-	/*Tag
+	/*
 	  The name of the tag
-
 	*/
 	Tag string
 }

@@ -58,8 +58,7 @@ func (o *CreateTokenReader) ReadResponse(response client.Response, consumer http
 	}
 }
 
-/*CreateTokenOK
-
+/*
 Successful invocation
 */
 type CreateTokenOK struct {
@@ -70,8 +69,7 @@ func (o *CreateTokenOK) readResponse(response client.Response, consumer httpkit.
 	return nil
 }
 
-/*CreateTokenBadRequest
-
+/*
 Bad Request
 */
 type CreateTokenBadRequest struct {
@@ -90,8 +88,7 @@ func (o *CreateTokenBadRequest) readResponse(response client.Response, consumer 
 	return nil
 }
 
-/*CreateTokenUnauthorized
-
+/*
 Session required
 */
 type CreateTokenUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *CreateTokenUnauthorized) readResponse(response client.Response, consume
 	return nil
 }
 
-/*CreateTokenForbidden
-
+/*
 Unauthorized access
 */
 type CreateTokenForbidden struct {
@@ -114,8 +110,7 @@ func (o *CreateTokenForbidden) readResponse(response client.Response, consumer h
 	return nil
 }
 
-/*CreateTokenNotFound
-
+/*
 Not found
 */
 type CreateTokenNotFound struct {

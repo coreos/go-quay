@@ -58,8 +58,7 @@ func (o *GetRepoNotificationReader) ReadResponse(response client.Response, consu
 	}
 }
 
-/*GetRepoNotificationOK
-
+/*
 Successful invocation
 */
 type GetRepoNotificationOK struct {
@@ -70,8 +69,7 @@ func (o *GetRepoNotificationOK) readResponse(response client.Response, consumer 
 	return nil
 }
 
-/*GetRepoNotificationBadRequest
-
+/*
 Bad Request
 */
 type GetRepoNotificationBadRequest struct {
@@ -90,8 +88,7 @@ func (o *GetRepoNotificationBadRequest) readResponse(response client.Response, c
 	return nil
 }
 
-/*GetRepoNotificationUnauthorized
-
+/*
 Session required
 */
 type GetRepoNotificationUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *GetRepoNotificationUnauthorized) readResponse(response client.Response,
 	return nil
 }
 
-/*GetRepoNotificationForbidden
-
+/*
 Unauthorized access
 */
 type GetRepoNotificationForbidden struct {
@@ -114,8 +110,7 @@ func (o *GetRepoNotificationForbidden) readResponse(response client.Response, co
 	return nil
 }
 
-/*GetRepoNotificationNotFound
-
+/*
 Not found
 */
 type GetRepoNotificationNotFound struct {

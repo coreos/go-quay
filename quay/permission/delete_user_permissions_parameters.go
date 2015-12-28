@@ -9,19 +9,17 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*DeleteUserPermissionsParams contains all the parameters to send to the API endpoint
+/*
+DeleteUserPermissionsParams contains all the parameters to send to the API endpoint
 for the delete user permissions operation typically these are written to a http.Request
 */
 type DeleteUserPermissionsParams struct {
-
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
-	/*Username
+	/*
 	  The username of the user to which the permission applies
-
 	*/
 	Username string
 }

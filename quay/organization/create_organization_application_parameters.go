@@ -11,19 +11,17 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*CreateOrganizationApplicationParams contains all the parameters to send to the API endpoint
+/*
+CreateOrganizationApplicationParams contains all the parameters to send to the API endpoint
 for the create organization application operation typically these are written to a http.Request
 */
 type CreateOrganizationApplicationParams struct {
-
-	/*Body
+	/*
 	  Request body contents.
-
 	*/
 	Body *models.NewApp
-	/*Orgname
+	/*
 	  The name of the organization
-
 	*/
 	Orgname string
 }

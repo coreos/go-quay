@@ -58,8 +58,7 @@ func (o *RevertTagReader) ReadResponse(response client.Response, consumer httpki
 	}
 }
 
-/*RevertTagOK
-
+/*
 Successful invocation
 */
 type RevertTagOK struct {
@@ -70,8 +69,7 @@ func (o *RevertTagOK) readResponse(response client.Response, consumer httpkit.Co
 	return nil
 }
 
-/*RevertTagBadRequest
-
+/*
 Bad Request
 */
 type RevertTagBadRequest struct {
@@ -90,8 +88,7 @@ func (o *RevertTagBadRequest) readResponse(response client.Response, consumer ht
 	return nil
 }
 
-/*RevertTagUnauthorized
-
+/*
 Session required
 */
 type RevertTagUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *RevertTagUnauthorized) readResponse(response client.Response, consumer 
 	return nil
 }
 
-/*RevertTagForbidden
-
+/*
 Unauthorized access
 */
 type RevertTagForbidden struct {
@@ -114,8 +110,7 @@ func (o *RevertTagForbidden) readResponse(response client.Response, consumer htt
 	return nil
 }
 
-/*RevertTagNotFound
-
+/*
 Not found
 */
 type RevertTagNotFound struct {

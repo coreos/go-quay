@@ -9,7 +9,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*ListPlansParams contains all the parameters to send to the API endpoint
+/*
+ListPlansParams contains all the parameters to send to the API endpoint
 for the list plans operation typically these are written to a http.Request
 */
 type ListPlansParams struct {

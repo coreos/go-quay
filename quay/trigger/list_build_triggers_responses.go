@@ -58,8 +58,7 @@ func (o *ListBuildTriggersReader) ReadResponse(response client.Response, consume
 	}
 }
 
-/*ListBuildTriggersOK
-
+/*
 Successful invocation
 */
 type ListBuildTriggersOK struct {
@@ -70,8 +69,7 @@ func (o *ListBuildTriggersOK) readResponse(response client.Response, consumer ht
 	return nil
 }
 
-/*ListBuildTriggersBadRequest
-
+/*
 Bad Request
 */
 type ListBuildTriggersBadRequest struct {
@@ -90,8 +88,7 @@ func (o *ListBuildTriggersBadRequest) readResponse(response client.Response, con
 	return nil
 }
 
-/*ListBuildTriggersUnauthorized
-
+/*
 Session required
 */
 type ListBuildTriggersUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *ListBuildTriggersUnauthorized) readResponse(response client.Response, c
 	return nil
 }
 
-/*ListBuildTriggersForbidden
-
+/*
 Unauthorized access
 */
 type ListBuildTriggersForbidden struct {
@@ -114,8 +110,7 @@ func (o *ListBuildTriggersForbidden) readResponse(response client.Response, cons
 	return nil
 }
 
-/*ListBuildTriggersNotFound
-
+/*
 Not found
 */
 type ListBuildTriggersNotFound struct {

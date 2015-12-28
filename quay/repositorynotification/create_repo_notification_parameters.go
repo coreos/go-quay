@@ -11,19 +11,17 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*CreateRepoNotificationParams contains all the parameters to send to the API endpoint
+/*
+CreateRepoNotificationParams contains all the parameters to send to the API endpoint
 for the create repo notification operation typically these are written to a http.Request
 */
 type CreateRepoNotificationParams struct {
-
-	/*Body
+	/*
 	  Request body contents.
-
 	*/
 	Body *models.NotificationCreateRequest
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
 }

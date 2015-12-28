@@ -9,14 +9,13 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*GetOrganizationPrototypePermissionsParams contains all the parameters to send to the API endpoint
+/*
+GetOrganizationPrototypePermissionsParams contains all the parameters to send to the API endpoint
 for the get organization prototype permissions operation typically these are written to a http.Request
 */
 type GetOrganizationPrototypePermissionsParams struct {
-
-	/*Orgname
+	/*
 	  The name of the organization
-
 	*/
 	Orgname string
 }

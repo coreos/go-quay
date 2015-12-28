@@ -11,19 +11,17 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*UpdateRepoParams contains all the parameters to send to the API endpoint
+/*
+UpdateRepoParams contains all the parameters to send to the API endpoint
 for the update repo operation typically these are written to a http.Request
 */
 type UpdateRepoParams struct {
-
-	/*Body
+	/*
 	  Request body contents.
-
 	*/
 	Body *models.RepoUpdate
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
 }

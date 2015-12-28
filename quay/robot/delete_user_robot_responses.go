@@ -58,8 +58,7 @@ func (o *DeleteUserRobotReader) ReadResponse(response client.Response, consumer 
 	}
 }
 
-/*DeleteUserRobotNoContent
-
+/*
 Deleted
 */
 type DeleteUserRobotNoContent struct {
@@ -70,8 +69,7 @@ func (o *DeleteUserRobotNoContent) readResponse(response client.Response, consum
 	return nil
 }
 
-/*DeleteUserRobotBadRequest
-
+/*
 Bad Request
 */
 type DeleteUserRobotBadRequest struct {
@@ -90,8 +88,7 @@ func (o *DeleteUserRobotBadRequest) readResponse(response client.Response, consu
 	return nil
 }
 
-/*DeleteUserRobotUnauthorized
-
+/*
 Session required
 */
 type DeleteUserRobotUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *DeleteUserRobotUnauthorized) readResponse(response client.Response, con
 	return nil
 }
 
-/*DeleteUserRobotForbidden
-
+/*
 Unauthorized access
 */
 type DeleteUserRobotForbidden struct {
@@ -114,8 +110,7 @@ func (o *DeleteUserRobotForbidden) readResponse(response client.Response, consum
 	return nil
 }
 
-/*DeleteUserRobotNotFound
-
+/*
 Not found
 */
 type DeleteUserRobotNotFound struct {

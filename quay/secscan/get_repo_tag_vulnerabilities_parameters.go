@@ -9,24 +9,21 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*GetRepoTagVulnerabilitiesParams contains all the parameters to send to the API endpoint
+/*
+GetRepoTagVulnerabilitiesParams contains all the parameters to send to the API endpoint
 for the get repo tag vulnerabilities operation typically these are written to a http.Request
 */
 type GetRepoTagVulnerabilitiesParams struct {
-
-	/*MinimumPriority
+	/*
 	  Minimum vulnerability priority
-
 	*/
 	MinimumPriority string
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
-	/*Tag
+	/*
 	  The name of the tag
-
 	*/
 	Tag string
 }

@@ -9,19 +9,17 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*CancelRepoBuildParams contains all the parameters to send to the API endpoint
+/*
+CancelRepoBuildParams contains all the parameters to send to the API endpoint
 for the cancel repo build operation typically these are written to a http.Request
 */
 type CancelRepoBuildParams struct {
-
-	/*BuildUUID
+	/*
 	  The UUID of the build
-
 	*/
 	BuildUUID string
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
 }

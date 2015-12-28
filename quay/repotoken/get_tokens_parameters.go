@@ -9,19 +9,17 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*GetTokensParams contains all the parameters to send to the API endpoint
+/*
+GetTokensParams contains all the parameters to send to the API endpoint
 for the get tokens operation typically these are written to a http.Request
 */
 type GetTokensParams struct {
-
-	/*Code
+	/*
 	  The token code
-
 	*/
 	Code string
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
 }

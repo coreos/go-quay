@@ -58,8 +58,7 @@ func (o *GetRepoTagVulnerabilitiesReader) ReadResponse(response client.Response,
 	}
 }
 
-/*GetRepoTagVulnerabilitiesOK
-
+/*
 Successful invocation
 */
 type GetRepoTagVulnerabilitiesOK struct {
@@ -70,8 +69,7 @@ func (o *GetRepoTagVulnerabilitiesOK) readResponse(response client.Response, con
 	return nil
 }
 
-/*GetRepoTagVulnerabilitiesBadRequest
-
+/*
 Bad Request
 */
 type GetRepoTagVulnerabilitiesBadRequest struct {
@@ -90,8 +88,7 @@ func (o *GetRepoTagVulnerabilitiesBadRequest) readResponse(response client.Respo
 	return nil
 }
 
-/*GetRepoTagVulnerabilitiesUnauthorized
-
+/*
 Session required
 */
 type GetRepoTagVulnerabilitiesUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *GetRepoTagVulnerabilitiesUnauthorized) readResponse(response client.Res
 	return nil
 }
 
-/*GetRepoTagVulnerabilitiesForbidden
-
+/*
 Unauthorized access
 */
 type GetRepoTagVulnerabilitiesForbidden struct {
@@ -114,8 +110,7 @@ func (o *GetRepoTagVulnerabilitiesForbidden) readResponse(response client.Respon
 	return nil
 }
 
-/*GetRepoTagVulnerabilitiesNotFound
-
+/*
 Not found
 */
 type GetRepoTagVulnerabilitiesNotFound struct {

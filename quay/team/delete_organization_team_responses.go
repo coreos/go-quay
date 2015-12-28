@@ -58,8 +58,7 @@ func (o *DeleteOrganizationTeamReader) ReadResponse(response client.Response, co
 	}
 }
 
-/*DeleteOrganizationTeamNoContent
-
+/*
 Deleted
 */
 type DeleteOrganizationTeamNoContent struct {
@@ -70,8 +69,7 @@ func (o *DeleteOrganizationTeamNoContent) readResponse(response client.Response,
 	return nil
 }
 
-/*DeleteOrganizationTeamBadRequest
-
+/*
 Bad Request
 */
 type DeleteOrganizationTeamBadRequest struct {
@@ -90,8 +88,7 @@ func (o *DeleteOrganizationTeamBadRequest) readResponse(response client.Response
 	return nil
 }
 
-/*DeleteOrganizationTeamUnauthorized
-
+/*
 Session required
 */
 type DeleteOrganizationTeamUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *DeleteOrganizationTeamUnauthorized) readResponse(response client.Respon
 	return nil
 }
 
-/*DeleteOrganizationTeamForbidden
-
+/*
 Unauthorized access
 */
 type DeleteOrganizationTeamForbidden struct {
@@ -114,8 +110,7 @@ func (o *DeleteOrganizationTeamForbidden) readResponse(response client.Response,
 	return nil
 }
 
-/*DeleteOrganizationTeamNotFound
-
+/*
 Not found
 */
 type DeleteOrganizationTeamNotFound struct {

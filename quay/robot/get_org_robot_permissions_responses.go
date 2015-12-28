@@ -58,8 +58,7 @@ func (o *GetOrgRobotPermissionsReader) ReadResponse(response client.Response, co
 	}
 }
 
-/*GetOrgRobotPermissionsOK
-
+/*
 Successful invocation
 */
 type GetOrgRobotPermissionsOK struct {
@@ -70,8 +69,7 @@ func (o *GetOrgRobotPermissionsOK) readResponse(response client.Response, consum
 	return nil
 }
 
-/*GetOrgRobotPermissionsBadRequest
-
+/*
 Bad Request
 */
 type GetOrgRobotPermissionsBadRequest struct {
@@ -90,8 +88,7 @@ func (o *GetOrgRobotPermissionsBadRequest) readResponse(response client.Response
 	return nil
 }
 
-/*GetOrgRobotPermissionsUnauthorized
-
+/*
 Session required
 */
 type GetOrgRobotPermissionsUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *GetOrgRobotPermissionsUnauthorized) readResponse(response client.Respon
 	return nil
 }
 
-/*GetOrgRobotPermissionsForbidden
-
+/*
 Unauthorized access
 */
 type GetOrgRobotPermissionsForbidden struct {
@@ -114,8 +110,7 @@ func (o *GetOrgRobotPermissionsForbidden) readResponse(response client.Response,
 	return nil
 }
 
-/*GetOrgRobotPermissionsNotFound
-
+/*
 Not found
 */
 type GetOrgRobotPermissionsNotFound struct {

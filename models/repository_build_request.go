@@ -9,7 +9,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*Description of a new repository build.
+/*
+Description of a new repository build.
 
 swagger:model RepositoryBuildRequest
 */
@@ -44,7 +45,6 @@ func (m *RepositoryBuildRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateDockerTags(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 

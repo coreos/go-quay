@@ -58,8 +58,7 @@ func (o *ChangeUserPermissionsReader) ReadResponse(response client.Response, con
 	}
 }
 
-/*ChangeUserPermissionsOK
-
+/*
 Successful invocation
 */
 type ChangeUserPermissionsOK struct {
@@ -70,8 +69,7 @@ func (o *ChangeUserPermissionsOK) readResponse(response client.Response, consume
 	return nil
 }
 
-/*ChangeUserPermissionsBadRequest
-
+/*
 Bad Request
 */
 type ChangeUserPermissionsBadRequest struct {
@@ -90,8 +88,7 @@ func (o *ChangeUserPermissionsBadRequest) readResponse(response client.Response,
 	return nil
 }
 
-/*ChangeUserPermissionsUnauthorized
-
+/*
 Session required
 */
 type ChangeUserPermissionsUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *ChangeUserPermissionsUnauthorized) readResponse(response client.Respons
 	return nil
 }
 
-/*ChangeUserPermissionsForbidden
-
+/*
 Unauthorized access
 */
 type ChangeUserPermissionsForbidden struct {
@@ -114,8 +110,7 @@ func (o *ChangeUserPermissionsForbidden) readResponse(response client.Response, 
 	return nil
 }
 
-/*ChangeUserPermissionsNotFound
-
+/*
 Not found
 */
 type ChangeUserPermissionsNotFound struct {

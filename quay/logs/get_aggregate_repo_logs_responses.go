@@ -58,8 +58,7 @@ func (o *GetAggregateRepoLogsReader) ReadResponse(response client.Response, cons
 	}
 }
 
-/*GetAggregateRepoLogsOK
-
+/*
 Successful invocation
 */
 type GetAggregateRepoLogsOK struct {
@@ -70,8 +69,7 @@ func (o *GetAggregateRepoLogsOK) readResponse(response client.Response, consumer
 	return nil
 }
 
-/*GetAggregateRepoLogsBadRequest
-
+/*
 Bad Request
 */
 type GetAggregateRepoLogsBadRequest struct {
@@ -90,8 +88,7 @@ func (o *GetAggregateRepoLogsBadRequest) readResponse(response client.Response, 
 	return nil
 }
 
-/*GetAggregateRepoLogsUnauthorized
-
+/*
 Session required
 */
 type GetAggregateRepoLogsUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *GetAggregateRepoLogsUnauthorized) readResponse(response client.Response
 	return nil
 }
 
-/*GetAggregateRepoLogsForbidden
-
+/*
 Unauthorized access
 */
 type GetAggregateRepoLogsForbidden struct {
@@ -114,8 +110,7 @@ func (o *GetAggregateRepoLogsForbidden) readResponse(response client.Response, c
 	return nil
 }
 
-/*GetAggregateRepoLogsNotFound
-
+/*
 Not found
 */
 type GetAggregateRepoLogsNotFound struct {

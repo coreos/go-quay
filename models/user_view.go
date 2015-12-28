@@ -9,7 +9,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*Describes a user
+/*
+Describes a user
 
 swagger:model UserView
 */
@@ -59,17 +60,14 @@ func (m *UserView) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAnonymous(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateAvatar(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateVerified(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 

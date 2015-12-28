@@ -11,24 +11,21 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*ChangeTokenParams contains all the parameters to send to the API endpoint
+/*
+ChangeTokenParams contains all the parameters to send to the API endpoint
 for the change token operation typically these are written to a http.Request
 */
 type ChangeTokenParams struct {
-
-	/*Body
+	/*
 	  Request body contents.
-
 	*/
 	Body *models.TokenPermission
-	/*Code
+	/*
 	  The token code
-
 	*/
 	Code string
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
 }

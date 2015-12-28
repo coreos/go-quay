@@ -58,8 +58,7 @@ func (o *ListOrgInvoicesReader) ReadResponse(response client.Response, consumer 
 	}
 }
 
-/*ListOrgInvoicesOK
-
+/*
 Successful invocation
 */
 type ListOrgInvoicesOK struct {
@@ -70,8 +69,7 @@ func (o *ListOrgInvoicesOK) readResponse(response client.Response, consumer http
 	return nil
 }
 
-/*ListOrgInvoicesBadRequest
-
+/*
 Bad Request
 */
 type ListOrgInvoicesBadRequest struct {
@@ -90,8 +88,7 @@ func (o *ListOrgInvoicesBadRequest) readResponse(response client.Response, consu
 	return nil
 }
 
-/*ListOrgInvoicesUnauthorized
-
+/*
 Session required
 */
 type ListOrgInvoicesUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *ListOrgInvoicesUnauthorized) readResponse(response client.Response, con
 	return nil
 }
 
-/*ListOrgInvoicesForbidden
-
+/*
 Unauthorized access
 */
 type ListOrgInvoicesForbidden struct {
@@ -114,8 +110,7 @@ func (o *ListOrgInvoicesForbidden) readResponse(response client.Response, consum
 	return nil
 }
 
-/*ListOrgInvoicesNotFound
-
+/*
 Not found
 */
 type ListOrgInvoicesNotFound struct {

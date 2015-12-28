@@ -9,14 +9,13 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*DeleteStarParams contains all the parameters to send to the API endpoint
+/*
+DeleteStarParams contains all the parameters to send to the API endpoint
 for the delete star operation typically these are written to a http.Request
 */
 type DeleteStarParams struct {
-
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
 }

@@ -58,8 +58,7 @@ func (o *GetLoggedInUserReader) ReadResponse(response client.Response, consumer 
 	}
 }
 
-/*GetLoggedInUserOK
-
+/*
 Successful invocation
 */
 type GetLoggedInUserOK struct {
@@ -78,8 +77,7 @@ func (o *GetLoggedInUserOK) readResponse(response client.Response, consumer http
 	return nil
 }
 
-/*GetLoggedInUserBadRequest
-
+/*
 Bad Request
 */
 type GetLoggedInUserBadRequest struct {
@@ -98,8 +96,7 @@ func (o *GetLoggedInUserBadRequest) readResponse(response client.Response, consu
 	return nil
 }
 
-/*GetLoggedInUserUnauthorized
-
+/*
 Session required
 */
 type GetLoggedInUserUnauthorized struct {
@@ -110,8 +107,7 @@ func (o *GetLoggedInUserUnauthorized) readResponse(response client.Response, con
 	return nil
 }
 
-/*GetLoggedInUserForbidden
-
+/*
 Unauthorized access
 */
 type GetLoggedInUserForbidden struct {
@@ -122,8 +118,7 @@ func (o *GetLoggedInUserForbidden) readResponse(response client.Response, consum
 	return nil
 }
 
-/*GetLoggedInUserNotFound
-
+/*
 Not found
 */
 type GetLoggedInUserNotFound struct {

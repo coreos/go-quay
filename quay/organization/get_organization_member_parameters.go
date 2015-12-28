@@ -9,19 +9,17 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*GetOrganizationMemberParams contains all the parameters to send to the API endpoint
+/*
+GetOrganizationMemberParams contains all the parameters to send to the API endpoint
 for the get organization member operation typically these are written to a http.Request
 */
 type GetOrganizationMemberParams struct {
-
-	/*Membername
+	/*
 	  The username of the organization member
-
 	*/
 	Membername string
-	/*Orgname
+	/*
 	  The name of the organization
-
 	*/
 	Orgname string
 }

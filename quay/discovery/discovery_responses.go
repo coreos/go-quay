@@ -58,8 +58,7 @@ func (o *DiscoveryReader) ReadResponse(response client.Response, consumer httpki
 	}
 }
 
-/*DiscoveryOK
-
+/*
 Successful invocation
 */
 type DiscoveryOK struct {
@@ -70,8 +69,7 @@ func (o *DiscoveryOK) readResponse(response client.Response, consumer httpkit.Co
 	return nil
 }
 
-/*DiscoveryBadRequest
-
+/*
 Bad Request
 */
 type DiscoveryBadRequest struct {
@@ -90,8 +88,7 @@ func (o *DiscoveryBadRequest) readResponse(response client.Response, consumer ht
 	return nil
 }
 
-/*DiscoveryUnauthorized
-
+/*
 Session required
 */
 type DiscoveryUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *DiscoveryUnauthorized) readResponse(response client.Response, consumer 
 	return nil
 }
 
-/*DiscoveryForbidden
-
+/*
 Unauthorized access
 */
 type DiscoveryForbidden struct {
@@ -114,8 +110,7 @@ func (o *DiscoveryForbidden) readResponse(response client.Response, consumer htt
 	return nil
 }
 
-/*DiscoveryNotFound
-
+/*
 Not found
 */
 type DiscoveryNotFound struct {

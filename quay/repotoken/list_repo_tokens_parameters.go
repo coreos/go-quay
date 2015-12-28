@@ -9,14 +9,13 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*ListRepoTokensParams contains all the parameters to send to the API endpoint
+/*
+ListRepoTokensParams contains all the parameters to send to the API endpoint
 for the list repo tokens operation typically these are written to a http.Request
 */
 type ListRepoTokensParams struct {
-
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
 }

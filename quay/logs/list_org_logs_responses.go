@@ -58,8 +58,7 @@ func (o *ListOrgLogsReader) ReadResponse(response client.Response, consumer http
 	}
 }
 
-/*ListOrgLogsOK
-
+/*
 Successful invocation
 */
 type ListOrgLogsOK struct {
@@ -70,8 +69,7 @@ func (o *ListOrgLogsOK) readResponse(response client.Response, consumer httpkit.
 	return nil
 }
 
-/*ListOrgLogsBadRequest
-
+/*
 Bad Request
 */
 type ListOrgLogsBadRequest struct {
@@ -90,8 +88,7 @@ func (o *ListOrgLogsBadRequest) readResponse(response client.Response, consumer 
 	return nil
 }
 
-/*ListOrgLogsUnauthorized
-
+/*
 Session required
 */
 type ListOrgLogsUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *ListOrgLogsUnauthorized) readResponse(response client.Response, consume
 	return nil
 }
 
-/*ListOrgLogsForbidden
-
+/*
 Unauthorized access
 */
 type ListOrgLogsForbidden struct {
@@ -114,8 +110,7 @@ func (o *ListOrgLogsForbidden) readResponse(response client.Response, consumer h
 	return nil
 }
 
-/*ListOrgLogsNotFound
-
+/*
 Not found
 */
 type ListOrgLogsNotFound struct {

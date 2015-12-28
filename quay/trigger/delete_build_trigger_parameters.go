@@ -9,19 +9,17 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*DeleteBuildTriggerParams contains all the parameters to send to the API endpoint
+/*
+DeleteBuildTriggerParams contains all the parameters to send to the API endpoint
 for the delete build trigger operation typically these are written to a http.Request
 */
 type DeleteBuildTriggerParams struct {
-
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
-	/*TriggerUUID
+	/*
 	  The UUID of the build trigger
-
 	*/
 	TriggerUUID string
 }

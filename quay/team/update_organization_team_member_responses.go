@@ -58,8 +58,7 @@ func (o *UpdateOrganizationTeamMemberReader) ReadResponse(response client.Respon
 	}
 }
 
-/*UpdateOrganizationTeamMemberOK
-
+/*
 Successful invocation
 */
 type UpdateOrganizationTeamMemberOK struct {
@@ -70,8 +69,7 @@ func (o *UpdateOrganizationTeamMemberOK) readResponse(response client.Response, 
 	return nil
 }
 
-/*UpdateOrganizationTeamMemberBadRequest
-
+/*
 Bad Request
 */
 type UpdateOrganizationTeamMemberBadRequest struct {
@@ -90,8 +88,7 @@ func (o *UpdateOrganizationTeamMemberBadRequest) readResponse(response client.Re
 	return nil
 }
 
-/*UpdateOrganizationTeamMemberUnauthorized
-
+/*
 Session required
 */
 type UpdateOrganizationTeamMemberUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *UpdateOrganizationTeamMemberUnauthorized) readResponse(response client.
 	return nil
 }
 
-/*UpdateOrganizationTeamMemberForbidden
-
+/*
 Unauthorized access
 */
 type UpdateOrganizationTeamMemberForbidden struct {
@@ -114,8 +110,7 @@ func (o *UpdateOrganizationTeamMemberForbidden) readResponse(response client.Res
 	return nil
 }
 
-/*UpdateOrganizationTeamMemberNotFound
-
+/*
 Not found
 */
 type UpdateOrganizationTeamMemberNotFound struct {

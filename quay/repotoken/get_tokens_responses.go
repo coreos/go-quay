@@ -58,8 +58,7 @@ func (o *GetTokensReader) ReadResponse(response client.Response, consumer httpki
 	}
 }
 
-/*GetTokensOK
-
+/*
 Successful invocation
 */
 type GetTokensOK struct {
@@ -70,8 +69,7 @@ func (o *GetTokensOK) readResponse(response client.Response, consumer httpkit.Co
 	return nil
 }
 
-/*GetTokensBadRequest
-
+/*
 Bad Request
 */
 type GetTokensBadRequest struct {
@@ -90,8 +88,7 @@ func (o *GetTokensBadRequest) readResponse(response client.Response, consumer ht
 	return nil
 }
 
-/*GetTokensUnauthorized
-
+/*
 Session required
 */
 type GetTokensUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *GetTokensUnauthorized) readResponse(response client.Response, consumer 
 	return nil
 }
 
-/*GetTokensForbidden
-
+/*
 Unauthorized access
 */
 type GetTokensForbidden struct {
@@ -114,8 +110,7 @@ func (o *GetTokensForbidden) readResponse(response client.Response, consumer htt
 	return nil
 }
 
-/*GetTokensNotFound
-
+/*
 Not found
 */
 type GetTokensNotFound struct {

@@ -58,8 +58,7 @@ func (o *ListReposReader) ReadResponse(response client.Response, consumer httpki
 	}
 }
 
-/*ListReposOK
-
+/*
 Successful invocation
 */
 type ListReposOK struct {
@@ -70,8 +69,7 @@ func (o *ListReposOK) readResponse(response client.Response, consumer httpkit.Co
 	return nil
 }
 
-/*ListReposBadRequest
-
+/*
 Bad Request
 */
 type ListReposBadRequest struct {
@@ -90,8 +88,7 @@ func (o *ListReposBadRequest) readResponse(response client.Response, consumer ht
 	return nil
 }
 
-/*ListReposUnauthorized
-
+/*
 Session required
 */
 type ListReposUnauthorized struct {
@@ -102,8 +99,7 @@ func (o *ListReposUnauthorized) readResponse(response client.Response, consumer 
 	return nil
 }
 
-/*ListReposForbidden
-
+/*
 Unauthorized access
 */
 type ListReposForbidden struct {
@@ -114,8 +110,7 @@ func (o *ListReposForbidden) readResponse(response client.Response, consumer htt
 	return nil
 }
 
-/*ListReposNotFound
-
+/*
 Not found
 */
 type ListReposNotFound struct {

@@ -9,19 +9,17 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*DeleteTeamPermissionsParams contains all the parameters to send to the API endpoint
+/*
+DeleteTeamPermissionsParams contains all the parameters to send to the API endpoint
 for the delete team permissions operation typically these are written to a http.Request
 */
 type DeleteTeamPermissionsParams struct {
-
-	/*Repository
+	/*
 	  The full path of the repository. e.g. namespace/name
-
 	*/
 	Repository string
-	/*Teamname
+	/*
 	  The name of the team to which the permission applies
-
 	*/
 	Teamname string
 }

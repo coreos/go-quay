@@ -9,24 +9,21 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*DeleteOrganizationTeamMemberParams contains all the parameters to send to the API endpoint
+/*
+DeleteOrganizationTeamMemberParams contains all the parameters to send to the API endpoint
 for the delete organization team member operation typically these are written to a http.Request
 */
 type DeleteOrganizationTeamMemberParams struct {
-
-	/*Membername
+	/*
 	  The username of the team member
-
 	*/
 	Membername string
-	/*Orgname
+	/*
 	  The name of the organization
-
 	*/
 	Orgname string
-	/*Teamname
+	/*
 	  The name of the team
-
 	*/
 	Teamname string
 }
