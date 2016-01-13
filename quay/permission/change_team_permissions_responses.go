@@ -4,6 +4,9 @@ package permission
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *ChangeTeamPermissionsReader) ReadResponse(response client.Response, con
 	switch response.Code() {
 
 	case 200:
-		var result ChangeTeamPermissionsOK
+		result := NewChangeTeamPermissionsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result ChangeTeamPermissionsBadRequest
+		result := NewChangeTeamPermissionsBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("changeTeamPermissionsBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result ChangeTeamPermissionsUnauthorized
+		result := NewChangeTeamPermissionsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("changeTeamPermissionsUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result ChangeTeamPermissionsForbidden
+		result := NewChangeTeamPermissionsForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("changeTeamPermissionsForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result ChangeTeamPermissionsNotFound
+		result := NewChangeTeamPermissionsNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("changeTeamPermissionsNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewChangeTeamPermissionsOK creates a ChangeTeamPermissionsOK with default headers values
+func NewChangeTeamPermissionsOK() *ChangeTeamPermissionsOK {
+	return &ChangeTeamPermissionsOK{}
+}
+
+/*ChangeTeamPermissionsOK
+
 Successful invocation
 */
 type ChangeTeamPermissionsOK struct {
+}
+
+func (o *ChangeTeamPermissionsOK) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/permissions/team/{teamname}][%d] changeTeamPermissionsOK ", 200)
 }
 
 func (o *ChangeTeamPermissionsOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *ChangeTeamPermissionsOK) readResponse(response client.Response, consume
 	return nil
 }
 
-/*
+// NewChangeTeamPermissionsBadRequest creates a ChangeTeamPermissionsBadRequest with default headers values
+func NewChangeTeamPermissionsBadRequest() *ChangeTeamPermissionsBadRequest {
+	return &ChangeTeamPermissionsBadRequest{}
+}
+
+/*ChangeTeamPermissionsBadRequest
+
 Bad Request
 */
 type ChangeTeamPermissionsBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *ChangeTeamPermissionsBadRequest) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/permissions/team/{teamname}][%d] changeTeamPermissionsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ChangeTeamPermissionsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *ChangeTeamPermissionsBadRequest) readResponse(response client.Response,
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewChangeTeamPermissionsUnauthorized creates a ChangeTeamPermissionsUnauthorized with default headers values
+func NewChangeTeamPermissionsUnauthorized() *ChangeTeamPermissionsUnauthorized {
+	return &ChangeTeamPermissionsUnauthorized{}
+}
+
+/*ChangeTeamPermissionsUnauthorized
+
 Session required
 */
 type ChangeTeamPermissionsUnauthorized struct {
+}
+
+func (o *ChangeTeamPermissionsUnauthorized) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/permissions/team/{teamname}][%d] changeTeamPermissionsUnauthorized ", 401)
 }
 
 func (o *ChangeTeamPermissionsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *ChangeTeamPermissionsUnauthorized) readResponse(response client.Respons
 	return nil
 }
 
-/*
+// NewChangeTeamPermissionsForbidden creates a ChangeTeamPermissionsForbidden with default headers values
+func NewChangeTeamPermissionsForbidden() *ChangeTeamPermissionsForbidden {
+	return &ChangeTeamPermissionsForbidden{}
+}
+
+/*ChangeTeamPermissionsForbidden
+
 Unauthorized access
 */
 type ChangeTeamPermissionsForbidden struct {
+}
+
+func (o *ChangeTeamPermissionsForbidden) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/permissions/team/{teamname}][%d] changeTeamPermissionsForbidden ", 403)
 }
 
 func (o *ChangeTeamPermissionsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *ChangeTeamPermissionsForbidden) readResponse(response client.Response, 
 	return nil
 }
 
-/*
+// NewChangeTeamPermissionsNotFound creates a ChangeTeamPermissionsNotFound with default headers values
+func NewChangeTeamPermissionsNotFound() *ChangeTeamPermissionsNotFound {
+	return &ChangeTeamPermissionsNotFound{}
+}
+
+/*ChangeTeamPermissionsNotFound
+
 Not found
 */
 type ChangeTeamPermissionsNotFound struct {
+}
+
+func (o *ChangeTeamPermissionsNotFound) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/permissions/team/{teamname}][%d] changeTeamPermissionsNotFound ", 404)
 }
 
 func (o *ChangeTeamPermissionsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

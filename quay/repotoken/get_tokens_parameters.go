@@ -9,19 +9,40 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-GetTokensParams contains all the parameters to send to the API endpoint
+// NewGetTokensParams creates a new GetTokensParams object
+// with the default values initialized.
+func NewGetTokensParams() *GetTokensParams {
+	var ()
+	return &GetTokensParams{}
+}
+
+/*GetTokensParams contains all the parameters to send to the API endpoint
 for the get tokens operation typically these are written to a http.Request
 */
 type GetTokensParams struct {
-	/*
+
+	/*Code
 	  The token code
+
 	*/
 	Code string
-	/*
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
+}
+
+// WithCode adds the code to the get tokens params
+func (o *GetTokensParams) WithCode(code string) *GetTokensParams {
+	o.Code = code
+	return o
+}
+
+// WithRepository adds the repository to the get tokens params
+func (o *GetTokensParams) WithRepository(repository string) *GetTokensParams {
+	o.Repository = repository
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

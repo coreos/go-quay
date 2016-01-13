@@ -8,8 +8,7 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-BuildTriggerActivateRequest build trigger activate request
+/*BuildTriggerActivateRequest BuildTriggerActivateRequest build trigger activate request
 
 swagger:model BuildTriggerActivateRequest
 */
@@ -23,7 +22,7 @@ type BuildTriggerActivateRequest struct {
 
 	/* The name of the robot that will be used to pull images.
 	 */
-	PullRobot string `json:"pull_robot,omitempty"`
+	PullRobot *string `json:"pull_robot,omitempty"`
 }
 
 // Validate validates this build trigger activate request
@@ -31,6 +30,7 @@ func (m *BuildTriggerActivateRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateConfig(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 

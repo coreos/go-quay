@@ -10,27 +10,62 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-ListRepoLogsParams contains all the parameters to send to the API endpoint
+// NewListRepoLogsParams creates a new ListRepoLogsParams object
+// with the default values initialized.
+func NewListRepoLogsParams() *ListRepoLogsParams {
+	var ()
+	return &ListRepoLogsParams{}
+}
+
+/*ListRepoLogsParams contains all the parameters to send to the API endpoint
 for the list repo logs operation typically these are written to a http.Request
 */
 type ListRepoLogsParams struct {
-	/*
+
+	/*Endtime
 	  Latest time to which to get logs (%m/%d/%Y %Z)
+
 	*/
-	Endtime string
-	/*
+	Endtime *string
+	/*Page
 	  The page number for the logs
+
 	*/
-	Page int64
-	/*
+	Page *int64
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
-	/*
+	/*Starttime
 	  Earliest time from which to get logs (%m/%d/%Y %Z)
+
 	*/
-	Starttime string
+	Starttime *string
+}
+
+// WithEndtime adds the endtime to the list repo logs params
+func (o *ListRepoLogsParams) WithEndtime(endtime *string) *ListRepoLogsParams {
+	o.Endtime = endtime
+	return o
+}
+
+// WithPage adds the page to the list repo logs params
+func (o *ListRepoLogsParams) WithPage(page *int64) *ListRepoLogsParams {
+	o.Page = page
+	return o
+}
+
+// WithRepository adds the repository to the list repo logs params
+func (o *ListRepoLogsParams) WithRepository(repository string) *ListRepoLogsParams {
+	o.Repository = repository
+	return o
+}
+
+// WithStarttime adds the starttime to the list repo logs params
+func (o *ListRepoLogsParams) WithStarttime(starttime *string) *ListRepoLogsParams {
+	o.Starttime = starttime
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -38,14 +73,36 @@ func (o *ListRepoLogsParams) WriteToRequest(r client.Request, reg strfmt.Registr
 
 	var res []error
 
-	// query param endtime
-	if err := r.SetQueryParam("endtime", o.Endtime); err != nil {
-		return err
+	if o.Endtime != nil {
+
+		// query param endtime
+		var qrEndtime string
+		if o.Endtime != nil {
+			qrEndtime = *o.Endtime
+		}
+		qEndtime := qrEndtime
+		if qEndtime != "" {
+			if err := r.SetQueryParam("endtime", qEndtime); err != nil {
+				return err
+			}
+		}
+
 	}
 
-	// query param page
-	if err := r.SetQueryParam("page", swag.FormatInt64(o.Page)); err != nil {
-		return err
+	if o.Page != nil {
+
+		// query param page
+		var qrPage int64
+		if o.Page != nil {
+			qrPage = *o.Page
+		}
+		qPage := swag.FormatInt64(qrPage)
+		if qPage != "" {
+			if err := r.SetQueryParam("page", qPage); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// path param repository
@@ -53,9 +110,20 @@ func (o *ListRepoLogsParams) WriteToRequest(r client.Request, reg strfmt.Registr
 		return err
 	}
 
-	// query param starttime
-	if err := r.SetQueryParam("starttime", o.Starttime); err != nil {
-		return err
+	if o.Starttime != nil {
+
+		// query param starttime
+		var qrStarttime string
+		if o.Starttime != nil {
+			qrStarttime = *o.Starttime
+		}
+		qStarttime := qrStarttime
+		if qStarttime != "" {
+			if err := r.SetQueryParam("starttime", qStarttime); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if len(res) > 0 {

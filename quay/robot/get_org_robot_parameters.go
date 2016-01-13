@@ -9,19 +9,40 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-GetOrgRobotParams contains all the parameters to send to the API endpoint
+// NewGetOrgRobotParams creates a new GetOrgRobotParams object
+// with the default values initialized.
+func NewGetOrgRobotParams() *GetOrgRobotParams {
+	var ()
+	return &GetOrgRobotParams{}
+}
+
+/*GetOrgRobotParams contains all the parameters to send to the API endpoint
 for the get org robot operation typically these are written to a http.Request
 */
 type GetOrgRobotParams struct {
-	/*
+
+	/*Orgname
 	  The name of the organization
+
 	*/
 	Orgname string
-	/*
+	/*RobotShortname
 	  The short name for the robot, without any user or organization prefix
+
 	*/
 	RobotShortname string
+}
+
+// WithOrgname adds the orgname to the get org robot params
+func (o *GetOrgRobotParams) WithOrgname(orgname string) *GetOrgRobotParams {
+	o.Orgname = orgname
+	return o
+}
+
+// WithRobotShortname adds the robotShortname to the get org robot params
+func (o *GetOrgRobotParams) WithRobotShortname(robotShortname string) *GetOrgRobotParams {
+	o.RobotShortname = robotShortname
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

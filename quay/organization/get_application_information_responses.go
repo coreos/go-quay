@@ -4,6 +4,9 @@ package organization
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *GetApplicationInformationReader) ReadResponse(response client.Response,
 	switch response.Code() {
 
 	case 200:
-		var result GetApplicationInformationOK
+		result := NewGetApplicationInformationOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result GetApplicationInformationBadRequest
+		result := NewGetApplicationInformationBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getApplicationInformationBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result GetApplicationInformationUnauthorized
+		result := NewGetApplicationInformationUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getApplicationInformationUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result GetApplicationInformationForbidden
+		result := NewGetApplicationInformationForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getApplicationInformationForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result GetApplicationInformationNotFound
+		result := NewGetApplicationInformationNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getApplicationInformationNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewGetApplicationInformationOK creates a GetApplicationInformationOK with default headers values
+func NewGetApplicationInformationOK() *GetApplicationInformationOK {
+	return &GetApplicationInformationOK{}
+}
+
+/*GetApplicationInformationOK
+
 Successful invocation
 */
 type GetApplicationInformationOK struct {
+}
+
+func (o *GetApplicationInformationOK) Error() string {
+	return fmt.Sprintf("[GET /api/v1/app/{client_id}][%d] getApplicationInformationOK ", 200)
 }
 
 func (o *GetApplicationInformationOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *GetApplicationInformationOK) readResponse(response client.Response, con
 	return nil
 }
 
-/*
+// NewGetApplicationInformationBadRequest creates a GetApplicationInformationBadRequest with default headers values
+func NewGetApplicationInformationBadRequest() *GetApplicationInformationBadRequest {
+	return &GetApplicationInformationBadRequest{}
+}
+
+/*GetApplicationInformationBadRequest
+
 Bad Request
 */
 type GetApplicationInformationBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *GetApplicationInformationBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/v1/app/{client_id}][%d] getApplicationInformationBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetApplicationInformationBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *GetApplicationInformationBadRequest) readResponse(response client.Respo
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewGetApplicationInformationUnauthorized creates a GetApplicationInformationUnauthorized with default headers values
+func NewGetApplicationInformationUnauthorized() *GetApplicationInformationUnauthorized {
+	return &GetApplicationInformationUnauthorized{}
+}
+
+/*GetApplicationInformationUnauthorized
+
 Session required
 */
 type GetApplicationInformationUnauthorized struct {
+}
+
+func (o *GetApplicationInformationUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /api/v1/app/{client_id}][%d] getApplicationInformationUnauthorized ", 401)
 }
 
 func (o *GetApplicationInformationUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *GetApplicationInformationUnauthorized) readResponse(response client.Res
 	return nil
 }
 
-/*
+// NewGetApplicationInformationForbidden creates a GetApplicationInformationForbidden with default headers values
+func NewGetApplicationInformationForbidden() *GetApplicationInformationForbidden {
+	return &GetApplicationInformationForbidden{}
+}
+
+/*GetApplicationInformationForbidden
+
 Unauthorized access
 */
 type GetApplicationInformationForbidden struct {
+}
+
+func (o *GetApplicationInformationForbidden) Error() string {
+	return fmt.Sprintf("[GET /api/v1/app/{client_id}][%d] getApplicationInformationForbidden ", 403)
 }
 
 func (o *GetApplicationInformationForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *GetApplicationInformationForbidden) readResponse(response client.Respon
 	return nil
 }
 
-/*
+// NewGetApplicationInformationNotFound creates a GetApplicationInformationNotFound with default headers values
+func NewGetApplicationInformationNotFound() *GetApplicationInformationNotFound {
+	return &GetApplicationInformationNotFound{}
+}
+
+/*GetApplicationInformationNotFound
+
 Not found
 */
 type GetApplicationInformationNotFound struct {
+}
+
+func (o *GetApplicationInformationNotFound) Error() string {
+	return fmt.Sprintf("[GET /api/v1/app/{client_id}][%d] getApplicationInformationNotFound ", 404)
 }
 
 func (o *GetApplicationInformationNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

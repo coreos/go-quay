@@ -4,6 +4,9 @@ package build
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *CancelRepoBuildReader) ReadResponse(response client.Response, consumer 
 	switch response.Code() {
 
 	case 204:
-		var result CancelRepoBuildNoContent
+		result := NewCancelRepoBuildNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result CancelRepoBuildBadRequest
+		result := NewCancelRepoBuildBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("cancelRepoBuildBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result CancelRepoBuildUnauthorized
+		result := NewCancelRepoBuildUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("cancelRepoBuildUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result CancelRepoBuildForbidden
+		result := NewCancelRepoBuildForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("cancelRepoBuildForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result CancelRepoBuildNotFound
+		result := NewCancelRepoBuildNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("cancelRepoBuildNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewCancelRepoBuildNoContent creates a CancelRepoBuildNoContent with default headers values
+func NewCancelRepoBuildNoContent() *CancelRepoBuildNoContent {
+	return &CancelRepoBuildNoContent{}
+}
+
+/*CancelRepoBuildNoContent
+
 Deleted
 */
 type CancelRepoBuildNoContent struct {
+}
+
+func (o *CancelRepoBuildNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/build/{build_uuid}][%d] cancelRepoBuildNoContent ", 204)
 }
 
 func (o *CancelRepoBuildNoContent) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *CancelRepoBuildNoContent) readResponse(response client.Response, consum
 	return nil
 }
 
-/*
+// NewCancelRepoBuildBadRequest creates a CancelRepoBuildBadRequest with default headers values
+func NewCancelRepoBuildBadRequest() *CancelRepoBuildBadRequest {
+	return &CancelRepoBuildBadRequest{}
+}
+
+/*CancelRepoBuildBadRequest
+
 Bad Request
 */
 type CancelRepoBuildBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *CancelRepoBuildBadRequest) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/build/{build_uuid}][%d] cancelRepoBuildBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CancelRepoBuildBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *CancelRepoBuildBadRequest) readResponse(response client.Response, consu
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewCancelRepoBuildUnauthorized creates a CancelRepoBuildUnauthorized with default headers values
+func NewCancelRepoBuildUnauthorized() *CancelRepoBuildUnauthorized {
+	return &CancelRepoBuildUnauthorized{}
+}
+
+/*CancelRepoBuildUnauthorized
+
 Session required
 */
 type CancelRepoBuildUnauthorized struct {
+}
+
+func (o *CancelRepoBuildUnauthorized) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/build/{build_uuid}][%d] cancelRepoBuildUnauthorized ", 401)
 }
 
 func (o *CancelRepoBuildUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *CancelRepoBuildUnauthorized) readResponse(response client.Response, con
 	return nil
 }
 
-/*
+// NewCancelRepoBuildForbidden creates a CancelRepoBuildForbidden with default headers values
+func NewCancelRepoBuildForbidden() *CancelRepoBuildForbidden {
+	return &CancelRepoBuildForbidden{}
+}
+
+/*CancelRepoBuildForbidden
+
 Unauthorized access
 */
 type CancelRepoBuildForbidden struct {
+}
+
+func (o *CancelRepoBuildForbidden) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/build/{build_uuid}][%d] cancelRepoBuildForbidden ", 403)
 }
 
 func (o *CancelRepoBuildForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *CancelRepoBuildForbidden) readResponse(response client.Response, consum
 	return nil
 }
 
-/*
+// NewCancelRepoBuildNotFound creates a CancelRepoBuildNotFound with default headers values
+func NewCancelRepoBuildNotFound() *CancelRepoBuildNotFound {
+	return &CancelRepoBuildNotFound{}
+}
+
+/*CancelRepoBuildNotFound
+
 Not found
 */
 type CancelRepoBuildNotFound struct {
+}
+
+func (o *CancelRepoBuildNotFound) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/build/{build_uuid}][%d] cancelRepoBuildNotFound ", 404)
 }
 
 func (o *CancelRepoBuildNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

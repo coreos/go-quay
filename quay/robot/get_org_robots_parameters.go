@@ -10,19 +10,40 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-GetOrgRobotsParams contains all the parameters to send to the API endpoint
+// NewGetOrgRobotsParams creates a new GetOrgRobotsParams object
+// with the default values initialized.
+func NewGetOrgRobotsParams() *GetOrgRobotsParams {
+	var ()
+	return &GetOrgRobotsParams{}
+}
+
+/*GetOrgRobotsParams contains all the parameters to send to the API endpoint
 for the get org robots operation typically these are written to a http.Request
 */
 type GetOrgRobotsParams struct {
-	/*
+
+	/*Orgname
 	  The name of the organization
+
 	*/
 	Orgname string
-	/*
+	/*Permissions
 	  Whether to include repostories and teams in which the robots have permission.
+
 	*/
-	Permissions bool
+	Permissions *bool
+}
+
+// WithOrgname adds the orgname to the get org robots params
+func (o *GetOrgRobotsParams) WithOrgname(orgname string) *GetOrgRobotsParams {
+	o.Orgname = orgname
+	return o
+}
+
+// WithPermissions adds the permissions to the get org robots params
+func (o *GetOrgRobotsParams) WithPermissions(permissions *bool) *GetOrgRobotsParams {
+	o.Permissions = permissions
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -35,9 +56,20 @@ func (o *GetOrgRobotsParams) WriteToRequest(r client.Request, reg strfmt.Registr
 		return err
 	}
 
-	// query param permissions
-	if err := r.SetQueryParam("permissions", swag.FormatBool(o.Permissions)); err != nil {
-		return err
+	if o.Permissions != nil {
+
+		// query param permissions
+		var qrPermissions bool
+		if o.Permissions != nil {
+			qrPermissions = *o.Permissions
+		}
+		qPermissions := swag.FormatBool(qrPermissions)
+		if qPermissions != "" {
+			if err := r.SetQueryParam("permissions", qPermissions); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if len(res) > 0 {

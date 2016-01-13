@@ -4,6 +4,9 @@ package secscan
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *GetRepoTagVulnerabilitiesReader) ReadResponse(response client.Response,
 	switch response.Code() {
 
 	case 200:
-		var result GetRepoTagVulnerabilitiesOK
+		result := NewGetRepoTagVulnerabilitiesOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result GetRepoTagVulnerabilitiesBadRequest
+		result := NewGetRepoTagVulnerabilitiesBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getRepoTagVulnerabilitiesBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result GetRepoTagVulnerabilitiesUnauthorized
+		result := NewGetRepoTagVulnerabilitiesUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getRepoTagVulnerabilitiesUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result GetRepoTagVulnerabilitiesForbidden
+		result := NewGetRepoTagVulnerabilitiesForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getRepoTagVulnerabilitiesForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result GetRepoTagVulnerabilitiesNotFound
+		result := NewGetRepoTagVulnerabilitiesNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getRepoTagVulnerabilitiesNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewGetRepoTagVulnerabilitiesOK creates a GetRepoTagVulnerabilitiesOK with default headers values
+func NewGetRepoTagVulnerabilitiesOK() *GetRepoTagVulnerabilitiesOK {
+	return &GetRepoTagVulnerabilitiesOK{}
+}
+
+/*GetRepoTagVulnerabilitiesOK
+
 Successful invocation
 */
 type GetRepoTagVulnerabilitiesOK struct {
+}
+
+func (o *GetRepoTagVulnerabilitiesOK) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tag/{tag}/vulnerabilities][%d] getRepoTagVulnerabilitiesOK ", 200)
 }
 
 func (o *GetRepoTagVulnerabilitiesOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *GetRepoTagVulnerabilitiesOK) readResponse(response client.Response, con
 	return nil
 }
 
-/*
+// NewGetRepoTagVulnerabilitiesBadRequest creates a GetRepoTagVulnerabilitiesBadRequest with default headers values
+func NewGetRepoTagVulnerabilitiesBadRequest() *GetRepoTagVulnerabilitiesBadRequest {
+	return &GetRepoTagVulnerabilitiesBadRequest{}
+}
+
+/*GetRepoTagVulnerabilitiesBadRequest
+
 Bad Request
 */
 type GetRepoTagVulnerabilitiesBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *GetRepoTagVulnerabilitiesBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tag/{tag}/vulnerabilities][%d] getRepoTagVulnerabilitiesBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetRepoTagVulnerabilitiesBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *GetRepoTagVulnerabilitiesBadRequest) readResponse(response client.Respo
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewGetRepoTagVulnerabilitiesUnauthorized creates a GetRepoTagVulnerabilitiesUnauthorized with default headers values
+func NewGetRepoTagVulnerabilitiesUnauthorized() *GetRepoTagVulnerabilitiesUnauthorized {
+	return &GetRepoTagVulnerabilitiesUnauthorized{}
+}
+
+/*GetRepoTagVulnerabilitiesUnauthorized
+
 Session required
 */
 type GetRepoTagVulnerabilitiesUnauthorized struct {
+}
+
+func (o *GetRepoTagVulnerabilitiesUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tag/{tag}/vulnerabilities][%d] getRepoTagVulnerabilitiesUnauthorized ", 401)
 }
 
 func (o *GetRepoTagVulnerabilitiesUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *GetRepoTagVulnerabilitiesUnauthorized) readResponse(response client.Res
 	return nil
 }
 
-/*
+// NewGetRepoTagVulnerabilitiesForbidden creates a GetRepoTagVulnerabilitiesForbidden with default headers values
+func NewGetRepoTagVulnerabilitiesForbidden() *GetRepoTagVulnerabilitiesForbidden {
+	return &GetRepoTagVulnerabilitiesForbidden{}
+}
+
+/*GetRepoTagVulnerabilitiesForbidden
+
 Unauthorized access
 */
 type GetRepoTagVulnerabilitiesForbidden struct {
+}
+
+func (o *GetRepoTagVulnerabilitiesForbidden) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tag/{tag}/vulnerabilities][%d] getRepoTagVulnerabilitiesForbidden ", 403)
 }
 
 func (o *GetRepoTagVulnerabilitiesForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *GetRepoTagVulnerabilitiesForbidden) readResponse(response client.Respon
 	return nil
 }
 
-/*
+// NewGetRepoTagVulnerabilitiesNotFound creates a GetRepoTagVulnerabilitiesNotFound with default headers values
+func NewGetRepoTagVulnerabilitiesNotFound() *GetRepoTagVulnerabilitiesNotFound {
+	return &GetRepoTagVulnerabilitiesNotFound{}
+}
+
+/*GetRepoTagVulnerabilitiesNotFound
+
 Not found
 */
 type GetRepoTagVulnerabilitiesNotFound struct {
+}
+
+func (o *GetRepoTagVulnerabilitiesNotFound) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tag/{tag}/vulnerabilities][%d] getRepoTagVulnerabilitiesNotFound ", 404)
 }
 
 func (o *GetRepoTagVulnerabilitiesNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

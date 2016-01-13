@@ -11,8 +11,7 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-Description of a user permission.
+/*UserPermission Description of a user permission.
 
 swagger:model UserPermission
 */
@@ -30,6 +29,7 @@ func (m *UserPermission) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateRole(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -51,7 +51,10 @@ func (m *UserPermission) validateRoleEnum(path, location string, value string) e
 			userPermissionRoleEnum = append(userPermissionRoleEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, userPermissionRoleEnum)
+	if err := validate.Enum(path, location, value, userPermissionRoleEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *UserPermission) validateRole(formats strfmt.Registry) error {

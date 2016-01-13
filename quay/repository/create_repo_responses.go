@@ -4,6 +4,9 @@ package repository
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *CreateRepoReader) ReadResponse(response client.Response, consumer httpk
 	switch response.Code() {
 
 	case 200:
-		var result CreateRepoOK
+		result := NewCreateRepoOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result CreateRepoBadRequest
+		result := NewCreateRepoBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("createRepoBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result CreateRepoUnauthorized
+		result := NewCreateRepoUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("createRepoUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result CreateRepoForbidden
+		result := NewCreateRepoForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("createRepoForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result CreateRepoNotFound
+		result := NewCreateRepoNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("createRepoNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewCreateRepoOK creates a CreateRepoOK with default headers values
+func NewCreateRepoOK() *CreateRepoOK {
+	return &CreateRepoOK{}
+}
+
+/*CreateRepoOK
+
 Successful invocation
 */
 type CreateRepoOK struct {
+}
+
+func (o *CreateRepoOK) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository][%d] createRepoOK ", 200)
 }
 
 func (o *CreateRepoOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *CreateRepoOK) readResponse(response client.Response, consumer httpkit.C
 	return nil
 }
 
-/*
+// NewCreateRepoBadRequest creates a CreateRepoBadRequest with default headers values
+func NewCreateRepoBadRequest() *CreateRepoBadRequest {
+	return &CreateRepoBadRequest{}
+}
+
+/*CreateRepoBadRequest
+
 Bad Request
 */
 type CreateRepoBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *CreateRepoBadRequest) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository][%d] createRepoBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateRepoBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *CreateRepoBadRequest) readResponse(response client.Response, consumer h
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewCreateRepoUnauthorized creates a CreateRepoUnauthorized with default headers values
+func NewCreateRepoUnauthorized() *CreateRepoUnauthorized {
+	return &CreateRepoUnauthorized{}
+}
+
+/*CreateRepoUnauthorized
+
 Session required
 */
 type CreateRepoUnauthorized struct {
+}
+
+func (o *CreateRepoUnauthorized) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository][%d] createRepoUnauthorized ", 401)
 }
 
 func (o *CreateRepoUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *CreateRepoUnauthorized) readResponse(response client.Response, consumer
 	return nil
 }
 
-/*
+// NewCreateRepoForbidden creates a CreateRepoForbidden with default headers values
+func NewCreateRepoForbidden() *CreateRepoForbidden {
+	return &CreateRepoForbidden{}
+}
+
+/*CreateRepoForbidden
+
 Unauthorized access
 */
 type CreateRepoForbidden struct {
+}
+
+func (o *CreateRepoForbidden) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository][%d] createRepoForbidden ", 403)
 }
 
 func (o *CreateRepoForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *CreateRepoForbidden) readResponse(response client.Response, consumer ht
 	return nil
 }
 
-/*
+// NewCreateRepoNotFound creates a CreateRepoNotFound with default headers values
+func NewCreateRepoNotFound() *CreateRepoNotFound {
+	return &CreateRepoNotFound{}
+}
+
+/*CreateRepoNotFound
+
 Not found
 */
 type CreateRepoNotFound struct {
+}
+
+func (o *CreateRepoNotFound) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository][%d] createRepoNotFound ", 404)
 }
 
 func (o *CreateRepoNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

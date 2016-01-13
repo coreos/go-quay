@@ -4,6 +4,9 @@ package secscan
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *GetRepoImagePackagesReader) ReadResponse(response client.Response, cons
 	switch response.Code() {
 
 	case 200:
-		var result GetRepoImagePackagesOK
+		result := NewGetRepoImagePackagesOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result GetRepoImagePackagesBadRequest
+		result := NewGetRepoImagePackagesBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getRepoImagePackagesBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result GetRepoImagePackagesUnauthorized
+		result := NewGetRepoImagePackagesUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getRepoImagePackagesUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result GetRepoImagePackagesForbidden
+		result := NewGetRepoImagePackagesForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getRepoImagePackagesForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result GetRepoImagePackagesNotFound
+		result := NewGetRepoImagePackagesNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getRepoImagePackagesNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewGetRepoImagePackagesOK creates a GetRepoImagePackagesOK with default headers values
+func NewGetRepoImagePackagesOK() *GetRepoImagePackagesOK {
+	return &GetRepoImagePackagesOK{}
+}
+
+/*GetRepoImagePackagesOK
+
 Successful invocation
 */
 type GetRepoImagePackagesOK struct {
+}
+
+func (o *GetRepoImagePackagesOK) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/{imageid}/packages][%d] getRepoImagePackagesOK ", 200)
 }
 
 func (o *GetRepoImagePackagesOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *GetRepoImagePackagesOK) readResponse(response client.Response, consumer
 	return nil
 }
 
-/*
+// NewGetRepoImagePackagesBadRequest creates a GetRepoImagePackagesBadRequest with default headers values
+func NewGetRepoImagePackagesBadRequest() *GetRepoImagePackagesBadRequest {
+	return &GetRepoImagePackagesBadRequest{}
+}
+
+/*GetRepoImagePackagesBadRequest
+
 Bad Request
 */
 type GetRepoImagePackagesBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *GetRepoImagePackagesBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/{imageid}/packages][%d] getRepoImagePackagesBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetRepoImagePackagesBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *GetRepoImagePackagesBadRequest) readResponse(response client.Response, 
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewGetRepoImagePackagesUnauthorized creates a GetRepoImagePackagesUnauthorized with default headers values
+func NewGetRepoImagePackagesUnauthorized() *GetRepoImagePackagesUnauthorized {
+	return &GetRepoImagePackagesUnauthorized{}
+}
+
+/*GetRepoImagePackagesUnauthorized
+
 Session required
 */
 type GetRepoImagePackagesUnauthorized struct {
+}
+
+func (o *GetRepoImagePackagesUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/{imageid}/packages][%d] getRepoImagePackagesUnauthorized ", 401)
 }
 
 func (o *GetRepoImagePackagesUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *GetRepoImagePackagesUnauthorized) readResponse(response client.Response
 	return nil
 }
 
-/*
+// NewGetRepoImagePackagesForbidden creates a GetRepoImagePackagesForbidden with default headers values
+func NewGetRepoImagePackagesForbidden() *GetRepoImagePackagesForbidden {
+	return &GetRepoImagePackagesForbidden{}
+}
+
+/*GetRepoImagePackagesForbidden
+
 Unauthorized access
 */
 type GetRepoImagePackagesForbidden struct {
+}
+
+func (o *GetRepoImagePackagesForbidden) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/{imageid}/packages][%d] getRepoImagePackagesForbidden ", 403)
 }
 
 func (o *GetRepoImagePackagesForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *GetRepoImagePackagesForbidden) readResponse(response client.Response, c
 	return nil
 }
 
-/*
+// NewGetRepoImagePackagesNotFound creates a GetRepoImagePackagesNotFound with default headers values
+func NewGetRepoImagePackagesNotFound() *GetRepoImagePackagesNotFound {
+	return &GetRepoImagePackagesNotFound{}
+}
+
+/*GetRepoImagePackagesNotFound
+
 Not found
 */
 type GetRepoImagePackagesNotFound struct {
+}
+
+func (o *GetRepoImagePackagesNotFound) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/{imageid}/packages][%d] getRepoImagePackagesNotFound ", 404)
 }
 
 func (o *GetRepoImagePackagesNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

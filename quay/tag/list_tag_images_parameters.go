@@ -10,23 +10,51 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-ListTagImagesParams contains all the parameters to send to the API endpoint
+// NewListTagImagesParams creates a new ListTagImagesParams object
+// with the default values initialized.
+func NewListTagImagesParams() *ListTagImagesParams {
+	var ()
+	return &ListTagImagesParams{}
+}
+
+/*ListTagImagesParams contains all the parameters to send to the API endpoint
 for the list tag images operation typically these are written to a http.Request
 */
 type ListTagImagesParams struct {
-	/*
+
+	/*Owned
 	  If specified, only images wholely owned by this tag are returned.
+
 	*/
-	Owned bool
-	/*
+	Owned *bool
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
-	/*
+	/*Tag
 	  The name of the tag
+
 	*/
 	Tag string
+}
+
+// WithOwned adds the owned to the list tag images params
+func (o *ListTagImagesParams) WithOwned(owned *bool) *ListTagImagesParams {
+	o.Owned = owned
+	return o
+}
+
+// WithRepository adds the repository to the list tag images params
+func (o *ListTagImagesParams) WithRepository(repository string) *ListTagImagesParams {
+	o.Repository = repository
+	return o
+}
+
+// WithTag adds the tag to the list tag images params
+func (o *ListTagImagesParams) WithTag(tag string) *ListTagImagesParams {
+	o.Tag = tag
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -34,9 +62,20 @@ func (o *ListTagImagesParams) WriteToRequest(r client.Request, reg strfmt.Regist
 
 	var res []error
 
-	// query param owned
-	if err := r.SetQueryParam("owned", swag.FormatBool(o.Owned)); err != nil {
-		return err
+	if o.Owned != nil {
+
+		// query param owned
+		var qrOwned bool
+		if o.Owned != nil {
+			qrOwned = *o.Owned
+		}
+		qOwned := swag.FormatBool(qrOwned)
+		if qOwned != "" {
+			if err := r.SetQueryParam("owned", qOwned); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// path param repository

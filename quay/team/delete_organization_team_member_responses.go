@@ -4,6 +4,9 @@ package team
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *DeleteOrganizationTeamMemberReader) ReadResponse(response client.Respon
 	switch response.Code() {
 
 	case 204:
-		var result DeleteOrganizationTeamMemberNoContent
+		result := NewDeleteOrganizationTeamMemberNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result DeleteOrganizationTeamMemberBadRequest
+		result := NewDeleteOrganizationTeamMemberBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteOrganizationTeamMemberBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result DeleteOrganizationTeamMemberUnauthorized
+		result := NewDeleteOrganizationTeamMemberUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteOrganizationTeamMemberUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result DeleteOrganizationTeamMemberForbidden
+		result := NewDeleteOrganizationTeamMemberForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteOrganizationTeamMemberForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result DeleteOrganizationTeamMemberNotFound
+		result := NewDeleteOrganizationTeamMemberNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteOrganizationTeamMemberNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewDeleteOrganizationTeamMemberNoContent creates a DeleteOrganizationTeamMemberNoContent with default headers values
+func NewDeleteOrganizationTeamMemberNoContent() *DeleteOrganizationTeamMemberNoContent {
+	return &DeleteOrganizationTeamMemberNoContent{}
+}
+
+/*DeleteOrganizationTeamMemberNoContent
+
 Deleted
 */
 type DeleteOrganizationTeamMemberNoContent struct {
+}
+
+func (o *DeleteOrganizationTeamMemberNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/team/{teamname}/members/{membername}][%d] deleteOrganizationTeamMemberNoContent ", 204)
 }
 
 func (o *DeleteOrganizationTeamMemberNoContent) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *DeleteOrganizationTeamMemberNoContent) readResponse(response client.Res
 	return nil
 }
 
-/*
+// NewDeleteOrganizationTeamMemberBadRequest creates a DeleteOrganizationTeamMemberBadRequest with default headers values
+func NewDeleteOrganizationTeamMemberBadRequest() *DeleteOrganizationTeamMemberBadRequest {
+	return &DeleteOrganizationTeamMemberBadRequest{}
+}
+
+/*DeleteOrganizationTeamMemberBadRequest
+
 Bad Request
 */
 type DeleteOrganizationTeamMemberBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *DeleteOrganizationTeamMemberBadRequest) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/team/{teamname}/members/{membername}][%d] deleteOrganizationTeamMemberBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeleteOrganizationTeamMemberBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *DeleteOrganizationTeamMemberBadRequest) readResponse(response client.Re
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewDeleteOrganizationTeamMemberUnauthorized creates a DeleteOrganizationTeamMemberUnauthorized with default headers values
+func NewDeleteOrganizationTeamMemberUnauthorized() *DeleteOrganizationTeamMemberUnauthorized {
+	return &DeleteOrganizationTeamMemberUnauthorized{}
+}
+
+/*DeleteOrganizationTeamMemberUnauthorized
+
 Session required
 */
 type DeleteOrganizationTeamMemberUnauthorized struct {
+}
+
+func (o *DeleteOrganizationTeamMemberUnauthorized) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/team/{teamname}/members/{membername}][%d] deleteOrganizationTeamMemberUnauthorized ", 401)
 }
 
 func (o *DeleteOrganizationTeamMemberUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *DeleteOrganizationTeamMemberUnauthorized) readResponse(response client.
 	return nil
 }
 
-/*
+// NewDeleteOrganizationTeamMemberForbidden creates a DeleteOrganizationTeamMemberForbidden with default headers values
+func NewDeleteOrganizationTeamMemberForbidden() *DeleteOrganizationTeamMemberForbidden {
+	return &DeleteOrganizationTeamMemberForbidden{}
+}
+
+/*DeleteOrganizationTeamMemberForbidden
+
 Unauthorized access
 */
 type DeleteOrganizationTeamMemberForbidden struct {
+}
+
+func (o *DeleteOrganizationTeamMemberForbidden) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/team/{teamname}/members/{membername}][%d] deleteOrganizationTeamMemberForbidden ", 403)
 }
 
 func (o *DeleteOrganizationTeamMemberForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *DeleteOrganizationTeamMemberForbidden) readResponse(response client.Res
 	return nil
 }
 
-/*
+// NewDeleteOrganizationTeamMemberNotFound creates a DeleteOrganizationTeamMemberNotFound with default headers values
+func NewDeleteOrganizationTeamMemberNotFound() *DeleteOrganizationTeamMemberNotFound {
+	return &DeleteOrganizationTeamMemberNotFound{}
+}
+
+/*DeleteOrganizationTeamMemberNotFound
+
 Not found
 */
 type DeleteOrganizationTeamMemberNotFound struct {
+}
+
+func (o *DeleteOrganizationTeamMemberNotFound) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/team/{teamname}/members/{membername}][%d] deleteOrganizationTeamMemberNotFound ", 404)
 }
 
 func (o *DeleteOrganizationTeamMemberNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

@@ -9,16 +9,42 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-DeleteTeamMemberEmailInviteParams contains all the parameters to send to the API endpoint
+// NewDeleteTeamMemberEmailInviteParams creates a new DeleteTeamMemberEmailInviteParams object
+// with the default values initialized.
+func NewDeleteTeamMemberEmailInviteParams() *DeleteTeamMemberEmailInviteParams {
+	var ()
+	return &DeleteTeamMemberEmailInviteParams{}
+}
+
+/*DeleteTeamMemberEmailInviteParams contains all the parameters to send to the API endpoint
 for the delete team member email invite operation typically these are written to a http.Request
 */
 type DeleteTeamMemberEmailInviteParams struct {
+
+	/*Email*/
 	Email string
-
+	/*Orgname*/
 	Orgname string
-
+	/*Teamname*/
 	Teamname string
+}
+
+// WithEmail adds the email to the delete team member email invite params
+func (o *DeleteTeamMemberEmailInviteParams) WithEmail(email string) *DeleteTeamMemberEmailInviteParams {
+	o.Email = email
+	return o
+}
+
+// WithOrgname adds the orgname to the delete team member email invite params
+func (o *DeleteTeamMemberEmailInviteParams) WithOrgname(orgname string) *DeleteTeamMemberEmailInviteParams {
+	o.Orgname = orgname
+	return o
+}
+
+// WithTeamname adds the teamname to the delete team member email invite params
+func (o *DeleteTeamMemberEmailInviteParams) WithTeamname(teamname string) *DeleteTeamMemberEmailInviteParams {
+	o.Teamname = teamname
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

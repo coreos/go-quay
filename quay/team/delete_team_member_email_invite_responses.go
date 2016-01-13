@@ -4,6 +4,9 @@ package team
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *DeleteTeamMemberEmailInviteReader) ReadResponse(response client.Respons
 	switch response.Code() {
 
 	case 204:
-		var result DeleteTeamMemberEmailInviteNoContent
+		result := NewDeleteTeamMemberEmailInviteNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result DeleteTeamMemberEmailInviteBadRequest
+		result := NewDeleteTeamMemberEmailInviteBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteTeamMemberEmailInviteBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result DeleteTeamMemberEmailInviteUnauthorized
+		result := NewDeleteTeamMemberEmailInviteUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteTeamMemberEmailInviteUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result DeleteTeamMemberEmailInviteForbidden
+		result := NewDeleteTeamMemberEmailInviteForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteTeamMemberEmailInviteForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result DeleteTeamMemberEmailInviteNotFound
+		result := NewDeleteTeamMemberEmailInviteNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteTeamMemberEmailInviteNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewDeleteTeamMemberEmailInviteNoContent creates a DeleteTeamMemberEmailInviteNoContent with default headers values
+func NewDeleteTeamMemberEmailInviteNoContent() *DeleteTeamMemberEmailInviteNoContent {
+	return &DeleteTeamMemberEmailInviteNoContent{}
+}
+
+/*DeleteTeamMemberEmailInviteNoContent
+
 Deleted
 */
 type DeleteTeamMemberEmailInviteNoContent struct {
+}
+
+func (o *DeleteTeamMemberEmailInviteNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/team/{teamname}/invite/{email}][%d] deleteTeamMemberEmailInviteNoContent ", 204)
 }
 
 func (o *DeleteTeamMemberEmailInviteNoContent) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *DeleteTeamMemberEmailInviteNoContent) readResponse(response client.Resp
 	return nil
 }
 
-/*
+// NewDeleteTeamMemberEmailInviteBadRequest creates a DeleteTeamMemberEmailInviteBadRequest with default headers values
+func NewDeleteTeamMemberEmailInviteBadRequest() *DeleteTeamMemberEmailInviteBadRequest {
+	return &DeleteTeamMemberEmailInviteBadRequest{}
+}
+
+/*DeleteTeamMemberEmailInviteBadRequest
+
 Bad Request
 */
 type DeleteTeamMemberEmailInviteBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *DeleteTeamMemberEmailInviteBadRequest) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/team/{teamname}/invite/{email}][%d] deleteTeamMemberEmailInviteBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeleteTeamMemberEmailInviteBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *DeleteTeamMemberEmailInviteBadRequest) readResponse(response client.Res
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewDeleteTeamMemberEmailInviteUnauthorized creates a DeleteTeamMemberEmailInviteUnauthorized with default headers values
+func NewDeleteTeamMemberEmailInviteUnauthorized() *DeleteTeamMemberEmailInviteUnauthorized {
+	return &DeleteTeamMemberEmailInviteUnauthorized{}
+}
+
+/*DeleteTeamMemberEmailInviteUnauthorized
+
 Session required
 */
 type DeleteTeamMemberEmailInviteUnauthorized struct {
+}
+
+func (o *DeleteTeamMemberEmailInviteUnauthorized) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/team/{teamname}/invite/{email}][%d] deleteTeamMemberEmailInviteUnauthorized ", 401)
 }
 
 func (o *DeleteTeamMemberEmailInviteUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *DeleteTeamMemberEmailInviteUnauthorized) readResponse(response client.R
 	return nil
 }
 
-/*
+// NewDeleteTeamMemberEmailInviteForbidden creates a DeleteTeamMemberEmailInviteForbidden with default headers values
+func NewDeleteTeamMemberEmailInviteForbidden() *DeleteTeamMemberEmailInviteForbidden {
+	return &DeleteTeamMemberEmailInviteForbidden{}
+}
+
+/*DeleteTeamMemberEmailInviteForbidden
+
 Unauthorized access
 */
 type DeleteTeamMemberEmailInviteForbidden struct {
+}
+
+func (o *DeleteTeamMemberEmailInviteForbidden) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/team/{teamname}/invite/{email}][%d] deleteTeamMemberEmailInviteForbidden ", 403)
 }
 
 func (o *DeleteTeamMemberEmailInviteForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *DeleteTeamMemberEmailInviteForbidden) readResponse(response client.Resp
 	return nil
 }
 
-/*
+// NewDeleteTeamMemberEmailInviteNotFound creates a DeleteTeamMemberEmailInviteNotFound with default headers values
+func NewDeleteTeamMemberEmailInviteNotFound() *DeleteTeamMemberEmailInviteNotFound {
+	return &DeleteTeamMemberEmailInviteNotFound{}
+}
+
+/*DeleteTeamMemberEmailInviteNotFound
+
 Not found
 */
 type DeleteTeamMemberEmailInviteNotFound struct {
+}
+
+func (o *DeleteTeamMemberEmailInviteNotFound) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/team/{teamname}/invite/{email}][%d] deleteTeamMemberEmailInviteNotFound ", 404)
 }
 
 func (o *DeleteTeamMemberEmailInviteNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

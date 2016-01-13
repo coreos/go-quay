@@ -4,6 +4,9 @@ package team
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *UpdateOrganizationTeamReader) ReadResponse(response client.Response, co
 	switch response.Code() {
 
 	case 200:
-		var result UpdateOrganizationTeamOK
+		result := NewUpdateOrganizationTeamOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result UpdateOrganizationTeamBadRequest
+		result := NewUpdateOrganizationTeamBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("updateOrganizationTeamBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result UpdateOrganizationTeamUnauthorized
+		result := NewUpdateOrganizationTeamUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("updateOrganizationTeamUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result UpdateOrganizationTeamForbidden
+		result := NewUpdateOrganizationTeamForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("updateOrganizationTeamForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result UpdateOrganizationTeamNotFound
+		result := NewUpdateOrganizationTeamNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("updateOrganizationTeamNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewUpdateOrganizationTeamOK creates a UpdateOrganizationTeamOK with default headers values
+func NewUpdateOrganizationTeamOK() *UpdateOrganizationTeamOK {
+	return &UpdateOrganizationTeamOK{}
+}
+
+/*UpdateOrganizationTeamOK
+
 Successful invocation
 */
 type UpdateOrganizationTeamOK struct {
+}
+
+func (o *UpdateOrganizationTeamOK) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}][%d] updateOrganizationTeamOK ", 200)
 }
 
 func (o *UpdateOrganizationTeamOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *UpdateOrganizationTeamOK) readResponse(response client.Response, consum
 	return nil
 }
 
-/*
+// NewUpdateOrganizationTeamBadRequest creates a UpdateOrganizationTeamBadRequest with default headers values
+func NewUpdateOrganizationTeamBadRequest() *UpdateOrganizationTeamBadRequest {
+	return &UpdateOrganizationTeamBadRequest{}
+}
+
+/*UpdateOrganizationTeamBadRequest
+
 Bad Request
 */
 type UpdateOrganizationTeamBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *UpdateOrganizationTeamBadRequest) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}][%d] updateOrganizationTeamBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateOrganizationTeamBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *UpdateOrganizationTeamBadRequest) readResponse(response client.Response
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewUpdateOrganizationTeamUnauthorized creates a UpdateOrganizationTeamUnauthorized with default headers values
+func NewUpdateOrganizationTeamUnauthorized() *UpdateOrganizationTeamUnauthorized {
+	return &UpdateOrganizationTeamUnauthorized{}
+}
+
+/*UpdateOrganizationTeamUnauthorized
+
 Session required
 */
 type UpdateOrganizationTeamUnauthorized struct {
+}
+
+func (o *UpdateOrganizationTeamUnauthorized) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}][%d] updateOrganizationTeamUnauthorized ", 401)
 }
 
 func (o *UpdateOrganizationTeamUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *UpdateOrganizationTeamUnauthorized) readResponse(response client.Respon
 	return nil
 }
 
-/*
+// NewUpdateOrganizationTeamForbidden creates a UpdateOrganizationTeamForbidden with default headers values
+func NewUpdateOrganizationTeamForbidden() *UpdateOrganizationTeamForbidden {
+	return &UpdateOrganizationTeamForbidden{}
+}
+
+/*UpdateOrganizationTeamForbidden
+
 Unauthorized access
 */
 type UpdateOrganizationTeamForbidden struct {
+}
+
+func (o *UpdateOrganizationTeamForbidden) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}][%d] updateOrganizationTeamForbidden ", 403)
 }
 
 func (o *UpdateOrganizationTeamForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *UpdateOrganizationTeamForbidden) readResponse(response client.Response,
 	return nil
 }
 
-/*
+// NewUpdateOrganizationTeamNotFound creates a UpdateOrganizationTeamNotFound with default headers values
+func NewUpdateOrganizationTeamNotFound() *UpdateOrganizationTeamNotFound {
+	return &UpdateOrganizationTeamNotFound{}
+}
+
+/*UpdateOrganizationTeamNotFound
+
 Not found
 */
 type UpdateOrganizationTeamNotFound struct {
+}
+
+func (o *UpdateOrganizationTeamNotFound) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}][%d] updateOrganizationTeamNotFound ", 404)
 }
 
 func (o *UpdateOrganizationTeamNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

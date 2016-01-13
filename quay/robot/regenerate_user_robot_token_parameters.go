@@ -9,15 +9,29 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-RegenerateUserRobotTokenParams contains all the parameters to send to the API endpoint
+// NewRegenerateUserRobotTokenParams creates a new RegenerateUserRobotTokenParams object
+// with the default values initialized.
+func NewRegenerateUserRobotTokenParams() *RegenerateUserRobotTokenParams {
+	var ()
+	return &RegenerateUserRobotTokenParams{}
+}
+
+/*RegenerateUserRobotTokenParams contains all the parameters to send to the API endpoint
 for the regenerate user robot token operation typically these are written to a http.Request
 */
 type RegenerateUserRobotTokenParams struct {
-	/*
+
+	/*RobotShortname
 	  The short name for the robot, without any user or organization prefix
+
 	*/
 	RobotShortname string
+}
+
+// WithRobotShortname adds the robotShortname to the regenerate user robot token params
+func (o *RegenerateUserRobotTokenParams) WithRobotShortname(robotShortname string) *RegenerateUserRobotTokenParams {
+	o.RobotShortname = robotShortname
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

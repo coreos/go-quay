@@ -4,6 +4,9 @@ package user
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *CreateStarReader) ReadResponse(response client.Response, consumer httpk
 	switch response.Code() {
 
 	case 200:
-		var result CreateStarOK
+		result := NewCreateStarOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result CreateStarBadRequest
+		result := NewCreateStarBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("createStarBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result CreateStarUnauthorized
+		result := NewCreateStarUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("createStarUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result CreateStarForbidden
+		result := NewCreateStarForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("createStarForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result CreateStarNotFound
+		result := NewCreateStarNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("createStarNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewCreateStarOK creates a CreateStarOK with default headers values
+func NewCreateStarOK() *CreateStarOK {
+	return &CreateStarOK{}
+}
+
+/*CreateStarOK
+
 Successful invocation
 */
 type CreateStarOK struct {
+}
+
+func (o *CreateStarOK) Error() string {
+	return fmt.Sprintf("[POST /api/v1/user/starred][%d] createStarOK ", 200)
 }
 
 func (o *CreateStarOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *CreateStarOK) readResponse(response client.Response, consumer httpkit.C
 	return nil
 }
 
-/*
+// NewCreateStarBadRequest creates a CreateStarBadRequest with default headers values
+func NewCreateStarBadRequest() *CreateStarBadRequest {
+	return &CreateStarBadRequest{}
+}
+
+/*CreateStarBadRequest
+
 Bad Request
 */
 type CreateStarBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *CreateStarBadRequest) Error() string {
+	return fmt.Sprintf("[POST /api/v1/user/starred][%d] createStarBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateStarBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *CreateStarBadRequest) readResponse(response client.Response, consumer h
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewCreateStarUnauthorized creates a CreateStarUnauthorized with default headers values
+func NewCreateStarUnauthorized() *CreateStarUnauthorized {
+	return &CreateStarUnauthorized{}
+}
+
+/*CreateStarUnauthorized
+
 Session required
 */
 type CreateStarUnauthorized struct {
+}
+
+func (o *CreateStarUnauthorized) Error() string {
+	return fmt.Sprintf("[POST /api/v1/user/starred][%d] createStarUnauthorized ", 401)
 }
 
 func (o *CreateStarUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *CreateStarUnauthorized) readResponse(response client.Response, consumer
 	return nil
 }
 
-/*
+// NewCreateStarForbidden creates a CreateStarForbidden with default headers values
+func NewCreateStarForbidden() *CreateStarForbidden {
+	return &CreateStarForbidden{}
+}
+
+/*CreateStarForbidden
+
 Unauthorized access
 */
 type CreateStarForbidden struct {
+}
+
+func (o *CreateStarForbidden) Error() string {
+	return fmt.Sprintf("[POST /api/v1/user/starred][%d] createStarForbidden ", 403)
 }
 
 func (o *CreateStarForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *CreateStarForbidden) readResponse(response client.Response, consumer ht
 	return nil
 }
 
-/*
+// NewCreateStarNotFound creates a CreateStarNotFound with default headers values
+func NewCreateStarNotFound() *CreateStarNotFound {
+	return &CreateStarNotFound{}
+}
+
+/*CreateStarNotFound
+
 Not found
 */
 type CreateStarNotFound struct {
+}
+
+func (o *CreateStarNotFound) Error() string {
+	return fmt.Sprintf("[POST /api/v1/user/starred][%d] createStarNotFound ", 404)
 }
 
 func (o *CreateStarNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

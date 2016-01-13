@@ -9,15 +9,29 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-GetUserRobotParams contains all the parameters to send to the API endpoint
+// NewGetUserRobotParams creates a new GetUserRobotParams object
+// with the default values initialized.
+func NewGetUserRobotParams() *GetUserRobotParams {
+	var ()
+	return &GetUserRobotParams{}
+}
+
+/*GetUserRobotParams contains all the parameters to send to the API endpoint
 for the get user robot operation typically these are written to a http.Request
 */
 type GetUserRobotParams struct {
-	/*
+
+	/*RobotShortname
 	  The short name for the robot, without any user or organization prefix
+
 	*/
 	RobotShortname string
+}
+
+// WithRobotShortname adds the robotShortname to the get user robot params
+func (o *GetUserRobotParams) WithRobotShortname(robotShortname string) *GetUserRobotParams {
+	o.RobotShortname = robotShortname
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

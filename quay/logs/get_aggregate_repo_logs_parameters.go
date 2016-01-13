@@ -9,23 +9,51 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-GetAggregateRepoLogsParams contains all the parameters to send to the API endpoint
+// NewGetAggregateRepoLogsParams creates a new GetAggregateRepoLogsParams object
+// with the default values initialized.
+func NewGetAggregateRepoLogsParams() *GetAggregateRepoLogsParams {
+	var ()
+	return &GetAggregateRepoLogsParams{}
+}
+
+/*GetAggregateRepoLogsParams contains all the parameters to send to the API endpoint
 for the get aggregate repo logs operation typically these are written to a http.Request
 */
 type GetAggregateRepoLogsParams struct {
-	/*
+
+	/*Endtime
 	  Latest time to which to get logs (%m/%d/%Y %Z)
+
 	*/
-	Endtime string
-	/*
+	Endtime *string
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
-	/*
+	/*Starttime
 	  Earliest time from which to get logs (%m/%d/%Y %Z)
+
 	*/
-	Starttime string
+	Starttime *string
+}
+
+// WithEndtime adds the endtime to the get aggregate repo logs params
+func (o *GetAggregateRepoLogsParams) WithEndtime(endtime *string) *GetAggregateRepoLogsParams {
+	o.Endtime = endtime
+	return o
+}
+
+// WithRepository adds the repository to the get aggregate repo logs params
+func (o *GetAggregateRepoLogsParams) WithRepository(repository string) *GetAggregateRepoLogsParams {
+	o.Repository = repository
+	return o
+}
+
+// WithStarttime adds the starttime to the get aggregate repo logs params
+func (o *GetAggregateRepoLogsParams) WithStarttime(starttime *string) *GetAggregateRepoLogsParams {
+	o.Starttime = starttime
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -33,9 +61,20 @@ func (o *GetAggregateRepoLogsParams) WriteToRequest(r client.Request, reg strfmt
 
 	var res []error
 
-	// query param endtime
-	if err := r.SetQueryParam("endtime", o.Endtime); err != nil {
-		return err
+	if o.Endtime != nil {
+
+		// query param endtime
+		var qrEndtime string
+		if o.Endtime != nil {
+			qrEndtime = *o.Endtime
+		}
+		qEndtime := qrEndtime
+		if qEndtime != "" {
+			if err := r.SetQueryParam("endtime", qEndtime); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// path param repository
@@ -43,9 +82,20 @@ func (o *GetAggregateRepoLogsParams) WriteToRequest(r client.Request, reg strfmt
 		return err
 	}
 
-	// query param starttime
-	if err := r.SetQueryParam("starttime", o.Starttime); err != nil {
-		return err
+	if o.Starttime != nil {
+
+		// query param starttime
+		var qrStarttime string
+		if o.Starttime != nil {
+			qrStarttime = *o.Starttime
+		}
+		qStarttime := qrStarttime
+		if qStarttime != "" {
+			if err := r.SetQueryParam("starttime", qStarttime); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if len(res) > 0 {

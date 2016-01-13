@@ -4,6 +4,9 @@ package discovery
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *DiscoveryReader) ReadResponse(response client.Response, consumer httpki
 	switch response.Code() {
 
 	case 200:
-		var result DiscoveryOK
+		result := NewDiscoveryOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result DiscoveryBadRequest
+		result := NewDiscoveryBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("discoveryBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result DiscoveryUnauthorized
+		result := NewDiscoveryUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("discoveryUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result DiscoveryForbidden
+		result := NewDiscoveryForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("discoveryForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result DiscoveryNotFound
+		result := NewDiscoveryNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("discoveryNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewDiscoveryOK creates a DiscoveryOK with default headers values
+func NewDiscoveryOK() *DiscoveryOK {
+	return &DiscoveryOK{}
+}
+
+/*DiscoveryOK
+
 Successful invocation
 */
 type DiscoveryOK struct {
+}
+
+func (o *DiscoveryOK) Error() string {
+	return fmt.Sprintf("[GET /api/v1/discovery][%d] discoveryOK ", 200)
 }
 
 func (o *DiscoveryOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *DiscoveryOK) readResponse(response client.Response, consumer httpkit.Co
 	return nil
 }
 
-/*
+// NewDiscoveryBadRequest creates a DiscoveryBadRequest with default headers values
+func NewDiscoveryBadRequest() *DiscoveryBadRequest {
+	return &DiscoveryBadRequest{}
+}
+
+/*DiscoveryBadRequest
+
 Bad Request
 */
 type DiscoveryBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *DiscoveryBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/v1/discovery][%d] discoveryBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DiscoveryBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *DiscoveryBadRequest) readResponse(response client.Response, consumer ht
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewDiscoveryUnauthorized creates a DiscoveryUnauthorized with default headers values
+func NewDiscoveryUnauthorized() *DiscoveryUnauthorized {
+	return &DiscoveryUnauthorized{}
+}
+
+/*DiscoveryUnauthorized
+
 Session required
 */
 type DiscoveryUnauthorized struct {
+}
+
+func (o *DiscoveryUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /api/v1/discovery][%d] discoveryUnauthorized ", 401)
 }
 
 func (o *DiscoveryUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *DiscoveryUnauthorized) readResponse(response client.Response, consumer 
 	return nil
 }
 
-/*
+// NewDiscoveryForbidden creates a DiscoveryForbidden with default headers values
+func NewDiscoveryForbidden() *DiscoveryForbidden {
+	return &DiscoveryForbidden{}
+}
+
+/*DiscoveryForbidden
+
 Unauthorized access
 */
 type DiscoveryForbidden struct {
+}
+
+func (o *DiscoveryForbidden) Error() string {
+	return fmt.Sprintf("[GET /api/v1/discovery][%d] discoveryForbidden ", 403)
 }
 
 func (o *DiscoveryForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *DiscoveryForbidden) readResponse(response client.Response, consumer htt
 	return nil
 }
 
-/*
+// NewDiscoveryNotFound creates a DiscoveryNotFound with default headers values
+func NewDiscoveryNotFound() *DiscoveryNotFound {
+	return &DiscoveryNotFound{}
+}
+
+/*DiscoveryNotFound
+
 Not found
 */
 type DiscoveryNotFound struct {
+}
+
+func (o *DiscoveryNotFound) Error() string {
+	return fmt.Sprintf("[GET /api/v1/discovery][%d] discoveryNotFound ", 404)
 }
 
 func (o *DiscoveryNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

@@ -4,6 +4,9 @@ package robot
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *GetOrgRobotsReader) ReadResponse(response client.Response, consumer htt
 	switch response.Code() {
 
 	case 200:
-		var result GetOrgRobotsOK
+		result := NewGetOrgRobotsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result GetOrgRobotsBadRequest
+		result := NewGetOrgRobotsBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getOrgRobotsBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result GetOrgRobotsUnauthorized
+		result := NewGetOrgRobotsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getOrgRobotsUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result GetOrgRobotsForbidden
+		result := NewGetOrgRobotsForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getOrgRobotsForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result GetOrgRobotsNotFound
+		result := NewGetOrgRobotsNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getOrgRobotsNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewGetOrgRobotsOK creates a GetOrgRobotsOK with default headers values
+func NewGetOrgRobotsOK() *GetOrgRobotsOK {
+	return &GetOrgRobotsOK{}
+}
+
+/*GetOrgRobotsOK
+
 Successful invocation
 */
 type GetOrgRobotsOK struct {
+}
+
+func (o *GetOrgRobotsOK) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/robots][%d] getOrgRobotsOK ", 200)
 }
 
 func (o *GetOrgRobotsOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *GetOrgRobotsOK) readResponse(response client.Response, consumer httpkit
 	return nil
 }
 
-/*
+// NewGetOrgRobotsBadRequest creates a GetOrgRobotsBadRequest with default headers values
+func NewGetOrgRobotsBadRequest() *GetOrgRobotsBadRequest {
+	return &GetOrgRobotsBadRequest{}
+}
+
+/*GetOrgRobotsBadRequest
+
 Bad Request
 */
 type GetOrgRobotsBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *GetOrgRobotsBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/robots][%d] getOrgRobotsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetOrgRobotsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *GetOrgRobotsBadRequest) readResponse(response client.Response, consumer
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewGetOrgRobotsUnauthorized creates a GetOrgRobotsUnauthorized with default headers values
+func NewGetOrgRobotsUnauthorized() *GetOrgRobotsUnauthorized {
+	return &GetOrgRobotsUnauthorized{}
+}
+
+/*GetOrgRobotsUnauthorized
+
 Session required
 */
 type GetOrgRobotsUnauthorized struct {
+}
+
+func (o *GetOrgRobotsUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/robots][%d] getOrgRobotsUnauthorized ", 401)
 }
 
 func (o *GetOrgRobotsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *GetOrgRobotsUnauthorized) readResponse(response client.Response, consum
 	return nil
 }
 
-/*
+// NewGetOrgRobotsForbidden creates a GetOrgRobotsForbidden with default headers values
+func NewGetOrgRobotsForbidden() *GetOrgRobotsForbidden {
+	return &GetOrgRobotsForbidden{}
+}
+
+/*GetOrgRobotsForbidden
+
 Unauthorized access
 */
 type GetOrgRobotsForbidden struct {
+}
+
+func (o *GetOrgRobotsForbidden) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/robots][%d] getOrgRobotsForbidden ", 403)
 }
 
 func (o *GetOrgRobotsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *GetOrgRobotsForbidden) readResponse(response client.Response, consumer 
 	return nil
 }
 
-/*
+// NewGetOrgRobotsNotFound creates a GetOrgRobotsNotFound with default headers values
+func NewGetOrgRobotsNotFound() *GetOrgRobotsNotFound {
+	return &GetOrgRobotsNotFound{}
+}
+
+/*GetOrgRobotsNotFound
+
 Not found
 */
 type GetOrgRobotsNotFound struct {
+}
+
+func (o *GetOrgRobotsNotFound) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/robots][%d] getOrgRobotsNotFound ", 404)
 }
 
 func (o *GetOrgRobotsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

@@ -9,15 +9,29 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-ListRepoNotificationsParams contains all the parameters to send to the API endpoint
+// NewListRepoNotificationsParams creates a new ListRepoNotificationsParams object
+// with the default values initialized.
+func NewListRepoNotificationsParams() *ListRepoNotificationsParams {
+	var ()
+	return &ListRepoNotificationsParams{}
+}
+
+/*ListRepoNotificationsParams contains all the parameters to send to the API endpoint
 for the list repo notifications operation typically these are written to a http.Request
 */
 type ListRepoNotificationsParams struct {
-	/*
+
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
+}
+
+// WithRepository adds the repository to the list repo notifications params
+func (o *ListRepoNotificationsParams) WithRepository(repository string) *ListRepoNotificationsParams {
+	o.Repository = repository
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

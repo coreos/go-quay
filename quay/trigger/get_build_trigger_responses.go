@@ -4,6 +4,9 @@ package trigger
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *GetBuildTriggerReader) ReadResponse(response client.Response, consumer 
 	switch response.Code() {
 
 	case 200:
-		var result GetBuildTriggerOK
+		result := NewGetBuildTriggerOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result GetBuildTriggerBadRequest
+		result := NewGetBuildTriggerBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getBuildTriggerBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result GetBuildTriggerUnauthorized
+		result := NewGetBuildTriggerUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getBuildTriggerUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result GetBuildTriggerForbidden
+		result := NewGetBuildTriggerForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getBuildTriggerForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result GetBuildTriggerNotFound
+		result := NewGetBuildTriggerNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getBuildTriggerNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewGetBuildTriggerOK creates a GetBuildTriggerOK with default headers values
+func NewGetBuildTriggerOK() *GetBuildTriggerOK {
+	return &GetBuildTriggerOK{}
+}
+
+/*GetBuildTriggerOK
+
 Successful invocation
 */
 type GetBuildTriggerOK struct {
+}
+
+func (o *GetBuildTriggerOK) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/trigger/{trigger_uuid}][%d] getBuildTriggerOK ", 200)
 }
 
 func (o *GetBuildTriggerOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *GetBuildTriggerOK) readResponse(response client.Response, consumer http
 	return nil
 }
 
-/*
+// NewGetBuildTriggerBadRequest creates a GetBuildTriggerBadRequest with default headers values
+func NewGetBuildTriggerBadRequest() *GetBuildTriggerBadRequest {
+	return &GetBuildTriggerBadRequest{}
+}
+
+/*GetBuildTriggerBadRequest
+
 Bad Request
 */
 type GetBuildTriggerBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *GetBuildTriggerBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/trigger/{trigger_uuid}][%d] getBuildTriggerBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetBuildTriggerBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *GetBuildTriggerBadRequest) readResponse(response client.Response, consu
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewGetBuildTriggerUnauthorized creates a GetBuildTriggerUnauthorized with default headers values
+func NewGetBuildTriggerUnauthorized() *GetBuildTriggerUnauthorized {
+	return &GetBuildTriggerUnauthorized{}
+}
+
+/*GetBuildTriggerUnauthorized
+
 Session required
 */
 type GetBuildTriggerUnauthorized struct {
+}
+
+func (o *GetBuildTriggerUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/trigger/{trigger_uuid}][%d] getBuildTriggerUnauthorized ", 401)
 }
 
 func (o *GetBuildTriggerUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *GetBuildTriggerUnauthorized) readResponse(response client.Response, con
 	return nil
 }
 
-/*
+// NewGetBuildTriggerForbidden creates a GetBuildTriggerForbidden with default headers values
+func NewGetBuildTriggerForbidden() *GetBuildTriggerForbidden {
+	return &GetBuildTriggerForbidden{}
+}
+
+/*GetBuildTriggerForbidden
+
 Unauthorized access
 */
 type GetBuildTriggerForbidden struct {
+}
+
+func (o *GetBuildTriggerForbidden) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/trigger/{trigger_uuid}][%d] getBuildTriggerForbidden ", 403)
 }
 
 func (o *GetBuildTriggerForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *GetBuildTriggerForbidden) readResponse(response client.Response, consum
 	return nil
 }
 
-/*
+// NewGetBuildTriggerNotFound creates a GetBuildTriggerNotFound with default headers values
+func NewGetBuildTriggerNotFound() *GetBuildTriggerNotFound {
+	return &GetBuildTriggerNotFound{}
+}
+
+/*GetBuildTriggerNotFound
+
 Not found
 */
 type GetBuildTriggerNotFound struct {
+}
+
+func (o *GetBuildTriggerNotFound) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/trigger/{trigger_uuid}][%d] getBuildTriggerNotFound ", 404)
 }
 
 func (o *GetBuildTriggerNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

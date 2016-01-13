@@ -25,14 +25,20 @@ type Client struct {
 
 /*Update the existing team permission.
  */
-func (a *Client) ChangeTeamPermissions(params ChangeTeamPermissionsParams, authInfo client.AuthInfoWriter) (*ChangeTeamPermissionsOK, error) {
+func (a *Client) ChangeTeamPermissions(params *ChangeTeamPermissionsParams, authInfo client.AuthInfoWriter) (*ChangeTeamPermissionsOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewChangeTeamPermissionsParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "changeTeamPermissions",
-		Params:   &params,
-		Reader:   &ChangeTeamPermissionsReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "changeTeamPermissions",
+		Method:      "PUT",
+		PathPattern: "/api/v1/repository/{repository}/permissions/team/{teamname}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &ChangeTeamPermissionsReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -42,14 +48,20 @@ func (a *Client) ChangeTeamPermissions(params ChangeTeamPermissionsParams, authI
 
 /*Update the perimssions for an existing repository.
  */
-func (a *Client) ChangeUserPermissions(params ChangeUserPermissionsParams, authInfo client.AuthInfoWriter) (*ChangeUserPermissionsOK, error) {
+func (a *Client) ChangeUserPermissions(params *ChangeUserPermissionsParams, authInfo client.AuthInfoWriter) (*ChangeUserPermissionsOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewChangeUserPermissionsParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "changeUserPermissions",
-		Params:   &params,
-		Reader:   &ChangeUserPermissionsReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "changeUserPermissions",
+		Method:      "PUT",
+		PathPattern: "/api/v1/repository/{repository}/permissions/user/{username}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &ChangeUserPermissionsReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -59,14 +71,20 @@ func (a *Client) ChangeUserPermissions(params ChangeUserPermissionsParams, authI
 
 /*Delete the permission for the specified team.
  */
-func (a *Client) DeleteTeamPermissions(params DeleteTeamPermissionsParams, authInfo client.AuthInfoWriter) (*DeleteTeamPermissionsNoContent, error) {
+func (a *Client) DeleteTeamPermissions(params *DeleteTeamPermissionsParams, authInfo client.AuthInfoWriter) (*DeleteTeamPermissionsNoContent, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteTeamPermissionsParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "deleteTeamPermissions",
-		Params:   &params,
-		Reader:   &DeleteTeamPermissionsReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "deleteTeamPermissions",
+		Method:      "DELETE",
+		PathPattern: "/api/v1/repository/{repository}/permissions/team/{teamname}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &DeleteTeamPermissionsReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -76,14 +94,20 @@ func (a *Client) DeleteTeamPermissions(params DeleteTeamPermissionsParams, authI
 
 /*Delete the permission for the user.
  */
-func (a *Client) DeleteUserPermissions(params DeleteUserPermissionsParams, authInfo client.AuthInfoWriter) (*DeleteUserPermissionsNoContent, error) {
+func (a *Client) DeleteUserPermissions(params *DeleteUserPermissionsParams, authInfo client.AuthInfoWriter) (*DeleteUserPermissionsNoContent, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteUserPermissionsParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "deleteUserPermissions",
-		Params:   &params,
-		Reader:   &DeleteUserPermissionsReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "deleteUserPermissions",
+		Method:      "DELETE",
+		PathPattern: "/api/v1/repository/{repository}/permissions/user/{username}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &DeleteUserPermissionsReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -93,14 +117,20 @@ func (a *Client) DeleteUserPermissions(params DeleteUserPermissionsParams, authI
 
 /*Fetch the permission for the specified team.
  */
-func (a *Client) GetTeamPermissions(params GetTeamPermissionsParams, authInfo client.AuthInfoWriter) (*GetTeamPermissionsOK, error) {
+func (a *Client) GetTeamPermissions(params *GetTeamPermissionsParams, authInfo client.AuthInfoWriter) (*GetTeamPermissionsOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetTeamPermissionsParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "getTeamPermissions",
-		Params:   &params,
-		Reader:   &GetTeamPermissionsReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "getTeamPermissions",
+		Method:      "GET",
+		PathPattern: "/api/v1/repository/{repository}/permissions/team/{teamname}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetTeamPermissionsReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -110,14 +140,20 @@ func (a *Client) GetTeamPermissions(params GetTeamPermissionsParams, authInfo cl
 
 /*Get the Fetch the permission for the specified user.
  */
-func (a *Client) GetUserPermissions(params GetUserPermissionsParams, authInfo client.AuthInfoWriter) (*GetUserPermissionsOK, error) {
+func (a *Client) GetUserPermissions(params *GetUserPermissionsParams, authInfo client.AuthInfoWriter) (*GetUserPermissionsOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserPermissionsParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "getUserPermissions",
-		Params:   &params,
-		Reader:   &GetUserPermissionsReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "getUserPermissions",
+		Method:      "GET",
+		PathPattern: "/api/v1/repository/{repository}/permissions/user/{username}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetUserPermissionsReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -127,14 +163,20 @@ func (a *Client) GetUserPermissions(params GetUserPermissionsParams, authInfo cl
 
 /*Get the fetch the permission for the specified user.
  */
-func (a *Client) GetUserTransitivePermission(params GetUserTransitivePermissionParams, authInfo client.AuthInfoWriter) (*GetUserTransitivePermissionOK, error) {
+func (a *Client) GetUserTransitivePermission(params *GetUserTransitivePermissionParams, authInfo client.AuthInfoWriter) (*GetUserTransitivePermissionOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserTransitivePermissionParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "getUserTransitivePermission",
-		Params:   &params,
-		Reader:   &GetUserTransitivePermissionReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "getUserTransitivePermission",
+		Method:      "GET",
+		PathPattern: "/api/v1/repository/{repository}/permissions/user/{username}/transitive",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetUserTransitivePermissionReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -144,14 +186,20 @@ func (a *Client) GetUserTransitivePermission(params GetUserTransitivePermissionP
 
 /*List all team permission.
  */
-func (a *Client) ListRepoTeamPermissions(params ListRepoTeamPermissionsParams, authInfo client.AuthInfoWriter) (*ListRepoTeamPermissionsOK, error) {
+func (a *Client) ListRepoTeamPermissions(params *ListRepoTeamPermissionsParams, authInfo client.AuthInfoWriter) (*ListRepoTeamPermissionsOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListRepoTeamPermissionsParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "listRepoTeamPermissions",
-		Params:   &params,
-		Reader:   &ListRepoTeamPermissionsReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "listRepoTeamPermissions",
+		Method:      "GET",
+		PathPattern: "/api/v1/repository/{repository}/permissions/team/",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &ListRepoTeamPermissionsReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -161,14 +209,20 @@ func (a *Client) ListRepoTeamPermissions(params ListRepoTeamPermissionsParams, a
 
 /*List all user permissions.
  */
-func (a *Client) ListRepoUserPermissions(params ListRepoUserPermissionsParams, authInfo client.AuthInfoWriter) (*ListRepoUserPermissionsOK, error) {
+func (a *Client) ListRepoUserPermissions(params *ListRepoUserPermissionsParams, authInfo client.AuthInfoWriter) (*ListRepoUserPermissionsOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListRepoUserPermissionsParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "listRepoUserPermissions",
-		Params:   &params,
-		Reader:   &ListRepoUserPermissionsReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "listRepoUserPermissions",
+		Method:      "GET",
+		PathPattern: "/api/v1/repository/{repository}/permissions/user/",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &ListRepoUserPermissionsReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err

@@ -7,10 +7,10 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-Description of updates for an existing organization
+/*UpdateOrg Description of updates for an existing organization
 
 swagger:model UpdateOrg
 */
@@ -18,18 +18,18 @@ type UpdateOrg struct {
 
 	/* Organization contact email
 	 */
-	Email string `json:"email,omitempty"`
+	Email *string `json:"email,omitempty"`
 
 	/* Whether the organization desires to receive emails for invoices
 	 */
-	InvoiceEmail bool `json:"invoice_email,omitempty"`
+	InvoiceEmail *bool `json:"invoice_email,omitempty"`
 
 	/* TagExpiration tag expiration
 
 	Maximum: 2.592e+06
 	Minimum: 0
 	*/
-	TagExpiration int64 `json:"tag_expiration,omitempty"`
+	TagExpiration *int64 `json:"tag_expiration,omitempty"`
 }
 
 // Validate validates this update org
@@ -37,6 +37,7 @@ func (m *UpdateOrg) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateTagExpiration(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -48,11 +49,15 @@ func (m *UpdateOrg) Validate(formats strfmt.Registry) error {
 
 func (m *UpdateOrg) validateTagExpiration(formats strfmt.Registry) error {
 
-	if err := validate.Minimum("tag_expiration", "body", float64(m.TagExpiration), 0, false); err != nil {
+	if swag.IsZero(m.TagExpiration) { // not required
+		return nil
+	}
+
+	if err := validate.Minimum("tag_expiration", "body", float64(*m.TagExpiration), 0, false); err != nil {
 		return err
 	}
 
-	if err := validate.Maximum("tag_expiration", "body", float64(m.TagExpiration), 2.592e+06, false); err != nil {
+	if err := validate.Maximum("tag_expiration", "body", float64(*m.TagExpiration), 2.592e+06, false); err != nil {
 		return err
 	}
 

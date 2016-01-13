@@ -10,23 +10,51 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-GetOrganizationTeamMembersParams contains all the parameters to send to the API endpoint
+// NewGetOrganizationTeamMembersParams creates a new GetOrganizationTeamMembersParams object
+// with the default values initialized.
+func NewGetOrganizationTeamMembersParams() *GetOrganizationTeamMembersParams {
+	var ()
+	return &GetOrganizationTeamMembersParams{}
+}
+
+/*GetOrganizationTeamMembersParams contains all the parameters to send to the API endpoint
 for the get organization team members operation typically these are written to a http.Request
 */
 type GetOrganizationTeamMembersParams struct {
-	/*
+
+	/*IncludePending
 	  Whether to include pending members
+
 	*/
-	IncludePending bool
-	/*
+	IncludePending *bool
+	/*Orgname
 	  The name of the organization
+
 	*/
 	Orgname string
-	/*
+	/*Teamname
 	  The name of the team
+
 	*/
 	Teamname string
+}
+
+// WithIncludePending adds the includePending to the get organization team members params
+func (o *GetOrganizationTeamMembersParams) WithIncludePending(includePending *bool) *GetOrganizationTeamMembersParams {
+	o.IncludePending = includePending
+	return o
+}
+
+// WithOrgname adds the orgname to the get organization team members params
+func (o *GetOrganizationTeamMembersParams) WithOrgname(orgname string) *GetOrganizationTeamMembersParams {
+	o.Orgname = orgname
+	return o
+}
+
+// WithTeamname adds the teamname to the get organization team members params
+func (o *GetOrganizationTeamMembersParams) WithTeamname(teamname string) *GetOrganizationTeamMembersParams {
+	o.Teamname = teamname
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -34,9 +62,20 @@ func (o *GetOrganizationTeamMembersParams) WriteToRequest(r client.Request, reg 
 
 	var res []error
 
-	// query param includePending
-	if err := r.SetQueryParam("includePending", swag.FormatBool(o.IncludePending)); err != nil {
-		return err
+	if o.IncludePending != nil {
+
+		// query param includePending
+		var qrIncludePending bool
+		if o.IncludePending != nil {
+			qrIncludePending = *o.IncludePending
+		}
+		qIncludePending := swag.FormatBool(qrIncludePending)
+		if qIncludePending != "" {
+			if err := r.SetQueryParam("includePending", qIncludePending); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// path param orgname

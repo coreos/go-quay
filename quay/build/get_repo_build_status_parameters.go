@@ -9,19 +9,40 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-GetRepoBuildStatusParams contains all the parameters to send to the API endpoint
+// NewGetRepoBuildStatusParams creates a new GetRepoBuildStatusParams object
+// with the default values initialized.
+func NewGetRepoBuildStatusParams() *GetRepoBuildStatusParams {
+	var ()
+	return &GetRepoBuildStatusParams{}
+}
+
+/*GetRepoBuildStatusParams contains all the parameters to send to the API endpoint
 for the get repo build status operation typically these are written to a http.Request
 */
 type GetRepoBuildStatusParams struct {
-	/*
+
+	/*BuildUUID
 	  The UUID of the build
+
 	*/
 	BuildUUID string
-	/*
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
+}
+
+// WithBuildUUID adds the buildUuid to the get repo build status params
+func (o *GetRepoBuildStatusParams) WithBuildUUID(buildUuid string) *GetRepoBuildStatusParams {
+	o.BuildUUID = buildUuid
+	return o
+}
+
+// WithRepository adds the repository to the get repo build status params
+func (o *GetRepoBuildStatusParams) WithRepository(repository string) *GetRepoBuildStatusParams {
+	o.Repository = repository
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

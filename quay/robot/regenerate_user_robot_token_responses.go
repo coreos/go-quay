@@ -4,6 +4,9 @@ package robot
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *RegenerateUserRobotTokenReader) ReadResponse(response client.Response, 
 	switch response.Code() {
 
 	case 200:
-		var result RegenerateUserRobotTokenOK
+		result := NewRegenerateUserRobotTokenOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result RegenerateUserRobotTokenBadRequest
+		result := NewRegenerateUserRobotTokenBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("regenerateUserRobotTokenBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result RegenerateUserRobotTokenUnauthorized
+		result := NewRegenerateUserRobotTokenUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("regenerateUserRobotTokenUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result RegenerateUserRobotTokenForbidden
+		result := NewRegenerateUserRobotTokenForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("regenerateUserRobotTokenForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result RegenerateUserRobotTokenNotFound
+		result := NewRegenerateUserRobotTokenNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("regenerateUserRobotTokenNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewRegenerateUserRobotTokenOK creates a RegenerateUserRobotTokenOK with default headers values
+func NewRegenerateUserRobotTokenOK() *RegenerateUserRobotTokenOK {
+	return &RegenerateUserRobotTokenOK{}
+}
+
+/*RegenerateUserRobotTokenOK
+
 Successful invocation
 */
 type RegenerateUserRobotTokenOK struct {
+}
+
+func (o *RegenerateUserRobotTokenOK) Error() string {
+	return fmt.Sprintf("[POST /api/v1/user/robots/{robot_shortname}/regenerate][%d] regenerateUserRobotTokenOK ", 200)
 }
 
 func (o *RegenerateUserRobotTokenOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *RegenerateUserRobotTokenOK) readResponse(response client.Response, cons
 	return nil
 }
 
-/*
+// NewRegenerateUserRobotTokenBadRequest creates a RegenerateUserRobotTokenBadRequest with default headers values
+func NewRegenerateUserRobotTokenBadRequest() *RegenerateUserRobotTokenBadRequest {
+	return &RegenerateUserRobotTokenBadRequest{}
+}
+
+/*RegenerateUserRobotTokenBadRequest
+
 Bad Request
 */
 type RegenerateUserRobotTokenBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *RegenerateUserRobotTokenBadRequest) Error() string {
+	return fmt.Sprintf("[POST /api/v1/user/robots/{robot_shortname}/regenerate][%d] regenerateUserRobotTokenBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *RegenerateUserRobotTokenBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *RegenerateUserRobotTokenBadRequest) readResponse(response client.Respon
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewRegenerateUserRobotTokenUnauthorized creates a RegenerateUserRobotTokenUnauthorized with default headers values
+func NewRegenerateUserRobotTokenUnauthorized() *RegenerateUserRobotTokenUnauthorized {
+	return &RegenerateUserRobotTokenUnauthorized{}
+}
+
+/*RegenerateUserRobotTokenUnauthorized
+
 Session required
 */
 type RegenerateUserRobotTokenUnauthorized struct {
+}
+
+func (o *RegenerateUserRobotTokenUnauthorized) Error() string {
+	return fmt.Sprintf("[POST /api/v1/user/robots/{robot_shortname}/regenerate][%d] regenerateUserRobotTokenUnauthorized ", 401)
 }
 
 func (o *RegenerateUserRobotTokenUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *RegenerateUserRobotTokenUnauthorized) readResponse(response client.Resp
 	return nil
 }
 
-/*
+// NewRegenerateUserRobotTokenForbidden creates a RegenerateUserRobotTokenForbidden with default headers values
+func NewRegenerateUserRobotTokenForbidden() *RegenerateUserRobotTokenForbidden {
+	return &RegenerateUserRobotTokenForbidden{}
+}
+
+/*RegenerateUserRobotTokenForbidden
+
 Unauthorized access
 */
 type RegenerateUserRobotTokenForbidden struct {
+}
+
+func (o *RegenerateUserRobotTokenForbidden) Error() string {
+	return fmt.Sprintf("[POST /api/v1/user/robots/{robot_shortname}/regenerate][%d] regenerateUserRobotTokenForbidden ", 403)
 }
 
 func (o *RegenerateUserRobotTokenForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *RegenerateUserRobotTokenForbidden) readResponse(response client.Respons
 	return nil
 }
 
-/*
+// NewRegenerateUserRobotTokenNotFound creates a RegenerateUserRobotTokenNotFound with default headers values
+func NewRegenerateUserRobotTokenNotFound() *RegenerateUserRobotTokenNotFound {
+	return &RegenerateUserRobotTokenNotFound{}
+}
+
+/*RegenerateUserRobotTokenNotFound
+
 Not found
 */
 type RegenerateUserRobotTokenNotFound struct {
+}
+
+func (o *RegenerateUserRobotTokenNotFound) Error() string {
+	return fmt.Sprintf("[POST /api/v1/user/robots/{robot_shortname}/regenerate][%d] regenerateUserRobotTokenNotFound ", 404)
 }
 
 func (o *RegenerateUserRobotTokenNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

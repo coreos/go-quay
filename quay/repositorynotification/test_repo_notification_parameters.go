@@ -9,19 +9,40 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-TestRepoNotificationParams contains all the parameters to send to the API endpoint
+// NewTestRepoNotificationParams creates a new TestRepoNotificationParams object
+// with the default values initialized.
+func NewTestRepoNotificationParams() *TestRepoNotificationParams {
+	var ()
+	return &TestRepoNotificationParams{}
+}
+
+/*TestRepoNotificationParams contains all the parameters to send to the API endpoint
 for the test repo notification operation typically these are written to a http.Request
 */
 type TestRepoNotificationParams struct {
-	/*
+
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
-	/*
+	/*UUID
 	  The UUID of the notification
+
 	*/
 	UUID string
+}
+
+// WithRepository adds the repository to the test repo notification params
+func (o *TestRepoNotificationParams) WithRepository(repository string) *TestRepoNotificationParams {
+	o.Repository = repository
+	return o
+}
+
+// WithUUID adds the uuid to the test repo notification params
+func (o *TestRepoNotificationParams) WithUUID(uuid string) *TestRepoNotificationParams {
+	o.UUID = uuid
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

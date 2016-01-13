@@ -4,6 +4,9 @@ package organization
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *GetOrganizationApplicationReader) ReadResponse(response client.Response
 	switch response.Code() {
 
 	case 200:
-		var result GetOrganizationApplicationOK
+		result := NewGetOrganizationApplicationOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result GetOrganizationApplicationBadRequest
+		result := NewGetOrganizationApplicationBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getOrganizationApplicationBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result GetOrganizationApplicationUnauthorized
+		result := NewGetOrganizationApplicationUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getOrganizationApplicationUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result GetOrganizationApplicationForbidden
+		result := NewGetOrganizationApplicationForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getOrganizationApplicationForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result GetOrganizationApplicationNotFound
+		result := NewGetOrganizationApplicationNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getOrganizationApplicationNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewGetOrganizationApplicationOK creates a GetOrganizationApplicationOK with default headers values
+func NewGetOrganizationApplicationOK() *GetOrganizationApplicationOK {
+	return &GetOrganizationApplicationOK{}
+}
+
+/*GetOrganizationApplicationOK
+
 Successful invocation
 */
 type GetOrganizationApplicationOK struct {
+}
+
+func (o *GetOrganizationApplicationOK) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/applications/{client_id}][%d] getOrganizationApplicationOK ", 200)
 }
 
 func (o *GetOrganizationApplicationOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *GetOrganizationApplicationOK) readResponse(response client.Response, co
 	return nil
 }
 
-/*
+// NewGetOrganizationApplicationBadRequest creates a GetOrganizationApplicationBadRequest with default headers values
+func NewGetOrganizationApplicationBadRequest() *GetOrganizationApplicationBadRequest {
+	return &GetOrganizationApplicationBadRequest{}
+}
+
+/*GetOrganizationApplicationBadRequest
+
 Bad Request
 */
 type GetOrganizationApplicationBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *GetOrganizationApplicationBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/applications/{client_id}][%d] getOrganizationApplicationBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetOrganizationApplicationBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *GetOrganizationApplicationBadRequest) readResponse(response client.Resp
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewGetOrganizationApplicationUnauthorized creates a GetOrganizationApplicationUnauthorized with default headers values
+func NewGetOrganizationApplicationUnauthorized() *GetOrganizationApplicationUnauthorized {
+	return &GetOrganizationApplicationUnauthorized{}
+}
+
+/*GetOrganizationApplicationUnauthorized
+
 Session required
 */
 type GetOrganizationApplicationUnauthorized struct {
+}
+
+func (o *GetOrganizationApplicationUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/applications/{client_id}][%d] getOrganizationApplicationUnauthorized ", 401)
 }
 
 func (o *GetOrganizationApplicationUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *GetOrganizationApplicationUnauthorized) readResponse(response client.Re
 	return nil
 }
 
-/*
+// NewGetOrganizationApplicationForbidden creates a GetOrganizationApplicationForbidden with default headers values
+func NewGetOrganizationApplicationForbidden() *GetOrganizationApplicationForbidden {
+	return &GetOrganizationApplicationForbidden{}
+}
+
+/*GetOrganizationApplicationForbidden
+
 Unauthorized access
 */
 type GetOrganizationApplicationForbidden struct {
+}
+
+func (o *GetOrganizationApplicationForbidden) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/applications/{client_id}][%d] getOrganizationApplicationForbidden ", 403)
 }
 
 func (o *GetOrganizationApplicationForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *GetOrganizationApplicationForbidden) readResponse(response client.Respo
 	return nil
 }
 
-/*
+// NewGetOrganizationApplicationNotFound creates a GetOrganizationApplicationNotFound with default headers values
+func NewGetOrganizationApplicationNotFound() *GetOrganizationApplicationNotFound {
+	return &GetOrganizationApplicationNotFound{}
+}
+
+/*GetOrganizationApplicationNotFound
+
 Not found
 */
 type GetOrganizationApplicationNotFound struct {
+}
+
+func (o *GetOrganizationApplicationNotFound) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/applications/{client_id}][%d] getOrganizationApplicationNotFound ", 404)
 }
 
 func (o *GetOrganizationApplicationNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

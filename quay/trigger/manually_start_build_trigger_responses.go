@@ -4,6 +4,9 @@ package trigger
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *ManuallyStartBuildTriggerReader) ReadResponse(response client.Response,
 	switch response.Code() {
 
 	case 200:
-		var result ManuallyStartBuildTriggerOK
+		result := NewManuallyStartBuildTriggerOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result ManuallyStartBuildTriggerBadRequest
+		result := NewManuallyStartBuildTriggerBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("manuallyStartBuildTriggerBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result ManuallyStartBuildTriggerUnauthorized
+		result := NewManuallyStartBuildTriggerUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("manuallyStartBuildTriggerUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result ManuallyStartBuildTriggerForbidden
+		result := NewManuallyStartBuildTriggerForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("manuallyStartBuildTriggerForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result ManuallyStartBuildTriggerNotFound
+		result := NewManuallyStartBuildTriggerNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("manuallyStartBuildTriggerNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewManuallyStartBuildTriggerOK creates a ManuallyStartBuildTriggerOK with default headers values
+func NewManuallyStartBuildTriggerOK() *ManuallyStartBuildTriggerOK {
+	return &ManuallyStartBuildTriggerOK{}
+}
+
+/*ManuallyStartBuildTriggerOK
+
 Successful invocation
 */
 type ManuallyStartBuildTriggerOK struct {
+}
+
+func (o *ManuallyStartBuildTriggerOK) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/trigger/{trigger_uuid}/start][%d] manuallyStartBuildTriggerOK ", 200)
 }
 
 func (o *ManuallyStartBuildTriggerOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *ManuallyStartBuildTriggerOK) readResponse(response client.Response, con
 	return nil
 }
 
-/*
+// NewManuallyStartBuildTriggerBadRequest creates a ManuallyStartBuildTriggerBadRequest with default headers values
+func NewManuallyStartBuildTriggerBadRequest() *ManuallyStartBuildTriggerBadRequest {
+	return &ManuallyStartBuildTriggerBadRequest{}
+}
+
+/*ManuallyStartBuildTriggerBadRequest
+
 Bad Request
 */
 type ManuallyStartBuildTriggerBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *ManuallyStartBuildTriggerBadRequest) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/trigger/{trigger_uuid}/start][%d] manuallyStartBuildTriggerBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ManuallyStartBuildTriggerBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *ManuallyStartBuildTriggerBadRequest) readResponse(response client.Respo
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewManuallyStartBuildTriggerUnauthorized creates a ManuallyStartBuildTriggerUnauthorized with default headers values
+func NewManuallyStartBuildTriggerUnauthorized() *ManuallyStartBuildTriggerUnauthorized {
+	return &ManuallyStartBuildTriggerUnauthorized{}
+}
+
+/*ManuallyStartBuildTriggerUnauthorized
+
 Session required
 */
 type ManuallyStartBuildTriggerUnauthorized struct {
+}
+
+func (o *ManuallyStartBuildTriggerUnauthorized) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/trigger/{trigger_uuid}/start][%d] manuallyStartBuildTriggerUnauthorized ", 401)
 }
 
 func (o *ManuallyStartBuildTriggerUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *ManuallyStartBuildTriggerUnauthorized) readResponse(response client.Res
 	return nil
 }
 
-/*
+// NewManuallyStartBuildTriggerForbidden creates a ManuallyStartBuildTriggerForbidden with default headers values
+func NewManuallyStartBuildTriggerForbidden() *ManuallyStartBuildTriggerForbidden {
+	return &ManuallyStartBuildTriggerForbidden{}
+}
+
+/*ManuallyStartBuildTriggerForbidden
+
 Unauthorized access
 */
 type ManuallyStartBuildTriggerForbidden struct {
+}
+
+func (o *ManuallyStartBuildTriggerForbidden) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/trigger/{trigger_uuid}/start][%d] manuallyStartBuildTriggerForbidden ", 403)
 }
 
 func (o *ManuallyStartBuildTriggerForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *ManuallyStartBuildTriggerForbidden) readResponse(response client.Respon
 	return nil
 }
 
-/*
+// NewManuallyStartBuildTriggerNotFound creates a ManuallyStartBuildTriggerNotFound with default headers values
+func NewManuallyStartBuildTriggerNotFound() *ManuallyStartBuildTriggerNotFound {
+	return &ManuallyStartBuildTriggerNotFound{}
+}
+
+/*ManuallyStartBuildTriggerNotFound
+
 Not found
 */
 type ManuallyStartBuildTriggerNotFound struct {
+}
+
+func (o *ManuallyStartBuildTriggerNotFound) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/trigger/{trigger_uuid}/start][%d] manuallyStartBuildTriggerNotFound ", 404)
 }
 
 func (o *ManuallyStartBuildTriggerNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

@@ -9,8 +9,7 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-Fields which must be specified for a new user.
+/*NewUser Fields which must be specified for a new user.
 
 swagger:model NewUser
 */
@@ -24,7 +23,7 @@ type NewUser struct {
 
 	/* The optional invite code
 	 */
-	InviteCode string `json:"invite_code,omitempty"`
+	InviteCode *string `json:"invite_code,omitempty"`
 
 	/* The user's password
 
@@ -44,14 +43,17 @@ func (m *NewUser) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateEmail(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePassword(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateUsername(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 

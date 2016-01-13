@@ -9,12 +9,26 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-GetUserInformationParams contains all the parameters to send to the API endpoint
+// NewGetUserInformationParams creates a new GetUserInformationParams object
+// with the default values initialized.
+func NewGetUserInformationParams() *GetUserInformationParams {
+	var ()
+	return &GetUserInformationParams{}
+}
+
+/*GetUserInformationParams contains all the parameters to send to the API endpoint
 for the get user information operation typically these are written to a http.Request
 */
 type GetUserInformationParams struct {
+
+	/*Username*/
 	Username string
+}
+
+// WithUsername adds the username to the get user information params
+func (o *GetUserInformationParams) WithUsername(username string) *GetUserInformationParams {
+	o.Username = username
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

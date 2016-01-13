@@ -11,23 +11,51 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*
-UpdateOrganizationTeamParams contains all the parameters to send to the API endpoint
+// NewUpdateOrganizationTeamParams creates a new UpdateOrganizationTeamParams object
+// with the default values initialized.
+func NewUpdateOrganizationTeamParams() *UpdateOrganizationTeamParams {
+	var ()
+	return &UpdateOrganizationTeamParams{}
+}
+
+/*UpdateOrganizationTeamParams contains all the parameters to send to the API endpoint
 for the update organization team operation typically these are written to a http.Request
 */
 type UpdateOrganizationTeamParams struct {
-	/*
+
+	/*Body
 	  Request body contents.
+
 	*/
 	Body *models.TeamDescription
-	/*
+	/*Orgname
 	  The name of the organization
+
 	*/
 	Orgname string
-	/*
+	/*Teamname
 	  The name of the team
+
 	*/
 	Teamname string
+}
+
+// WithBody adds the body to the update organization team params
+func (o *UpdateOrganizationTeamParams) WithBody(body *models.TeamDescription) *UpdateOrganizationTeamParams {
+	o.Body = body
+	return o
+}
+
+// WithOrgname adds the orgname to the update organization team params
+func (o *UpdateOrganizationTeamParams) WithOrgname(orgname string) *UpdateOrganizationTeamParams {
+	o.Orgname = orgname
+	return o
+}
+
+// WithTeamname adds the teamname to the update organization team params
+func (o *UpdateOrganizationTeamParams) WithTeamname(teamname string) *UpdateOrganizationTeamParams {
+	o.Teamname = teamname
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

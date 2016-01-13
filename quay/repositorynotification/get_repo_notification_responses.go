@@ -4,6 +4,9 @@ package repositorynotification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *GetRepoNotificationReader) ReadResponse(response client.Response, consu
 	switch response.Code() {
 
 	case 200:
-		var result GetRepoNotificationOK
+		result := NewGetRepoNotificationOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result GetRepoNotificationBadRequest
+		result := NewGetRepoNotificationBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getRepoNotificationBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result GetRepoNotificationUnauthorized
+		result := NewGetRepoNotificationUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getRepoNotificationUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result GetRepoNotificationForbidden
+		result := NewGetRepoNotificationForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getRepoNotificationForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result GetRepoNotificationNotFound
+		result := NewGetRepoNotificationNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getRepoNotificationNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewGetRepoNotificationOK creates a GetRepoNotificationOK with default headers values
+func NewGetRepoNotificationOK() *GetRepoNotificationOK {
+	return &GetRepoNotificationOK{}
+}
+
+/*GetRepoNotificationOK
+
 Successful invocation
 */
 type GetRepoNotificationOK struct {
+}
+
+func (o *GetRepoNotificationOK) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/notification/{uuid}][%d] getRepoNotificationOK ", 200)
 }
 
 func (o *GetRepoNotificationOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *GetRepoNotificationOK) readResponse(response client.Response, consumer 
 	return nil
 }
 
-/*
+// NewGetRepoNotificationBadRequest creates a GetRepoNotificationBadRequest with default headers values
+func NewGetRepoNotificationBadRequest() *GetRepoNotificationBadRequest {
+	return &GetRepoNotificationBadRequest{}
+}
+
+/*GetRepoNotificationBadRequest
+
 Bad Request
 */
 type GetRepoNotificationBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *GetRepoNotificationBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/notification/{uuid}][%d] getRepoNotificationBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetRepoNotificationBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *GetRepoNotificationBadRequest) readResponse(response client.Response, c
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewGetRepoNotificationUnauthorized creates a GetRepoNotificationUnauthorized with default headers values
+func NewGetRepoNotificationUnauthorized() *GetRepoNotificationUnauthorized {
+	return &GetRepoNotificationUnauthorized{}
+}
+
+/*GetRepoNotificationUnauthorized
+
 Session required
 */
 type GetRepoNotificationUnauthorized struct {
+}
+
+func (o *GetRepoNotificationUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/notification/{uuid}][%d] getRepoNotificationUnauthorized ", 401)
 }
 
 func (o *GetRepoNotificationUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *GetRepoNotificationUnauthorized) readResponse(response client.Response,
 	return nil
 }
 
-/*
+// NewGetRepoNotificationForbidden creates a GetRepoNotificationForbidden with default headers values
+func NewGetRepoNotificationForbidden() *GetRepoNotificationForbidden {
+	return &GetRepoNotificationForbidden{}
+}
+
+/*GetRepoNotificationForbidden
+
 Unauthorized access
 */
 type GetRepoNotificationForbidden struct {
+}
+
+func (o *GetRepoNotificationForbidden) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/notification/{uuid}][%d] getRepoNotificationForbidden ", 403)
 }
 
 func (o *GetRepoNotificationForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *GetRepoNotificationForbidden) readResponse(response client.Response, co
 	return nil
 }
 
-/*
+// NewGetRepoNotificationNotFound creates a GetRepoNotificationNotFound with default headers values
+func NewGetRepoNotificationNotFound() *GetRepoNotificationNotFound {
+	return &GetRepoNotificationNotFound{}
+}
+
+/*GetRepoNotificationNotFound
+
 Not found
 */
 type GetRepoNotificationNotFound struct {
+}
+
+func (o *GetRepoNotificationNotFound) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/notification/{uuid}][%d] getRepoNotificationNotFound ", 404)
 }
 
 func (o *GetRepoNotificationNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

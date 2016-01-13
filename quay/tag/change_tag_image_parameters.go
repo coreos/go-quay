@@ -11,23 +11,51 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*
-ChangeTagImageParams contains all the parameters to send to the API endpoint
+// NewChangeTagImageParams creates a new ChangeTagImageParams object
+// with the default values initialized.
+func NewChangeTagImageParams() *ChangeTagImageParams {
+	var ()
+	return &ChangeTagImageParams{}
+}
+
+/*ChangeTagImageParams contains all the parameters to send to the API endpoint
 for the change tag image operation typically these are written to a http.Request
 */
 type ChangeTagImageParams struct {
-	/*
+
+	/*Body
 	  Request body contents.
+
 	*/
 	Body *models.MoveTag
-	/*
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
-	/*
+	/*Tag
 	  The name of the tag
+
 	*/
 	Tag string
+}
+
+// WithBody adds the body to the change tag image params
+func (o *ChangeTagImageParams) WithBody(body *models.MoveTag) *ChangeTagImageParams {
+	o.Body = body
+	return o
+}
+
+// WithRepository adds the repository to the change tag image params
+func (o *ChangeTagImageParams) WithRepository(repository string) *ChangeTagImageParams {
+	o.Repository = repository
+	return o
+}
+
+// WithTag adds the tag to the change tag image params
+func (o *ChangeTagImageParams) WithTag(tag string) *ChangeTagImageParams {
+	o.Tag = tag
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

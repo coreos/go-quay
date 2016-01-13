@@ -25,14 +25,20 @@ type Client struct {
 
 /*Gets the aggregated logs for the specified organization.
  */
-func (a *Client) GetAggregateOrgLogs(params GetAggregateOrgLogsParams, authInfo client.AuthInfoWriter) (*GetAggregateOrgLogsOK, error) {
+func (a *Client) GetAggregateOrgLogs(params *GetAggregateOrgLogsParams, authInfo client.AuthInfoWriter) (*GetAggregateOrgLogsOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAggregateOrgLogsParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "getAggregateOrgLogs",
-		Params:   &params,
-		Reader:   &GetAggregateOrgLogsReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "getAggregateOrgLogs",
+		Method:      "GET",
+		PathPattern: "/api/v1/organization/{orgname}/aggregatelogs",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetAggregateOrgLogsReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -42,14 +48,20 @@ func (a *Client) GetAggregateOrgLogs(params GetAggregateOrgLogsParams, authInfo 
 
 /*Returns the aggregated logs for the specified repository.
  */
-func (a *Client) GetAggregateRepoLogs(params GetAggregateRepoLogsParams, authInfo client.AuthInfoWriter) (*GetAggregateRepoLogsOK, error) {
+func (a *Client) GetAggregateRepoLogs(params *GetAggregateRepoLogsParams, authInfo client.AuthInfoWriter) (*GetAggregateRepoLogsOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAggregateRepoLogsParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "getAggregateRepoLogs",
-		Params:   &params,
-		Reader:   &GetAggregateRepoLogsReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "getAggregateRepoLogs",
+		Method:      "GET",
+		PathPattern: "/api/v1/repository/{repository}/aggregatelogs",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetAggregateRepoLogsReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -59,14 +71,20 @@ func (a *Client) GetAggregateRepoLogs(params GetAggregateRepoLogsParams, authInf
 
 /*List the logs for the specified organization.
  */
-func (a *Client) ListOrgLogs(params ListOrgLogsParams, authInfo client.AuthInfoWriter) (*ListOrgLogsOK, error) {
+func (a *Client) ListOrgLogs(params *ListOrgLogsParams, authInfo client.AuthInfoWriter) (*ListOrgLogsOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListOrgLogsParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "listOrgLogs",
-		Params:   &params,
-		Reader:   &ListOrgLogsReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "listOrgLogs",
+		Method:      "GET",
+		PathPattern: "/api/v1/organization/{orgname}/logs",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &ListOrgLogsReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -76,14 +94,20 @@ func (a *Client) ListOrgLogs(params ListOrgLogsParams, authInfo client.AuthInfoW
 
 /*List the logs for the specified repository.
  */
-func (a *Client) ListRepoLogs(params ListRepoLogsParams, authInfo client.AuthInfoWriter) (*ListRepoLogsOK, error) {
+func (a *Client) ListRepoLogs(params *ListRepoLogsParams, authInfo client.AuthInfoWriter) (*ListRepoLogsOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListRepoLogsParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "listRepoLogs",
-		Params:   &params,
-		Reader:   &ListRepoLogsReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "listRepoLogs",
+		Method:      "GET",
+		PathPattern: "/api/v1/repository/{repository}/logs",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &ListRepoLogsReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err

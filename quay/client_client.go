@@ -6,7 +6,6 @@ package quay
 import (
 	"github.com/go-swagger/go-swagger/client"
 	httptransport "github.com/go-swagger/go-swagger/httpkit/client"
-	"github.com/go-swagger/go-swagger/spec"
 	"github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/quay/billing"
@@ -29,20 +28,16 @@ import (
 	"github.com/coreos/go-quay/quay/user"
 )
 
-// The Default client HTTP client.
+// Default client HTTP client.
 var Default = NewHTTPClient(nil)
 
 // NewHTTPClient creates a new client HTTP client.
 func NewHTTPClient(formats strfmt.Registry) *Client {
-	swaggerSpec, err := spec.New(SwaggerJSON, "")
-	if err != nil {
-		// the swagger spec is valid because it was used to generated this code.
-		panic(err)
-	}
 	if formats == nil {
 		formats = strfmt.Default
 	}
-	return New(httptransport.New(swaggerSpec), formats)
+	transport := httptransport.New("quay.io", "/", []string{"https"})
+	return New(transport, formats)
 }
 
 // New creates a new client client

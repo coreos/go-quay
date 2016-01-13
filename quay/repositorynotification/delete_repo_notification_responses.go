@@ -4,6 +4,9 @@ package repositorynotification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *DeleteRepoNotificationReader) ReadResponse(response client.Response, co
 	switch response.Code() {
 
 	case 204:
-		var result DeleteRepoNotificationNoContent
+		result := NewDeleteRepoNotificationNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result DeleteRepoNotificationBadRequest
+		result := NewDeleteRepoNotificationBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteRepoNotificationBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result DeleteRepoNotificationUnauthorized
+		result := NewDeleteRepoNotificationUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteRepoNotificationUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result DeleteRepoNotificationForbidden
+		result := NewDeleteRepoNotificationForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteRepoNotificationForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result DeleteRepoNotificationNotFound
+		result := NewDeleteRepoNotificationNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteRepoNotificationNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewDeleteRepoNotificationNoContent creates a DeleteRepoNotificationNoContent with default headers values
+func NewDeleteRepoNotificationNoContent() *DeleteRepoNotificationNoContent {
+	return &DeleteRepoNotificationNoContent{}
+}
+
+/*DeleteRepoNotificationNoContent
+
 Deleted
 */
 type DeleteRepoNotificationNoContent struct {
+}
+
+func (o *DeleteRepoNotificationNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/notification/{uuid}][%d] deleteRepoNotificationNoContent ", 204)
 }
 
 func (o *DeleteRepoNotificationNoContent) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *DeleteRepoNotificationNoContent) readResponse(response client.Response,
 	return nil
 }
 
-/*
+// NewDeleteRepoNotificationBadRequest creates a DeleteRepoNotificationBadRequest with default headers values
+func NewDeleteRepoNotificationBadRequest() *DeleteRepoNotificationBadRequest {
+	return &DeleteRepoNotificationBadRequest{}
+}
+
+/*DeleteRepoNotificationBadRequest
+
 Bad Request
 */
 type DeleteRepoNotificationBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *DeleteRepoNotificationBadRequest) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/notification/{uuid}][%d] deleteRepoNotificationBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeleteRepoNotificationBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *DeleteRepoNotificationBadRequest) readResponse(response client.Response
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewDeleteRepoNotificationUnauthorized creates a DeleteRepoNotificationUnauthorized with default headers values
+func NewDeleteRepoNotificationUnauthorized() *DeleteRepoNotificationUnauthorized {
+	return &DeleteRepoNotificationUnauthorized{}
+}
+
+/*DeleteRepoNotificationUnauthorized
+
 Session required
 */
 type DeleteRepoNotificationUnauthorized struct {
+}
+
+func (o *DeleteRepoNotificationUnauthorized) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/notification/{uuid}][%d] deleteRepoNotificationUnauthorized ", 401)
 }
 
 func (o *DeleteRepoNotificationUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *DeleteRepoNotificationUnauthorized) readResponse(response client.Respon
 	return nil
 }
 
-/*
+// NewDeleteRepoNotificationForbidden creates a DeleteRepoNotificationForbidden with default headers values
+func NewDeleteRepoNotificationForbidden() *DeleteRepoNotificationForbidden {
+	return &DeleteRepoNotificationForbidden{}
+}
+
+/*DeleteRepoNotificationForbidden
+
 Unauthorized access
 */
 type DeleteRepoNotificationForbidden struct {
+}
+
+func (o *DeleteRepoNotificationForbidden) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/notification/{uuid}][%d] deleteRepoNotificationForbidden ", 403)
 }
 
 func (o *DeleteRepoNotificationForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *DeleteRepoNotificationForbidden) readResponse(response client.Response,
 	return nil
 }
 
-/*
+// NewDeleteRepoNotificationNotFound creates a DeleteRepoNotificationNotFound with default headers values
+func NewDeleteRepoNotificationNotFound() *DeleteRepoNotificationNotFound {
+	return &DeleteRepoNotificationNotFound{}
+}
+
+/*DeleteRepoNotificationNotFound
+
 Not found
 */
 type DeleteRepoNotificationNotFound struct {
+}
+
+func (o *DeleteRepoNotificationNotFound) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/notification/{uuid}][%d] deleteRepoNotificationNotFound ", 404)
 }
 
 func (o *DeleteRepoNotificationNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

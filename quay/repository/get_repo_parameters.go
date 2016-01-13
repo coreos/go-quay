@@ -9,15 +9,29 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-GetRepoParams contains all the parameters to send to the API endpoint
+// NewGetRepoParams creates a new GetRepoParams object
+// with the default values initialized.
+func NewGetRepoParams() *GetRepoParams {
+	var ()
+	return &GetRepoParams{}
+}
+
+/*GetRepoParams contains all the parameters to send to the API endpoint
 for the get repo operation typically these are written to a http.Request
 */
 type GetRepoParams struct {
-	/*
+
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
+}
+
+// WithRepository adds the repository to the get repo params
+func (o *GetRepoParams) WithRepository(repository string) *GetRepoParams {
+	o.Repository = repository
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

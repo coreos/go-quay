@@ -4,6 +4,9 @@ package organization
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *UpdateOrganizationApplicationReader) ReadResponse(response client.Respo
 	switch response.Code() {
 
 	case 200:
-		var result UpdateOrganizationApplicationOK
+		result := NewUpdateOrganizationApplicationOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result UpdateOrganizationApplicationBadRequest
+		result := NewUpdateOrganizationApplicationBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("updateOrganizationApplicationBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result UpdateOrganizationApplicationUnauthorized
+		result := NewUpdateOrganizationApplicationUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("updateOrganizationApplicationUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result UpdateOrganizationApplicationForbidden
+		result := NewUpdateOrganizationApplicationForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("updateOrganizationApplicationForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result UpdateOrganizationApplicationNotFound
+		result := NewUpdateOrganizationApplicationNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("updateOrganizationApplicationNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewUpdateOrganizationApplicationOK creates a UpdateOrganizationApplicationOK with default headers values
+func NewUpdateOrganizationApplicationOK() *UpdateOrganizationApplicationOK {
+	return &UpdateOrganizationApplicationOK{}
+}
+
+/*UpdateOrganizationApplicationOK
+
 Successful invocation
 */
 type UpdateOrganizationApplicationOK struct {
+}
+
+func (o *UpdateOrganizationApplicationOK) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/applications/{client_id}][%d] updateOrganizationApplicationOK ", 200)
 }
 
 func (o *UpdateOrganizationApplicationOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *UpdateOrganizationApplicationOK) readResponse(response client.Response,
 	return nil
 }
 
-/*
+// NewUpdateOrganizationApplicationBadRequest creates a UpdateOrganizationApplicationBadRequest with default headers values
+func NewUpdateOrganizationApplicationBadRequest() *UpdateOrganizationApplicationBadRequest {
+	return &UpdateOrganizationApplicationBadRequest{}
+}
+
+/*UpdateOrganizationApplicationBadRequest
+
 Bad Request
 */
 type UpdateOrganizationApplicationBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *UpdateOrganizationApplicationBadRequest) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/applications/{client_id}][%d] updateOrganizationApplicationBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateOrganizationApplicationBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *UpdateOrganizationApplicationBadRequest) readResponse(response client.R
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewUpdateOrganizationApplicationUnauthorized creates a UpdateOrganizationApplicationUnauthorized with default headers values
+func NewUpdateOrganizationApplicationUnauthorized() *UpdateOrganizationApplicationUnauthorized {
+	return &UpdateOrganizationApplicationUnauthorized{}
+}
+
+/*UpdateOrganizationApplicationUnauthorized
+
 Session required
 */
 type UpdateOrganizationApplicationUnauthorized struct {
+}
+
+func (o *UpdateOrganizationApplicationUnauthorized) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/applications/{client_id}][%d] updateOrganizationApplicationUnauthorized ", 401)
 }
 
 func (o *UpdateOrganizationApplicationUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *UpdateOrganizationApplicationUnauthorized) readResponse(response client
 	return nil
 }
 
-/*
+// NewUpdateOrganizationApplicationForbidden creates a UpdateOrganizationApplicationForbidden with default headers values
+func NewUpdateOrganizationApplicationForbidden() *UpdateOrganizationApplicationForbidden {
+	return &UpdateOrganizationApplicationForbidden{}
+}
+
+/*UpdateOrganizationApplicationForbidden
+
 Unauthorized access
 */
 type UpdateOrganizationApplicationForbidden struct {
+}
+
+func (o *UpdateOrganizationApplicationForbidden) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/applications/{client_id}][%d] updateOrganizationApplicationForbidden ", 403)
 }
 
 func (o *UpdateOrganizationApplicationForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *UpdateOrganizationApplicationForbidden) readResponse(response client.Re
 	return nil
 }
 
-/*
+// NewUpdateOrganizationApplicationNotFound creates a UpdateOrganizationApplicationNotFound with default headers values
+func NewUpdateOrganizationApplicationNotFound() *UpdateOrganizationApplicationNotFound {
+	return &UpdateOrganizationApplicationNotFound{}
+}
+
+/*UpdateOrganizationApplicationNotFound
+
 Not found
 */
 type UpdateOrganizationApplicationNotFound struct {
+}
+
+func (o *UpdateOrganizationApplicationNotFound) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/applications/{client_id}][%d] updateOrganizationApplicationNotFound ", 404)
 }
 
 func (o *UpdateOrganizationApplicationNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

@@ -9,15 +9,29 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-ListRepositoryImagesParams contains all the parameters to send to the API endpoint
+// NewListRepositoryImagesParams creates a new ListRepositoryImagesParams object
+// with the default values initialized.
+func NewListRepositoryImagesParams() *ListRepositoryImagesParams {
+	var ()
+	return &ListRepositoryImagesParams{}
+}
+
+/*ListRepositoryImagesParams contains all the parameters to send to the API endpoint
 for the list repository images operation typically these are written to a http.Request
 */
 type ListRepositoryImagesParams struct {
-	/*
+
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
+}
+
+// WithRepository adds the repository to the list repository images params
+func (o *ListRepositoryImagesParams) WithRepository(repository string) *ListRepositoryImagesParams {
+	o.Repository = repository
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

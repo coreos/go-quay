@@ -4,6 +4,9 @@ package permission
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *GetUserTransitivePermissionReader) ReadResponse(response client.Respons
 	switch response.Code() {
 
 	case 200:
-		var result GetUserTransitivePermissionOK
+		result := NewGetUserTransitivePermissionOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result GetUserTransitivePermissionBadRequest
+		result := NewGetUserTransitivePermissionBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getUserTransitivePermissionBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result GetUserTransitivePermissionUnauthorized
+		result := NewGetUserTransitivePermissionUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getUserTransitivePermissionUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result GetUserTransitivePermissionForbidden
+		result := NewGetUserTransitivePermissionForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getUserTransitivePermissionForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result GetUserTransitivePermissionNotFound
+		result := NewGetUserTransitivePermissionNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getUserTransitivePermissionNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewGetUserTransitivePermissionOK creates a GetUserTransitivePermissionOK with default headers values
+func NewGetUserTransitivePermissionOK() *GetUserTransitivePermissionOK {
+	return &GetUserTransitivePermissionOK{}
+}
+
+/*GetUserTransitivePermissionOK
+
 Successful invocation
 */
 type GetUserTransitivePermissionOK struct {
+}
+
+func (o *GetUserTransitivePermissionOK) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/user/{username}/transitive][%d] getUserTransitivePermissionOK ", 200)
 }
 
 func (o *GetUserTransitivePermissionOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *GetUserTransitivePermissionOK) readResponse(response client.Response, c
 	return nil
 }
 
-/*
+// NewGetUserTransitivePermissionBadRequest creates a GetUserTransitivePermissionBadRequest with default headers values
+func NewGetUserTransitivePermissionBadRequest() *GetUserTransitivePermissionBadRequest {
+	return &GetUserTransitivePermissionBadRequest{}
+}
+
+/*GetUserTransitivePermissionBadRequest
+
 Bad Request
 */
 type GetUserTransitivePermissionBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *GetUserTransitivePermissionBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/user/{username}/transitive][%d] getUserTransitivePermissionBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetUserTransitivePermissionBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *GetUserTransitivePermissionBadRequest) readResponse(response client.Res
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewGetUserTransitivePermissionUnauthorized creates a GetUserTransitivePermissionUnauthorized with default headers values
+func NewGetUserTransitivePermissionUnauthorized() *GetUserTransitivePermissionUnauthorized {
+	return &GetUserTransitivePermissionUnauthorized{}
+}
+
+/*GetUserTransitivePermissionUnauthorized
+
 Session required
 */
 type GetUserTransitivePermissionUnauthorized struct {
+}
+
+func (o *GetUserTransitivePermissionUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/user/{username}/transitive][%d] getUserTransitivePermissionUnauthorized ", 401)
 }
 
 func (o *GetUserTransitivePermissionUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *GetUserTransitivePermissionUnauthorized) readResponse(response client.R
 	return nil
 }
 
-/*
+// NewGetUserTransitivePermissionForbidden creates a GetUserTransitivePermissionForbidden with default headers values
+func NewGetUserTransitivePermissionForbidden() *GetUserTransitivePermissionForbidden {
+	return &GetUserTransitivePermissionForbidden{}
+}
+
+/*GetUserTransitivePermissionForbidden
+
 Unauthorized access
 */
 type GetUserTransitivePermissionForbidden struct {
+}
+
+func (o *GetUserTransitivePermissionForbidden) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/user/{username}/transitive][%d] getUserTransitivePermissionForbidden ", 403)
 }
 
 func (o *GetUserTransitivePermissionForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *GetUserTransitivePermissionForbidden) readResponse(response client.Resp
 	return nil
 }
 
-/*
+// NewGetUserTransitivePermissionNotFound creates a GetUserTransitivePermissionNotFound with default headers values
+func NewGetUserTransitivePermissionNotFound() *GetUserTransitivePermissionNotFound {
+	return &GetUserTransitivePermissionNotFound{}
+}
+
+/*GetUserTransitivePermissionNotFound
+
 Not found
 */
 type GetUserTransitivePermissionNotFound struct {
+}
+
+func (o *GetUserTransitivePermissionNotFound) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/user/{username}/transitive][%d] getUserTransitivePermissionNotFound ", 404)
 }
 
 func (o *GetUserTransitivePermissionNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

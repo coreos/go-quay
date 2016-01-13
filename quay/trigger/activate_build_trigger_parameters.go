@@ -11,23 +11,51 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*
-ActivateBuildTriggerParams contains all the parameters to send to the API endpoint
+// NewActivateBuildTriggerParams creates a new ActivateBuildTriggerParams object
+// with the default values initialized.
+func NewActivateBuildTriggerParams() *ActivateBuildTriggerParams {
+	var ()
+	return &ActivateBuildTriggerParams{}
+}
+
+/*ActivateBuildTriggerParams contains all the parameters to send to the API endpoint
 for the activate build trigger operation typically these are written to a http.Request
 */
 type ActivateBuildTriggerParams struct {
-	/*
+
+	/*Body
 	  Request body contents.
+
 	*/
 	Body *models.BuildTriggerActivateRequest
-	/*
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
-	/*
+	/*TriggerUUID
 	  The UUID of the build trigger
+
 	*/
 	TriggerUUID string
+}
+
+// WithBody adds the body to the activate build trigger params
+func (o *ActivateBuildTriggerParams) WithBody(body *models.BuildTriggerActivateRequest) *ActivateBuildTriggerParams {
+	o.Body = body
+	return o
+}
+
+// WithRepository adds the repository to the activate build trigger params
+func (o *ActivateBuildTriggerParams) WithRepository(repository string) *ActivateBuildTriggerParams {
+	o.Repository = repository
+	return o
+}
+
+// WithTriggerUUID adds the triggerUuid to the activate build trigger params
+func (o *ActivateBuildTriggerParams) WithTriggerUUID(triggerUuid string) *ActivateBuildTriggerParams {
+	o.TriggerUUID = triggerUuid
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

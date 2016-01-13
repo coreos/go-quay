@@ -4,6 +4,9 @@ package prototype
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *UpdateOrganizationPrototypePermissionReader) ReadResponse(response clie
 	switch response.Code() {
 
 	case 200:
-		var result UpdateOrganizationPrototypePermissionOK
+		result := NewUpdateOrganizationPrototypePermissionOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result UpdateOrganizationPrototypePermissionBadRequest
+		result := NewUpdateOrganizationPrototypePermissionBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("updateOrganizationPrototypePermissionBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result UpdateOrganizationPrototypePermissionUnauthorized
+		result := NewUpdateOrganizationPrototypePermissionUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("updateOrganizationPrototypePermissionUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result UpdateOrganizationPrototypePermissionForbidden
+		result := NewUpdateOrganizationPrototypePermissionForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("updateOrganizationPrototypePermissionForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result UpdateOrganizationPrototypePermissionNotFound
+		result := NewUpdateOrganizationPrototypePermissionNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("updateOrganizationPrototypePermissionNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewUpdateOrganizationPrototypePermissionOK creates a UpdateOrganizationPrototypePermissionOK with default headers values
+func NewUpdateOrganizationPrototypePermissionOK() *UpdateOrganizationPrototypePermissionOK {
+	return &UpdateOrganizationPrototypePermissionOK{}
+}
+
+/*UpdateOrganizationPrototypePermissionOK
+
 Successful invocation
 */
 type UpdateOrganizationPrototypePermissionOK struct {
+}
+
+func (o *UpdateOrganizationPrototypePermissionOK) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/prototypes/{prototypeid}][%d] updateOrganizationPrototypePermissionOK ", 200)
 }
 
 func (o *UpdateOrganizationPrototypePermissionOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *UpdateOrganizationPrototypePermissionOK) readResponse(response client.R
 	return nil
 }
 
-/*
+// NewUpdateOrganizationPrototypePermissionBadRequest creates a UpdateOrganizationPrototypePermissionBadRequest with default headers values
+func NewUpdateOrganizationPrototypePermissionBadRequest() *UpdateOrganizationPrototypePermissionBadRequest {
+	return &UpdateOrganizationPrototypePermissionBadRequest{}
+}
+
+/*UpdateOrganizationPrototypePermissionBadRequest
+
 Bad Request
 */
 type UpdateOrganizationPrototypePermissionBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *UpdateOrganizationPrototypePermissionBadRequest) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/prototypes/{prototypeid}][%d] updateOrganizationPrototypePermissionBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateOrganizationPrototypePermissionBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *UpdateOrganizationPrototypePermissionBadRequest) readResponse(response 
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewUpdateOrganizationPrototypePermissionUnauthorized creates a UpdateOrganizationPrototypePermissionUnauthorized with default headers values
+func NewUpdateOrganizationPrototypePermissionUnauthorized() *UpdateOrganizationPrototypePermissionUnauthorized {
+	return &UpdateOrganizationPrototypePermissionUnauthorized{}
+}
+
+/*UpdateOrganizationPrototypePermissionUnauthorized
+
 Session required
 */
 type UpdateOrganizationPrototypePermissionUnauthorized struct {
+}
+
+func (o *UpdateOrganizationPrototypePermissionUnauthorized) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/prototypes/{prototypeid}][%d] updateOrganizationPrototypePermissionUnauthorized ", 401)
 }
 
 func (o *UpdateOrganizationPrototypePermissionUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *UpdateOrganizationPrototypePermissionUnauthorized) readResponse(respons
 	return nil
 }
 
-/*
+// NewUpdateOrganizationPrototypePermissionForbidden creates a UpdateOrganizationPrototypePermissionForbidden with default headers values
+func NewUpdateOrganizationPrototypePermissionForbidden() *UpdateOrganizationPrototypePermissionForbidden {
+	return &UpdateOrganizationPrototypePermissionForbidden{}
+}
+
+/*UpdateOrganizationPrototypePermissionForbidden
+
 Unauthorized access
 */
 type UpdateOrganizationPrototypePermissionForbidden struct {
+}
+
+func (o *UpdateOrganizationPrototypePermissionForbidden) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/prototypes/{prototypeid}][%d] updateOrganizationPrototypePermissionForbidden ", 403)
 }
 
 func (o *UpdateOrganizationPrototypePermissionForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *UpdateOrganizationPrototypePermissionForbidden) readResponse(response c
 	return nil
 }
 
-/*
+// NewUpdateOrganizationPrototypePermissionNotFound creates a UpdateOrganizationPrototypePermissionNotFound with default headers values
+func NewUpdateOrganizationPrototypePermissionNotFound() *UpdateOrganizationPrototypePermissionNotFound {
+	return &UpdateOrganizationPrototypePermissionNotFound{}
+}
+
+/*UpdateOrganizationPrototypePermissionNotFound
+
 Not found
 */
 type UpdateOrganizationPrototypePermissionNotFound struct {
+}
+
+func (o *UpdateOrganizationPrototypePermissionNotFound) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/prototypes/{prototypeid}][%d] updateOrganizationPrototypePermissionNotFound ", 404)
 }
 
 func (o *UpdateOrganizationPrototypePermissionNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

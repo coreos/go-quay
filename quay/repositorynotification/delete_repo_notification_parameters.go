@@ -9,19 +9,40 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-DeleteRepoNotificationParams contains all the parameters to send to the API endpoint
+// NewDeleteRepoNotificationParams creates a new DeleteRepoNotificationParams object
+// with the default values initialized.
+func NewDeleteRepoNotificationParams() *DeleteRepoNotificationParams {
+	var ()
+	return &DeleteRepoNotificationParams{}
+}
+
+/*DeleteRepoNotificationParams contains all the parameters to send to the API endpoint
 for the delete repo notification operation typically these are written to a http.Request
 */
 type DeleteRepoNotificationParams struct {
-	/*
+
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
-	/*
+	/*UUID
 	  The UUID of the notification
+
 	*/
 	UUID string
+}
+
+// WithRepository adds the repository to the delete repo notification params
+func (o *DeleteRepoNotificationParams) WithRepository(repository string) *DeleteRepoNotificationParams {
+	o.Repository = repository
+	return o
+}
+
+// WithUUID adds the uuid to the delete repo notification params
+func (o *DeleteRepoNotificationParams) WithUUID(uuid string) *DeleteRepoNotificationParams {
+	o.UUID = uuid
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

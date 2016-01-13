@@ -25,14 +25,20 @@ type Client struct {
 
 /*Get a list of entities and resources that match the specified query.
  */
-func (a *Client) ConductSearch(params ConductSearchParams, authInfo client.AuthInfoWriter) (*ConductSearchOK, error) {
+func (a *Client) ConductSearch(params *ConductSearchParams, authInfo client.AuthInfoWriter) (*ConductSearchOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewConductSearchParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "conductSearch",
-		Params:   &params,
-		Reader:   &ConductSearchReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "conductSearch",
+		Method:      "GET",
+		PathPattern: "/api/v1/find/all",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &ConductSearchReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -42,13 +48,19 @@ func (a *Client) ConductSearch(params ConductSearchParams, authInfo client.AuthI
 
 /*Get a list of entities that match the specified prefix.
  */
-func (a *Client) GetMatchingEntities(params GetMatchingEntitiesParams) (*GetMatchingEntitiesOK, error) {
+func (a *Client) GetMatchingEntities(params *GetMatchingEntitiesParams) (*GetMatchingEntitiesOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMatchingEntitiesParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "getMatchingEntities",
-		Params: &params,
-		Reader: &GetMatchingEntitiesReader{formats: a.formats},
+		ID:          "getMatchingEntities",
+		Method:      "GET",
+		PathPattern: "/api/v1/entities/{prefix}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetMatchingEntitiesReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err

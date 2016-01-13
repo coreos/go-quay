@@ -9,15 +9,29 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-GetOrganizationMembersParams contains all the parameters to send to the API endpoint
+// NewGetOrganizationMembersParams creates a new GetOrganizationMembersParams object
+// with the default values initialized.
+func NewGetOrganizationMembersParams() *GetOrganizationMembersParams {
+	var ()
+	return &GetOrganizationMembersParams{}
+}
+
+/*GetOrganizationMembersParams contains all the parameters to send to the API endpoint
 for the get organization members operation typically these are written to a http.Request
 */
 type GetOrganizationMembersParams struct {
-	/*
+
+	/*Orgname
 	  The name of the organization
+
 	*/
 	Orgname string
+}
+
+// WithOrgname adds the orgname to the get organization members params
+func (o *GetOrganizationMembersParams) WithOrgname(orgname string) *GetOrganizationMembersParams {
+	o.Orgname = orgname
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

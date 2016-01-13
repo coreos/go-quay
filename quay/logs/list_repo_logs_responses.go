@@ -4,6 +4,9 @@ package logs
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *ListRepoLogsReader) ReadResponse(response client.Response, consumer htt
 	switch response.Code() {
 
 	case 200:
-		var result ListRepoLogsOK
+		result := NewListRepoLogsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result ListRepoLogsBadRequest
+		result := NewListRepoLogsBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listRepoLogsBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result ListRepoLogsUnauthorized
+		result := NewListRepoLogsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listRepoLogsUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result ListRepoLogsForbidden
+		result := NewListRepoLogsForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listRepoLogsForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result ListRepoLogsNotFound
+		result := NewListRepoLogsNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listRepoLogsNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewListRepoLogsOK creates a ListRepoLogsOK with default headers values
+func NewListRepoLogsOK() *ListRepoLogsOK {
+	return &ListRepoLogsOK{}
+}
+
+/*ListRepoLogsOK
+
 Successful invocation
 */
 type ListRepoLogsOK struct {
+}
+
+func (o *ListRepoLogsOK) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/logs][%d] listRepoLogsOK ", 200)
 }
 
 func (o *ListRepoLogsOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *ListRepoLogsOK) readResponse(response client.Response, consumer httpkit
 	return nil
 }
 
-/*
+// NewListRepoLogsBadRequest creates a ListRepoLogsBadRequest with default headers values
+func NewListRepoLogsBadRequest() *ListRepoLogsBadRequest {
+	return &ListRepoLogsBadRequest{}
+}
+
+/*ListRepoLogsBadRequest
+
 Bad Request
 */
 type ListRepoLogsBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *ListRepoLogsBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/logs][%d] listRepoLogsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ListRepoLogsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *ListRepoLogsBadRequest) readResponse(response client.Response, consumer
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewListRepoLogsUnauthorized creates a ListRepoLogsUnauthorized with default headers values
+func NewListRepoLogsUnauthorized() *ListRepoLogsUnauthorized {
+	return &ListRepoLogsUnauthorized{}
+}
+
+/*ListRepoLogsUnauthorized
+
 Session required
 */
 type ListRepoLogsUnauthorized struct {
+}
+
+func (o *ListRepoLogsUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/logs][%d] listRepoLogsUnauthorized ", 401)
 }
 
 func (o *ListRepoLogsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *ListRepoLogsUnauthorized) readResponse(response client.Response, consum
 	return nil
 }
 
-/*
+// NewListRepoLogsForbidden creates a ListRepoLogsForbidden with default headers values
+func NewListRepoLogsForbidden() *ListRepoLogsForbidden {
+	return &ListRepoLogsForbidden{}
+}
+
+/*ListRepoLogsForbidden
+
 Unauthorized access
 */
 type ListRepoLogsForbidden struct {
+}
+
+func (o *ListRepoLogsForbidden) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/logs][%d] listRepoLogsForbidden ", 403)
 }
 
 func (o *ListRepoLogsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *ListRepoLogsForbidden) readResponse(response client.Response, consumer 
 	return nil
 }
 
-/*
+// NewListRepoLogsNotFound creates a ListRepoLogsNotFound with default headers values
+func NewListRepoLogsNotFound() *ListRepoLogsNotFound {
+	return &ListRepoLogsNotFound{}
+}
+
+/*ListRepoLogsNotFound
+
 Not found
 */
 type ListRepoLogsNotFound struct {
+}
+
+func (o *ListRepoLogsNotFound) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/logs][%d] listRepoLogsNotFound ", 404)
 }
 
 func (o *ListRepoLogsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

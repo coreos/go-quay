@@ -9,19 +9,40 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-GetUserPermissionsParams contains all the parameters to send to the API endpoint
+// NewGetUserPermissionsParams creates a new GetUserPermissionsParams object
+// with the default values initialized.
+func NewGetUserPermissionsParams() *GetUserPermissionsParams {
+	var ()
+	return &GetUserPermissionsParams{}
+}
+
+/*GetUserPermissionsParams contains all the parameters to send to the API endpoint
 for the get user permissions operation typically these are written to a http.Request
 */
 type GetUserPermissionsParams struct {
-	/*
+
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
-	/*
+	/*Username
 	  The username of the user to which the permission applies
+
 	*/
 	Username string
+}
+
+// WithRepository adds the repository to the get user permissions params
+func (o *GetUserPermissionsParams) WithRepository(repository string) *GetUserPermissionsParams {
+	o.Repository = repository
+	return o
+}
+
+// WithUsername adds the username to the get user permissions params
+func (o *GetUserPermissionsParams) WithUsername(username string) *GetUserPermissionsParams {
+	o.Username = username
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

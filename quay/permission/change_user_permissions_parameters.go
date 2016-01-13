@@ -11,23 +11,51 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*
-ChangeUserPermissionsParams contains all the parameters to send to the API endpoint
+// NewChangeUserPermissionsParams creates a new ChangeUserPermissionsParams object
+// with the default values initialized.
+func NewChangeUserPermissionsParams() *ChangeUserPermissionsParams {
+	var ()
+	return &ChangeUserPermissionsParams{}
+}
+
+/*ChangeUserPermissionsParams contains all the parameters to send to the API endpoint
 for the change user permissions operation typically these are written to a http.Request
 */
 type ChangeUserPermissionsParams struct {
-	/*
+
+	/*Body
 	  Request body contents.
+
 	*/
 	Body *models.UserPermission
-	/*
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
-	/*
+	/*Username
 	  The username of the user to which the permission applies
+
 	*/
 	Username string
+}
+
+// WithBody adds the body to the change user permissions params
+func (o *ChangeUserPermissionsParams) WithBody(body *models.UserPermission) *ChangeUserPermissionsParams {
+	o.Body = body
+	return o
+}
+
+// WithRepository adds the repository to the change user permissions params
+func (o *ChangeUserPermissionsParams) WithRepository(repository string) *ChangeUserPermissionsParams {
+	o.Repository = repository
+	return o
+}
+
+// WithUsername adds the username to the change user permissions params
+func (o *ChangeUserPermissionsParams) WithUsername(username string) *ChangeUserPermissionsParams {
+	o.Username = username
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

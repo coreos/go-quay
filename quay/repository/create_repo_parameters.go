@@ -11,15 +11,29 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*
-CreateRepoParams contains all the parameters to send to the API endpoint
+// NewCreateRepoParams creates a new CreateRepoParams object
+// with the default values initialized.
+func NewCreateRepoParams() *CreateRepoParams {
+	var ()
+	return &CreateRepoParams{}
+}
+
+/*CreateRepoParams contains all the parameters to send to the API endpoint
 for the create repo operation typically these are written to a http.Request
 */
 type CreateRepoParams struct {
-	/*
+
+	/*Body
 	  Request body contents.
+
 	*/
 	Body *models.NewRepo
+}
+
+// WithBody adds the body to the create repo params
+func (o *CreateRepoParams) WithBody(body *models.NewRepo) *CreateRepoParams {
+	o.Body = body
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

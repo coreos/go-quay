@@ -25,14 +25,20 @@ type Client struct {
 
 /*Create a new notification for the specified repository.
  */
-func (a *Client) CreateRepoNotification(params CreateRepoNotificationParams, authInfo client.AuthInfoWriter) (*CreateRepoNotificationOK, error) {
+func (a *Client) CreateRepoNotification(params *CreateRepoNotificationParams, authInfo client.AuthInfoWriter) (*CreateRepoNotificationOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateRepoNotificationParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "createRepoNotification",
-		Params:   &params,
-		Reader:   &CreateRepoNotificationReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "createRepoNotification",
+		Method:      "POST",
+		PathPattern: "/api/v1/repository/{repository}/notification/",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &CreateRepoNotificationReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -42,14 +48,20 @@ func (a *Client) CreateRepoNotification(params CreateRepoNotificationParams, aut
 
 /*Deletes the specified notification.
  */
-func (a *Client) DeleteRepoNotification(params DeleteRepoNotificationParams, authInfo client.AuthInfoWriter) (*DeleteRepoNotificationNoContent, error) {
+func (a *Client) DeleteRepoNotification(params *DeleteRepoNotificationParams, authInfo client.AuthInfoWriter) (*DeleteRepoNotificationNoContent, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteRepoNotificationParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "deleteRepoNotification",
-		Params:   &params,
-		Reader:   &DeleteRepoNotificationReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "deleteRepoNotification",
+		Method:      "DELETE",
+		PathPattern: "/api/v1/repository/{repository}/notification/{uuid}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &DeleteRepoNotificationReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -59,14 +71,20 @@ func (a *Client) DeleteRepoNotification(params DeleteRepoNotificationParams, aut
 
 /*Get information for the specified notification.
  */
-func (a *Client) GetRepoNotification(params GetRepoNotificationParams, authInfo client.AuthInfoWriter) (*GetRepoNotificationOK, error) {
+func (a *Client) GetRepoNotification(params *GetRepoNotificationParams, authInfo client.AuthInfoWriter) (*GetRepoNotificationOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRepoNotificationParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "getRepoNotification",
-		Params:   &params,
-		Reader:   &GetRepoNotificationReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "getRepoNotification",
+		Method:      "GET",
+		PathPattern: "/api/v1/repository/{repository}/notification/{uuid}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetRepoNotificationReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -76,14 +94,20 @@ func (a *Client) GetRepoNotification(params GetRepoNotificationParams, authInfo 
 
 /*List the notifications for the specified repository.
  */
-func (a *Client) ListRepoNotifications(params ListRepoNotificationsParams, authInfo client.AuthInfoWriter) (*ListRepoNotificationsOK, error) {
+func (a *Client) ListRepoNotifications(params *ListRepoNotificationsParams, authInfo client.AuthInfoWriter) (*ListRepoNotificationsOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListRepoNotificationsParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "listRepoNotifications",
-		Params:   &params,
-		Reader:   &ListRepoNotificationsReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "listRepoNotifications",
+		Method:      "GET",
+		PathPattern: "/api/v1/repository/{repository}/notification/",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &ListRepoNotificationsReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -93,14 +117,20 @@ func (a *Client) ListRepoNotifications(params ListRepoNotificationsParams, authI
 
 /*Queues a test notification for this repository.
  */
-func (a *Client) TestRepoNotification(params TestRepoNotificationParams, authInfo client.AuthInfoWriter) (*TestRepoNotificationOK, error) {
+func (a *Client) TestRepoNotification(params *TestRepoNotificationParams, authInfo client.AuthInfoWriter) (*TestRepoNotificationOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewTestRepoNotificationParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "testRepoNotification",
-		Params:   &params,
-		Reader:   &TestRepoNotificationReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "testRepoNotification",
+		Method:      "POST",
+		PathPattern: "/api/v1/repository/{repository}/notification/{uuid}/test",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &TestRepoNotificationReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err

@@ -10,39 +10,95 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-ListReposParams contains all the parameters to send to the API endpoint
+// NewListReposParams creates a new ListReposParams object
+// with the default values initialized.
+func NewListReposParams() *ListReposParams {
+	var ()
+	return &ListReposParams{}
+}
+
+/*ListReposParams contains all the parameters to send to the API endpoint
 for the list repos operation typically these are written to a http.Request
 */
 type ListReposParams struct {
-	/*
+
+	/*LastModified
 	  Whether to include when the repository was last modified.
+
 	*/
-	LastModified bool
-	/*
+	LastModified *bool
+	/*Limit
 	  Limit on the number of results (int)
+
 	*/
-	Limit int64
-	/*
+	Limit *int64
+	/*Namespace
 	  Filters the repositories returned to this namespace
+
 	*/
-	Namespace string
-	/*
+	Namespace *string
+	/*Page
 	  Offset page number. (int)
+
 	*/
-	Page int64
-	/*
+	Page *int64
+	/*Popularity
 	  Whether to include the repository's popularity metric.
+
 	*/
-	Popularity bool
-	/*
+	Popularity *bool
+	/*Public
 	  Adds any repositories visible to the user by virtue of being public
+
 	*/
-	Public bool
-	/*
+	Public *bool
+	/*Starred
 	  Filters the repositories returned to those starred by the user
+
 	*/
-	Starred bool
+	Starred *bool
+}
+
+// WithLastModified adds the lastModified to the list repos params
+func (o *ListReposParams) WithLastModified(lastModified *bool) *ListReposParams {
+	o.LastModified = lastModified
+	return o
+}
+
+// WithLimit adds the limit to the list repos params
+func (o *ListReposParams) WithLimit(limit *int64) *ListReposParams {
+	o.Limit = limit
+	return o
+}
+
+// WithNamespace adds the namespace to the list repos params
+func (o *ListReposParams) WithNamespace(namespace *string) *ListReposParams {
+	o.Namespace = namespace
+	return o
+}
+
+// WithPage adds the page to the list repos params
+func (o *ListReposParams) WithPage(page *int64) *ListReposParams {
+	o.Page = page
+	return o
+}
+
+// WithPopularity adds the popularity to the list repos params
+func (o *ListReposParams) WithPopularity(popularity *bool) *ListReposParams {
+	o.Popularity = popularity
+	return o
+}
+
+// WithPublic adds the public to the list repos params
+func (o *ListReposParams) WithPublic(public *bool) *ListReposParams {
+	o.Public = public
+	return o
+}
+
+// WithStarred adds the starred to the list repos params
+func (o *ListReposParams) WithStarred(starred *bool) *ListReposParams {
+	o.Starred = starred
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -50,39 +106,116 @@ func (o *ListReposParams) WriteToRequest(r client.Request, reg strfmt.Registry) 
 
 	var res []error
 
-	// query param last_modified
-	if err := r.SetQueryParam("last_modified", swag.FormatBool(o.LastModified)); err != nil {
-		return err
+	if o.LastModified != nil {
+
+		// query param last_modified
+		var qrLastModified bool
+		if o.LastModified != nil {
+			qrLastModified = *o.LastModified
+		}
+		qLastModified := swag.FormatBool(qrLastModified)
+		if qLastModified != "" {
+			if err := r.SetQueryParam("last_modified", qLastModified); err != nil {
+				return err
+			}
+		}
+
 	}
 
-	// query param limit
-	if err := r.SetQueryParam("limit", swag.FormatInt64(o.Limit)); err != nil {
-		return err
+	if o.Limit != nil {
+
+		// query param limit
+		var qrLimit int64
+		if o.Limit != nil {
+			qrLimit = *o.Limit
+		}
+		qLimit := swag.FormatInt64(qrLimit)
+		if qLimit != "" {
+			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
 	}
 
-	// query param namespace
-	if err := r.SetQueryParam("namespace", o.Namespace); err != nil {
-		return err
+	if o.Namespace != nil {
+
+		// query param namespace
+		var qrNamespace string
+		if o.Namespace != nil {
+			qrNamespace = *o.Namespace
+		}
+		qNamespace := qrNamespace
+		if qNamespace != "" {
+			if err := r.SetQueryParam("namespace", qNamespace); err != nil {
+				return err
+			}
+		}
+
 	}
 
-	// query param page
-	if err := r.SetQueryParam("page", swag.FormatInt64(o.Page)); err != nil {
-		return err
+	if o.Page != nil {
+
+		// query param page
+		var qrPage int64
+		if o.Page != nil {
+			qrPage = *o.Page
+		}
+		qPage := swag.FormatInt64(qrPage)
+		if qPage != "" {
+			if err := r.SetQueryParam("page", qPage); err != nil {
+				return err
+			}
+		}
+
 	}
 
-	// query param popularity
-	if err := r.SetQueryParam("popularity", swag.FormatBool(o.Popularity)); err != nil {
-		return err
+	if o.Popularity != nil {
+
+		// query param popularity
+		var qrPopularity bool
+		if o.Popularity != nil {
+			qrPopularity = *o.Popularity
+		}
+		qPopularity := swag.FormatBool(qrPopularity)
+		if qPopularity != "" {
+			if err := r.SetQueryParam("popularity", qPopularity); err != nil {
+				return err
+			}
+		}
+
 	}
 
-	// query param public
-	if err := r.SetQueryParam("public", swag.FormatBool(o.Public)); err != nil {
-		return err
+	if o.Public != nil {
+
+		// query param public
+		var qrPublic bool
+		if o.Public != nil {
+			qrPublic = *o.Public
+		}
+		qPublic := swag.FormatBool(qrPublic)
+		if qPublic != "" {
+			if err := r.SetQueryParam("public", qPublic); err != nil {
+				return err
+			}
+		}
+
 	}
 
-	// query param starred
-	if err := r.SetQueryParam("starred", swag.FormatBool(o.Starred)); err != nil {
-		return err
+	if o.Starred != nil {
+
+		// query param starred
+		var qrStarred bool
+		if o.Starred != nil {
+			qrStarred = *o.Starred
+		}
+		qStarred := swag.FormatBool(qrStarred)
+		if qStarred != "" {
+			if err := r.SetQueryParam("starred", qStarred); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if len(res) > 0 {

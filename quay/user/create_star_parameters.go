@@ -11,15 +11,29 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*
-CreateStarParams contains all the parameters to send to the API endpoint
+// NewCreateStarParams creates a new CreateStarParams object
+// with the default values initialized.
+func NewCreateStarParams() *CreateStarParams {
+	var ()
+	return &CreateStarParams{}
+}
+
+/*CreateStarParams contains all the parameters to send to the API endpoint
 for the create star operation typically these are written to a http.Request
 */
 type CreateStarParams struct {
-	/*
+
+	/*Body
 	  Request body contents.
+
 	*/
 	Body *models.NewStarredRepository
+}
+
+// WithBody adds the body to the create star params
+func (o *CreateStarParams) WithBody(body *models.NewStarredRepository) *CreateStarParams {
+	o.Body = body
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

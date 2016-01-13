@@ -4,6 +4,9 @@ package team
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *InviteTeamMemberEmailReader) ReadResponse(response client.Response, con
 	switch response.Code() {
 
 	case 200:
-		var result InviteTeamMemberEmailOK
+		result := NewInviteTeamMemberEmailOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result InviteTeamMemberEmailBadRequest
+		result := NewInviteTeamMemberEmailBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("inviteTeamMemberEmailBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result InviteTeamMemberEmailUnauthorized
+		result := NewInviteTeamMemberEmailUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("inviteTeamMemberEmailUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result InviteTeamMemberEmailForbidden
+		result := NewInviteTeamMemberEmailForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("inviteTeamMemberEmailForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result InviteTeamMemberEmailNotFound
+		result := NewInviteTeamMemberEmailNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("inviteTeamMemberEmailNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewInviteTeamMemberEmailOK creates a InviteTeamMemberEmailOK with default headers values
+func NewInviteTeamMemberEmailOK() *InviteTeamMemberEmailOK {
+	return &InviteTeamMemberEmailOK{}
+}
+
+/*InviteTeamMemberEmailOK
+
 Successful invocation
 */
 type InviteTeamMemberEmailOK struct {
+}
+
+func (o *InviteTeamMemberEmailOK) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}/invite/{email}][%d] inviteTeamMemberEmailOK ", 200)
 }
 
 func (o *InviteTeamMemberEmailOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *InviteTeamMemberEmailOK) readResponse(response client.Response, consume
 	return nil
 }
 
-/*
+// NewInviteTeamMemberEmailBadRequest creates a InviteTeamMemberEmailBadRequest with default headers values
+func NewInviteTeamMemberEmailBadRequest() *InviteTeamMemberEmailBadRequest {
+	return &InviteTeamMemberEmailBadRequest{}
+}
+
+/*InviteTeamMemberEmailBadRequest
+
 Bad Request
 */
 type InviteTeamMemberEmailBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *InviteTeamMemberEmailBadRequest) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}/invite/{email}][%d] inviteTeamMemberEmailBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *InviteTeamMemberEmailBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *InviteTeamMemberEmailBadRequest) readResponse(response client.Response,
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewInviteTeamMemberEmailUnauthorized creates a InviteTeamMemberEmailUnauthorized with default headers values
+func NewInviteTeamMemberEmailUnauthorized() *InviteTeamMemberEmailUnauthorized {
+	return &InviteTeamMemberEmailUnauthorized{}
+}
+
+/*InviteTeamMemberEmailUnauthorized
+
 Session required
 */
 type InviteTeamMemberEmailUnauthorized struct {
+}
+
+func (o *InviteTeamMemberEmailUnauthorized) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}/invite/{email}][%d] inviteTeamMemberEmailUnauthorized ", 401)
 }
 
 func (o *InviteTeamMemberEmailUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *InviteTeamMemberEmailUnauthorized) readResponse(response client.Respons
 	return nil
 }
 
-/*
+// NewInviteTeamMemberEmailForbidden creates a InviteTeamMemberEmailForbidden with default headers values
+func NewInviteTeamMemberEmailForbidden() *InviteTeamMemberEmailForbidden {
+	return &InviteTeamMemberEmailForbidden{}
+}
+
+/*InviteTeamMemberEmailForbidden
+
 Unauthorized access
 */
 type InviteTeamMemberEmailForbidden struct {
+}
+
+func (o *InviteTeamMemberEmailForbidden) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}/invite/{email}][%d] inviteTeamMemberEmailForbidden ", 403)
 }
 
 func (o *InviteTeamMemberEmailForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *InviteTeamMemberEmailForbidden) readResponse(response client.Response, 
 	return nil
 }
 
-/*
+// NewInviteTeamMemberEmailNotFound creates a InviteTeamMemberEmailNotFound with default headers values
+func NewInviteTeamMemberEmailNotFound() *InviteTeamMemberEmailNotFound {
+	return &InviteTeamMemberEmailNotFound{}
+}
+
+/*InviteTeamMemberEmailNotFound
+
 Not found
 */
 type InviteTeamMemberEmailNotFound struct {
+}
+
+func (o *InviteTeamMemberEmailNotFound) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}/invite/{email}][%d] inviteTeamMemberEmailNotFound ", 404)
 }
 
 func (o *InviteTeamMemberEmailNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

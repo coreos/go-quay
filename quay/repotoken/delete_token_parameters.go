@@ -9,19 +9,40 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-DeleteTokenParams contains all the parameters to send to the API endpoint
+// NewDeleteTokenParams creates a new DeleteTokenParams object
+// with the default values initialized.
+func NewDeleteTokenParams() *DeleteTokenParams {
+	var ()
+	return &DeleteTokenParams{}
+}
+
+/*DeleteTokenParams contains all the parameters to send to the API endpoint
 for the delete token operation typically these are written to a http.Request
 */
 type DeleteTokenParams struct {
-	/*
+
+	/*Code
 	  The token code
+
 	*/
 	Code string
-	/*
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
+}
+
+// WithCode adds the code to the delete token params
+func (o *DeleteTokenParams) WithCode(code string) *DeleteTokenParams {
+	o.Code = code
+	return o
+}
+
+// WithRepository adds the repository to the delete token params
+func (o *DeleteTokenParams) WithRepository(repository string) *DeleteTokenParams {
+	o.Repository = repository
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

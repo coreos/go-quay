@@ -9,19 +9,40 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-GetBuildTriggerParams contains all the parameters to send to the API endpoint
+// NewGetBuildTriggerParams creates a new GetBuildTriggerParams object
+// with the default values initialized.
+func NewGetBuildTriggerParams() *GetBuildTriggerParams {
+	var ()
+	return &GetBuildTriggerParams{}
+}
+
+/*GetBuildTriggerParams contains all the parameters to send to the API endpoint
 for the get build trigger operation typically these are written to a http.Request
 */
 type GetBuildTriggerParams struct {
-	/*
+
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
-	/*
+	/*TriggerUUID
 	  The UUID of the build trigger
+
 	*/
 	TriggerUUID string
+}
+
+// WithRepository adds the repository to the get build trigger params
+func (o *GetBuildTriggerParams) WithRepository(repository string) *GetBuildTriggerParams {
+	o.Repository = repository
+	return o
+}
+
+// WithTriggerUUID adds the triggerUuid to the get build trigger params
+func (o *GetBuildTriggerParams) WithTriggerUUID(triggerUuid string) *GetBuildTriggerParams {
+	o.TriggerUUID = triggerUuid
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

@@ -4,6 +4,9 @@ package user
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *DeleteStarReader) ReadResponse(response client.Response, consumer httpk
 	switch response.Code() {
 
 	case 204:
-		var result DeleteStarNoContent
+		result := NewDeleteStarNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result DeleteStarBadRequest
+		result := NewDeleteStarBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteStarBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result DeleteStarUnauthorized
+		result := NewDeleteStarUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteStarUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result DeleteStarForbidden
+		result := NewDeleteStarForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteStarForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result DeleteStarNotFound
+		result := NewDeleteStarNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteStarNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewDeleteStarNoContent creates a DeleteStarNoContent with default headers values
+func NewDeleteStarNoContent() *DeleteStarNoContent {
+	return &DeleteStarNoContent{}
+}
+
+/*DeleteStarNoContent
+
 Deleted
 */
 type DeleteStarNoContent struct {
+}
+
+func (o *DeleteStarNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/user/starred/{repository}][%d] deleteStarNoContent ", 204)
 }
 
 func (o *DeleteStarNoContent) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *DeleteStarNoContent) readResponse(response client.Response, consumer ht
 	return nil
 }
 
-/*
+// NewDeleteStarBadRequest creates a DeleteStarBadRequest with default headers values
+func NewDeleteStarBadRequest() *DeleteStarBadRequest {
+	return &DeleteStarBadRequest{}
+}
+
+/*DeleteStarBadRequest
+
 Bad Request
 */
 type DeleteStarBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *DeleteStarBadRequest) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/user/starred/{repository}][%d] deleteStarBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeleteStarBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *DeleteStarBadRequest) readResponse(response client.Response, consumer h
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewDeleteStarUnauthorized creates a DeleteStarUnauthorized with default headers values
+func NewDeleteStarUnauthorized() *DeleteStarUnauthorized {
+	return &DeleteStarUnauthorized{}
+}
+
+/*DeleteStarUnauthorized
+
 Session required
 */
 type DeleteStarUnauthorized struct {
+}
+
+func (o *DeleteStarUnauthorized) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/user/starred/{repository}][%d] deleteStarUnauthorized ", 401)
 }
 
 func (o *DeleteStarUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *DeleteStarUnauthorized) readResponse(response client.Response, consumer
 	return nil
 }
 
-/*
+// NewDeleteStarForbidden creates a DeleteStarForbidden with default headers values
+func NewDeleteStarForbidden() *DeleteStarForbidden {
+	return &DeleteStarForbidden{}
+}
+
+/*DeleteStarForbidden
+
 Unauthorized access
 */
 type DeleteStarForbidden struct {
+}
+
+func (o *DeleteStarForbidden) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/user/starred/{repository}][%d] deleteStarForbidden ", 403)
 }
 
 func (o *DeleteStarForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *DeleteStarForbidden) readResponse(response client.Response, consumer ht
 	return nil
 }
 
-/*
+// NewDeleteStarNotFound creates a DeleteStarNotFound with default headers values
+func NewDeleteStarNotFound() *DeleteStarNotFound {
+	return &DeleteStarNotFound{}
+}
+
+/*DeleteStarNotFound
+
 Not found
 */
 type DeleteStarNotFound struct {
+}
+
+func (o *DeleteStarNotFound) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/user/starred/{repository}][%d] deleteStarNotFound ", 404)
 }
 
 func (o *DeleteStarNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

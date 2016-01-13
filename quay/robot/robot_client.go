@@ -25,14 +25,20 @@ type Client struct {
 
 /*Create a new robot in the organization.
  */
-func (a *Client) CreateOrgRobot(params CreateOrgRobotParams, authInfo client.AuthInfoWriter) (*CreateOrgRobotCreated, error) {
+func (a *Client) CreateOrgRobot(params *CreateOrgRobotParams, authInfo client.AuthInfoWriter) (*CreateOrgRobotCreated, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateOrgRobotParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "createOrgRobot",
-		Params:   &params,
-		Reader:   &CreateOrgRobotReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "createOrgRobot",
+		Method:      "PUT",
+		PathPattern: "/api/v1/organization/{orgname}/robots/{robot_shortname}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &CreateOrgRobotReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -42,13 +48,19 @@ func (a *Client) CreateOrgRobot(params CreateOrgRobotParams, authInfo client.Aut
 
 /*Create a new user robot with the specified name.
  */
-func (a *Client) CreateUserRobot(params CreateUserRobotParams) (*CreateUserRobotOK, error) {
+func (a *Client) CreateUserRobot(params *CreateUserRobotParams) (*CreateUserRobotOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateUserRobotParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "createUserRobot",
-		Params: &params,
-		Reader: &CreateUserRobotReader{formats: a.formats},
+		ID:          "createUserRobot",
+		Method:      "PUT",
+		PathPattern: "/api/v1/user/robots/{robot_shortname}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &CreateUserRobotReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -58,14 +70,20 @@ func (a *Client) CreateUserRobot(params CreateUserRobotParams) (*CreateUserRobot
 
 /*Delete an existing organization robot.
  */
-func (a *Client) DeleteOrgRobot(params DeleteOrgRobotParams, authInfo client.AuthInfoWriter) (*DeleteOrgRobotNoContent, error) {
+func (a *Client) DeleteOrgRobot(params *DeleteOrgRobotParams, authInfo client.AuthInfoWriter) (*DeleteOrgRobotNoContent, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteOrgRobotParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "deleteOrgRobot",
-		Params:   &params,
-		Reader:   &DeleteOrgRobotReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "deleteOrgRobot",
+		Method:      "DELETE",
+		PathPattern: "/api/v1/organization/{orgname}/robots/{robot_shortname}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &DeleteOrgRobotReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -75,13 +93,19 @@ func (a *Client) DeleteOrgRobot(params DeleteOrgRobotParams, authInfo client.Aut
 
 /*Delete an existing robot.
  */
-func (a *Client) DeleteUserRobot(params DeleteUserRobotParams) (*DeleteUserRobotNoContent, error) {
+func (a *Client) DeleteUserRobot(params *DeleteUserRobotParams) (*DeleteUserRobotNoContent, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteUserRobotParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "deleteUserRobot",
-		Params: &params,
-		Reader: &DeleteUserRobotReader{formats: a.formats},
+		ID:          "deleteUserRobot",
+		Method:      "DELETE",
+		PathPattern: "/api/v1/user/robots/{robot_shortname}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &DeleteUserRobotReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -91,14 +115,20 @@ func (a *Client) DeleteUserRobot(params DeleteUserRobotParams) (*DeleteUserRobot
 
 /*Returns the organization's robot with the specified name.
  */
-func (a *Client) GetOrgRobot(params GetOrgRobotParams, authInfo client.AuthInfoWriter) (*GetOrgRobotOK, error) {
+func (a *Client) GetOrgRobot(params *GetOrgRobotParams, authInfo client.AuthInfoWriter) (*GetOrgRobotOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetOrgRobotParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "getOrgRobot",
-		Params:   &params,
-		Reader:   &GetOrgRobotReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "getOrgRobot",
+		Method:      "GET",
+		PathPattern: "/api/v1/organization/{orgname}/robots/{robot_shortname}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetOrgRobotReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -108,13 +138,19 @@ func (a *Client) GetOrgRobot(params GetOrgRobotParams, authInfo client.AuthInfoW
 
 /*Returns the list of repository permissions for the org's robot.
  */
-func (a *Client) GetOrgRobotPermissions(params GetOrgRobotPermissionsParams) (*GetOrgRobotPermissionsOK, error) {
+func (a *Client) GetOrgRobotPermissions(params *GetOrgRobotPermissionsParams) (*GetOrgRobotPermissionsOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetOrgRobotPermissionsParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "getOrgRobotPermissions",
-		Params: &params,
-		Reader: &GetOrgRobotPermissionsReader{formats: a.formats},
+		ID:          "getOrgRobotPermissions",
+		Method:      "GET",
+		PathPattern: "/api/v1/organization/{orgname}/robots/{robot_shortname}/permissions",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetOrgRobotPermissionsReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -124,14 +160,20 @@ func (a *Client) GetOrgRobotPermissions(params GetOrgRobotPermissionsParams) (*G
 
 /*List the organization's robots.
  */
-func (a *Client) GetOrgRobots(params GetOrgRobotsParams, authInfo client.AuthInfoWriter) (*GetOrgRobotsOK, error) {
+func (a *Client) GetOrgRobots(params *GetOrgRobotsParams, authInfo client.AuthInfoWriter) (*GetOrgRobotsOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetOrgRobotsParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "getOrgRobots",
-		Params:   &params,
-		Reader:   &GetOrgRobotsReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "getOrgRobots",
+		Method:      "GET",
+		PathPattern: "/api/v1/organization/{orgname}/robots",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetOrgRobotsReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -141,13 +183,19 @@ func (a *Client) GetOrgRobots(params GetOrgRobotsParams, authInfo client.AuthInf
 
 /*Returns the user's robot with the specified name.
  */
-func (a *Client) GetUserRobot(params GetUserRobotParams) (*GetUserRobotOK, error) {
+func (a *Client) GetUserRobot(params *GetUserRobotParams) (*GetUserRobotOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserRobotParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "getUserRobot",
-		Params: &params,
-		Reader: &GetUserRobotReader{formats: a.formats},
+		ID:          "getUserRobot",
+		Method:      "GET",
+		PathPattern: "/api/v1/user/robots/{robot_shortname}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetUserRobotReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -157,13 +205,19 @@ func (a *Client) GetUserRobot(params GetUserRobotParams) (*GetUserRobotOK, error
 
 /*Returns the list of repository permissions for the user's robot.
  */
-func (a *Client) GetUserRobotPermissions(params GetUserRobotPermissionsParams) (*GetUserRobotPermissionsOK, error) {
+func (a *Client) GetUserRobotPermissions(params *GetUserRobotPermissionsParams) (*GetUserRobotPermissionsOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserRobotPermissionsParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "getUserRobotPermissions",
-		Params: &params,
-		Reader: &GetUserRobotPermissionsReader{formats: a.formats},
+		ID:          "getUserRobotPermissions",
+		Method:      "GET",
+		PathPattern: "/api/v1/user/robots/{robot_shortname}/permissions",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetUserRobotPermissionsReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -173,13 +227,19 @@ func (a *Client) GetUserRobotPermissions(params GetUserRobotPermissionsParams) (
 
 /*List the available robots for the user.
  */
-func (a *Client) GetUserRobots(params GetUserRobotsParams) (*GetUserRobotsOK, error) {
+func (a *Client) GetUserRobots(params *GetUserRobotsParams) (*GetUserRobotsOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserRobotsParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "getUserRobots",
-		Params: &params,
-		Reader: &GetUserRobotsReader{formats: a.formats},
+		ID:          "getUserRobots",
+		Method:      "GET",
+		PathPattern: "/api/v1/user/robots",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetUserRobotsReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -189,14 +249,20 @@ func (a *Client) GetUserRobots(params GetUserRobotsParams) (*GetUserRobotsOK, er
 
 /*Regenerates the token for an organization robot.
  */
-func (a *Client) RegenerateOrgRobotToken(params RegenerateOrgRobotTokenParams, authInfo client.AuthInfoWriter) (*RegenerateOrgRobotTokenOK, error) {
+func (a *Client) RegenerateOrgRobotToken(params *RegenerateOrgRobotTokenParams, authInfo client.AuthInfoWriter) (*RegenerateOrgRobotTokenOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRegenerateOrgRobotTokenParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "regenerateOrgRobotToken",
-		Params:   &params,
-		Reader:   &RegenerateOrgRobotTokenReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "regenerateOrgRobotToken",
+		Method:      "POST",
+		PathPattern: "/api/v1/organization/{orgname}/robots/{robot_shortname}/regenerate",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &RegenerateOrgRobotTokenReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -206,13 +272,19 @@ func (a *Client) RegenerateOrgRobotToken(params RegenerateOrgRobotTokenParams, a
 
 /*Regenerates the token for a user's robot.
  */
-func (a *Client) RegenerateUserRobotToken(params RegenerateUserRobotTokenParams) (*RegenerateUserRobotTokenOK, error) {
+func (a *Client) RegenerateUserRobotToken(params *RegenerateUserRobotTokenParams) (*RegenerateUserRobotTokenOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRegenerateUserRobotTokenParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "regenerateUserRobotToken",
-		Params: &params,
-		Reader: &RegenerateUserRobotTokenReader{formats: a.formats},
+		ID:          "regenerateUserRobotToken",
+		Method:      "POST",
+		PathPattern: "/api/v1/user/robots/{robot_shortname}/regenerate",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &RegenerateUserRobotTokenReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err

@@ -9,8 +9,7 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-Description of a new organization application.
+/*NewApp Description of a new organization application.
 
 swagger:model NewApp
 */
@@ -18,15 +17,15 @@ type NewApp struct {
 
 	/* The URI for the application's homepage
 	 */
-	ApplicationURI string `json:"application_uri,omitempty"`
+	ApplicationURI *string `json:"application_uri,omitempty"`
 
 	/* The e-mail address of the avatar to use for the application
 	 */
-	AvatarEmail string `json:"avatar_email,omitempty"`
+	AvatarEmail *string `json:"avatar_email,omitempty"`
 
 	/* The human-readable description for the application
 	 */
-	Description string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty"`
 
 	/* The name of the application
 
@@ -36,7 +35,7 @@ type NewApp struct {
 
 	/* The URI for the application's OAuth redirect
 	 */
-	RedirectURI string `json:"redirect_uri,omitempty"`
+	RedirectURI *string `json:"redirect_uri,omitempty"`
 }
 
 // Validate validates this new app
@@ -44,6 +43,7 @@ func (m *NewApp) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateName(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 

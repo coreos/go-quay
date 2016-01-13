@@ -4,6 +4,9 @@ package search
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *ConductSearchReader) ReadResponse(response client.Response, consumer ht
 	switch response.Code() {
 
 	case 200:
-		var result ConductSearchOK
+		result := NewConductSearchOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result ConductSearchBadRequest
+		result := NewConductSearchBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("conductSearchBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result ConductSearchUnauthorized
+		result := NewConductSearchUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("conductSearchUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result ConductSearchForbidden
+		result := NewConductSearchForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("conductSearchForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result ConductSearchNotFound
+		result := NewConductSearchNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("conductSearchNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewConductSearchOK creates a ConductSearchOK with default headers values
+func NewConductSearchOK() *ConductSearchOK {
+	return &ConductSearchOK{}
+}
+
+/*ConductSearchOK
+
 Successful invocation
 */
 type ConductSearchOK struct {
+}
+
+func (o *ConductSearchOK) Error() string {
+	return fmt.Sprintf("[GET /api/v1/find/all][%d] conductSearchOK ", 200)
 }
 
 func (o *ConductSearchOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *ConductSearchOK) readResponse(response client.Response, consumer httpki
 	return nil
 }
 
-/*
+// NewConductSearchBadRequest creates a ConductSearchBadRequest with default headers values
+func NewConductSearchBadRequest() *ConductSearchBadRequest {
+	return &ConductSearchBadRequest{}
+}
+
+/*ConductSearchBadRequest
+
 Bad Request
 */
 type ConductSearchBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *ConductSearchBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/v1/find/all][%d] conductSearchBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ConductSearchBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *ConductSearchBadRequest) readResponse(response client.Response, consume
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewConductSearchUnauthorized creates a ConductSearchUnauthorized with default headers values
+func NewConductSearchUnauthorized() *ConductSearchUnauthorized {
+	return &ConductSearchUnauthorized{}
+}
+
+/*ConductSearchUnauthorized
+
 Session required
 */
 type ConductSearchUnauthorized struct {
+}
+
+func (o *ConductSearchUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /api/v1/find/all][%d] conductSearchUnauthorized ", 401)
 }
 
 func (o *ConductSearchUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *ConductSearchUnauthorized) readResponse(response client.Response, consu
 	return nil
 }
 
-/*
+// NewConductSearchForbidden creates a ConductSearchForbidden with default headers values
+func NewConductSearchForbidden() *ConductSearchForbidden {
+	return &ConductSearchForbidden{}
+}
+
+/*ConductSearchForbidden
+
 Unauthorized access
 */
 type ConductSearchForbidden struct {
+}
+
+func (o *ConductSearchForbidden) Error() string {
+	return fmt.Sprintf("[GET /api/v1/find/all][%d] conductSearchForbidden ", 403)
 }
 
 func (o *ConductSearchForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *ConductSearchForbidden) readResponse(response client.Response, consumer
 	return nil
 }
 
-/*
+// NewConductSearchNotFound creates a ConductSearchNotFound with default headers values
+func NewConductSearchNotFound() *ConductSearchNotFound {
+	return &ConductSearchNotFound{}
+}
+
+/*ConductSearchNotFound
+
 Not found
 */
 type ConductSearchNotFound struct {
+}
+
+func (o *ConductSearchNotFound) Error() string {
+	return fmt.Sprintf("[GET /api/v1/find/all][%d] conductSearchNotFound ", 404)
 }
 
 func (o *ConductSearchNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

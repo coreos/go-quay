@@ -9,15 +9,29 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-ListRepoUserPermissionsParams contains all the parameters to send to the API endpoint
+// NewListRepoUserPermissionsParams creates a new ListRepoUserPermissionsParams object
+// with the default values initialized.
+func NewListRepoUserPermissionsParams() *ListRepoUserPermissionsParams {
+	var ()
+	return &ListRepoUserPermissionsParams{}
+}
+
+/*ListRepoUserPermissionsParams contains all the parameters to send to the API endpoint
 for the list repo user permissions operation typically these are written to a http.Request
 */
 type ListRepoUserPermissionsParams struct {
-	/*
+
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
+}
+
+// WithRepository adds the repository to the list repo user permissions params
+func (o *ListRepoUserPermissionsParams) WithRepository(repository string) *ListRepoUserPermissionsParams {
+	o.Repository = repository
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

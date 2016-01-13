@@ -4,6 +4,9 @@ package robot
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *DeleteOrgRobotReader) ReadResponse(response client.Response, consumer h
 	switch response.Code() {
 
 	case 204:
-		var result DeleteOrgRobotNoContent
+		result := NewDeleteOrgRobotNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result DeleteOrgRobotBadRequest
+		result := NewDeleteOrgRobotBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteOrgRobotBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result DeleteOrgRobotUnauthorized
+		result := NewDeleteOrgRobotUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteOrgRobotUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result DeleteOrgRobotForbidden
+		result := NewDeleteOrgRobotForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteOrgRobotForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result DeleteOrgRobotNotFound
+		result := NewDeleteOrgRobotNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteOrgRobotNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewDeleteOrgRobotNoContent creates a DeleteOrgRobotNoContent with default headers values
+func NewDeleteOrgRobotNoContent() *DeleteOrgRobotNoContent {
+	return &DeleteOrgRobotNoContent{}
+}
+
+/*DeleteOrgRobotNoContent
+
 Deleted
 */
 type DeleteOrgRobotNoContent struct {
+}
+
+func (o *DeleteOrgRobotNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/robots/{robot_shortname}][%d] deleteOrgRobotNoContent ", 204)
 }
 
 func (o *DeleteOrgRobotNoContent) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *DeleteOrgRobotNoContent) readResponse(response client.Response, consume
 	return nil
 }
 
-/*
+// NewDeleteOrgRobotBadRequest creates a DeleteOrgRobotBadRequest with default headers values
+func NewDeleteOrgRobotBadRequest() *DeleteOrgRobotBadRequest {
+	return &DeleteOrgRobotBadRequest{}
+}
+
+/*DeleteOrgRobotBadRequest
+
 Bad Request
 */
 type DeleteOrgRobotBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *DeleteOrgRobotBadRequest) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/robots/{robot_shortname}][%d] deleteOrgRobotBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeleteOrgRobotBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *DeleteOrgRobotBadRequest) readResponse(response client.Response, consum
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewDeleteOrgRobotUnauthorized creates a DeleteOrgRobotUnauthorized with default headers values
+func NewDeleteOrgRobotUnauthorized() *DeleteOrgRobotUnauthorized {
+	return &DeleteOrgRobotUnauthorized{}
+}
+
+/*DeleteOrgRobotUnauthorized
+
 Session required
 */
 type DeleteOrgRobotUnauthorized struct {
+}
+
+func (o *DeleteOrgRobotUnauthorized) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/robots/{robot_shortname}][%d] deleteOrgRobotUnauthorized ", 401)
 }
 
 func (o *DeleteOrgRobotUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *DeleteOrgRobotUnauthorized) readResponse(response client.Response, cons
 	return nil
 }
 
-/*
+// NewDeleteOrgRobotForbidden creates a DeleteOrgRobotForbidden with default headers values
+func NewDeleteOrgRobotForbidden() *DeleteOrgRobotForbidden {
+	return &DeleteOrgRobotForbidden{}
+}
+
+/*DeleteOrgRobotForbidden
+
 Unauthorized access
 */
 type DeleteOrgRobotForbidden struct {
+}
+
+func (o *DeleteOrgRobotForbidden) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/robots/{robot_shortname}][%d] deleteOrgRobotForbidden ", 403)
 }
 
 func (o *DeleteOrgRobotForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *DeleteOrgRobotForbidden) readResponse(response client.Response, consume
 	return nil
 }
 
-/*
+// NewDeleteOrgRobotNotFound creates a DeleteOrgRobotNotFound with default headers values
+func NewDeleteOrgRobotNotFound() *DeleteOrgRobotNotFound {
+	return &DeleteOrgRobotNotFound{}
+}
+
+/*DeleteOrgRobotNotFound
+
 Not found
 */
 type DeleteOrgRobotNotFound struct {
+}
+
+func (o *DeleteOrgRobotNotFound) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/robots/{robot_shortname}][%d] deleteOrgRobotNotFound ", 404)
 }
 
 func (o *DeleteOrgRobotNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

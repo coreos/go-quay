@@ -4,6 +4,9 @@ package team
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *UpdateOrganizationTeamMemberReader) ReadResponse(response client.Respon
 	switch response.Code() {
 
 	case 200:
-		var result UpdateOrganizationTeamMemberOK
+		result := NewUpdateOrganizationTeamMemberOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result UpdateOrganizationTeamMemberBadRequest
+		result := NewUpdateOrganizationTeamMemberBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("updateOrganizationTeamMemberBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result UpdateOrganizationTeamMemberUnauthorized
+		result := NewUpdateOrganizationTeamMemberUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("updateOrganizationTeamMemberUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result UpdateOrganizationTeamMemberForbidden
+		result := NewUpdateOrganizationTeamMemberForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("updateOrganizationTeamMemberForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result UpdateOrganizationTeamMemberNotFound
+		result := NewUpdateOrganizationTeamMemberNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("updateOrganizationTeamMemberNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewUpdateOrganizationTeamMemberOK creates a UpdateOrganizationTeamMemberOK with default headers values
+func NewUpdateOrganizationTeamMemberOK() *UpdateOrganizationTeamMemberOK {
+	return &UpdateOrganizationTeamMemberOK{}
+}
+
+/*UpdateOrganizationTeamMemberOK
+
 Successful invocation
 */
 type UpdateOrganizationTeamMemberOK struct {
+}
+
+func (o *UpdateOrganizationTeamMemberOK) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}/members/{membername}][%d] updateOrganizationTeamMemberOK ", 200)
 }
 
 func (o *UpdateOrganizationTeamMemberOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *UpdateOrganizationTeamMemberOK) readResponse(response client.Response, 
 	return nil
 }
 
-/*
+// NewUpdateOrganizationTeamMemberBadRequest creates a UpdateOrganizationTeamMemberBadRequest with default headers values
+func NewUpdateOrganizationTeamMemberBadRequest() *UpdateOrganizationTeamMemberBadRequest {
+	return &UpdateOrganizationTeamMemberBadRequest{}
+}
+
+/*UpdateOrganizationTeamMemberBadRequest
+
 Bad Request
 */
 type UpdateOrganizationTeamMemberBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *UpdateOrganizationTeamMemberBadRequest) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}/members/{membername}][%d] updateOrganizationTeamMemberBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateOrganizationTeamMemberBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *UpdateOrganizationTeamMemberBadRequest) readResponse(response client.Re
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewUpdateOrganizationTeamMemberUnauthorized creates a UpdateOrganizationTeamMemberUnauthorized with default headers values
+func NewUpdateOrganizationTeamMemberUnauthorized() *UpdateOrganizationTeamMemberUnauthorized {
+	return &UpdateOrganizationTeamMemberUnauthorized{}
+}
+
+/*UpdateOrganizationTeamMemberUnauthorized
+
 Session required
 */
 type UpdateOrganizationTeamMemberUnauthorized struct {
+}
+
+func (o *UpdateOrganizationTeamMemberUnauthorized) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}/members/{membername}][%d] updateOrganizationTeamMemberUnauthorized ", 401)
 }
 
 func (o *UpdateOrganizationTeamMemberUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *UpdateOrganizationTeamMemberUnauthorized) readResponse(response client.
 	return nil
 }
 
-/*
+// NewUpdateOrganizationTeamMemberForbidden creates a UpdateOrganizationTeamMemberForbidden with default headers values
+func NewUpdateOrganizationTeamMemberForbidden() *UpdateOrganizationTeamMemberForbidden {
+	return &UpdateOrganizationTeamMemberForbidden{}
+}
+
+/*UpdateOrganizationTeamMemberForbidden
+
 Unauthorized access
 */
 type UpdateOrganizationTeamMemberForbidden struct {
+}
+
+func (o *UpdateOrganizationTeamMemberForbidden) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}/members/{membername}][%d] updateOrganizationTeamMemberForbidden ", 403)
 }
 
 func (o *UpdateOrganizationTeamMemberForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *UpdateOrganizationTeamMemberForbidden) readResponse(response client.Res
 	return nil
 }
 
-/*
+// NewUpdateOrganizationTeamMemberNotFound creates a UpdateOrganizationTeamMemberNotFound with default headers values
+func NewUpdateOrganizationTeamMemberNotFound() *UpdateOrganizationTeamMemberNotFound {
+	return &UpdateOrganizationTeamMemberNotFound{}
+}
+
+/*UpdateOrganizationTeamMemberNotFound
+
 Not found
 */
 type UpdateOrganizationTeamMemberNotFound struct {
+}
+
+func (o *UpdateOrganizationTeamMemberNotFound) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}/members/{membername}][%d] updateOrganizationTeamMemberNotFound ", 404)
 }
 
 func (o *UpdateOrganizationTeamMemberNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

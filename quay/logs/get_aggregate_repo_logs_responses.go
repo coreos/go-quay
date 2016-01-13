@@ -4,6 +4,9 @@ package logs
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *GetAggregateRepoLogsReader) ReadResponse(response client.Response, cons
 	switch response.Code() {
 
 	case 200:
-		var result GetAggregateRepoLogsOK
+		result := NewGetAggregateRepoLogsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result GetAggregateRepoLogsBadRequest
+		result := NewGetAggregateRepoLogsBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getAggregateRepoLogsBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result GetAggregateRepoLogsUnauthorized
+		result := NewGetAggregateRepoLogsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getAggregateRepoLogsUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result GetAggregateRepoLogsForbidden
+		result := NewGetAggregateRepoLogsForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getAggregateRepoLogsForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result GetAggregateRepoLogsNotFound
+		result := NewGetAggregateRepoLogsNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getAggregateRepoLogsNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewGetAggregateRepoLogsOK creates a GetAggregateRepoLogsOK with default headers values
+func NewGetAggregateRepoLogsOK() *GetAggregateRepoLogsOK {
+	return &GetAggregateRepoLogsOK{}
+}
+
+/*GetAggregateRepoLogsOK
+
 Successful invocation
 */
 type GetAggregateRepoLogsOK struct {
+}
+
+func (o *GetAggregateRepoLogsOK) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/aggregatelogs][%d] getAggregateRepoLogsOK ", 200)
 }
 
 func (o *GetAggregateRepoLogsOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *GetAggregateRepoLogsOK) readResponse(response client.Response, consumer
 	return nil
 }
 
-/*
+// NewGetAggregateRepoLogsBadRequest creates a GetAggregateRepoLogsBadRequest with default headers values
+func NewGetAggregateRepoLogsBadRequest() *GetAggregateRepoLogsBadRequest {
+	return &GetAggregateRepoLogsBadRequest{}
+}
+
+/*GetAggregateRepoLogsBadRequest
+
 Bad Request
 */
 type GetAggregateRepoLogsBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *GetAggregateRepoLogsBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/aggregatelogs][%d] getAggregateRepoLogsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetAggregateRepoLogsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *GetAggregateRepoLogsBadRequest) readResponse(response client.Response, 
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewGetAggregateRepoLogsUnauthorized creates a GetAggregateRepoLogsUnauthorized with default headers values
+func NewGetAggregateRepoLogsUnauthorized() *GetAggregateRepoLogsUnauthorized {
+	return &GetAggregateRepoLogsUnauthorized{}
+}
+
+/*GetAggregateRepoLogsUnauthorized
+
 Session required
 */
 type GetAggregateRepoLogsUnauthorized struct {
+}
+
+func (o *GetAggregateRepoLogsUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/aggregatelogs][%d] getAggregateRepoLogsUnauthorized ", 401)
 }
 
 func (o *GetAggregateRepoLogsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *GetAggregateRepoLogsUnauthorized) readResponse(response client.Response
 	return nil
 }
 
-/*
+// NewGetAggregateRepoLogsForbidden creates a GetAggregateRepoLogsForbidden with default headers values
+func NewGetAggregateRepoLogsForbidden() *GetAggregateRepoLogsForbidden {
+	return &GetAggregateRepoLogsForbidden{}
+}
+
+/*GetAggregateRepoLogsForbidden
+
 Unauthorized access
 */
 type GetAggregateRepoLogsForbidden struct {
+}
+
+func (o *GetAggregateRepoLogsForbidden) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/aggregatelogs][%d] getAggregateRepoLogsForbidden ", 403)
 }
 
 func (o *GetAggregateRepoLogsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *GetAggregateRepoLogsForbidden) readResponse(response client.Response, c
 	return nil
 }
 
-/*
+// NewGetAggregateRepoLogsNotFound creates a GetAggregateRepoLogsNotFound with default headers values
+func NewGetAggregateRepoLogsNotFound() *GetAggregateRepoLogsNotFound {
+	return &GetAggregateRepoLogsNotFound{}
+}
+
+/*GetAggregateRepoLogsNotFound
+
 Not found
 */
 type GetAggregateRepoLogsNotFound struct {
+}
+
+func (o *GetAggregateRepoLogsNotFound) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/aggregatelogs][%d] getAggregateRepoLogsNotFound ", 404)
 }
 
 func (o *GetAggregateRepoLogsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

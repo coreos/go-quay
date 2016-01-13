@@ -4,6 +4,9 @@ package billing
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *ListOrgInvoicesReader) ReadResponse(response client.Response, consumer 
 	switch response.Code() {
 
 	case 200:
-		var result ListOrgInvoicesOK
+		result := NewListOrgInvoicesOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result ListOrgInvoicesBadRequest
+		result := NewListOrgInvoicesBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listOrgInvoicesBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result ListOrgInvoicesUnauthorized
+		result := NewListOrgInvoicesUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listOrgInvoicesUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result ListOrgInvoicesForbidden
+		result := NewListOrgInvoicesForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listOrgInvoicesForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result ListOrgInvoicesNotFound
+		result := NewListOrgInvoicesNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listOrgInvoicesNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewListOrgInvoicesOK creates a ListOrgInvoicesOK with default headers values
+func NewListOrgInvoicesOK() *ListOrgInvoicesOK {
+	return &ListOrgInvoicesOK{}
+}
+
+/*ListOrgInvoicesOK
+
 Successful invocation
 */
 type ListOrgInvoicesOK struct {
+}
+
+func (o *ListOrgInvoicesOK) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/invoices][%d] listOrgInvoicesOK ", 200)
 }
 
 func (o *ListOrgInvoicesOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *ListOrgInvoicesOK) readResponse(response client.Response, consumer http
 	return nil
 }
 
-/*
+// NewListOrgInvoicesBadRequest creates a ListOrgInvoicesBadRequest with default headers values
+func NewListOrgInvoicesBadRequest() *ListOrgInvoicesBadRequest {
+	return &ListOrgInvoicesBadRequest{}
+}
+
+/*ListOrgInvoicesBadRequest
+
 Bad Request
 */
 type ListOrgInvoicesBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *ListOrgInvoicesBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/invoices][%d] listOrgInvoicesBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ListOrgInvoicesBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *ListOrgInvoicesBadRequest) readResponse(response client.Response, consu
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewListOrgInvoicesUnauthorized creates a ListOrgInvoicesUnauthorized with default headers values
+func NewListOrgInvoicesUnauthorized() *ListOrgInvoicesUnauthorized {
+	return &ListOrgInvoicesUnauthorized{}
+}
+
+/*ListOrgInvoicesUnauthorized
+
 Session required
 */
 type ListOrgInvoicesUnauthorized struct {
+}
+
+func (o *ListOrgInvoicesUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/invoices][%d] listOrgInvoicesUnauthorized ", 401)
 }
 
 func (o *ListOrgInvoicesUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *ListOrgInvoicesUnauthorized) readResponse(response client.Response, con
 	return nil
 }
 
-/*
+// NewListOrgInvoicesForbidden creates a ListOrgInvoicesForbidden with default headers values
+func NewListOrgInvoicesForbidden() *ListOrgInvoicesForbidden {
+	return &ListOrgInvoicesForbidden{}
+}
+
+/*ListOrgInvoicesForbidden
+
 Unauthorized access
 */
 type ListOrgInvoicesForbidden struct {
+}
+
+func (o *ListOrgInvoicesForbidden) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/invoices][%d] listOrgInvoicesForbidden ", 403)
 }
 
 func (o *ListOrgInvoicesForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *ListOrgInvoicesForbidden) readResponse(response client.Response, consum
 	return nil
 }
 
-/*
+// NewListOrgInvoicesNotFound creates a ListOrgInvoicesNotFound with default headers values
+func NewListOrgInvoicesNotFound() *ListOrgInvoicesNotFound {
+	return &ListOrgInvoicesNotFound{}
+}
+
+/*ListOrgInvoicesNotFound
+
 Not found
 */
 type ListOrgInvoicesNotFound struct {
+}
+
+func (o *ListOrgInvoicesNotFound) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/invoices][%d] listOrgInvoicesNotFound ", 404)
 }
 
 func (o *ListOrgInvoicesNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

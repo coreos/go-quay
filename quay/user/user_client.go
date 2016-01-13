@@ -25,14 +25,20 @@ type Client struct {
 
 /*Star a repository.
  */
-func (a *Client) CreateStar(params CreateStarParams, authInfo client.AuthInfoWriter) (*CreateStarOK, error) {
+func (a *Client) CreateStar(params *CreateStarParams, authInfo client.AuthInfoWriter) (*CreateStarOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateStarParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "createStar",
-		Params:   &params,
-		Reader:   &CreateStarReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "createStar",
+		Method:      "POST",
+		PathPattern: "/api/v1/user/starred",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &CreateStarReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -42,13 +48,19 @@ func (a *Client) CreateStar(params CreateStarParams, authInfo client.AuthInfoWri
 
 /*Removes a star from a repository.
  */
-func (a *Client) DeleteStar(params DeleteStarParams) (*DeleteStarNoContent, error) {
+func (a *Client) DeleteStar(params *DeleteStarParams) (*DeleteStarNoContent, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteStarParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "deleteStar",
-		Params: &params,
-		Reader: &DeleteStarReader{formats: a.formats},
+		ID:          "deleteStar",
+		Method:      "DELETE",
+		PathPattern: "/api/v1/user/starred/{repository}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &DeleteStarReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -58,14 +70,20 @@ func (a *Client) DeleteStar(params DeleteStarParams) (*DeleteStarNoContent, erro
 
 /*Get user information for the authenticated user.
  */
-func (a *Client) GetLoggedInUser(params GetLoggedInUserParams, authInfo client.AuthInfoWriter) (*GetLoggedInUserOK, error) {
+func (a *Client) GetLoggedInUser(params *GetLoggedInUserParams, authInfo client.AuthInfoWriter) (*GetLoggedInUserOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetLoggedInUserParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "getLoggedInUser",
-		Params:   &params,
-		Reader:   &GetLoggedInUserReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "getLoggedInUser",
+		Method:      "GET",
+		PathPattern: "/api/v1/user/",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetLoggedInUserReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -75,13 +93,19 @@ func (a *Client) GetLoggedInUser(params GetLoggedInUserParams, authInfo client.A
 
 /*Get user information for the specified user.
  */
-func (a *Client) GetUserInformation(params GetUserInformationParams) (*GetUserInformationOK, error) {
+func (a *Client) GetUserInformation(params *GetUserInformationParams) (*GetUserInformationOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserInformationParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "getUserInformation",
-		Params: &params,
-		Reader: &GetUserInformationReader{formats: a.formats},
+		ID:          "getUserInformation",
+		Method:      "GET",
+		PathPattern: "/api/v1/users/{username}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetUserInformationReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -91,13 +115,19 @@ func (a *Client) GetUserInformation(params GetUserInformationParams) (*GetUserIn
 
 /*List all starred repositories.
  */
-func (a *Client) ListStarredRepos(params ListStarredReposParams) (*ListStarredReposOK, error) {
+func (a *Client) ListStarredRepos(params *ListStarredReposParams) (*ListStarredReposOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListStarredReposParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "listStarredRepos",
-		Params: &params,
-		Reader: &ListStarredReposReader{formats: a.formats},
+		ID:          "listStarredRepos",
+		Method:      "GET",
+		PathPattern: "/api/v1/user/starred",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &ListStarredReposReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err

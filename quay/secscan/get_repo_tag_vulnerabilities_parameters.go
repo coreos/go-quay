@@ -9,23 +9,51 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-GetRepoTagVulnerabilitiesParams contains all the parameters to send to the API endpoint
+// NewGetRepoTagVulnerabilitiesParams creates a new GetRepoTagVulnerabilitiesParams object
+// with the default values initialized.
+func NewGetRepoTagVulnerabilitiesParams() *GetRepoTagVulnerabilitiesParams {
+	var ()
+	return &GetRepoTagVulnerabilitiesParams{}
+}
+
+/*GetRepoTagVulnerabilitiesParams contains all the parameters to send to the API endpoint
 for the get repo tag vulnerabilities operation typically these are written to a http.Request
 */
 type GetRepoTagVulnerabilitiesParams struct {
-	/*
+
+	/*MinimumPriority
 	  Minimum vulnerability priority
+
 	*/
-	MinimumPriority string
-	/*
+	MinimumPriority *string
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
-	/*
+	/*Tag
 	  The name of the tag
+
 	*/
 	Tag string
+}
+
+// WithMinimumPriority adds the minimumPriority to the get repo tag vulnerabilities params
+func (o *GetRepoTagVulnerabilitiesParams) WithMinimumPriority(minimumPriority *string) *GetRepoTagVulnerabilitiesParams {
+	o.MinimumPriority = minimumPriority
+	return o
+}
+
+// WithRepository adds the repository to the get repo tag vulnerabilities params
+func (o *GetRepoTagVulnerabilitiesParams) WithRepository(repository string) *GetRepoTagVulnerabilitiesParams {
+	o.Repository = repository
+	return o
+}
+
+// WithTag adds the tag to the get repo tag vulnerabilities params
+func (o *GetRepoTagVulnerabilitiesParams) WithTag(tag string) *GetRepoTagVulnerabilitiesParams {
+	o.Tag = tag
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -33,9 +61,20 @@ func (o *GetRepoTagVulnerabilitiesParams) WriteToRequest(r client.Request, reg s
 
 	var res []error
 
-	// query param minimumPriority
-	if err := r.SetQueryParam("minimumPriority", o.MinimumPriority); err != nil {
-		return err
+	if o.MinimumPriority != nil {
+
+		// query param minimumPriority
+		var qrMinimumPriority string
+		if o.MinimumPriority != nil {
+			qrMinimumPriority = *o.MinimumPriority
+		}
+		qMinimumPriority := qrMinimumPriority
+		if qMinimumPriority != "" {
+			if err := r.SetQueryParam("minimumPriority", qMinimumPriority); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// path param repository

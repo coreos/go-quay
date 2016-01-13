@@ -25,14 +25,20 @@ type Client struct {
 
 /*Create a new permission prototype.
  */
-func (a *Client) CreateOrganizationPrototypePermission(params CreateOrganizationPrototypePermissionParams, authInfo client.AuthInfoWriter) (*CreateOrganizationPrototypePermissionOK, error) {
+func (a *Client) CreateOrganizationPrototypePermission(params *CreateOrganizationPrototypePermissionParams, authInfo client.AuthInfoWriter) (*CreateOrganizationPrototypePermissionOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateOrganizationPrototypePermissionParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "createOrganizationPrototypePermission",
-		Params:   &params,
-		Reader:   &CreateOrganizationPrototypePermissionReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "createOrganizationPrototypePermission",
+		Method:      "POST",
+		PathPattern: "/api/v1/organization/{orgname}/prototypes",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &CreateOrganizationPrototypePermissionReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -42,14 +48,20 @@ func (a *Client) CreateOrganizationPrototypePermission(params CreateOrganization
 
 /*Delete an existing permission prototype.
  */
-func (a *Client) DeleteOrganizationPrototypePermission(params DeleteOrganizationPrototypePermissionParams, authInfo client.AuthInfoWriter) (*DeleteOrganizationPrototypePermissionNoContent, error) {
+func (a *Client) DeleteOrganizationPrototypePermission(params *DeleteOrganizationPrototypePermissionParams, authInfo client.AuthInfoWriter) (*DeleteOrganizationPrototypePermissionNoContent, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteOrganizationPrototypePermissionParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "deleteOrganizationPrototypePermission",
-		Params:   &params,
-		Reader:   &DeleteOrganizationPrototypePermissionReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "deleteOrganizationPrototypePermission",
+		Method:      "DELETE",
+		PathPattern: "/api/v1/organization/{orgname}/prototypes/{prototypeid}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &DeleteOrganizationPrototypePermissionReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -59,14 +71,20 @@ func (a *Client) DeleteOrganizationPrototypePermission(params DeleteOrganization
 
 /*List the existing prototypes for this organization.
  */
-func (a *Client) GetOrganizationPrototypePermissions(params GetOrganizationPrototypePermissionsParams, authInfo client.AuthInfoWriter) (*GetOrganizationPrototypePermissionsOK, error) {
+func (a *Client) GetOrganizationPrototypePermissions(params *GetOrganizationPrototypePermissionsParams, authInfo client.AuthInfoWriter) (*GetOrganizationPrototypePermissionsOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetOrganizationPrototypePermissionsParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "getOrganizationPrototypePermissions",
-		Params:   &params,
-		Reader:   &GetOrganizationPrototypePermissionsReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "getOrganizationPrototypePermissions",
+		Method:      "GET",
+		PathPattern: "/api/v1/organization/{orgname}/prototypes",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetOrganizationPrototypePermissionsReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -76,14 +94,20 @@ func (a *Client) GetOrganizationPrototypePermissions(params GetOrganizationProto
 
 /*Update the role of an existing permission prototype.
  */
-func (a *Client) UpdateOrganizationPrototypePermission(params UpdateOrganizationPrototypePermissionParams, authInfo client.AuthInfoWriter) (*UpdateOrganizationPrototypePermissionOK, error) {
+func (a *Client) UpdateOrganizationPrototypePermission(params *UpdateOrganizationPrototypePermissionParams, authInfo client.AuthInfoWriter) (*UpdateOrganizationPrototypePermissionOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateOrganizationPrototypePermissionParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "updateOrganizationPrototypePermission",
-		Params:   &params,
-		Reader:   &UpdateOrganizationPrototypePermissionReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "updateOrganizationPrototypePermission",
+		Method:      "PUT",
+		PathPattern: "/api/v1/organization/{orgname}/prototypes/{prototypeid}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &UpdateOrganizationPrototypePermissionReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err

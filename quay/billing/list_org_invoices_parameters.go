@@ -9,15 +9,29 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-ListOrgInvoicesParams contains all the parameters to send to the API endpoint
+// NewListOrgInvoicesParams creates a new ListOrgInvoicesParams object
+// with the default values initialized.
+func NewListOrgInvoicesParams() *ListOrgInvoicesParams {
+	var ()
+	return &ListOrgInvoicesParams{}
+}
+
+/*ListOrgInvoicesParams contains all the parameters to send to the API endpoint
 for the list org invoices operation typically these are written to a http.Request
 */
 type ListOrgInvoicesParams struct {
-	/*
+
+	/*Orgname
 	  The name of the organization
+
 	*/
 	Orgname string
+}
+
+// WithOrgname adds the orgname to the list org invoices params
+func (o *ListOrgInvoicesParams) WithOrgname(orgname string) *ListOrgInvoicesParams {
+	o.Orgname = orgname
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

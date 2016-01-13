@@ -25,14 +25,20 @@ type Client struct {
 
 /*Cancels a repository build if it has not yet been picked up by a build worker.
  */
-func (a *Client) CancelRepoBuild(params CancelRepoBuildParams, authInfo client.AuthInfoWriter) (*CancelRepoBuildNoContent, error) {
+func (a *Client) CancelRepoBuild(params *CancelRepoBuildParams, authInfo client.AuthInfoWriter) (*CancelRepoBuildNoContent, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCancelRepoBuildParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "cancelRepoBuild",
-		Params:   &params,
-		Reader:   &CancelRepoBuildReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "cancelRepoBuild",
+		Method:      "DELETE",
+		PathPattern: "/api/v1/repository/{repository}/build/{build_uuid}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &CancelRepoBuildReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -42,14 +48,20 @@ func (a *Client) CancelRepoBuild(params CancelRepoBuildParams, authInfo client.A
 
 /*Returns information about a build.
  */
-func (a *Client) GetRepoBuild(params GetRepoBuildParams, authInfo client.AuthInfoWriter) (*GetRepoBuildOK, error) {
+func (a *Client) GetRepoBuild(params *GetRepoBuildParams, authInfo client.AuthInfoWriter) (*GetRepoBuildOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRepoBuildParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "getRepoBuild",
-		Params:   &params,
-		Reader:   &GetRepoBuildReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "getRepoBuild",
+		Method:      "GET",
+		PathPattern: "/api/v1/repository/{repository}/build/{build_uuid}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetRepoBuildReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -59,14 +71,20 @@ func (a *Client) GetRepoBuild(params GetRepoBuildParams, authInfo client.AuthInf
 
 /*Return the build logs for the build specified by the build uuid.
  */
-func (a *Client) GetRepoBuildLogs(params GetRepoBuildLogsParams, authInfo client.AuthInfoWriter) (*GetRepoBuildLogsOK, error) {
+func (a *Client) GetRepoBuildLogs(params *GetRepoBuildLogsParams, authInfo client.AuthInfoWriter) (*GetRepoBuildLogsOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRepoBuildLogsParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "getRepoBuildLogs",
-		Params:   &params,
-		Reader:   &GetRepoBuildLogsReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "getRepoBuildLogs",
+		Method:      "GET",
+		PathPattern: "/api/v1/repository/{repository}/build/{build_uuid}/logs",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetRepoBuildLogsReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -76,14 +94,20 @@ func (a *Client) GetRepoBuildLogs(params GetRepoBuildLogsParams, authInfo client
 
 /*Return the status for the builds specified by the build uuids.
  */
-func (a *Client) GetRepoBuildStatus(params GetRepoBuildStatusParams, authInfo client.AuthInfoWriter) (*GetRepoBuildStatusOK, error) {
+func (a *Client) GetRepoBuildStatus(params *GetRepoBuildStatusParams, authInfo client.AuthInfoWriter) (*GetRepoBuildStatusOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRepoBuildStatusParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "getRepoBuildStatus",
-		Params:   &params,
-		Reader:   &GetRepoBuildStatusReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "getRepoBuildStatus",
+		Method:      "GET",
+		PathPattern: "/api/v1/repository/{repository}/build/{build_uuid}/status",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetRepoBuildStatusReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -93,14 +117,20 @@ func (a *Client) GetRepoBuildStatus(params GetRepoBuildStatusParams, authInfo cl
 
 /*Get the list of repository builds.
  */
-func (a *Client) GetRepoBuilds(params GetRepoBuildsParams, authInfo client.AuthInfoWriter) (*GetRepoBuildsOK, error) {
+func (a *Client) GetRepoBuilds(params *GetRepoBuildsParams, authInfo client.AuthInfoWriter) (*GetRepoBuildsOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRepoBuildsParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "getRepoBuilds",
-		Params:   &params,
-		Reader:   &GetRepoBuildsReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "getRepoBuilds",
+		Method:      "GET",
+		PathPattern: "/api/v1/repository/{repository}/build/",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetRepoBuildsReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -110,14 +140,20 @@ func (a *Client) GetRepoBuilds(params GetRepoBuildsParams, authInfo client.AuthI
 
 /*Request that a repository be built and pushed from the specified input.
  */
-func (a *Client) RequestRepoBuild(params RequestRepoBuildParams, authInfo client.AuthInfoWriter) (*RequestRepoBuildOK, error) {
+func (a *Client) RequestRepoBuild(params *RequestRepoBuildParams, authInfo client.AuthInfoWriter) (*RequestRepoBuildOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRequestRepoBuildParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "requestRepoBuild",
-		Params:   &params,
-		Reader:   &RequestRepoBuildReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "requestRepoBuild",
+		Method:      "POST",
+		PathPattern: "/api/v1/repository/{repository}/build/",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &RequestRepoBuildReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err

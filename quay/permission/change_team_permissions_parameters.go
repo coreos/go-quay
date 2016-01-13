@@ -11,23 +11,51 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*
-ChangeTeamPermissionsParams contains all the parameters to send to the API endpoint
+// NewChangeTeamPermissionsParams creates a new ChangeTeamPermissionsParams object
+// with the default values initialized.
+func NewChangeTeamPermissionsParams() *ChangeTeamPermissionsParams {
+	var ()
+	return &ChangeTeamPermissionsParams{}
+}
+
+/*ChangeTeamPermissionsParams contains all the parameters to send to the API endpoint
 for the change team permissions operation typically these are written to a http.Request
 */
 type ChangeTeamPermissionsParams struct {
-	/*
+
+	/*Body
 	  Request body contents.
+
 	*/
 	Body *models.TeamPermission
-	/*
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
-	/*
+	/*Teamname
 	  The name of the team to which the permission applies
+
 	*/
 	Teamname string
+}
+
+// WithBody adds the body to the change team permissions params
+func (o *ChangeTeamPermissionsParams) WithBody(body *models.TeamPermission) *ChangeTeamPermissionsParams {
+	o.Body = body
+	return o
+}
+
+// WithRepository adds the repository to the change team permissions params
+func (o *ChangeTeamPermissionsParams) WithRepository(repository string) *ChangeTeamPermissionsParams {
+	o.Repository = repository
+	return o
+}
+
+// WithTeamname adds the teamname to the change team permissions params
+func (o *ChangeTeamPermissionsParams) WithTeamname(teamname string) *ChangeTeamPermissionsParams {
+	o.Teamname = teamname
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

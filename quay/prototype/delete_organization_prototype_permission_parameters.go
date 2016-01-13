@@ -9,19 +9,40 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-DeleteOrganizationPrototypePermissionParams contains all the parameters to send to the API endpoint
+// NewDeleteOrganizationPrototypePermissionParams creates a new DeleteOrganizationPrototypePermissionParams object
+// with the default values initialized.
+func NewDeleteOrganizationPrototypePermissionParams() *DeleteOrganizationPrototypePermissionParams {
+	var ()
+	return &DeleteOrganizationPrototypePermissionParams{}
+}
+
+/*DeleteOrganizationPrototypePermissionParams contains all the parameters to send to the API endpoint
 for the delete organization prototype permission operation typically these are written to a http.Request
 */
 type DeleteOrganizationPrototypePermissionParams struct {
-	/*
+
+	/*Orgname
 	  The name of the organization
+
 	*/
 	Orgname string
-	/*
+	/*Prototypeid
 	  The ID of the prototype
+
 	*/
 	Prototypeid string
+}
+
+// WithOrgname adds the orgname to the delete organization prototype permission params
+func (o *DeleteOrganizationPrototypePermissionParams) WithOrgname(orgname string) *DeleteOrganizationPrototypePermissionParams {
+	o.Orgname = orgname
+	return o
+}
+
+// WithPrototypeid adds the prototypeid to the delete organization prototype permission params
+func (o *DeleteOrganizationPrototypePermissionParams) WithPrototypeid(prototypeid string) *DeleteOrganizationPrototypePermissionParams {
+	o.Prototypeid = prototypeid
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

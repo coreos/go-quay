@@ -4,6 +4,9 @@ package repository
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *UpdateRepoReader) ReadResponse(response client.Response, consumer httpk
 	switch response.Code() {
 
 	case 200:
-		var result UpdateRepoOK
+		result := NewUpdateRepoOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result UpdateRepoBadRequest
+		result := NewUpdateRepoBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("updateRepoBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result UpdateRepoUnauthorized
+		result := NewUpdateRepoUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("updateRepoUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result UpdateRepoForbidden
+		result := NewUpdateRepoForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("updateRepoForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result UpdateRepoNotFound
+		result := NewUpdateRepoNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("updateRepoNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewUpdateRepoOK creates a UpdateRepoOK with default headers values
+func NewUpdateRepoOK() *UpdateRepoOK {
+	return &UpdateRepoOK{}
+}
+
+/*UpdateRepoOK
+
 Successful invocation
 */
 type UpdateRepoOK struct {
+}
+
+func (o *UpdateRepoOK) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/repository/{repository}][%d] updateRepoOK ", 200)
 }
 
 func (o *UpdateRepoOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *UpdateRepoOK) readResponse(response client.Response, consumer httpkit.C
 	return nil
 }
 
-/*
+// NewUpdateRepoBadRequest creates a UpdateRepoBadRequest with default headers values
+func NewUpdateRepoBadRequest() *UpdateRepoBadRequest {
+	return &UpdateRepoBadRequest{}
+}
+
+/*UpdateRepoBadRequest
+
 Bad Request
 */
 type UpdateRepoBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *UpdateRepoBadRequest) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/repository/{repository}][%d] updateRepoBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateRepoBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *UpdateRepoBadRequest) readResponse(response client.Response, consumer h
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewUpdateRepoUnauthorized creates a UpdateRepoUnauthorized with default headers values
+func NewUpdateRepoUnauthorized() *UpdateRepoUnauthorized {
+	return &UpdateRepoUnauthorized{}
+}
+
+/*UpdateRepoUnauthorized
+
 Session required
 */
 type UpdateRepoUnauthorized struct {
+}
+
+func (o *UpdateRepoUnauthorized) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/repository/{repository}][%d] updateRepoUnauthorized ", 401)
 }
 
 func (o *UpdateRepoUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *UpdateRepoUnauthorized) readResponse(response client.Response, consumer
 	return nil
 }
 
-/*
+// NewUpdateRepoForbidden creates a UpdateRepoForbidden with default headers values
+func NewUpdateRepoForbidden() *UpdateRepoForbidden {
+	return &UpdateRepoForbidden{}
+}
+
+/*UpdateRepoForbidden
+
 Unauthorized access
 */
 type UpdateRepoForbidden struct {
+}
+
+func (o *UpdateRepoForbidden) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/repository/{repository}][%d] updateRepoForbidden ", 403)
 }
 
 func (o *UpdateRepoForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *UpdateRepoForbidden) readResponse(response client.Response, consumer ht
 	return nil
 }
 
-/*
+// NewUpdateRepoNotFound creates a UpdateRepoNotFound with default headers values
+func NewUpdateRepoNotFound() *UpdateRepoNotFound {
+	return &UpdateRepoNotFound{}
+}
+
+/*UpdateRepoNotFound
+
 Not found
 */
 type UpdateRepoNotFound struct {
+}
+
+func (o *UpdateRepoNotFound) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/repository/{repository}][%d] updateRepoNotFound ", 404)
 }
 
 func (o *UpdateRepoNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

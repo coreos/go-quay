@@ -4,6 +4,9 @@ package repotoken
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *GetTokensReader) ReadResponse(response client.Response, consumer httpki
 	switch response.Code() {
 
 	case 200:
-		var result GetTokensOK
+		result := NewGetTokensOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result GetTokensBadRequest
+		result := NewGetTokensBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getTokensBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result GetTokensUnauthorized
+		result := NewGetTokensUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getTokensUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result GetTokensForbidden
+		result := NewGetTokensForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getTokensForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result GetTokensNotFound
+		result := NewGetTokensNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getTokensNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewGetTokensOK creates a GetTokensOK with default headers values
+func NewGetTokensOK() *GetTokensOK {
+	return &GetTokensOK{}
+}
+
+/*GetTokensOK
+
 Successful invocation
 */
 type GetTokensOK struct {
+}
+
+func (o *GetTokensOK) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tokens/{code}][%d] getTokensOK ", 200)
 }
 
 func (o *GetTokensOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *GetTokensOK) readResponse(response client.Response, consumer httpkit.Co
 	return nil
 }
 
-/*
+// NewGetTokensBadRequest creates a GetTokensBadRequest with default headers values
+func NewGetTokensBadRequest() *GetTokensBadRequest {
+	return &GetTokensBadRequest{}
+}
+
+/*GetTokensBadRequest
+
 Bad Request
 */
 type GetTokensBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *GetTokensBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tokens/{code}][%d] getTokensBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetTokensBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *GetTokensBadRequest) readResponse(response client.Response, consumer ht
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewGetTokensUnauthorized creates a GetTokensUnauthorized with default headers values
+func NewGetTokensUnauthorized() *GetTokensUnauthorized {
+	return &GetTokensUnauthorized{}
+}
+
+/*GetTokensUnauthorized
+
 Session required
 */
 type GetTokensUnauthorized struct {
+}
+
+func (o *GetTokensUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tokens/{code}][%d] getTokensUnauthorized ", 401)
 }
 
 func (o *GetTokensUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *GetTokensUnauthorized) readResponse(response client.Response, consumer 
 	return nil
 }
 
-/*
+// NewGetTokensForbidden creates a GetTokensForbidden with default headers values
+func NewGetTokensForbidden() *GetTokensForbidden {
+	return &GetTokensForbidden{}
+}
+
+/*GetTokensForbidden
+
 Unauthorized access
 */
 type GetTokensForbidden struct {
+}
+
+func (o *GetTokensForbidden) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tokens/{code}][%d] getTokensForbidden ", 403)
 }
 
 func (o *GetTokensForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *GetTokensForbidden) readResponse(response client.Response, consumer htt
 	return nil
 }
 
-/*
+// NewGetTokensNotFound creates a GetTokensNotFound with default headers values
+func NewGetTokensNotFound() *GetTokensNotFound {
+	return &GetTokensNotFound{}
+}
+
+/*GetTokensNotFound
+
 Not found
 */
 type GetTokensNotFound struct {
+}
+
+func (o *GetTokensNotFound) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tokens/{code}][%d] getTokensNotFound ", 404)
 }
 
 func (o *GetTokensNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

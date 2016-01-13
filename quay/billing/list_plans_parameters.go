@@ -9,8 +9,14 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-ListPlansParams contains all the parameters to send to the API endpoint
+// NewListPlansParams creates a new ListPlansParams object
+// with the default values initialized.
+func NewListPlansParams() *ListPlansParams {
+	var ()
+	return &ListPlansParams{}
+}
+
+/*ListPlansParams contains all the parameters to send to the API endpoint
 for the list plans operation typically these are written to a http.Request
 */
 type ListPlansParams struct {

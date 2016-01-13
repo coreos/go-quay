@@ -4,6 +4,9 @@ package permission
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *GetTeamPermissionsReader) ReadResponse(response client.Response, consum
 	switch response.Code() {
 
 	case 200:
-		var result GetTeamPermissionsOK
+		result := NewGetTeamPermissionsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result GetTeamPermissionsBadRequest
+		result := NewGetTeamPermissionsBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getTeamPermissionsBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result GetTeamPermissionsUnauthorized
+		result := NewGetTeamPermissionsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getTeamPermissionsUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result GetTeamPermissionsForbidden
+		result := NewGetTeamPermissionsForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getTeamPermissionsForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result GetTeamPermissionsNotFound
+		result := NewGetTeamPermissionsNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getTeamPermissionsNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewGetTeamPermissionsOK creates a GetTeamPermissionsOK with default headers values
+func NewGetTeamPermissionsOK() *GetTeamPermissionsOK {
+	return &GetTeamPermissionsOK{}
+}
+
+/*GetTeamPermissionsOK
+
 Successful invocation
 */
 type GetTeamPermissionsOK struct {
+}
+
+func (o *GetTeamPermissionsOK) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/team/{teamname}][%d] getTeamPermissionsOK ", 200)
 }
 
 func (o *GetTeamPermissionsOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *GetTeamPermissionsOK) readResponse(response client.Response, consumer h
 	return nil
 }
 
-/*
+// NewGetTeamPermissionsBadRequest creates a GetTeamPermissionsBadRequest with default headers values
+func NewGetTeamPermissionsBadRequest() *GetTeamPermissionsBadRequest {
+	return &GetTeamPermissionsBadRequest{}
+}
+
+/*GetTeamPermissionsBadRequest
+
 Bad Request
 */
 type GetTeamPermissionsBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *GetTeamPermissionsBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/team/{teamname}][%d] getTeamPermissionsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetTeamPermissionsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *GetTeamPermissionsBadRequest) readResponse(response client.Response, co
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewGetTeamPermissionsUnauthorized creates a GetTeamPermissionsUnauthorized with default headers values
+func NewGetTeamPermissionsUnauthorized() *GetTeamPermissionsUnauthorized {
+	return &GetTeamPermissionsUnauthorized{}
+}
+
+/*GetTeamPermissionsUnauthorized
+
 Session required
 */
 type GetTeamPermissionsUnauthorized struct {
+}
+
+func (o *GetTeamPermissionsUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/team/{teamname}][%d] getTeamPermissionsUnauthorized ", 401)
 }
 
 func (o *GetTeamPermissionsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *GetTeamPermissionsUnauthorized) readResponse(response client.Response, 
 	return nil
 }
 
-/*
+// NewGetTeamPermissionsForbidden creates a GetTeamPermissionsForbidden with default headers values
+func NewGetTeamPermissionsForbidden() *GetTeamPermissionsForbidden {
+	return &GetTeamPermissionsForbidden{}
+}
+
+/*GetTeamPermissionsForbidden
+
 Unauthorized access
 */
 type GetTeamPermissionsForbidden struct {
+}
+
+func (o *GetTeamPermissionsForbidden) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/team/{teamname}][%d] getTeamPermissionsForbidden ", 403)
 }
 
 func (o *GetTeamPermissionsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *GetTeamPermissionsForbidden) readResponse(response client.Response, con
 	return nil
 }
 
-/*
+// NewGetTeamPermissionsNotFound creates a GetTeamPermissionsNotFound with default headers values
+func NewGetTeamPermissionsNotFound() *GetTeamPermissionsNotFound {
+	return &GetTeamPermissionsNotFound{}
+}
+
+/*GetTeamPermissionsNotFound
+
 Not found
 */
 type GetTeamPermissionsNotFound struct {
+}
+
+func (o *GetTeamPermissionsNotFound) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/team/{teamname}][%d] getTeamPermissionsNotFound ", 404)
 }
 
 func (o *GetTeamPermissionsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

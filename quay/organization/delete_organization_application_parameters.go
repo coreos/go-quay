@@ -9,19 +9,40 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-DeleteOrganizationApplicationParams contains all the parameters to send to the API endpoint
+// NewDeleteOrganizationApplicationParams creates a new DeleteOrganizationApplicationParams object
+// with the default values initialized.
+func NewDeleteOrganizationApplicationParams() *DeleteOrganizationApplicationParams {
+	var ()
+	return &DeleteOrganizationApplicationParams{}
+}
+
+/*DeleteOrganizationApplicationParams contains all the parameters to send to the API endpoint
 for the delete organization application operation typically these are written to a http.Request
 */
 type DeleteOrganizationApplicationParams struct {
-	/*
+
+	/*ClientID
 	  The OAuth client ID
+
 	*/
 	ClientID string
-	/*
+	/*Orgname
 	  The name of the organization
+
 	*/
 	Orgname string
+}
+
+// WithClientID adds the clientId to the delete organization application params
+func (o *DeleteOrganizationApplicationParams) WithClientID(clientId string) *DeleteOrganizationApplicationParams {
+	o.ClientID = clientId
+	return o
+}
+
+// WithOrgname adds the orgname to the delete organization application params
+func (o *DeleteOrganizationApplicationParams) WithOrgname(orgname string) *DeleteOrganizationApplicationParams {
+	o.Orgname = orgname
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

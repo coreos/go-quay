@@ -11,19 +11,40 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*
-ChangeRepoVisibilityParams contains all the parameters to send to the API endpoint
+// NewChangeRepoVisibilityParams creates a new ChangeRepoVisibilityParams object
+// with the default values initialized.
+func NewChangeRepoVisibilityParams() *ChangeRepoVisibilityParams {
+	var ()
+	return &ChangeRepoVisibilityParams{}
+}
+
+/*ChangeRepoVisibilityParams contains all the parameters to send to the API endpoint
 for the change repo visibility operation typically these are written to a http.Request
 */
 type ChangeRepoVisibilityParams struct {
-	/*
+
+	/*Body
 	  Request body contents.
+
 	*/
 	Body *models.ChangeVisibility
-	/*
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
+}
+
+// WithBody adds the body to the change repo visibility params
+func (o *ChangeRepoVisibilityParams) WithBody(body *models.ChangeVisibility) *ChangeRepoVisibilityParams {
+	o.Body = body
+	return o
+}
+
+// WithRepository adds the repository to the change repo visibility params
+func (o *ChangeRepoVisibilityParams) WithRepository(repository string) *ChangeRepoVisibilityParams {
+	o.Repository = repository
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

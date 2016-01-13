@@ -11,19 +11,40 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*
-CreateRepoNotificationParams contains all the parameters to send to the API endpoint
+// NewCreateRepoNotificationParams creates a new CreateRepoNotificationParams object
+// with the default values initialized.
+func NewCreateRepoNotificationParams() *CreateRepoNotificationParams {
+	var ()
+	return &CreateRepoNotificationParams{}
+}
+
+/*CreateRepoNotificationParams contains all the parameters to send to the API endpoint
 for the create repo notification operation typically these are written to a http.Request
 */
 type CreateRepoNotificationParams struct {
-	/*
+
+	/*Body
 	  Request body contents.
+
 	*/
 	Body *models.NotificationCreateRequest
-	/*
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
+}
+
+// WithBody adds the body to the create repo notification params
+func (o *CreateRepoNotificationParams) WithBody(body *models.NotificationCreateRequest) *CreateRepoNotificationParams {
+	o.Body = body
+	return o
+}
+
+// WithRepository adds the repository to the create repo notification params
+func (o *CreateRepoNotificationParams) WithRepository(repository string) *CreateRepoNotificationParams {
+	o.Repository = repository
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

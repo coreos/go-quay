@@ -4,6 +4,9 @@ package robot
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *GetOrgRobotPermissionsReader) ReadResponse(response client.Response, co
 	switch response.Code() {
 
 	case 200:
-		var result GetOrgRobotPermissionsOK
+		result := NewGetOrgRobotPermissionsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result GetOrgRobotPermissionsBadRequest
+		result := NewGetOrgRobotPermissionsBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getOrgRobotPermissionsBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result GetOrgRobotPermissionsUnauthorized
+		result := NewGetOrgRobotPermissionsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getOrgRobotPermissionsUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result GetOrgRobotPermissionsForbidden
+		result := NewGetOrgRobotPermissionsForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getOrgRobotPermissionsForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result GetOrgRobotPermissionsNotFound
+		result := NewGetOrgRobotPermissionsNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getOrgRobotPermissionsNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewGetOrgRobotPermissionsOK creates a GetOrgRobotPermissionsOK with default headers values
+func NewGetOrgRobotPermissionsOK() *GetOrgRobotPermissionsOK {
+	return &GetOrgRobotPermissionsOK{}
+}
+
+/*GetOrgRobotPermissionsOK
+
 Successful invocation
 */
 type GetOrgRobotPermissionsOK struct {
+}
+
+func (o *GetOrgRobotPermissionsOK) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/robots/{robot_shortname}/permissions][%d] getOrgRobotPermissionsOK ", 200)
 }
 
 func (o *GetOrgRobotPermissionsOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *GetOrgRobotPermissionsOK) readResponse(response client.Response, consum
 	return nil
 }
 
-/*
+// NewGetOrgRobotPermissionsBadRequest creates a GetOrgRobotPermissionsBadRequest with default headers values
+func NewGetOrgRobotPermissionsBadRequest() *GetOrgRobotPermissionsBadRequest {
+	return &GetOrgRobotPermissionsBadRequest{}
+}
+
+/*GetOrgRobotPermissionsBadRequest
+
 Bad Request
 */
 type GetOrgRobotPermissionsBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *GetOrgRobotPermissionsBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/robots/{robot_shortname}/permissions][%d] getOrgRobotPermissionsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetOrgRobotPermissionsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *GetOrgRobotPermissionsBadRequest) readResponse(response client.Response
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewGetOrgRobotPermissionsUnauthorized creates a GetOrgRobotPermissionsUnauthorized with default headers values
+func NewGetOrgRobotPermissionsUnauthorized() *GetOrgRobotPermissionsUnauthorized {
+	return &GetOrgRobotPermissionsUnauthorized{}
+}
+
+/*GetOrgRobotPermissionsUnauthorized
+
 Session required
 */
 type GetOrgRobotPermissionsUnauthorized struct {
+}
+
+func (o *GetOrgRobotPermissionsUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/robots/{robot_shortname}/permissions][%d] getOrgRobotPermissionsUnauthorized ", 401)
 }
 
 func (o *GetOrgRobotPermissionsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *GetOrgRobotPermissionsUnauthorized) readResponse(response client.Respon
 	return nil
 }
 
-/*
+// NewGetOrgRobotPermissionsForbidden creates a GetOrgRobotPermissionsForbidden with default headers values
+func NewGetOrgRobotPermissionsForbidden() *GetOrgRobotPermissionsForbidden {
+	return &GetOrgRobotPermissionsForbidden{}
+}
+
+/*GetOrgRobotPermissionsForbidden
+
 Unauthorized access
 */
 type GetOrgRobotPermissionsForbidden struct {
+}
+
+func (o *GetOrgRobotPermissionsForbidden) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/robots/{robot_shortname}/permissions][%d] getOrgRobotPermissionsForbidden ", 403)
 }
 
 func (o *GetOrgRobotPermissionsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *GetOrgRobotPermissionsForbidden) readResponse(response client.Response,
 	return nil
 }
 
-/*
+// NewGetOrgRobotPermissionsNotFound creates a GetOrgRobotPermissionsNotFound with default headers values
+func NewGetOrgRobotPermissionsNotFound() *GetOrgRobotPermissionsNotFound {
+	return &GetOrgRobotPermissionsNotFound{}
+}
+
+/*GetOrgRobotPermissionsNotFound
+
 Not found
 */
 type GetOrgRobotPermissionsNotFound struct {
+}
+
+func (o *GetOrgRobotPermissionsNotFound) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/robots/{robot_shortname}/permissions][%d] getOrgRobotPermissionsNotFound ", 404)
 }
 
 func (o *GetOrgRobotPermissionsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

@@ -10,15 +10,29 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-DiscoveryParams contains all the parameters to send to the API endpoint
+// NewDiscoveryParams creates a new DiscoveryParams object
+// with the default values initialized.
+func NewDiscoveryParams() *DiscoveryParams {
+	var ()
+	return &DiscoveryParams{}
+}
+
+/*DiscoveryParams contains all the parameters to send to the API endpoint
 for the discovery operation typically these are written to a http.Request
 */
 type DiscoveryParams struct {
-	/*
+
+	/*Internal
 	  Whether to include internal APIs.
+
 	*/
-	Internal bool
+	Internal *bool
+}
+
+// WithInternal adds the internal to the discovery params
+func (o *DiscoveryParams) WithInternal(internal *bool) *DiscoveryParams {
+	o.Internal = internal
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -26,9 +40,20 @@ func (o *DiscoveryParams) WriteToRequest(r client.Request, reg strfmt.Registry) 
 
 	var res []error
 
-	// query param internal
-	if err := r.SetQueryParam("internal", swag.FormatBool(o.Internal)); err != nil {
-		return err
+	if o.Internal != nil {
+
+		// query param internal
+		var qrInternal bool
+		if o.Internal != nil {
+			qrInternal = *o.Internal
+		}
+		qInternal := swag.FormatBool(qrInternal)
+		if qInternal != "" {
+			if err := r.SetQueryParam("internal", qInternal); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if len(res) > 0 {

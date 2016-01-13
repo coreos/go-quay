@@ -11,23 +11,51 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*
-RevertTagParams contains all the parameters to send to the API endpoint
+// NewRevertTagParams creates a new RevertTagParams object
+// with the default values initialized.
+func NewRevertTagParams() *RevertTagParams {
+	var ()
+	return &RevertTagParams{}
+}
+
+/*RevertTagParams contains all the parameters to send to the API endpoint
 for the revert tag operation typically these are written to a http.Request
 */
 type RevertTagParams struct {
-	/*
+
+	/*Body
 	  Request body contents.
+
 	*/
 	Body *models.RevertTag
-	/*
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
-	/*
+	/*Tag
 	  The name of the tag
+
 	*/
 	Tag string
+}
+
+// WithBody adds the body to the revert tag params
+func (o *RevertTagParams) WithBody(body *models.RevertTag) *RevertTagParams {
+	o.Body = body
+	return o
+}
+
+// WithRepository adds the repository to the revert tag params
+func (o *RevertTagParams) WithRepository(repository string) *RevertTagParams {
+	o.Repository = repository
+	return o
+}
+
+// WithTag adds the tag to the revert tag params
+func (o *RevertTagParams) WithTag(tag string) *RevertTagParams {
+	o.Tag = tag
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

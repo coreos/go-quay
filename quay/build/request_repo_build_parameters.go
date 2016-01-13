@@ -11,19 +11,40 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*
-RequestRepoBuildParams contains all the parameters to send to the API endpoint
+// NewRequestRepoBuildParams creates a new RequestRepoBuildParams object
+// with the default values initialized.
+func NewRequestRepoBuildParams() *RequestRepoBuildParams {
+	var ()
+	return &RequestRepoBuildParams{}
+}
+
+/*RequestRepoBuildParams contains all the parameters to send to the API endpoint
 for the request repo build operation typically these are written to a http.Request
 */
 type RequestRepoBuildParams struct {
-	/*
+
+	/*Body
 	  Request body contents.
+
 	*/
 	Body *models.RepositoryBuildRequest
-	/*
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
+}
+
+// WithBody adds the body to the request repo build params
+func (o *RequestRepoBuildParams) WithBody(body *models.RepositoryBuildRequest) *RequestRepoBuildParams {
+	o.Body = body
+	return o
+}
+
+// WithRepository adds the repository to the request repo build params
+func (o *RequestRepoBuildParams) WithRepository(repository string) *RequestRepoBuildParams {
+	o.Repository = repository
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

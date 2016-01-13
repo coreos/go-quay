@@ -11,19 +11,40 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*
-UpdateRepoParams contains all the parameters to send to the API endpoint
+// NewUpdateRepoParams creates a new UpdateRepoParams object
+// with the default values initialized.
+func NewUpdateRepoParams() *UpdateRepoParams {
+	var ()
+	return &UpdateRepoParams{}
+}
+
+/*UpdateRepoParams contains all the parameters to send to the API endpoint
 for the update repo operation typically these are written to a http.Request
 */
 type UpdateRepoParams struct {
-	/*
+
+	/*Body
 	  Request body contents.
+
 	*/
 	Body *models.RepoUpdate
-	/*
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
+}
+
+// WithBody adds the body to the update repo params
+func (o *UpdateRepoParams) WithBody(body *models.RepoUpdate) *UpdateRepoParams {
+	o.Body = body
+	return o
+}
+
+// WithRepository adds the repository to the update repo params
+func (o *UpdateRepoParams) WithRepository(repository string) *UpdateRepoParams {
+	o.Repository = repository
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

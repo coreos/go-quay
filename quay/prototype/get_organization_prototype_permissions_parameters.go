@@ -9,15 +9,29 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-GetOrganizationPrototypePermissionsParams contains all the parameters to send to the API endpoint
+// NewGetOrganizationPrototypePermissionsParams creates a new GetOrganizationPrototypePermissionsParams object
+// with the default values initialized.
+func NewGetOrganizationPrototypePermissionsParams() *GetOrganizationPrototypePermissionsParams {
+	var ()
+	return &GetOrganizationPrototypePermissionsParams{}
+}
+
+/*GetOrganizationPrototypePermissionsParams contains all the parameters to send to the API endpoint
 for the get organization prototype permissions operation typically these are written to a http.Request
 */
 type GetOrganizationPrototypePermissionsParams struct {
-	/*
+
+	/*Orgname
 	  The name of the organization
+
 	*/
 	Orgname string
+}
+
+// WithOrgname adds the orgname to the get organization prototype permissions params
+func (o *GetOrganizationPrototypePermissionsParams) WithOrgname(orgname string) *GetOrganizationPrototypePermissionsParams {
+	o.Orgname = orgname
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

@@ -4,6 +4,9 @@ package prototype
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *GetOrganizationPrototypePermissionsReader) ReadResponse(response client
 	switch response.Code() {
 
 	case 200:
-		var result GetOrganizationPrototypePermissionsOK
+		result := NewGetOrganizationPrototypePermissionsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result GetOrganizationPrototypePermissionsBadRequest
+		result := NewGetOrganizationPrototypePermissionsBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getOrganizationPrototypePermissionsBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result GetOrganizationPrototypePermissionsUnauthorized
+		result := NewGetOrganizationPrototypePermissionsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getOrganizationPrototypePermissionsUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result GetOrganizationPrototypePermissionsForbidden
+		result := NewGetOrganizationPrototypePermissionsForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getOrganizationPrototypePermissionsForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result GetOrganizationPrototypePermissionsNotFound
+		result := NewGetOrganizationPrototypePermissionsNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getOrganizationPrototypePermissionsNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewGetOrganizationPrototypePermissionsOK creates a GetOrganizationPrototypePermissionsOK with default headers values
+func NewGetOrganizationPrototypePermissionsOK() *GetOrganizationPrototypePermissionsOK {
+	return &GetOrganizationPrototypePermissionsOK{}
+}
+
+/*GetOrganizationPrototypePermissionsOK
+
 Successful invocation
 */
 type GetOrganizationPrototypePermissionsOK struct {
+}
+
+func (o *GetOrganizationPrototypePermissionsOK) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/prototypes][%d] getOrganizationPrototypePermissionsOK ", 200)
 }
 
 func (o *GetOrganizationPrototypePermissionsOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *GetOrganizationPrototypePermissionsOK) readResponse(response client.Res
 	return nil
 }
 
-/*
+// NewGetOrganizationPrototypePermissionsBadRequest creates a GetOrganizationPrototypePermissionsBadRequest with default headers values
+func NewGetOrganizationPrototypePermissionsBadRequest() *GetOrganizationPrototypePermissionsBadRequest {
+	return &GetOrganizationPrototypePermissionsBadRequest{}
+}
+
+/*GetOrganizationPrototypePermissionsBadRequest
+
 Bad Request
 */
 type GetOrganizationPrototypePermissionsBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *GetOrganizationPrototypePermissionsBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/prototypes][%d] getOrganizationPrototypePermissionsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetOrganizationPrototypePermissionsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *GetOrganizationPrototypePermissionsBadRequest) readResponse(response cl
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewGetOrganizationPrototypePermissionsUnauthorized creates a GetOrganizationPrototypePermissionsUnauthorized with default headers values
+func NewGetOrganizationPrototypePermissionsUnauthorized() *GetOrganizationPrototypePermissionsUnauthorized {
+	return &GetOrganizationPrototypePermissionsUnauthorized{}
+}
+
+/*GetOrganizationPrototypePermissionsUnauthorized
+
 Session required
 */
 type GetOrganizationPrototypePermissionsUnauthorized struct {
+}
+
+func (o *GetOrganizationPrototypePermissionsUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/prototypes][%d] getOrganizationPrototypePermissionsUnauthorized ", 401)
 }
 
 func (o *GetOrganizationPrototypePermissionsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *GetOrganizationPrototypePermissionsUnauthorized) readResponse(response 
 	return nil
 }
 
-/*
+// NewGetOrganizationPrototypePermissionsForbidden creates a GetOrganizationPrototypePermissionsForbidden with default headers values
+func NewGetOrganizationPrototypePermissionsForbidden() *GetOrganizationPrototypePermissionsForbidden {
+	return &GetOrganizationPrototypePermissionsForbidden{}
+}
+
+/*GetOrganizationPrototypePermissionsForbidden
+
 Unauthorized access
 */
 type GetOrganizationPrototypePermissionsForbidden struct {
+}
+
+func (o *GetOrganizationPrototypePermissionsForbidden) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/prototypes][%d] getOrganizationPrototypePermissionsForbidden ", 403)
 }
 
 func (o *GetOrganizationPrototypePermissionsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *GetOrganizationPrototypePermissionsForbidden) readResponse(response cli
 	return nil
 }
 
-/*
+// NewGetOrganizationPrototypePermissionsNotFound creates a GetOrganizationPrototypePermissionsNotFound with default headers values
+func NewGetOrganizationPrototypePermissionsNotFound() *GetOrganizationPrototypePermissionsNotFound {
+	return &GetOrganizationPrototypePermissionsNotFound{}
+}
+
+/*GetOrganizationPrototypePermissionsNotFound
+
 Not found
 */
 type GetOrganizationPrototypePermissionsNotFound struct {
+}
+
+func (o *GetOrganizationPrototypePermissionsNotFound) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/prototypes][%d] getOrganizationPrototypePermissionsNotFound ", 404)
 }
 
 func (o *GetOrganizationPrototypePermissionsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

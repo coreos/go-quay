@@ -11,19 +11,40 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*
-CreateTokenParams contains all the parameters to send to the API endpoint
+// NewCreateTokenParams creates a new CreateTokenParams object
+// with the default values initialized.
+func NewCreateTokenParams() *CreateTokenParams {
+	var ()
+	return &CreateTokenParams{}
+}
+
+/*CreateTokenParams contains all the parameters to send to the API endpoint
 for the create token operation typically these are written to a http.Request
 */
 type CreateTokenParams struct {
-	/*
+
+	/*Body
 	  Request body contents.
+
 	*/
 	Body *models.NewToken
-	/*
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
+}
+
+// WithBody adds the body to the create token params
+func (o *CreateTokenParams) WithBody(body *models.NewToken) *CreateTokenParams {
+	o.Body = body
+	return o
+}
+
+// WithRepository adds the repository to the create token params
+func (o *CreateTokenParams) WithRepository(repository string) *CreateTokenParams {
+	o.Repository = repository
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

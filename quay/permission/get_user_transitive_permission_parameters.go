@@ -9,19 +9,40 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-GetUserTransitivePermissionParams contains all the parameters to send to the API endpoint
+// NewGetUserTransitivePermissionParams creates a new GetUserTransitivePermissionParams object
+// with the default values initialized.
+func NewGetUserTransitivePermissionParams() *GetUserTransitivePermissionParams {
+	var ()
+	return &GetUserTransitivePermissionParams{}
+}
+
+/*GetUserTransitivePermissionParams contains all the parameters to send to the API endpoint
 for the get user transitive permission operation typically these are written to a http.Request
 */
 type GetUserTransitivePermissionParams struct {
-	/*
+
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
-	/*
+	/*Username
 	  The username of the user to which the permissions apply
+
 	*/
 	Username string
+}
+
+// WithRepository adds the repository to the get user transitive permission params
+func (o *GetUserTransitivePermissionParams) WithRepository(repository string) *GetUserTransitivePermissionParams {
+	o.Repository = repository
+	return o
+}
+
+// WithUsername adds the username to the get user transitive permission params
+func (o *GetUserTransitivePermissionParams) WithUsername(username string) *GetUserTransitivePermissionParams {
+	o.Username = username
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

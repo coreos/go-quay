@@ -4,6 +4,9 @@ package permission
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *ListRepoUserPermissionsReader) ReadResponse(response client.Response, c
 	switch response.Code() {
 
 	case 200:
-		var result ListRepoUserPermissionsOK
+		result := NewListRepoUserPermissionsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result ListRepoUserPermissionsBadRequest
+		result := NewListRepoUserPermissionsBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listRepoUserPermissionsBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result ListRepoUserPermissionsUnauthorized
+		result := NewListRepoUserPermissionsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listRepoUserPermissionsUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result ListRepoUserPermissionsForbidden
+		result := NewListRepoUserPermissionsForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listRepoUserPermissionsForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result ListRepoUserPermissionsNotFound
+		result := NewListRepoUserPermissionsNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listRepoUserPermissionsNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewListRepoUserPermissionsOK creates a ListRepoUserPermissionsOK with default headers values
+func NewListRepoUserPermissionsOK() *ListRepoUserPermissionsOK {
+	return &ListRepoUserPermissionsOK{}
+}
+
+/*ListRepoUserPermissionsOK
+
 Successful invocation
 */
 type ListRepoUserPermissionsOK struct {
+}
+
+func (o *ListRepoUserPermissionsOK) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/user/][%d] listRepoUserPermissionsOK ", 200)
 }
 
 func (o *ListRepoUserPermissionsOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *ListRepoUserPermissionsOK) readResponse(response client.Response, consu
 	return nil
 }
 
-/*
+// NewListRepoUserPermissionsBadRequest creates a ListRepoUserPermissionsBadRequest with default headers values
+func NewListRepoUserPermissionsBadRequest() *ListRepoUserPermissionsBadRequest {
+	return &ListRepoUserPermissionsBadRequest{}
+}
+
+/*ListRepoUserPermissionsBadRequest
+
 Bad Request
 */
 type ListRepoUserPermissionsBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *ListRepoUserPermissionsBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/user/][%d] listRepoUserPermissionsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ListRepoUserPermissionsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *ListRepoUserPermissionsBadRequest) readResponse(response client.Respons
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewListRepoUserPermissionsUnauthorized creates a ListRepoUserPermissionsUnauthorized with default headers values
+func NewListRepoUserPermissionsUnauthorized() *ListRepoUserPermissionsUnauthorized {
+	return &ListRepoUserPermissionsUnauthorized{}
+}
+
+/*ListRepoUserPermissionsUnauthorized
+
 Session required
 */
 type ListRepoUserPermissionsUnauthorized struct {
+}
+
+func (o *ListRepoUserPermissionsUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/user/][%d] listRepoUserPermissionsUnauthorized ", 401)
 }
 
 func (o *ListRepoUserPermissionsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *ListRepoUserPermissionsUnauthorized) readResponse(response client.Respo
 	return nil
 }
 
-/*
+// NewListRepoUserPermissionsForbidden creates a ListRepoUserPermissionsForbidden with default headers values
+func NewListRepoUserPermissionsForbidden() *ListRepoUserPermissionsForbidden {
+	return &ListRepoUserPermissionsForbidden{}
+}
+
+/*ListRepoUserPermissionsForbidden
+
 Unauthorized access
 */
 type ListRepoUserPermissionsForbidden struct {
+}
+
+func (o *ListRepoUserPermissionsForbidden) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/user/][%d] listRepoUserPermissionsForbidden ", 403)
 }
 
 func (o *ListRepoUserPermissionsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *ListRepoUserPermissionsForbidden) readResponse(response client.Response
 	return nil
 }
 
-/*
+// NewListRepoUserPermissionsNotFound creates a ListRepoUserPermissionsNotFound with default headers values
+func NewListRepoUserPermissionsNotFound() *ListRepoUserPermissionsNotFound {
+	return &ListRepoUserPermissionsNotFound{}
+}
+
+/*ListRepoUserPermissionsNotFound
+
 Not found
 */
 type ListRepoUserPermissionsNotFound struct {
+}
+
+func (o *ListRepoUserPermissionsNotFound) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/user/][%d] listRepoUserPermissionsNotFound ", 404)
 }
 
 func (o *ListRepoUserPermissionsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

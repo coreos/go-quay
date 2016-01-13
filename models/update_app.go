@@ -9,8 +9,7 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-Description of an updated application.
+/*UpdateApp Description of an updated application.
 
 swagger:model UpdateApp
 */
@@ -24,11 +23,11 @@ type UpdateApp struct {
 
 	/* The e-mail address of the avatar to use for the application
 	 */
-	AvatarEmail string `json:"avatar_email,omitempty"`
+	AvatarEmail *string `json:"avatar_email,omitempty"`
 
 	/* The human-readable description for the application
 	 */
-	Description string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty"`
 
 	/* The name of the application
 
@@ -48,14 +47,17 @@ func (m *UpdateApp) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateApplicationURI(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateName(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateRedirectURI(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 

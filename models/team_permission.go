@@ -11,8 +11,7 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-Description of a team permission.
+/*TeamPermission Description of a team permission.
 
 swagger:model TeamPermission
 */
@@ -30,6 +29,7 @@ func (m *TeamPermission) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateRole(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -51,7 +51,10 @@ func (m *TeamPermission) validateRoleEnum(path, location string, value string) e
 			teamPermissionRoleEnum = append(teamPermissionRoleEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, teamPermissionRoleEnum)
+	if err := validate.Enum(path, location, value, teamPermissionRoleEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *TeamPermission) validateRole(formats strfmt.Registry) error {

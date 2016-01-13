@@ -11,23 +11,51 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*
-UpdateOrganizationApplicationParams contains all the parameters to send to the API endpoint
+// NewUpdateOrganizationApplicationParams creates a new UpdateOrganizationApplicationParams object
+// with the default values initialized.
+func NewUpdateOrganizationApplicationParams() *UpdateOrganizationApplicationParams {
+	var ()
+	return &UpdateOrganizationApplicationParams{}
+}
+
+/*UpdateOrganizationApplicationParams contains all the parameters to send to the API endpoint
 for the update organization application operation typically these are written to a http.Request
 */
 type UpdateOrganizationApplicationParams struct {
-	/*
+
+	/*Body
 	  Request body contents.
+
 	*/
 	Body *models.UpdateApp
-	/*
+	/*ClientID
 	  The OAuth client ID
+
 	*/
 	ClientID string
-	/*
+	/*Orgname
 	  The name of the organization
+
 	*/
 	Orgname string
+}
+
+// WithBody adds the body to the update organization application params
+func (o *UpdateOrganizationApplicationParams) WithBody(body *models.UpdateApp) *UpdateOrganizationApplicationParams {
+	o.Body = body
+	return o
+}
+
+// WithClientID adds the clientId to the update organization application params
+func (o *UpdateOrganizationApplicationParams) WithClientID(clientId string) *UpdateOrganizationApplicationParams {
+	o.ClientID = clientId
+	return o
+}
+
+// WithOrgname adds the orgname to the update organization application params
+func (o *UpdateOrganizationApplicationParams) WithOrgname(orgname string) *UpdateOrganizationApplicationParams {
+	o.Orgname = orgname
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

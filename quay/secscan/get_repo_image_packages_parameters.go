@@ -9,19 +9,40 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-GetRepoImagePackagesParams contains all the parameters to send to the API endpoint
+// NewGetRepoImagePackagesParams creates a new GetRepoImagePackagesParams object
+// with the default values initialized.
+func NewGetRepoImagePackagesParams() *GetRepoImagePackagesParams {
+	var ()
+	return &GetRepoImagePackagesParams{}
+}
+
+/*GetRepoImagePackagesParams contains all the parameters to send to the API endpoint
 for the get repo image packages operation typically these are written to a http.Request
 */
 type GetRepoImagePackagesParams struct {
-	/*
+
+	/*Imageid
 	  The image ID
+
 	*/
 	Imageid string
-	/*
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
+}
+
+// WithImageid adds the imageid to the get repo image packages params
+func (o *GetRepoImagePackagesParams) WithImageid(imageid string) *GetRepoImagePackagesParams {
+	o.Imageid = imageid
+	return o
+}
+
+// WithRepository adds the repository to the get repo image packages params
+func (o *GetRepoImagePackagesParams) WithRepository(repository string) *GetRepoImagePackagesParams {
+	o.Repository = repository
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

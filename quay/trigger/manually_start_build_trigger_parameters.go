@@ -11,23 +11,51 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*
-ManuallyStartBuildTriggerParams contains all the parameters to send to the API endpoint
+// NewManuallyStartBuildTriggerParams creates a new ManuallyStartBuildTriggerParams object
+// with the default values initialized.
+func NewManuallyStartBuildTriggerParams() *ManuallyStartBuildTriggerParams {
+	var ()
+	return &ManuallyStartBuildTriggerParams{}
+}
+
+/*ManuallyStartBuildTriggerParams contains all the parameters to send to the API endpoint
 for the manually start build trigger operation typically these are written to a http.Request
 */
 type ManuallyStartBuildTriggerParams struct {
-	/*
+
+	/*Body
 	  Request body contents.
+
 	*/
 	Body *models.RunParameters
-	/*
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
-	/*
+	/*TriggerUUID
 	  The UUID of the build trigger
+
 	*/
 	TriggerUUID string
+}
+
+// WithBody adds the body to the manually start build trigger params
+func (o *ManuallyStartBuildTriggerParams) WithBody(body *models.RunParameters) *ManuallyStartBuildTriggerParams {
+	o.Body = body
+	return o
+}
+
+// WithRepository adds the repository to the manually start build trigger params
+func (o *ManuallyStartBuildTriggerParams) WithRepository(repository string) *ManuallyStartBuildTriggerParams {
+	o.Repository = repository
+	return o
+}
+
+// WithTriggerUUID adds the triggerUuid to the manually start build trigger params
+func (o *ManuallyStartBuildTriggerParams) WithTriggerUUID(triggerUuid string) *ManuallyStartBuildTriggerParams {
+	o.TriggerUUID = triggerUuid
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

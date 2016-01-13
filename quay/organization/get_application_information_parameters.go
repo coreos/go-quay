@@ -9,15 +9,29 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-GetApplicationInformationParams contains all the parameters to send to the API endpoint
+// NewGetApplicationInformationParams creates a new GetApplicationInformationParams object
+// with the default values initialized.
+func NewGetApplicationInformationParams() *GetApplicationInformationParams {
+	var ()
+	return &GetApplicationInformationParams{}
+}
+
+/*GetApplicationInformationParams contains all the parameters to send to the API endpoint
 for the get application information operation typically these are written to a http.Request
 */
 type GetApplicationInformationParams struct {
-	/*
+
+	/*ClientID
 	  The OAuth client ID
+
 	*/
 	ClientID string
+}
+
+// WithClientID adds the clientId to the get application information params
+func (o *GetApplicationInformationParams) WithClientID(clientId string) *GetApplicationInformationParams {
+	o.ClientID = clientId
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

@@ -25,14 +25,20 @@ type Client struct {
 
 /*Fetches the packages added/removed in the given repo image.
  */
-func (a *Client) GetRepoImagePackages(params GetRepoImagePackagesParams, authInfo client.AuthInfoWriter) (*GetRepoImagePackagesOK, error) {
+func (a *Client) GetRepoImagePackages(params *GetRepoImagePackagesParams, authInfo client.AuthInfoWriter) (*GetRepoImagePackagesOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRepoImagePackagesParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "getRepoImagePackages",
-		Params:   &params,
-		Reader:   &GetRepoImagePackagesReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "getRepoImagePackages",
+		Method:      "GET",
+		PathPattern: "/api/v1/repository/{repository}/image/{imageid}/packages",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetRepoImagePackagesReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -42,14 +48,20 @@ func (a *Client) GetRepoImagePackages(params GetRepoImagePackagesParams, authInf
 
 /*Fetches the vulnerabilities (if any) for a repository tag.
  */
-func (a *Client) GetRepoTagVulnerabilities(params GetRepoTagVulnerabilitiesParams, authInfo client.AuthInfoWriter) (*GetRepoTagVulnerabilitiesOK, error) {
+func (a *Client) GetRepoTagVulnerabilities(params *GetRepoTagVulnerabilitiesParams, authInfo client.AuthInfoWriter) (*GetRepoTagVulnerabilitiesOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRepoTagVulnerabilitiesParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "getRepoTagVulnerabilities",
-		Params:   &params,
-		Reader:   &GetRepoTagVulnerabilitiesReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "getRepoTagVulnerabilities",
+		Method:      "GET",
+		PathPattern: "/api/v1/repository/{repository}/tag/{tag}/vulnerabilities",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetRepoTagVulnerabilitiesReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err

@@ -4,6 +4,9 @@ package repotoken
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *ListRepoTokensReader) ReadResponse(response client.Response, consumer h
 	switch response.Code() {
 
 	case 200:
-		var result ListRepoTokensOK
+		result := NewListRepoTokensOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result ListRepoTokensBadRequest
+		result := NewListRepoTokensBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listRepoTokensBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result ListRepoTokensUnauthorized
+		result := NewListRepoTokensUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listRepoTokensUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result ListRepoTokensForbidden
+		result := NewListRepoTokensForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listRepoTokensForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result ListRepoTokensNotFound
+		result := NewListRepoTokensNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listRepoTokensNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewListRepoTokensOK creates a ListRepoTokensOK with default headers values
+func NewListRepoTokensOK() *ListRepoTokensOK {
+	return &ListRepoTokensOK{}
+}
+
+/*ListRepoTokensOK
+
 Successful invocation
 */
 type ListRepoTokensOK struct {
+}
+
+func (o *ListRepoTokensOK) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tokens/][%d] listRepoTokensOK ", 200)
 }
 
 func (o *ListRepoTokensOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *ListRepoTokensOK) readResponse(response client.Response, consumer httpk
 	return nil
 }
 
-/*
+// NewListRepoTokensBadRequest creates a ListRepoTokensBadRequest with default headers values
+func NewListRepoTokensBadRequest() *ListRepoTokensBadRequest {
+	return &ListRepoTokensBadRequest{}
+}
+
+/*ListRepoTokensBadRequest
+
 Bad Request
 */
 type ListRepoTokensBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *ListRepoTokensBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tokens/][%d] listRepoTokensBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ListRepoTokensBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *ListRepoTokensBadRequest) readResponse(response client.Response, consum
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewListRepoTokensUnauthorized creates a ListRepoTokensUnauthorized with default headers values
+func NewListRepoTokensUnauthorized() *ListRepoTokensUnauthorized {
+	return &ListRepoTokensUnauthorized{}
+}
+
+/*ListRepoTokensUnauthorized
+
 Session required
 */
 type ListRepoTokensUnauthorized struct {
+}
+
+func (o *ListRepoTokensUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tokens/][%d] listRepoTokensUnauthorized ", 401)
 }
 
 func (o *ListRepoTokensUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *ListRepoTokensUnauthorized) readResponse(response client.Response, cons
 	return nil
 }
 
-/*
+// NewListRepoTokensForbidden creates a ListRepoTokensForbidden with default headers values
+func NewListRepoTokensForbidden() *ListRepoTokensForbidden {
+	return &ListRepoTokensForbidden{}
+}
+
+/*ListRepoTokensForbidden
+
 Unauthorized access
 */
 type ListRepoTokensForbidden struct {
+}
+
+func (o *ListRepoTokensForbidden) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tokens/][%d] listRepoTokensForbidden ", 403)
 }
 
 func (o *ListRepoTokensForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *ListRepoTokensForbidden) readResponse(response client.Response, consume
 	return nil
 }
 
-/*
+// NewListRepoTokensNotFound creates a ListRepoTokensNotFound with default headers values
+func NewListRepoTokensNotFound() *ListRepoTokensNotFound {
+	return &ListRepoTokensNotFound{}
+}
+
+/*ListRepoTokensNotFound
+
 Not found
 */
 type ListRepoTokensNotFound struct {
+}
+
+func (o *ListRepoTokensNotFound) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tokens/][%d] listRepoTokensNotFound ", 404)
 }
 
 func (o *ListRepoTokensNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

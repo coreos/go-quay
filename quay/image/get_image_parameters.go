@@ -9,19 +9,40 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-GetImageParams contains all the parameters to send to the API endpoint
+// NewGetImageParams creates a new GetImageParams object
+// with the default values initialized.
+func NewGetImageParams() *GetImageParams {
+	var ()
+	return &GetImageParams{}
+}
+
+/*GetImageParams contains all the parameters to send to the API endpoint
 for the get image operation typically these are written to a http.Request
 */
 type GetImageParams struct {
-	/*
+
+	/*ImageID
 	  The Docker image ID
+
 	*/
 	ImageID string
-	/*
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
+}
+
+// WithImageID adds the imageId to the get image params
+func (o *GetImageParams) WithImageID(imageId string) *GetImageParams {
+	o.ImageID = imageId
+	return o
+}
+
+// WithRepository adds the repository to the get image params
+func (o *GetImageParams) WithRepository(repository string) *GetImageParams {
+	o.Repository = repository
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

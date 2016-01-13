@@ -9,19 +9,40 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-GetRepoNotificationParams contains all the parameters to send to the API endpoint
+// NewGetRepoNotificationParams creates a new GetRepoNotificationParams object
+// with the default values initialized.
+func NewGetRepoNotificationParams() *GetRepoNotificationParams {
+	var ()
+	return &GetRepoNotificationParams{}
+}
+
+/*GetRepoNotificationParams contains all the parameters to send to the API endpoint
 for the get repo notification operation typically these are written to a http.Request
 */
 type GetRepoNotificationParams struct {
-	/*
+
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
-	/*
+	/*UUID
 	  The UUID of the notification
+
 	*/
 	UUID string
+}
+
+// WithRepository adds the repository to the get repo notification params
+func (o *GetRepoNotificationParams) WithRepository(repository string) *GetRepoNotificationParams {
+	o.Repository = repository
+	return o
+}
+
+// WithUUID adds the uuid to the get repo notification params
+func (o *GetRepoNotificationParams) WithUUID(uuid string) *GetRepoNotificationParams {
+	o.UUID = uuid
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

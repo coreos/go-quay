@@ -9,23 +9,51 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-UpdateOrganizationTeamMemberParams contains all the parameters to send to the API endpoint
+// NewUpdateOrganizationTeamMemberParams creates a new UpdateOrganizationTeamMemberParams object
+// with the default values initialized.
+func NewUpdateOrganizationTeamMemberParams() *UpdateOrganizationTeamMemberParams {
+	var ()
+	return &UpdateOrganizationTeamMemberParams{}
+}
+
+/*UpdateOrganizationTeamMemberParams contains all the parameters to send to the API endpoint
 for the update organization team member operation typically these are written to a http.Request
 */
 type UpdateOrganizationTeamMemberParams struct {
-	/*
+
+	/*Membername
 	  The username of the team member
+
 	*/
 	Membername string
-	/*
+	/*Orgname
 	  The name of the organization
+
 	*/
 	Orgname string
-	/*
+	/*Teamname
 	  The name of the team
+
 	*/
 	Teamname string
+}
+
+// WithMembername adds the membername to the update organization team member params
+func (o *UpdateOrganizationTeamMemberParams) WithMembername(membername string) *UpdateOrganizationTeamMemberParams {
+	o.Membername = membername
+	return o
+}
+
+// WithOrgname adds the orgname to the update organization team member params
+func (o *UpdateOrganizationTeamMemberParams) WithOrgname(orgname string) *UpdateOrganizationTeamMemberParams {
+	o.Orgname = orgname
+	return o
+}
+
+// WithTeamname adds the teamname to the update organization team member params
+func (o *UpdateOrganizationTeamMemberParams) WithTeamname(teamname string) *UpdateOrganizationTeamMemberParams {
+	o.Teamname = teamname
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

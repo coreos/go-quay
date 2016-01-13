@@ -4,6 +4,9 @@ package build
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *RequestRepoBuildReader) ReadResponse(response client.Response, consumer
 	switch response.Code() {
 
 	case 200:
-		var result RequestRepoBuildOK
+		result := NewRequestRepoBuildOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result RequestRepoBuildBadRequest
+		result := NewRequestRepoBuildBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("requestRepoBuildBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result RequestRepoBuildUnauthorized
+		result := NewRequestRepoBuildUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("requestRepoBuildUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result RequestRepoBuildForbidden
+		result := NewRequestRepoBuildForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("requestRepoBuildForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result RequestRepoBuildNotFound
+		result := NewRequestRepoBuildNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("requestRepoBuildNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewRequestRepoBuildOK creates a RequestRepoBuildOK with default headers values
+func NewRequestRepoBuildOK() *RequestRepoBuildOK {
+	return &RequestRepoBuildOK{}
+}
+
+/*RequestRepoBuildOK
+
 Successful invocation
 */
 type RequestRepoBuildOK struct {
+}
+
+func (o *RequestRepoBuildOK) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/build/][%d] requestRepoBuildOK ", 200)
 }
 
 func (o *RequestRepoBuildOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *RequestRepoBuildOK) readResponse(response client.Response, consumer htt
 	return nil
 }
 
-/*
+// NewRequestRepoBuildBadRequest creates a RequestRepoBuildBadRequest with default headers values
+func NewRequestRepoBuildBadRequest() *RequestRepoBuildBadRequest {
+	return &RequestRepoBuildBadRequest{}
+}
+
+/*RequestRepoBuildBadRequest
+
 Bad Request
 */
 type RequestRepoBuildBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *RequestRepoBuildBadRequest) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/build/][%d] requestRepoBuildBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *RequestRepoBuildBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *RequestRepoBuildBadRequest) readResponse(response client.Response, cons
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewRequestRepoBuildUnauthorized creates a RequestRepoBuildUnauthorized with default headers values
+func NewRequestRepoBuildUnauthorized() *RequestRepoBuildUnauthorized {
+	return &RequestRepoBuildUnauthorized{}
+}
+
+/*RequestRepoBuildUnauthorized
+
 Session required
 */
 type RequestRepoBuildUnauthorized struct {
+}
+
+func (o *RequestRepoBuildUnauthorized) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/build/][%d] requestRepoBuildUnauthorized ", 401)
 }
 
 func (o *RequestRepoBuildUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *RequestRepoBuildUnauthorized) readResponse(response client.Response, co
 	return nil
 }
 
-/*
+// NewRequestRepoBuildForbidden creates a RequestRepoBuildForbidden with default headers values
+func NewRequestRepoBuildForbidden() *RequestRepoBuildForbidden {
+	return &RequestRepoBuildForbidden{}
+}
+
+/*RequestRepoBuildForbidden
+
 Unauthorized access
 */
 type RequestRepoBuildForbidden struct {
+}
+
+func (o *RequestRepoBuildForbidden) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/build/][%d] requestRepoBuildForbidden ", 403)
 }
 
 func (o *RequestRepoBuildForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *RequestRepoBuildForbidden) readResponse(response client.Response, consu
 	return nil
 }
 
-/*
+// NewRequestRepoBuildNotFound creates a RequestRepoBuildNotFound with default headers values
+func NewRequestRepoBuildNotFound() *RequestRepoBuildNotFound {
+	return &RequestRepoBuildNotFound{}
+}
+
+/*RequestRepoBuildNotFound
+
 Not found
 */
 type RequestRepoBuildNotFound struct {
+}
+
+func (o *RequestRepoBuildNotFound) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/build/][%d] requestRepoBuildNotFound ", 404)
 }
 
 func (o *RequestRepoBuildNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

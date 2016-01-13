@@ -9,15 +9,29 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-GetUserRobotPermissionsParams contains all the parameters to send to the API endpoint
+// NewGetUserRobotPermissionsParams creates a new GetUserRobotPermissionsParams object
+// with the default values initialized.
+func NewGetUserRobotPermissionsParams() *GetUserRobotPermissionsParams {
+	var ()
+	return &GetUserRobotPermissionsParams{}
+}
+
+/*GetUserRobotPermissionsParams contains all the parameters to send to the API endpoint
 for the get user robot permissions operation typically these are written to a http.Request
 */
 type GetUserRobotPermissionsParams struct {
-	/*
+
+	/*RobotShortname
 	  The short name for the robot, without any user or organization prefix
+
 	*/
 	RobotShortname string
+}
+
+// WithRobotShortname adds the robotShortname to the get user robot permissions params
+func (o *GetUserRobotPermissionsParams) WithRobotShortname(robotShortname string) *GetUserRobotPermissionsParams {
+	o.RobotShortname = robotShortname
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

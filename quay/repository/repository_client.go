@@ -25,14 +25,20 @@ type Client struct {
 
 /*Change the visibility of a repository.
  */
-func (a *Client) ChangeRepoVisibility(params ChangeRepoVisibilityParams, authInfo client.AuthInfoWriter) (*ChangeRepoVisibilityOK, error) {
+func (a *Client) ChangeRepoVisibility(params *ChangeRepoVisibilityParams, authInfo client.AuthInfoWriter) (*ChangeRepoVisibilityOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewChangeRepoVisibilityParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "changeRepoVisibility",
-		Params:   &params,
-		Reader:   &ChangeRepoVisibilityReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "changeRepoVisibility",
+		Method:      "POST",
+		PathPattern: "/api/v1/repository/{repository}/changevisibility",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &ChangeRepoVisibilityReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -42,14 +48,20 @@ func (a *Client) ChangeRepoVisibility(params ChangeRepoVisibilityParams, authInf
 
 /*Create a new repository.
  */
-func (a *Client) CreateRepo(params CreateRepoParams, authInfo client.AuthInfoWriter) (*CreateRepoOK, error) {
+func (a *Client) CreateRepo(params *CreateRepoParams, authInfo client.AuthInfoWriter) (*CreateRepoOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateRepoParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "createRepo",
-		Params:   &params,
-		Reader:   &CreateRepoReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "createRepo",
+		Method:      "POST",
+		PathPattern: "/api/v1/repository",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &CreateRepoReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -59,14 +71,20 @@ func (a *Client) CreateRepo(params CreateRepoParams, authInfo client.AuthInfoWri
 
 /*Delete a repository.
  */
-func (a *Client) DeleteRepository(params DeleteRepositoryParams, authInfo client.AuthInfoWriter) (*DeleteRepositoryNoContent, error) {
+func (a *Client) DeleteRepository(params *DeleteRepositoryParams, authInfo client.AuthInfoWriter) (*DeleteRepositoryNoContent, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteRepositoryParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "deleteRepository",
-		Params:   &params,
-		Reader:   &DeleteRepositoryReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "deleteRepository",
+		Method:      "DELETE",
+		PathPattern: "/api/v1/repository/{repository}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &DeleteRepositoryReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -76,14 +94,20 @@ func (a *Client) DeleteRepository(params DeleteRepositoryParams, authInfo client
 
 /*Fetch the specified repository.
  */
-func (a *Client) GetRepo(params GetRepoParams, authInfo client.AuthInfoWriter) (*GetRepoOK, error) {
+func (a *Client) GetRepo(params *GetRepoParams, authInfo client.AuthInfoWriter) (*GetRepoOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRepoParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "getRepo",
-		Params:   &params,
-		Reader:   &GetRepoReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "getRepo",
+		Method:      "GET",
+		PathPattern: "/api/v1/repository/{repository}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetRepoReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -93,14 +117,20 @@ func (a *Client) GetRepo(params GetRepoParams, authInfo client.AuthInfoWriter) (
 
 /*Fetch the list of repositories visible to the current user under a variety of situations.
  */
-func (a *Client) ListRepos(params ListReposParams, authInfo client.AuthInfoWriter) (*ListReposOK, error) {
+func (a *Client) ListRepos(params *ListReposParams, authInfo client.AuthInfoWriter) (*ListReposOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListReposParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "listRepos",
-		Params:   &params,
-		Reader:   &ListReposReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "listRepos",
+		Method:      "GET",
+		PathPattern: "/api/v1/repository",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &ListReposReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -110,14 +140,20 @@ func (a *Client) ListRepos(params ListReposParams, authInfo client.AuthInfoWrite
 
 /*Update the description in the specified repository.
  */
-func (a *Client) UpdateRepo(params UpdateRepoParams, authInfo client.AuthInfoWriter) (*UpdateRepoOK, error) {
+func (a *Client) UpdateRepo(params *UpdateRepoParams, authInfo client.AuthInfoWriter) (*UpdateRepoOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateRepoParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "updateRepo",
-		Params:   &params,
-		Reader:   &UpdateRepoReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "updateRepo",
+		Method:      "PUT",
+		PathPattern: "/api/v1/repository/{repository}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &UpdateRepoReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err

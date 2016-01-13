@@ -11,19 +11,40 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*
-CreateOrganizationApplicationParams contains all the parameters to send to the API endpoint
+// NewCreateOrganizationApplicationParams creates a new CreateOrganizationApplicationParams object
+// with the default values initialized.
+func NewCreateOrganizationApplicationParams() *CreateOrganizationApplicationParams {
+	var ()
+	return &CreateOrganizationApplicationParams{}
+}
+
+/*CreateOrganizationApplicationParams contains all the parameters to send to the API endpoint
 for the create organization application operation typically these are written to a http.Request
 */
 type CreateOrganizationApplicationParams struct {
-	/*
+
+	/*Body
 	  Request body contents.
+
 	*/
 	Body *models.NewApp
-	/*
+	/*Orgname
 	  The name of the organization
+
 	*/
 	Orgname string
+}
+
+// WithBody adds the body to the create organization application params
+func (o *CreateOrganizationApplicationParams) WithBody(body *models.NewApp) *CreateOrganizationApplicationParams {
+	o.Body = body
+	return o
+}
+
+// WithOrgname adds the orgname to the create organization application params
+func (o *CreateOrganizationApplicationParams) WithOrgname(orgname string) *CreateOrganizationApplicationParams {
+	o.Orgname = orgname
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

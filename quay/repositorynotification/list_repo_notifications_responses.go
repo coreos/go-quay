@@ -4,6 +4,9 @@ package repositorynotification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *ListRepoNotificationsReader) ReadResponse(response client.Response, con
 	switch response.Code() {
 
 	case 200:
-		var result ListRepoNotificationsOK
+		result := NewListRepoNotificationsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result ListRepoNotificationsBadRequest
+		result := NewListRepoNotificationsBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listRepoNotificationsBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result ListRepoNotificationsUnauthorized
+		result := NewListRepoNotificationsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listRepoNotificationsUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result ListRepoNotificationsForbidden
+		result := NewListRepoNotificationsForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listRepoNotificationsForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result ListRepoNotificationsNotFound
+		result := NewListRepoNotificationsNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listRepoNotificationsNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewListRepoNotificationsOK creates a ListRepoNotificationsOK with default headers values
+func NewListRepoNotificationsOK() *ListRepoNotificationsOK {
+	return &ListRepoNotificationsOK{}
+}
+
+/*ListRepoNotificationsOK
+
 Successful invocation
 */
 type ListRepoNotificationsOK struct {
+}
+
+func (o *ListRepoNotificationsOK) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/notification/][%d] listRepoNotificationsOK ", 200)
 }
 
 func (o *ListRepoNotificationsOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *ListRepoNotificationsOK) readResponse(response client.Response, consume
 	return nil
 }
 
-/*
+// NewListRepoNotificationsBadRequest creates a ListRepoNotificationsBadRequest with default headers values
+func NewListRepoNotificationsBadRequest() *ListRepoNotificationsBadRequest {
+	return &ListRepoNotificationsBadRequest{}
+}
+
+/*ListRepoNotificationsBadRequest
+
 Bad Request
 */
 type ListRepoNotificationsBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *ListRepoNotificationsBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/notification/][%d] listRepoNotificationsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ListRepoNotificationsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *ListRepoNotificationsBadRequest) readResponse(response client.Response,
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewListRepoNotificationsUnauthorized creates a ListRepoNotificationsUnauthorized with default headers values
+func NewListRepoNotificationsUnauthorized() *ListRepoNotificationsUnauthorized {
+	return &ListRepoNotificationsUnauthorized{}
+}
+
+/*ListRepoNotificationsUnauthorized
+
 Session required
 */
 type ListRepoNotificationsUnauthorized struct {
+}
+
+func (o *ListRepoNotificationsUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/notification/][%d] listRepoNotificationsUnauthorized ", 401)
 }
 
 func (o *ListRepoNotificationsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *ListRepoNotificationsUnauthorized) readResponse(response client.Respons
 	return nil
 }
 
-/*
+// NewListRepoNotificationsForbidden creates a ListRepoNotificationsForbidden with default headers values
+func NewListRepoNotificationsForbidden() *ListRepoNotificationsForbidden {
+	return &ListRepoNotificationsForbidden{}
+}
+
+/*ListRepoNotificationsForbidden
+
 Unauthorized access
 */
 type ListRepoNotificationsForbidden struct {
+}
+
+func (o *ListRepoNotificationsForbidden) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/notification/][%d] listRepoNotificationsForbidden ", 403)
 }
 
 func (o *ListRepoNotificationsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *ListRepoNotificationsForbidden) readResponse(response client.Response, 
 	return nil
 }
 
-/*
+// NewListRepoNotificationsNotFound creates a ListRepoNotificationsNotFound with default headers values
+func NewListRepoNotificationsNotFound() *ListRepoNotificationsNotFound {
+	return &ListRepoNotificationsNotFound{}
+}
+
+/*ListRepoNotificationsNotFound
+
 Not found
 */
 type ListRepoNotificationsNotFound struct {
+}
+
+func (o *ListRepoNotificationsNotFound) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/notification/][%d] listRepoNotificationsNotFound ", 404)
 }
 
 func (o *ListRepoNotificationsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

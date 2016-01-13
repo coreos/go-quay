@@ -4,6 +4,9 @@ package repositorynotification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *CreateRepoNotificationReader) ReadResponse(response client.Response, co
 	switch response.Code() {
 
 	case 200:
-		var result CreateRepoNotificationOK
+		result := NewCreateRepoNotificationOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result CreateRepoNotificationBadRequest
+		result := NewCreateRepoNotificationBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("createRepoNotificationBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result CreateRepoNotificationUnauthorized
+		result := NewCreateRepoNotificationUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("createRepoNotificationUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result CreateRepoNotificationForbidden
+		result := NewCreateRepoNotificationForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("createRepoNotificationForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result CreateRepoNotificationNotFound
+		result := NewCreateRepoNotificationNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("createRepoNotificationNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewCreateRepoNotificationOK creates a CreateRepoNotificationOK with default headers values
+func NewCreateRepoNotificationOK() *CreateRepoNotificationOK {
+	return &CreateRepoNotificationOK{}
+}
+
+/*CreateRepoNotificationOK
+
 Successful invocation
 */
 type CreateRepoNotificationOK struct {
+}
+
+func (o *CreateRepoNotificationOK) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/notification/][%d] createRepoNotificationOK ", 200)
 }
 
 func (o *CreateRepoNotificationOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *CreateRepoNotificationOK) readResponse(response client.Response, consum
 	return nil
 }
 
-/*
+// NewCreateRepoNotificationBadRequest creates a CreateRepoNotificationBadRequest with default headers values
+func NewCreateRepoNotificationBadRequest() *CreateRepoNotificationBadRequest {
+	return &CreateRepoNotificationBadRequest{}
+}
+
+/*CreateRepoNotificationBadRequest
+
 Bad Request
 */
 type CreateRepoNotificationBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *CreateRepoNotificationBadRequest) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/notification/][%d] createRepoNotificationBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateRepoNotificationBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *CreateRepoNotificationBadRequest) readResponse(response client.Response
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewCreateRepoNotificationUnauthorized creates a CreateRepoNotificationUnauthorized with default headers values
+func NewCreateRepoNotificationUnauthorized() *CreateRepoNotificationUnauthorized {
+	return &CreateRepoNotificationUnauthorized{}
+}
+
+/*CreateRepoNotificationUnauthorized
+
 Session required
 */
 type CreateRepoNotificationUnauthorized struct {
+}
+
+func (o *CreateRepoNotificationUnauthorized) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/notification/][%d] createRepoNotificationUnauthorized ", 401)
 }
 
 func (o *CreateRepoNotificationUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *CreateRepoNotificationUnauthorized) readResponse(response client.Respon
 	return nil
 }
 
-/*
+// NewCreateRepoNotificationForbidden creates a CreateRepoNotificationForbidden with default headers values
+func NewCreateRepoNotificationForbidden() *CreateRepoNotificationForbidden {
+	return &CreateRepoNotificationForbidden{}
+}
+
+/*CreateRepoNotificationForbidden
+
 Unauthorized access
 */
 type CreateRepoNotificationForbidden struct {
+}
+
+func (o *CreateRepoNotificationForbidden) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/notification/][%d] createRepoNotificationForbidden ", 403)
 }
 
 func (o *CreateRepoNotificationForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *CreateRepoNotificationForbidden) readResponse(response client.Response,
 	return nil
 }
 
-/*
+// NewCreateRepoNotificationNotFound creates a CreateRepoNotificationNotFound with default headers values
+func NewCreateRepoNotificationNotFound() *CreateRepoNotificationNotFound {
+	return &CreateRepoNotificationNotFound{}
+}
+
+/*CreateRepoNotificationNotFound
+
 Not found
 */
 type CreateRepoNotificationNotFound struct {
+}
+
+func (o *CreateRepoNotificationNotFound) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/notification/][%d] createRepoNotificationNotFound ", 404)
 }
 
 func (o *CreateRepoNotificationNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

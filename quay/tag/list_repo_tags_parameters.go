@@ -10,27 +10,62 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-ListRepoTagsParams contains all the parameters to send to the API endpoint
+// NewListRepoTagsParams creates a new ListRepoTagsParams object
+// with the default values initialized.
+func NewListRepoTagsParams() *ListRepoTagsParams {
+	var ()
+	return &ListRepoTagsParams{}
+}
+
+/*ListRepoTagsParams contains all the parameters to send to the API endpoint
 for the list repo tags operation typically these are written to a http.Request
 */
 type ListRepoTagsParams struct {
-	/*
+
+	/*Limit
 	  Limit to the number of results to return per page. Max 100.
+
 	*/
-	Limit int64
-	/*
+	Limit *int64
+	/*Page
 	  Page index for the results. Default 1.
+
 	*/
-	Page int64
-	/*
+	Page *int64
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
-	/*
+	/*SpecificTag
 	  Filters the tags to the specific tag.
+
 	*/
-	SpecificTag string
+	SpecificTag *string
+}
+
+// WithLimit adds the limit to the list repo tags params
+func (o *ListRepoTagsParams) WithLimit(limit *int64) *ListRepoTagsParams {
+	o.Limit = limit
+	return o
+}
+
+// WithPage adds the page to the list repo tags params
+func (o *ListRepoTagsParams) WithPage(page *int64) *ListRepoTagsParams {
+	o.Page = page
+	return o
+}
+
+// WithRepository adds the repository to the list repo tags params
+func (o *ListRepoTagsParams) WithRepository(repository string) *ListRepoTagsParams {
+	o.Repository = repository
+	return o
+}
+
+// WithSpecificTag adds the specificTag to the list repo tags params
+func (o *ListRepoTagsParams) WithSpecificTag(specificTag *string) *ListRepoTagsParams {
+	o.SpecificTag = specificTag
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -38,14 +73,36 @@ func (o *ListRepoTagsParams) WriteToRequest(r client.Request, reg strfmt.Registr
 
 	var res []error
 
-	// query param limit
-	if err := r.SetQueryParam("limit", swag.FormatInt64(o.Limit)); err != nil {
-		return err
+	if o.Limit != nil {
+
+		// query param limit
+		var qrLimit int64
+		if o.Limit != nil {
+			qrLimit = *o.Limit
+		}
+		qLimit := swag.FormatInt64(qrLimit)
+		if qLimit != "" {
+			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
 	}
 
-	// query param page
-	if err := r.SetQueryParam("page", swag.FormatInt64(o.Page)); err != nil {
-		return err
+	if o.Page != nil {
+
+		// query param page
+		var qrPage int64
+		if o.Page != nil {
+			qrPage = *o.Page
+		}
+		qPage := swag.FormatInt64(qrPage)
+		if qPage != "" {
+			if err := r.SetQueryParam("page", qPage); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// path param repository
@@ -53,9 +110,20 @@ func (o *ListRepoTagsParams) WriteToRequest(r client.Request, reg strfmt.Registr
 		return err
 	}
 
-	// query param specificTag
-	if err := r.SetQueryParam("specificTag", o.SpecificTag); err != nil {
-		return err
+	if o.SpecificTag != nil {
+
+		// query param specificTag
+		var qrSpecificTag string
+		if o.SpecificTag != nil {
+			qrSpecificTag = *o.SpecificTag
+		}
+		qSpecificTag := qrSpecificTag
+		if qSpecificTag != "" {
+			if err := r.SetQueryParam("specificTag", qSpecificTag); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if len(res) > 0 {

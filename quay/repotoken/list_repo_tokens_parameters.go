@@ -9,15 +9,29 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-ListRepoTokensParams contains all the parameters to send to the API endpoint
+// NewListRepoTokensParams creates a new ListRepoTokensParams object
+// with the default values initialized.
+func NewListRepoTokensParams() *ListRepoTokensParams {
+	var ()
+	return &ListRepoTokensParams{}
+}
+
+/*ListRepoTokensParams contains all the parameters to send to the API endpoint
 for the list repo tokens operation typically these are written to a http.Request
 */
 type ListRepoTokensParams struct {
-	/*
+
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
+}
+
+// WithRepository adds the repository to the list repo tokens params
+func (o *ListRepoTokensParams) WithRepository(repository string) *ListRepoTokensParams {
+	o.Repository = repository
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

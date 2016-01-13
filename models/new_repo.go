@@ -11,8 +11,7 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-Description of a new repository
+/*NewRepo Description of a new repository
 
 swagger:model NewRepo
 */
@@ -26,7 +25,7 @@ type NewRepo struct {
 
 	/* Namespace in which the repository should be created. If omitted, the username of the caller is used
 	 */
-	Namespace string `json:"namespace,omitempty"`
+	Namespace *string `json:"namespace,omitempty"`
 
 	/* Repository name
 
@@ -46,14 +45,17 @@ func (m *NewRepo) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateDescription(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateRepository(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateVisibility(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -93,7 +95,10 @@ func (m *NewRepo) validateVisibilityEnum(path, location string, value string) er
 			newRepoVisibilityEnum = append(newRepoVisibilityEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, newRepoVisibilityEnum)
+	if err := validate.Enum(path, location, value, newRepoVisibilityEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *NewRepo) validateVisibility(formats strfmt.Registry) error {

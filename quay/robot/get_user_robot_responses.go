@@ -4,6 +4,9 @@ package robot
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *GetUserRobotReader) ReadResponse(response client.Response, consumer htt
 	switch response.Code() {
 
 	case 200:
-		var result GetUserRobotOK
+		result := NewGetUserRobotOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result GetUserRobotBadRequest
+		result := NewGetUserRobotBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getUserRobotBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result GetUserRobotUnauthorized
+		result := NewGetUserRobotUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getUserRobotUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result GetUserRobotForbidden
+		result := NewGetUserRobotForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getUserRobotForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result GetUserRobotNotFound
+		result := NewGetUserRobotNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getUserRobotNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewGetUserRobotOK creates a GetUserRobotOK with default headers values
+func NewGetUserRobotOK() *GetUserRobotOK {
+	return &GetUserRobotOK{}
+}
+
+/*GetUserRobotOK
+
 Successful invocation
 */
 type GetUserRobotOK struct {
+}
+
+func (o *GetUserRobotOK) Error() string {
+	return fmt.Sprintf("[GET /api/v1/user/robots/{robot_shortname}][%d] getUserRobotOK ", 200)
 }
 
 func (o *GetUserRobotOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *GetUserRobotOK) readResponse(response client.Response, consumer httpkit
 	return nil
 }
 
-/*
+// NewGetUserRobotBadRequest creates a GetUserRobotBadRequest with default headers values
+func NewGetUserRobotBadRequest() *GetUserRobotBadRequest {
+	return &GetUserRobotBadRequest{}
+}
+
+/*GetUserRobotBadRequest
+
 Bad Request
 */
 type GetUserRobotBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *GetUserRobotBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/v1/user/robots/{robot_shortname}][%d] getUserRobotBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetUserRobotBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *GetUserRobotBadRequest) readResponse(response client.Response, consumer
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewGetUserRobotUnauthorized creates a GetUserRobotUnauthorized with default headers values
+func NewGetUserRobotUnauthorized() *GetUserRobotUnauthorized {
+	return &GetUserRobotUnauthorized{}
+}
+
+/*GetUserRobotUnauthorized
+
 Session required
 */
 type GetUserRobotUnauthorized struct {
+}
+
+func (o *GetUserRobotUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /api/v1/user/robots/{robot_shortname}][%d] getUserRobotUnauthorized ", 401)
 }
 
 func (o *GetUserRobotUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *GetUserRobotUnauthorized) readResponse(response client.Response, consum
 	return nil
 }
 
-/*
+// NewGetUserRobotForbidden creates a GetUserRobotForbidden with default headers values
+func NewGetUserRobotForbidden() *GetUserRobotForbidden {
+	return &GetUserRobotForbidden{}
+}
+
+/*GetUserRobotForbidden
+
 Unauthorized access
 */
 type GetUserRobotForbidden struct {
+}
+
+func (o *GetUserRobotForbidden) Error() string {
+	return fmt.Sprintf("[GET /api/v1/user/robots/{robot_shortname}][%d] getUserRobotForbidden ", 403)
 }
 
 func (o *GetUserRobotForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *GetUserRobotForbidden) readResponse(response client.Response, consumer 
 	return nil
 }
 
-/*
+// NewGetUserRobotNotFound creates a GetUserRobotNotFound with default headers values
+func NewGetUserRobotNotFound() *GetUserRobotNotFound {
+	return &GetUserRobotNotFound{}
+}
+
+/*GetUserRobotNotFound
+
 Not found
 */
 type GetUserRobotNotFound struct {
+}
+
+func (o *GetUserRobotNotFound) Error() string {
+	return fmt.Sprintf("[GET /api/v1/user/robots/{robot_shortname}][%d] getUserRobotNotFound ", 404)
 }
 
 func (o *GetUserRobotNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

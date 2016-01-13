@@ -4,6 +4,9 @@ package image
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *GetImageReader) ReadResponse(response client.Response, consumer httpkit
 	switch response.Code() {
 
 	case 200:
-		var result GetImageOK
+		result := NewGetImageOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result GetImageBadRequest
+		result := NewGetImageBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getImageBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result GetImageUnauthorized
+		result := NewGetImageUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getImageUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result GetImageForbidden
+		result := NewGetImageForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getImageForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result GetImageNotFound
+		result := NewGetImageNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getImageNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewGetImageOK creates a GetImageOK with default headers values
+func NewGetImageOK() *GetImageOK {
+	return &GetImageOK{}
+}
+
+/*GetImageOK
+
 Successful invocation
 */
 type GetImageOK struct {
+}
+
+func (o *GetImageOK) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/{image_id}][%d] getImageOK ", 200)
 }
 
 func (o *GetImageOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *GetImageOK) readResponse(response client.Response, consumer httpkit.Con
 	return nil
 }
 
-/*
+// NewGetImageBadRequest creates a GetImageBadRequest with default headers values
+func NewGetImageBadRequest() *GetImageBadRequest {
+	return &GetImageBadRequest{}
+}
+
+/*GetImageBadRequest
+
 Bad Request
 */
 type GetImageBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *GetImageBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/{image_id}][%d] getImageBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetImageBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *GetImageBadRequest) readResponse(response client.Response, consumer htt
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewGetImageUnauthorized creates a GetImageUnauthorized with default headers values
+func NewGetImageUnauthorized() *GetImageUnauthorized {
+	return &GetImageUnauthorized{}
+}
+
+/*GetImageUnauthorized
+
 Session required
 */
 type GetImageUnauthorized struct {
+}
+
+func (o *GetImageUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/{image_id}][%d] getImageUnauthorized ", 401)
 }
 
 func (o *GetImageUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *GetImageUnauthorized) readResponse(response client.Response, consumer h
 	return nil
 }
 
-/*
+// NewGetImageForbidden creates a GetImageForbidden with default headers values
+func NewGetImageForbidden() *GetImageForbidden {
+	return &GetImageForbidden{}
+}
+
+/*GetImageForbidden
+
 Unauthorized access
 */
 type GetImageForbidden struct {
+}
+
+func (o *GetImageForbidden) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/{image_id}][%d] getImageForbidden ", 403)
 }
 
 func (o *GetImageForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *GetImageForbidden) readResponse(response client.Response, consumer http
 	return nil
 }
 
-/*
+// NewGetImageNotFound creates a GetImageNotFound with default headers values
+func NewGetImageNotFound() *GetImageNotFound {
+	return &GetImageNotFound{}
+}
+
+/*GetImageNotFound
+
 Not found
 */
 type GetImageNotFound struct {
+}
+
+func (o *GetImageNotFound) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/{image_id}][%d] getImageNotFound ", 404)
 }
 
 func (o *GetImageNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

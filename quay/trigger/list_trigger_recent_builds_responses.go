@@ -4,6 +4,9 @@ package trigger
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *ListTriggerRecentBuildsReader) ReadResponse(response client.Response, c
 	switch response.Code() {
 
 	case 200:
-		var result ListTriggerRecentBuildsOK
+		result := NewListTriggerRecentBuildsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result ListTriggerRecentBuildsBadRequest
+		result := NewListTriggerRecentBuildsBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listTriggerRecentBuildsBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result ListTriggerRecentBuildsUnauthorized
+		result := NewListTriggerRecentBuildsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listTriggerRecentBuildsUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result ListTriggerRecentBuildsForbidden
+		result := NewListTriggerRecentBuildsForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listTriggerRecentBuildsForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result ListTriggerRecentBuildsNotFound
+		result := NewListTriggerRecentBuildsNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listTriggerRecentBuildsNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewListTriggerRecentBuildsOK creates a ListTriggerRecentBuildsOK with default headers values
+func NewListTriggerRecentBuildsOK() *ListTriggerRecentBuildsOK {
+	return &ListTriggerRecentBuildsOK{}
+}
+
+/*ListTriggerRecentBuildsOK
+
 Successful invocation
 */
 type ListTriggerRecentBuildsOK struct {
+}
+
+func (o *ListTriggerRecentBuildsOK) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/trigger/{trigger_uuid}/builds][%d] listTriggerRecentBuildsOK ", 200)
 }
 
 func (o *ListTriggerRecentBuildsOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *ListTriggerRecentBuildsOK) readResponse(response client.Response, consu
 	return nil
 }
 
-/*
+// NewListTriggerRecentBuildsBadRequest creates a ListTriggerRecentBuildsBadRequest with default headers values
+func NewListTriggerRecentBuildsBadRequest() *ListTriggerRecentBuildsBadRequest {
+	return &ListTriggerRecentBuildsBadRequest{}
+}
+
+/*ListTriggerRecentBuildsBadRequest
+
 Bad Request
 */
 type ListTriggerRecentBuildsBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *ListTriggerRecentBuildsBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/trigger/{trigger_uuid}/builds][%d] listTriggerRecentBuildsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ListTriggerRecentBuildsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *ListTriggerRecentBuildsBadRequest) readResponse(response client.Respons
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewListTriggerRecentBuildsUnauthorized creates a ListTriggerRecentBuildsUnauthorized with default headers values
+func NewListTriggerRecentBuildsUnauthorized() *ListTriggerRecentBuildsUnauthorized {
+	return &ListTriggerRecentBuildsUnauthorized{}
+}
+
+/*ListTriggerRecentBuildsUnauthorized
+
 Session required
 */
 type ListTriggerRecentBuildsUnauthorized struct {
+}
+
+func (o *ListTriggerRecentBuildsUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/trigger/{trigger_uuid}/builds][%d] listTriggerRecentBuildsUnauthorized ", 401)
 }
 
 func (o *ListTriggerRecentBuildsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *ListTriggerRecentBuildsUnauthorized) readResponse(response client.Respo
 	return nil
 }
 
-/*
+// NewListTriggerRecentBuildsForbidden creates a ListTriggerRecentBuildsForbidden with default headers values
+func NewListTriggerRecentBuildsForbidden() *ListTriggerRecentBuildsForbidden {
+	return &ListTriggerRecentBuildsForbidden{}
+}
+
+/*ListTriggerRecentBuildsForbidden
+
 Unauthorized access
 */
 type ListTriggerRecentBuildsForbidden struct {
+}
+
+func (o *ListTriggerRecentBuildsForbidden) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/trigger/{trigger_uuid}/builds][%d] listTriggerRecentBuildsForbidden ", 403)
 }
 
 func (o *ListTriggerRecentBuildsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *ListTriggerRecentBuildsForbidden) readResponse(response client.Response
 	return nil
 }
 
-/*
+// NewListTriggerRecentBuildsNotFound creates a ListTriggerRecentBuildsNotFound with default headers values
+func NewListTriggerRecentBuildsNotFound() *ListTriggerRecentBuildsNotFound {
+	return &ListTriggerRecentBuildsNotFound{}
+}
+
+/*ListTriggerRecentBuildsNotFound
+
 Not found
 */
 type ListTriggerRecentBuildsNotFound struct {
+}
+
+func (o *ListTriggerRecentBuildsNotFound) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/trigger/{trigger_uuid}/builds][%d] listTriggerRecentBuildsNotFound ", 404)
 }
 
 func (o *ListTriggerRecentBuildsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

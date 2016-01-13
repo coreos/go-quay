@@ -9,15 +9,29 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-DeleteUserRobotParams contains all the parameters to send to the API endpoint
+// NewDeleteUserRobotParams creates a new DeleteUserRobotParams object
+// with the default values initialized.
+func NewDeleteUserRobotParams() *DeleteUserRobotParams {
+	var ()
+	return &DeleteUserRobotParams{}
+}
+
+/*DeleteUserRobotParams contains all the parameters to send to the API endpoint
 for the delete user robot operation typically these are written to a http.Request
 */
 type DeleteUserRobotParams struct {
-	/*
+
+	/*RobotShortname
 	  The short name for the robot, without any user or organization prefix
+
 	*/
 	RobotShortname string
+}
+
+// WithRobotShortname adds the robotShortname to the delete user robot params
+func (o *DeleteUserRobotParams) WithRobotShortname(robotShortname string) *DeleteUserRobotParams {
+	o.RobotShortname = robotShortname
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

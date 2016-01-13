@@ -11,8 +11,7 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-Description of a token permission
+/*TokenPermission Description of a token permission
 
 swagger:model TokenPermission
 */
@@ -30,6 +29,7 @@ func (m *TokenPermission) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateRole(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -51,7 +51,10 @@ func (m *TokenPermission) validateRoleEnum(path, location string, value string) 
 			tokenPermissionRoleEnum = append(tokenPermissionRoleEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, tokenPermissionRoleEnum)
+	if err := validate.Enum(path, location, value, tokenPermissionRoleEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *TokenPermission) validateRole(formats strfmt.Registry) error {

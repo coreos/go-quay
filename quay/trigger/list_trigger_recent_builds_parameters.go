@@ -10,23 +10,51 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-ListTriggerRecentBuildsParams contains all the parameters to send to the API endpoint
+// NewListTriggerRecentBuildsParams creates a new ListTriggerRecentBuildsParams object
+// with the default values initialized.
+func NewListTriggerRecentBuildsParams() *ListTriggerRecentBuildsParams {
+	var ()
+	return &ListTriggerRecentBuildsParams{}
+}
+
+/*ListTriggerRecentBuildsParams contains all the parameters to send to the API endpoint
 for the list trigger recent builds operation typically these are written to a http.Request
 */
 type ListTriggerRecentBuildsParams struct {
-	/*
+
+	/*Limit
 	  The maximum number of builds to return
+
 	*/
-	Limit int64
-	/*
+	Limit *int64
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
-	/*
+	/*TriggerUUID
 	  The UUID of the build trigger
+
 	*/
 	TriggerUUID string
+}
+
+// WithLimit adds the limit to the list trigger recent builds params
+func (o *ListTriggerRecentBuildsParams) WithLimit(limit *int64) *ListTriggerRecentBuildsParams {
+	o.Limit = limit
+	return o
+}
+
+// WithRepository adds the repository to the list trigger recent builds params
+func (o *ListTriggerRecentBuildsParams) WithRepository(repository string) *ListTriggerRecentBuildsParams {
+	o.Repository = repository
+	return o
+}
+
+// WithTriggerUUID adds the triggerUuid to the list trigger recent builds params
+func (o *ListTriggerRecentBuildsParams) WithTriggerUUID(triggerUuid string) *ListTriggerRecentBuildsParams {
+	o.TriggerUUID = triggerUuid
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -34,9 +62,20 @@ func (o *ListTriggerRecentBuildsParams) WriteToRequest(r client.Request, reg str
 
 	var res []error
 
-	// query param limit
-	if err := r.SetQueryParam("limit", swag.FormatInt64(o.Limit)); err != nil {
-		return err
+	if o.Limit != nil {
+
+		// query param limit
+		var qrLimit int64
+		if o.Limit != nil {
+			qrLimit = *o.Limit
+		}
+		qLimit := swag.FormatInt64(qrLimit)
+		if qLimit != "" {
+			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// path param repository

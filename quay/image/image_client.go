@@ -25,14 +25,20 @@ type Client struct {
 
 /*Get the information available for the specified image.
  */
-func (a *Client) GetImage(params GetImageParams, authInfo client.AuthInfoWriter) (*GetImageOK, error) {
+func (a *Client) GetImage(params *GetImageParams, authInfo client.AuthInfoWriter) (*GetImageOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetImageParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "getImage",
-		Params:   &params,
-		Reader:   &GetImageReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "getImage",
+		Method:      "GET",
+		PathPattern: "/api/v1/repository/{repository}/image/{image_id}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetImageReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -42,14 +48,20 @@ func (a *Client) GetImage(params GetImageParams, authInfo client.AuthInfoWriter)
 
 /*Get the list of changes for the specified image.
  */
-func (a *Client) GetImageChanges(params GetImageChangesParams, authInfo client.AuthInfoWriter) (*GetImageChangesOK, error) {
+func (a *Client) GetImageChanges(params *GetImageChangesParams, authInfo client.AuthInfoWriter) (*GetImageChangesOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetImageChangesParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "getImageChanges",
-		Params:   &params,
-		Reader:   &GetImageChangesReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "getImageChanges",
+		Method:      "GET",
+		PathPattern: "/api/v1/repository/{repository}/image/{image_id}/changes",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetImageChangesReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -59,14 +71,20 @@ func (a *Client) GetImageChanges(params GetImageChangesParams, authInfo client.A
 
 /*List the images for the specified repository.
  */
-func (a *Client) ListRepositoryImages(params ListRepositoryImagesParams, authInfo client.AuthInfoWriter) (*ListRepositoryImagesOK, error) {
+func (a *Client) ListRepositoryImages(params *ListRepositoryImagesParams, authInfo client.AuthInfoWriter) (*ListRepositoryImagesOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListRepositoryImagesParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "listRepositoryImages",
-		Params:   &params,
-		Reader:   &ListRepositoryImagesReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "listRepositoryImages",
+		Method:      "GET",
+		PathPattern: "/api/v1/repository/{repository}/image/",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &ListRepositoryImagesReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err

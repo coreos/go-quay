@@ -4,6 +4,9 @@ package tag
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *DeleteFullTagReader) ReadResponse(response client.Response, consumer ht
 	switch response.Code() {
 
 	case 204:
-		var result DeleteFullTagNoContent
+		result := NewDeleteFullTagNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result DeleteFullTagBadRequest
+		result := NewDeleteFullTagBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteFullTagBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result DeleteFullTagUnauthorized
+		result := NewDeleteFullTagUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteFullTagUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result DeleteFullTagForbidden
+		result := NewDeleteFullTagForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteFullTagForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result DeleteFullTagNotFound
+		result := NewDeleteFullTagNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteFullTagNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewDeleteFullTagNoContent creates a DeleteFullTagNoContent with default headers values
+func NewDeleteFullTagNoContent() *DeleteFullTagNoContent {
+	return &DeleteFullTagNoContent{}
+}
+
+/*DeleteFullTagNoContent
+
 Deleted
 */
 type DeleteFullTagNoContent struct {
+}
+
+func (o *DeleteFullTagNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/tag/{tag}][%d] deleteFullTagNoContent ", 204)
 }
 
 func (o *DeleteFullTagNoContent) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *DeleteFullTagNoContent) readResponse(response client.Response, consumer
 	return nil
 }
 
-/*
+// NewDeleteFullTagBadRequest creates a DeleteFullTagBadRequest with default headers values
+func NewDeleteFullTagBadRequest() *DeleteFullTagBadRequest {
+	return &DeleteFullTagBadRequest{}
+}
+
+/*DeleteFullTagBadRequest
+
 Bad Request
 */
 type DeleteFullTagBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *DeleteFullTagBadRequest) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/tag/{tag}][%d] deleteFullTagBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeleteFullTagBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *DeleteFullTagBadRequest) readResponse(response client.Response, consume
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewDeleteFullTagUnauthorized creates a DeleteFullTagUnauthorized with default headers values
+func NewDeleteFullTagUnauthorized() *DeleteFullTagUnauthorized {
+	return &DeleteFullTagUnauthorized{}
+}
+
+/*DeleteFullTagUnauthorized
+
 Session required
 */
 type DeleteFullTagUnauthorized struct {
+}
+
+func (o *DeleteFullTagUnauthorized) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/tag/{tag}][%d] deleteFullTagUnauthorized ", 401)
 }
 
 func (o *DeleteFullTagUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *DeleteFullTagUnauthorized) readResponse(response client.Response, consu
 	return nil
 }
 
-/*
+// NewDeleteFullTagForbidden creates a DeleteFullTagForbidden with default headers values
+func NewDeleteFullTagForbidden() *DeleteFullTagForbidden {
+	return &DeleteFullTagForbidden{}
+}
+
+/*DeleteFullTagForbidden
+
 Unauthorized access
 */
 type DeleteFullTagForbidden struct {
+}
+
+func (o *DeleteFullTagForbidden) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/tag/{tag}][%d] deleteFullTagForbidden ", 403)
 }
 
 func (o *DeleteFullTagForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *DeleteFullTagForbidden) readResponse(response client.Response, consumer
 	return nil
 }
 
-/*
+// NewDeleteFullTagNotFound creates a DeleteFullTagNotFound with default headers values
+func NewDeleteFullTagNotFound() *DeleteFullTagNotFound {
+	return &DeleteFullTagNotFound{}
+}
+
+/*DeleteFullTagNotFound
+
 Not found
 */
 type DeleteFullTagNotFound struct {
+}
+
+func (o *DeleteFullTagNotFound) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/tag/{tag}][%d] deleteFullTagNotFound ", 404)
 }
 
 func (o *DeleteFullTagNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

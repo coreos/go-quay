@@ -9,16 +9,42 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-InviteTeamMemberEmailParams contains all the parameters to send to the API endpoint
+// NewInviteTeamMemberEmailParams creates a new InviteTeamMemberEmailParams object
+// with the default values initialized.
+func NewInviteTeamMemberEmailParams() *InviteTeamMemberEmailParams {
+	var ()
+	return &InviteTeamMemberEmailParams{}
+}
+
+/*InviteTeamMemberEmailParams contains all the parameters to send to the API endpoint
 for the invite team member email operation typically these are written to a http.Request
 */
 type InviteTeamMemberEmailParams struct {
+
+	/*Email*/
 	Email string
-
+	/*Orgname*/
 	Orgname string
-
+	/*Teamname*/
 	Teamname string
+}
+
+// WithEmail adds the email to the invite team member email params
+func (o *InviteTeamMemberEmailParams) WithEmail(email string) *InviteTeamMemberEmailParams {
+	o.Email = email
+	return o
+}
+
+// WithOrgname adds the orgname to the invite team member email params
+func (o *InviteTeamMemberEmailParams) WithOrgname(orgname string) *InviteTeamMemberEmailParams {
+	o.Orgname = orgname
+	return o
+}
+
+// WithTeamname adds the teamname to the invite team member email params
+func (o *InviteTeamMemberEmailParams) WithTeamname(teamname string) *InviteTeamMemberEmailParams {
+	o.Teamname = teamname
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

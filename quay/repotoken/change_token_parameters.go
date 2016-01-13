@@ -11,23 +11,51 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*
-ChangeTokenParams contains all the parameters to send to the API endpoint
+// NewChangeTokenParams creates a new ChangeTokenParams object
+// with the default values initialized.
+func NewChangeTokenParams() *ChangeTokenParams {
+	var ()
+	return &ChangeTokenParams{}
+}
+
+/*ChangeTokenParams contains all the parameters to send to the API endpoint
 for the change token operation typically these are written to a http.Request
 */
 type ChangeTokenParams struct {
-	/*
+
+	/*Body
 	  Request body contents.
+
 	*/
 	Body *models.TokenPermission
-	/*
+	/*Code
 	  The token code
+
 	*/
 	Code string
-	/*
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
+}
+
+// WithBody adds the body to the change token params
+func (o *ChangeTokenParams) WithBody(body *models.TokenPermission) *ChangeTokenParams {
+	o.Body = body
+	return o
+}
+
+// WithCode adds the code to the change token params
+func (o *ChangeTokenParams) WithCode(code string) *ChangeTokenParams {
+	o.Code = code
+	return o
+}
+
+// WithRepository adds the repository to the change token params
+func (o *ChangeTokenParams) WithRepository(repository string) *ChangeTokenParams {
+	o.Repository = repository
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

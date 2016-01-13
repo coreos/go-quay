@@ -4,6 +4,9 @@ package organization
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *GetOrganizationMembersReader) ReadResponse(response client.Response, co
 	switch response.Code() {
 
 	case 200:
-		var result GetOrganizationMembersOK
+		result := NewGetOrganizationMembersOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result GetOrganizationMembersBadRequest
+		result := NewGetOrganizationMembersBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getOrganizationMembersBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result GetOrganizationMembersUnauthorized
+		result := NewGetOrganizationMembersUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getOrganizationMembersUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result GetOrganizationMembersForbidden
+		result := NewGetOrganizationMembersForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getOrganizationMembersForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result GetOrganizationMembersNotFound
+		result := NewGetOrganizationMembersNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getOrganizationMembersNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewGetOrganizationMembersOK creates a GetOrganizationMembersOK with default headers values
+func NewGetOrganizationMembersOK() *GetOrganizationMembersOK {
+	return &GetOrganizationMembersOK{}
+}
+
+/*GetOrganizationMembersOK
+
 Successful invocation
 */
 type GetOrganizationMembersOK struct {
+}
+
+func (o *GetOrganizationMembersOK) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/members][%d] getOrganizationMembersOK ", 200)
 }
 
 func (o *GetOrganizationMembersOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *GetOrganizationMembersOK) readResponse(response client.Response, consum
 	return nil
 }
 
-/*
+// NewGetOrganizationMembersBadRequest creates a GetOrganizationMembersBadRequest with default headers values
+func NewGetOrganizationMembersBadRequest() *GetOrganizationMembersBadRequest {
+	return &GetOrganizationMembersBadRequest{}
+}
+
+/*GetOrganizationMembersBadRequest
+
 Bad Request
 */
 type GetOrganizationMembersBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *GetOrganizationMembersBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/members][%d] getOrganizationMembersBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetOrganizationMembersBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *GetOrganizationMembersBadRequest) readResponse(response client.Response
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewGetOrganizationMembersUnauthorized creates a GetOrganizationMembersUnauthorized with default headers values
+func NewGetOrganizationMembersUnauthorized() *GetOrganizationMembersUnauthorized {
+	return &GetOrganizationMembersUnauthorized{}
+}
+
+/*GetOrganizationMembersUnauthorized
+
 Session required
 */
 type GetOrganizationMembersUnauthorized struct {
+}
+
+func (o *GetOrganizationMembersUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/members][%d] getOrganizationMembersUnauthorized ", 401)
 }
 
 func (o *GetOrganizationMembersUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *GetOrganizationMembersUnauthorized) readResponse(response client.Respon
 	return nil
 }
 
-/*
+// NewGetOrganizationMembersForbidden creates a GetOrganizationMembersForbidden with default headers values
+func NewGetOrganizationMembersForbidden() *GetOrganizationMembersForbidden {
+	return &GetOrganizationMembersForbidden{}
+}
+
+/*GetOrganizationMembersForbidden
+
 Unauthorized access
 */
 type GetOrganizationMembersForbidden struct {
+}
+
+func (o *GetOrganizationMembersForbidden) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/members][%d] getOrganizationMembersForbidden ", 403)
 }
 
 func (o *GetOrganizationMembersForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *GetOrganizationMembersForbidden) readResponse(response client.Response,
 	return nil
 }
 
-/*
+// NewGetOrganizationMembersNotFound creates a GetOrganizationMembersNotFound with default headers values
+func NewGetOrganizationMembersNotFound() *GetOrganizationMembersNotFound {
+	return &GetOrganizationMembersNotFound{}
+}
+
+/*GetOrganizationMembersNotFound
+
 Not found
 */
 type GetOrganizationMembersNotFound struct {
+}
+
+func (o *GetOrganizationMembersNotFound) Error() string {
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/members][%d] getOrganizationMembersNotFound ", 404)
 }
 
 func (o *GetOrganizationMembersNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

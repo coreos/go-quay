@@ -10,23 +10,51 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-GetRepoBuildsParams contains all the parameters to send to the API endpoint
+// NewGetRepoBuildsParams creates a new GetRepoBuildsParams object
+// with the default values initialized.
+func NewGetRepoBuildsParams() *GetRepoBuildsParams {
+	var ()
+	return &GetRepoBuildsParams{}
+}
+
+/*GetRepoBuildsParams contains all the parameters to send to the API endpoint
 for the get repo builds operation typically these are written to a http.Request
 */
 type GetRepoBuildsParams struct {
-	/*
+
+	/*Limit
 	  The maximum number of builds to return
+
 	*/
-	Limit int64
-	/*
+	Limit *int64
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
-	/*
+	/*Since
 	  Returns all builds since the given unix timecode
+
 	*/
-	Since int64
+	Since *int64
+}
+
+// WithLimit adds the limit to the get repo builds params
+func (o *GetRepoBuildsParams) WithLimit(limit *int64) *GetRepoBuildsParams {
+	o.Limit = limit
+	return o
+}
+
+// WithRepository adds the repository to the get repo builds params
+func (o *GetRepoBuildsParams) WithRepository(repository string) *GetRepoBuildsParams {
+	o.Repository = repository
+	return o
+}
+
+// WithSince adds the since to the get repo builds params
+func (o *GetRepoBuildsParams) WithSince(since *int64) *GetRepoBuildsParams {
+	o.Since = since
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -34,9 +62,20 @@ func (o *GetRepoBuildsParams) WriteToRequest(r client.Request, reg strfmt.Regist
 
 	var res []error
 
-	// query param limit
-	if err := r.SetQueryParam("limit", swag.FormatInt64(o.Limit)); err != nil {
-		return err
+	if o.Limit != nil {
+
+		// query param limit
+		var qrLimit int64
+		if o.Limit != nil {
+			qrLimit = *o.Limit
+		}
+		qLimit := swag.FormatInt64(qrLimit)
+		if qLimit != "" {
+			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// path param repository
@@ -44,9 +83,20 @@ func (o *GetRepoBuildsParams) WriteToRequest(r client.Request, reg strfmt.Regist
 		return err
 	}
 
-	// query param since
-	if err := r.SetQueryParam("since", swag.FormatInt64(o.Since)); err != nil {
-		return err
+	if o.Since != nil {
+
+		// query param since
+		var qrSince int64
+		if o.Since != nil {
+			qrSince = *o.Since
+		}
+		qSince := swag.FormatInt64(qrSince)
+		if qSince != "" {
+			if err := r.SetQueryParam("since", qSince); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if len(res) > 0 {

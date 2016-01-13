@@ -4,6 +4,9 @@ package image
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *ListRepositoryImagesReader) ReadResponse(response client.Response, cons
 	switch response.Code() {
 
 	case 200:
-		var result ListRepositoryImagesOK
+		result := NewListRepositoryImagesOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result ListRepositoryImagesBadRequest
+		result := NewListRepositoryImagesBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listRepositoryImagesBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result ListRepositoryImagesUnauthorized
+		result := NewListRepositoryImagesUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listRepositoryImagesUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result ListRepositoryImagesForbidden
+		result := NewListRepositoryImagesForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listRepositoryImagesForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result ListRepositoryImagesNotFound
+		result := NewListRepositoryImagesNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("listRepositoryImagesNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewListRepositoryImagesOK creates a ListRepositoryImagesOK with default headers values
+func NewListRepositoryImagesOK() *ListRepositoryImagesOK {
+	return &ListRepositoryImagesOK{}
+}
+
+/*ListRepositoryImagesOK
+
 Successful invocation
 */
 type ListRepositoryImagesOK struct {
+}
+
+func (o *ListRepositoryImagesOK) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/][%d] listRepositoryImagesOK ", 200)
 }
 
 func (o *ListRepositoryImagesOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *ListRepositoryImagesOK) readResponse(response client.Response, consumer
 	return nil
 }
 
-/*
+// NewListRepositoryImagesBadRequest creates a ListRepositoryImagesBadRequest with default headers values
+func NewListRepositoryImagesBadRequest() *ListRepositoryImagesBadRequest {
+	return &ListRepositoryImagesBadRequest{}
+}
+
+/*ListRepositoryImagesBadRequest
+
 Bad Request
 */
 type ListRepositoryImagesBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *ListRepositoryImagesBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/][%d] listRepositoryImagesBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ListRepositoryImagesBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *ListRepositoryImagesBadRequest) readResponse(response client.Response, 
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewListRepositoryImagesUnauthorized creates a ListRepositoryImagesUnauthorized with default headers values
+func NewListRepositoryImagesUnauthorized() *ListRepositoryImagesUnauthorized {
+	return &ListRepositoryImagesUnauthorized{}
+}
+
+/*ListRepositoryImagesUnauthorized
+
 Session required
 */
 type ListRepositoryImagesUnauthorized struct {
+}
+
+func (o *ListRepositoryImagesUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/][%d] listRepositoryImagesUnauthorized ", 401)
 }
 
 func (o *ListRepositoryImagesUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *ListRepositoryImagesUnauthorized) readResponse(response client.Response
 	return nil
 }
 
-/*
+// NewListRepositoryImagesForbidden creates a ListRepositoryImagesForbidden with default headers values
+func NewListRepositoryImagesForbidden() *ListRepositoryImagesForbidden {
+	return &ListRepositoryImagesForbidden{}
+}
+
+/*ListRepositoryImagesForbidden
+
 Unauthorized access
 */
 type ListRepositoryImagesForbidden struct {
+}
+
+func (o *ListRepositoryImagesForbidden) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/][%d] listRepositoryImagesForbidden ", 403)
 }
 
 func (o *ListRepositoryImagesForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *ListRepositoryImagesForbidden) readResponse(response client.Response, c
 	return nil
 }
 
-/*
+// NewListRepositoryImagesNotFound creates a ListRepositoryImagesNotFound with default headers values
+func NewListRepositoryImagesNotFound() *ListRepositoryImagesNotFound {
+	return &ListRepositoryImagesNotFound{}
+}
+
+/*ListRepositoryImagesNotFound
+
 Not found
 */
 type ListRepositoryImagesNotFound struct {
+}
+
+func (o *ListRepositoryImagesNotFound) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/][%d] listRepositoryImagesNotFound ", 404)
 }
 
 func (o *ListRepositoryImagesNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

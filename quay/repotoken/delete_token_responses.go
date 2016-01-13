@@ -4,6 +4,9 @@ package repotoken
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *DeleteTokenReader) ReadResponse(response client.Response, consumer http
 	switch response.Code() {
 
 	case 204:
-		var result DeleteTokenNoContent
+		result := NewDeleteTokenNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result DeleteTokenBadRequest
+		result := NewDeleteTokenBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteTokenBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result DeleteTokenUnauthorized
+		result := NewDeleteTokenUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteTokenUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result DeleteTokenForbidden
+		result := NewDeleteTokenForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteTokenForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result DeleteTokenNotFound
+		result := NewDeleteTokenNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteTokenNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewDeleteTokenNoContent creates a DeleteTokenNoContent with default headers values
+func NewDeleteTokenNoContent() *DeleteTokenNoContent {
+	return &DeleteTokenNoContent{}
+}
+
+/*DeleteTokenNoContent
+
 Deleted
 */
 type DeleteTokenNoContent struct {
+}
+
+func (o *DeleteTokenNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/tokens/{code}][%d] deleteTokenNoContent ", 204)
 }
 
 func (o *DeleteTokenNoContent) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *DeleteTokenNoContent) readResponse(response client.Response, consumer h
 	return nil
 }
 
-/*
+// NewDeleteTokenBadRequest creates a DeleteTokenBadRequest with default headers values
+func NewDeleteTokenBadRequest() *DeleteTokenBadRequest {
+	return &DeleteTokenBadRequest{}
+}
+
+/*DeleteTokenBadRequest
+
 Bad Request
 */
 type DeleteTokenBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *DeleteTokenBadRequest) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/tokens/{code}][%d] deleteTokenBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeleteTokenBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *DeleteTokenBadRequest) readResponse(response client.Response, consumer 
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewDeleteTokenUnauthorized creates a DeleteTokenUnauthorized with default headers values
+func NewDeleteTokenUnauthorized() *DeleteTokenUnauthorized {
+	return &DeleteTokenUnauthorized{}
+}
+
+/*DeleteTokenUnauthorized
+
 Session required
 */
 type DeleteTokenUnauthorized struct {
+}
+
+func (o *DeleteTokenUnauthorized) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/tokens/{code}][%d] deleteTokenUnauthorized ", 401)
 }
 
 func (o *DeleteTokenUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *DeleteTokenUnauthorized) readResponse(response client.Response, consume
 	return nil
 }
 
-/*
+// NewDeleteTokenForbidden creates a DeleteTokenForbidden with default headers values
+func NewDeleteTokenForbidden() *DeleteTokenForbidden {
+	return &DeleteTokenForbidden{}
+}
+
+/*DeleteTokenForbidden
+
 Unauthorized access
 */
 type DeleteTokenForbidden struct {
+}
+
+func (o *DeleteTokenForbidden) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/tokens/{code}][%d] deleteTokenForbidden ", 403)
 }
 
 func (o *DeleteTokenForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *DeleteTokenForbidden) readResponse(response client.Response, consumer h
 	return nil
 }
 
-/*
+// NewDeleteTokenNotFound creates a DeleteTokenNotFound with default headers values
+func NewDeleteTokenNotFound() *DeleteTokenNotFound {
+	return &DeleteTokenNotFound{}
+}
+
+/*DeleteTokenNotFound
+
 Not found
 */
 type DeleteTokenNotFound struct {
+}
+
+func (o *DeleteTokenNotFound) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/tokens/{code}][%d] deleteTokenNotFound ", 404)
 }
 
 func (o *DeleteTokenNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

@@ -10,25 +10,59 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-GetMatchingEntitiesParams contains all the parameters to send to the API endpoint
+// NewGetMatchingEntitiesParams creates a new GetMatchingEntitiesParams object
+// with the default values initialized.
+func NewGetMatchingEntitiesParams() *GetMatchingEntitiesParams {
+	var ()
+	return &GetMatchingEntitiesParams{}
+}
+
+/*GetMatchingEntitiesParams contains all the parameters to send to the API endpoint
 for the get matching entities operation typically these are written to a http.Request
 */
 type GetMatchingEntitiesParams struct {
-	/*
-	  Whether to include orgs names.
-	*/
-	IncludeOrgs bool
-	/*
-	  Whether to include team names.
-	*/
-	IncludeTeams bool
-	/*
-	  Namespace to use when querying for org entities.
-	*/
-	Namespace string
 
+	/*IncludeOrgs
+	  Whether to include orgs names.
+
+	*/
+	IncludeOrgs *bool
+	/*IncludeTeams
+	  Whether to include team names.
+
+	*/
+	IncludeTeams *bool
+	/*Namespace
+	  Namespace to use when querying for org entities.
+
+	*/
+	Namespace *string
+	/*Prefix*/
 	Prefix string
+}
+
+// WithIncludeOrgs adds the includeOrgs to the get matching entities params
+func (o *GetMatchingEntitiesParams) WithIncludeOrgs(includeOrgs *bool) *GetMatchingEntitiesParams {
+	o.IncludeOrgs = includeOrgs
+	return o
+}
+
+// WithIncludeTeams adds the includeTeams to the get matching entities params
+func (o *GetMatchingEntitiesParams) WithIncludeTeams(includeTeams *bool) *GetMatchingEntitiesParams {
+	o.IncludeTeams = includeTeams
+	return o
+}
+
+// WithNamespace adds the namespace to the get matching entities params
+func (o *GetMatchingEntitiesParams) WithNamespace(namespace *string) *GetMatchingEntitiesParams {
+	o.Namespace = namespace
+	return o
+}
+
+// WithPrefix adds the prefix to the get matching entities params
+func (o *GetMatchingEntitiesParams) WithPrefix(prefix string) *GetMatchingEntitiesParams {
+	o.Prefix = prefix
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -36,19 +70,52 @@ func (o *GetMatchingEntitiesParams) WriteToRequest(r client.Request, reg strfmt.
 
 	var res []error
 
-	// query param includeOrgs
-	if err := r.SetQueryParam("includeOrgs", swag.FormatBool(o.IncludeOrgs)); err != nil {
-		return err
+	if o.IncludeOrgs != nil {
+
+		// query param includeOrgs
+		var qrIncludeOrgs bool
+		if o.IncludeOrgs != nil {
+			qrIncludeOrgs = *o.IncludeOrgs
+		}
+		qIncludeOrgs := swag.FormatBool(qrIncludeOrgs)
+		if qIncludeOrgs != "" {
+			if err := r.SetQueryParam("includeOrgs", qIncludeOrgs); err != nil {
+				return err
+			}
+		}
+
 	}
 
-	// query param includeTeams
-	if err := r.SetQueryParam("includeTeams", swag.FormatBool(o.IncludeTeams)); err != nil {
-		return err
+	if o.IncludeTeams != nil {
+
+		// query param includeTeams
+		var qrIncludeTeams bool
+		if o.IncludeTeams != nil {
+			qrIncludeTeams = *o.IncludeTeams
+		}
+		qIncludeTeams := swag.FormatBool(qrIncludeTeams)
+		if qIncludeTeams != "" {
+			if err := r.SetQueryParam("includeTeams", qIncludeTeams); err != nil {
+				return err
+			}
+		}
+
 	}
 
-	// query param namespace
-	if err := r.SetQueryParam("namespace", o.Namespace); err != nil {
-		return err
+	if o.Namespace != nil {
+
+		// query param namespace
+		var qrNamespace string
+		if o.Namespace != nil {
+			qrNamespace = *o.Namespace
+		}
+		qNamespace := qrNamespace
+		if qNamespace != "" {
+			if err := r.SetQueryParam("namespace", qNamespace); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// path param prefix

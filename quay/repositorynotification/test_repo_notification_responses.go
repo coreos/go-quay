@@ -4,6 +4,9 @@ package repositorynotification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *TestRepoNotificationReader) ReadResponse(response client.Response, cons
 	switch response.Code() {
 
 	case 200:
-		var result TestRepoNotificationOK
+		result := NewTestRepoNotificationOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result TestRepoNotificationBadRequest
+		result := NewTestRepoNotificationBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("testRepoNotificationBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result TestRepoNotificationUnauthorized
+		result := NewTestRepoNotificationUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("testRepoNotificationUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result TestRepoNotificationForbidden
+		result := NewTestRepoNotificationForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("testRepoNotificationForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result TestRepoNotificationNotFound
+		result := NewTestRepoNotificationNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("testRepoNotificationNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewTestRepoNotificationOK creates a TestRepoNotificationOK with default headers values
+func NewTestRepoNotificationOK() *TestRepoNotificationOK {
+	return &TestRepoNotificationOK{}
+}
+
+/*TestRepoNotificationOK
+
 Successful invocation
 */
 type TestRepoNotificationOK struct {
+}
+
+func (o *TestRepoNotificationOK) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/notification/{uuid}/test][%d] testRepoNotificationOK ", 200)
 }
 
 func (o *TestRepoNotificationOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *TestRepoNotificationOK) readResponse(response client.Response, consumer
 	return nil
 }
 
-/*
+// NewTestRepoNotificationBadRequest creates a TestRepoNotificationBadRequest with default headers values
+func NewTestRepoNotificationBadRequest() *TestRepoNotificationBadRequest {
+	return &TestRepoNotificationBadRequest{}
+}
+
+/*TestRepoNotificationBadRequest
+
 Bad Request
 */
 type TestRepoNotificationBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *TestRepoNotificationBadRequest) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/notification/{uuid}/test][%d] testRepoNotificationBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *TestRepoNotificationBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *TestRepoNotificationBadRequest) readResponse(response client.Response, 
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewTestRepoNotificationUnauthorized creates a TestRepoNotificationUnauthorized with default headers values
+func NewTestRepoNotificationUnauthorized() *TestRepoNotificationUnauthorized {
+	return &TestRepoNotificationUnauthorized{}
+}
+
+/*TestRepoNotificationUnauthorized
+
 Session required
 */
 type TestRepoNotificationUnauthorized struct {
+}
+
+func (o *TestRepoNotificationUnauthorized) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/notification/{uuid}/test][%d] testRepoNotificationUnauthorized ", 401)
 }
 
 func (o *TestRepoNotificationUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *TestRepoNotificationUnauthorized) readResponse(response client.Response
 	return nil
 }
 
-/*
+// NewTestRepoNotificationForbidden creates a TestRepoNotificationForbidden with default headers values
+func NewTestRepoNotificationForbidden() *TestRepoNotificationForbidden {
+	return &TestRepoNotificationForbidden{}
+}
+
+/*TestRepoNotificationForbidden
+
 Unauthorized access
 */
 type TestRepoNotificationForbidden struct {
+}
+
+func (o *TestRepoNotificationForbidden) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/notification/{uuid}/test][%d] testRepoNotificationForbidden ", 403)
 }
 
 func (o *TestRepoNotificationForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *TestRepoNotificationForbidden) readResponse(response client.Response, c
 	return nil
 }
 
-/*
+// NewTestRepoNotificationNotFound creates a TestRepoNotificationNotFound with default headers values
+func NewTestRepoNotificationNotFound() *TestRepoNotificationNotFound {
+	return &TestRepoNotificationNotFound{}
+}
+
+/*TestRepoNotificationNotFound
+
 Not found
 */
 type TestRepoNotificationNotFound struct {
+}
+
+func (o *TestRepoNotificationNotFound) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/notification/{uuid}/test][%d] testRepoNotificationNotFound ", 404)
 }
 
 func (o *TestRepoNotificationNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

@@ -4,6 +4,9 @@ package organization
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *ChangeOrganizationDetailsReader) ReadResponse(response client.Response,
 	switch response.Code() {
 
 	case 200:
-		var result ChangeOrganizationDetailsOK
+		result := NewChangeOrganizationDetailsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result ChangeOrganizationDetailsBadRequest
+		result := NewChangeOrganizationDetailsBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("changeOrganizationDetailsBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result ChangeOrganizationDetailsUnauthorized
+		result := NewChangeOrganizationDetailsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("changeOrganizationDetailsUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result ChangeOrganizationDetailsForbidden
+		result := NewChangeOrganizationDetailsForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("changeOrganizationDetailsForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result ChangeOrganizationDetailsNotFound
+		result := NewChangeOrganizationDetailsNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("changeOrganizationDetailsNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewChangeOrganizationDetailsOK creates a ChangeOrganizationDetailsOK with default headers values
+func NewChangeOrganizationDetailsOK() *ChangeOrganizationDetailsOK {
+	return &ChangeOrganizationDetailsOK{}
+}
+
+/*ChangeOrganizationDetailsOK
+
 Successful invocation
 */
 type ChangeOrganizationDetailsOK struct {
+}
+
+func (o *ChangeOrganizationDetailsOK) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}][%d] changeOrganizationDetailsOK ", 200)
 }
 
 func (o *ChangeOrganizationDetailsOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *ChangeOrganizationDetailsOK) readResponse(response client.Response, con
 	return nil
 }
 
-/*
+// NewChangeOrganizationDetailsBadRequest creates a ChangeOrganizationDetailsBadRequest with default headers values
+func NewChangeOrganizationDetailsBadRequest() *ChangeOrganizationDetailsBadRequest {
+	return &ChangeOrganizationDetailsBadRequest{}
+}
+
+/*ChangeOrganizationDetailsBadRequest
+
 Bad Request
 */
 type ChangeOrganizationDetailsBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *ChangeOrganizationDetailsBadRequest) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}][%d] changeOrganizationDetailsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ChangeOrganizationDetailsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *ChangeOrganizationDetailsBadRequest) readResponse(response client.Respo
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewChangeOrganizationDetailsUnauthorized creates a ChangeOrganizationDetailsUnauthorized with default headers values
+func NewChangeOrganizationDetailsUnauthorized() *ChangeOrganizationDetailsUnauthorized {
+	return &ChangeOrganizationDetailsUnauthorized{}
+}
+
+/*ChangeOrganizationDetailsUnauthorized
+
 Session required
 */
 type ChangeOrganizationDetailsUnauthorized struct {
+}
+
+func (o *ChangeOrganizationDetailsUnauthorized) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}][%d] changeOrganizationDetailsUnauthorized ", 401)
 }
 
 func (o *ChangeOrganizationDetailsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *ChangeOrganizationDetailsUnauthorized) readResponse(response client.Res
 	return nil
 }
 
-/*
+// NewChangeOrganizationDetailsForbidden creates a ChangeOrganizationDetailsForbidden with default headers values
+func NewChangeOrganizationDetailsForbidden() *ChangeOrganizationDetailsForbidden {
+	return &ChangeOrganizationDetailsForbidden{}
+}
+
+/*ChangeOrganizationDetailsForbidden
+
 Unauthorized access
 */
 type ChangeOrganizationDetailsForbidden struct {
+}
+
+func (o *ChangeOrganizationDetailsForbidden) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}][%d] changeOrganizationDetailsForbidden ", 403)
 }
 
 func (o *ChangeOrganizationDetailsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *ChangeOrganizationDetailsForbidden) readResponse(response client.Respon
 	return nil
 }
 
-/*
+// NewChangeOrganizationDetailsNotFound creates a ChangeOrganizationDetailsNotFound with default headers values
+func NewChangeOrganizationDetailsNotFound() *ChangeOrganizationDetailsNotFound {
+	return &ChangeOrganizationDetailsNotFound{}
+}
+
+/*ChangeOrganizationDetailsNotFound
+
 Not found
 */
 type ChangeOrganizationDetailsNotFound struct {
+}
+
+func (o *ChangeOrganizationDetailsNotFound) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}][%d] changeOrganizationDetailsNotFound ", 404)
 }
 
 func (o *ChangeOrganizationDetailsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

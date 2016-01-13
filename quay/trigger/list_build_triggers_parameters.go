@@ -9,15 +9,29 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-ListBuildTriggersParams contains all the parameters to send to the API endpoint
+// NewListBuildTriggersParams creates a new ListBuildTriggersParams object
+// with the default values initialized.
+func NewListBuildTriggersParams() *ListBuildTriggersParams {
+	var ()
+	return &ListBuildTriggersParams{}
+}
+
+/*ListBuildTriggersParams contains all the parameters to send to the API endpoint
 for the list build triggers operation typically these are written to a http.Request
 */
 type ListBuildTriggersParams struct {
-	/*
+
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
+}
+
+// WithRepository adds the repository to the list build triggers params
+func (o *ListBuildTriggersParams) WithRepository(repository string) *ListBuildTriggersParams {
+	o.Repository = repository
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

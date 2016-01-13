@@ -4,6 +4,9 @@ package trigger
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *DeleteBuildTriggerReader) ReadResponse(response client.Response, consum
 	switch response.Code() {
 
 	case 204:
-		var result DeleteBuildTriggerNoContent
+		result := NewDeleteBuildTriggerNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result DeleteBuildTriggerBadRequest
+		result := NewDeleteBuildTriggerBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteBuildTriggerBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result DeleteBuildTriggerUnauthorized
+		result := NewDeleteBuildTriggerUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteBuildTriggerUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result DeleteBuildTriggerForbidden
+		result := NewDeleteBuildTriggerForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteBuildTriggerForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result DeleteBuildTriggerNotFound
+		result := NewDeleteBuildTriggerNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteBuildTriggerNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewDeleteBuildTriggerNoContent creates a DeleteBuildTriggerNoContent with default headers values
+func NewDeleteBuildTriggerNoContent() *DeleteBuildTriggerNoContent {
+	return &DeleteBuildTriggerNoContent{}
+}
+
+/*DeleteBuildTriggerNoContent
+
 Deleted
 */
 type DeleteBuildTriggerNoContent struct {
+}
+
+func (o *DeleteBuildTriggerNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/trigger/{trigger_uuid}][%d] deleteBuildTriggerNoContent ", 204)
 }
 
 func (o *DeleteBuildTriggerNoContent) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *DeleteBuildTriggerNoContent) readResponse(response client.Response, con
 	return nil
 }
 
-/*
+// NewDeleteBuildTriggerBadRequest creates a DeleteBuildTriggerBadRequest with default headers values
+func NewDeleteBuildTriggerBadRequest() *DeleteBuildTriggerBadRequest {
+	return &DeleteBuildTriggerBadRequest{}
+}
+
+/*DeleteBuildTriggerBadRequest
+
 Bad Request
 */
 type DeleteBuildTriggerBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *DeleteBuildTriggerBadRequest) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/trigger/{trigger_uuid}][%d] deleteBuildTriggerBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeleteBuildTriggerBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *DeleteBuildTriggerBadRequest) readResponse(response client.Response, co
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewDeleteBuildTriggerUnauthorized creates a DeleteBuildTriggerUnauthorized with default headers values
+func NewDeleteBuildTriggerUnauthorized() *DeleteBuildTriggerUnauthorized {
+	return &DeleteBuildTriggerUnauthorized{}
+}
+
+/*DeleteBuildTriggerUnauthorized
+
 Session required
 */
 type DeleteBuildTriggerUnauthorized struct {
+}
+
+func (o *DeleteBuildTriggerUnauthorized) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/trigger/{trigger_uuid}][%d] deleteBuildTriggerUnauthorized ", 401)
 }
 
 func (o *DeleteBuildTriggerUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *DeleteBuildTriggerUnauthorized) readResponse(response client.Response, 
 	return nil
 }
 
-/*
+// NewDeleteBuildTriggerForbidden creates a DeleteBuildTriggerForbidden with default headers values
+func NewDeleteBuildTriggerForbidden() *DeleteBuildTriggerForbidden {
+	return &DeleteBuildTriggerForbidden{}
+}
+
+/*DeleteBuildTriggerForbidden
+
 Unauthorized access
 */
 type DeleteBuildTriggerForbidden struct {
+}
+
+func (o *DeleteBuildTriggerForbidden) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/trigger/{trigger_uuid}][%d] deleteBuildTriggerForbidden ", 403)
 }
 
 func (o *DeleteBuildTriggerForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *DeleteBuildTriggerForbidden) readResponse(response client.Response, con
 	return nil
 }
 
-/*
+// NewDeleteBuildTriggerNotFound creates a DeleteBuildTriggerNotFound with default headers values
+func NewDeleteBuildTriggerNotFound() *DeleteBuildTriggerNotFound {
+	return &DeleteBuildTriggerNotFound{}
+}
+
+/*DeleteBuildTriggerNotFound
+
 Not found
 */
 type DeleteBuildTriggerNotFound struct {
+}
+
+func (o *DeleteBuildTriggerNotFound) Error() string {
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/trigger/{trigger_uuid}][%d] deleteBuildTriggerNotFound ", 404)
 }
 
 func (o *DeleteBuildTriggerNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

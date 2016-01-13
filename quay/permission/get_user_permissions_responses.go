@@ -4,6 +4,9 @@ package permission
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *GetUserPermissionsReader) ReadResponse(response client.Response, consum
 	switch response.Code() {
 
 	case 200:
-		var result GetUserPermissionsOK
+		result := NewGetUserPermissionsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result GetUserPermissionsBadRequest
+		result := NewGetUserPermissionsBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getUserPermissionsBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result GetUserPermissionsUnauthorized
+		result := NewGetUserPermissionsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getUserPermissionsUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result GetUserPermissionsForbidden
+		result := NewGetUserPermissionsForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getUserPermissionsForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result GetUserPermissionsNotFound
+		result := NewGetUserPermissionsNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getUserPermissionsNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewGetUserPermissionsOK creates a GetUserPermissionsOK with default headers values
+func NewGetUserPermissionsOK() *GetUserPermissionsOK {
+	return &GetUserPermissionsOK{}
+}
+
+/*GetUserPermissionsOK
+
 Successful invocation
 */
 type GetUserPermissionsOK struct {
+}
+
+func (o *GetUserPermissionsOK) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/user/{username}][%d] getUserPermissionsOK ", 200)
 }
 
 func (o *GetUserPermissionsOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *GetUserPermissionsOK) readResponse(response client.Response, consumer h
 	return nil
 }
 
-/*
+// NewGetUserPermissionsBadRequest creates a GetUserPermissionsBadRequest with default headers values
+func NewGetUserPermissionsBadRequest() *GetUserPermissionsBadRequest {
+	return &GetUserPermissionsBadRequest{}
+}
+
+/*GetUserPermissionsBadRequest
+
 Bad Request
 */
 type GetUserPermissionsBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *GetUserPermissionsBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/user/{username}][%d] getUserPermissionsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetUserPermissionsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *GetUserPermissionsBadRequest) readResponse(response client.Response, co
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewGetUserPermissionsUnauthorized creates a GetUserPermissionsUnauthorized with default headers values
+func NewGetUserPermissionsUnauthorized() *GetUserPermissionsUnauthorized {
+	return &GetUserPermissionsUnauthorized{}
+}
+
+/*GetUserPermissionsUnauthorized
+
 Session required
 */
 type GetUserPermissionsUnauthorized struct {
+}
+
+func (o *GetUserPermissionsUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/user/{username}][%d] getUserPermissionsUnauthorized ", 401)
 }
 
 func (o *GetUserPermissionsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *GetUserPermissionsUnauthorized) readResponse(response client.Response, 
 	return nil
 }
 
-/*
+// NewGetUserPermissionsForbidden creates a GetUserPermissionsForbidden with default headers values
+func NewGetUserPermissionsForbidden() *GetUserPermissionsForbidden {
+	return &GetUserPermissionsForbidden{}
+}
+
+/*GetUserPermissionsForbidden
+
 Unauthorized access
 */
 type GetUserPermissionsForbidden struct {
+}
+
+func (o *GetUserPermissionsForbidden) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/user/{username}][%d] getUserPermissionsForbidden ", 403)
 }
 
 func (o *GetUserPermissionsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *GetUserPermissionsForbidden) readResponse(response client.Response, con
 	return nil
 }
 
-/*
+// NewGetUserPermissionsNotFound creates a GetUserPermissionsNotFound with default headers values
+func NewGetUserPermissionsNotFound() *GetUserPermissionsNotFound {
+	return &GetUserPermissionsNotFound{}
+}
+
+/*GetUserPermissionsNotFound
+
 Not found
 */
 type GetUserPermissionsNotFound struct {
+}
+
+func (o *GetUserPermissionsNotFound) Error() string {
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/user/{username}][%d] getUserPermissionsNotFound ", 404)
 }
 
 func (o *GetUserPermissionsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

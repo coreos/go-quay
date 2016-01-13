@@ -11,19 +11,40 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
-/*
-CreateOrganizationPrototypePermissionParams contains all the parameters to send to the API endpoint
+// NewCreateOrganizationPrototypePermissionParams creates a new CreateOrganizationPrototypePermissionParams object
+// with the default values initialized.
+func NewCreateOrganizationPrototypePermissionParams() *CreateOrganizationPrototypePermissionParams {
+	var ()
+	return &CreateOrganizationPrototypePermissionParams{}
+}
+
+/*CreateOrganizationPrototypePermissionParams contains all the parameters to send to the API endpoint
 for the create organization prototype permission operation typically these are written to a http.Request
 */
 type CreateOrganizationPrototypePermissionParams struct {
-	/*
+
+	/*Body
 	  Request body contents.
+
 	*/
 	Body *models.NewPrototype
-	/*
+	/*Orgname
 	  The name of the organization
+
 	*/
 	Orgname string
+}
+
+// WithBody adds the body to the create organization prototype permission params
+func (o *CreateOrganizationPrototypePermissionParams) WithBody(body *models.NewPrototype) *CreateOrganizationPrototypePermissionParams {
+	o.Body = body
+	return o
+}
+
+// WithOrgname adds the orgname to the create organization prototype permission params
+func (o *CreateOrganizationPrototypePermissionParams) WithOrgname(orgname string) *CreateOrganizationPrototypePermissionParams {
+	o.Orgname = orgname
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

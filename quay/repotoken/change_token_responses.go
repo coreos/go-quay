@@ -4,6 +4,9 @@ package repotoken
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,49 +22,59 @@ func (o *ChangeTokenReader) ReadResponse(response client.Response, consumer http
 	switch response.Code() {
 
 	case 200:
-		var result ChangeTokenOK
+		result := NewChangeTokenOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	case 400:
-		var result ChangeTokenBadRequest
+		result := NewChangeTokenBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("changeTokenBadRequest", &result, response.Code())
+		return nil, result
 
 	case 401:
-		var result ChangeTokenUnauthorized
+		result := NewChangeTokenUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("changeTokenUnauthorized", &result, response.Code())
+		return nil, result
 
 	case 403:
-		var result ChangeTokenForbidden
+		result := NewChangeTokenForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("changeTokenForbidden", &result, response.Code())
+		return nil, result
 
 	case 404:
-		var result ChangeTokenNotFound
+		result := NewChangeTokenNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("changeTokenNotFound", &result, response.Code())
+		return nil, result
 
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
+// NewChangeTokenOK creates a ChangeTokenOK with default headers values
+func NewChangeTokenOK() *ChangeTokenOK {
+	return &ChangeTokenOK{}
+}
+
+/*ChangeTokenOK
+
 Successful invocation
 */
 type ChangeTokenOK struct {
+}
+
+func (o *ChangeTokenOK) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/tokens/{code}][%d] changeTokenOK ", 200)
 }
 
 func (o *ChangeTokenOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -69,11 +82,21 @@ func (o *ChangeTokenOK) readResponse(response client.Response, consumer httpkit.
 	return nil
 }
 
-/*
+// NewChangeTokenBadRequest creates a ChangeTokenBadRequest with default headers values
+func NewChangeTokenBadRequest() *ChangeTokenBadRequest {
+	return &ChangeTokenBadRequest{}
+}
+
+/*ChangeTokenBadRequest
+
 Bad Request
 */
 type ChangeTokenBadRequest struct {
 	Payload *models.GeneralError
+}
+
+func (o *ChangeTokenBadRequest) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/tokens/{code}][%d] changeTokenBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ChangeTokenBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -81,17 +104,27 @@ func (o *ChangeTokenBadRequest) readResponse(response client.Response, consumer 
 	o.Payload = new(models.GeneralError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewChangeTokenUnauthorized creates a ChangeTokenUnauthorized with default headers values
+func NewChangeTokenUnauthorized() *ChangeTokenUnauthorized {
+	return &ChangeTokenUnauthorized{}
+}
+
+/*ChangeTokenUnauthorized
+
 Session required
 */
 type ChangeTokenUnauthorized struct {
+}
+
+func (o *ChangeTokenUnauthorized) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/tokens/{code}][%d] changeTokenUnauthorized ", 401)
 }
 
 func (o *ChangeTokenUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -99,10 +132,20 @@ func (o *ChangeTokenUnauthorized) readResponse(response client.Response, consume
 	return nil
 }
 
-/*
+// NewChangeTokenForbidden creates a ChangeTokenForbidden with default headers values
+func NewChangeTokenForbidden() *ChangeTokenForbidden {
+	return &ChangeTokenForbidden{}
+}
+
+/*ChangeTokenForbidden
+
 Unauthorized access
 */
 type ChangeTokenForbidden struct {
+}
+
+func (o *ChangeTokenForbidden) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/tokens/{code}][%d] changeTokenForbidden ", 403)
 }
 
 func (o *ChangeTokenForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -110,10 +153,20 @@ func (o *ChangeTokenForbidden) readResponse(response client.Response, consumer h
 	return nil
 }
 
-/*
+// NewChangeTokenNotFound creates a ChangeTokenNotFound with default headers values
+func NewChangeTokenNotFound() *ChangeTokenNotFound {
+	return &ChangeTokenNotFound{}
+}
+
+/*ChangeTokenNotFound
+
 Not found
 */
 type ChangeTokenNotFound struct {
+}
+
+func (o *ChangeTokenNotFound) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/tokens/{code}][%d] changeTokenNotFound ", 404)
 }
 
 func (o *ChangeTokenNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

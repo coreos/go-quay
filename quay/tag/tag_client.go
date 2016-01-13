@@ -25,14 +25,20 @@ type Client struct {
 
 /*Change which image a tag points to or create a new tag.
  */
-func (a *Client) ChangeTagImage(params ChangeTagImageParams, authInfo client.AuthInfoWriter) (*ChangeTagImageOK, error) {
+func (a *Client) ChangeTagImage(params *ChangeTagImageParams, authInfo client.AuthInfoWriter) (*ChangeTagImageOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewChangeTagImageParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "changeTagImage",
-		Params:   &params,
-		Reader:   &ChangeTagImageReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "changeTagImage",
+		Method:      "PUT",
+		PathPattern: "/api/v1/repository/{repository}/tag/{tag}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &ChangeTagImageReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -42,14 +48,20 @@ func (a *Client) ChangeTagImage(params ChangeTagImageParams, authInfo client.Aut
 
 /*Delete the specified repository tag.
  */
-func (a *Client) DeleteFullTag(params DeleteFullTagParams, authInfo client.AuthInfoWriter) (*DeleteFullTagNoContent, error) {
+func (a *Client) DeleteFullTag(params *DeleteFullTagParams, authInfo client.AuthInfoWriter) (*DeleteFullTagNoContent, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteFullTagParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "deleteFullTag",
-		Params:   &params,
-		Reader:   &DeleteFullTagReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "deleteFullTag",
+		Method:      "DELETE",
+		PathPattern: "/api/v1/repository/{repository}/tag/{tag}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &DeleteFullTagReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -59,14 +71,20 @@ func (a *Client) DeleteFullTag(params DeleteFullTagParams, authInfo client.AuthI
 
 /*ListRepoTags list repo tags API
  */
-func (a *Client) ListRepoTags(params ListRepoTagsParams, authInfo client.AuthInfoWriter) (*ListRepoTagsOK, error) {
+func (a *Client) ListRepoTags(params *ListRepoTagsParams, authInfo client.AuthInfoWriter) (*ListRepoTagsOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListRepoTagsParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "listRepoTags",
-		Params:   &params,
-		Reader:   &ListRepoTagsReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "listRepoTags",
+		Method:      "GET",
+		PathPattern: "/api/v1/repository/{repository}/tag/",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &ListRepoTagsReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -76,14 +94,20 @@ func (a *Client) ListRepoTags(params ListRepoTagsParams, authInfo client.AuthInf
 
 /*List the images for the specified repository tag.
  */
-func (a *Client) ListTagImages(params ListTagImagesParams, authInfo client.AuthInfoWriter) (*ListTagImagesOK, error) {
+func (a *Client) ListTagImages(params *ListTagImagesParams, authInfo client.AuthInfoWriter) (*ListTagImagesOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListTagImagesParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "listTagImages",
-		Params:   &params,
-		Reader:   &ListTagImagesReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "listTagImages",
+		Method:      "GET",
+		PathPattern: "/api/v1/repository/{repository}/tag/{tag}/images",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &ListTagImagesReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -93,14 +117,20 @@ func (a *Client) ListTagImages(params ListTagImagesParams, authInfo client.AuthI
 
 /*Reverts a repository tag back to a previous image in the repository.
  */
-func (a *Client) RevertTag(params RevertTagParams, authInfo client.AuthInfoWriter) (*RevertTagOK, error) {
+func (a *Client) RevertTag(params *RevertTagParams, authInfo client.AuthInfoWriter) (*RevertTagOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRevertTagParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:       "revertTag",
-		Params:   &params,
-		Reader:   &RevertTagReader{formats: a.formats},
-		AuthInfo: authInfo,
+		ID:          "revertTag",
+		Method:      "POST",
+		PathPattern: "/api/v1/repository/{repository}/tag/{tag}/revert",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &RevertTagReader{formats: a.formats},
+		AuthInfo:    authInfo,
 	})
 	if err != nil {
 		return nil, err

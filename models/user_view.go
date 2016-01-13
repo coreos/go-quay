@@ -7,10 +7,10 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-Describes a user
+/*UserView Describes a user
 
 swagger:model UserView
 */
@@ -30,11 +30,11 @@ type UserView struct {
 
 	/* Whether the user has permission to create repositories
 	 */
-	CanCreateRepo bool `json:"can_create_repo,omitempty"`
+	CanCreateRepo *bool `json:"can_create_repo,omitempty"`
 
 	/* The user's email address
 	 */
-	Email string `json:"email,omitempty"`
+	Email *string `json:"email,omitempty"`
 
 	/* The list of external login providers against which the user has authenticated
 	 */
@@ -46,7 +46,7 @@ type UserView struct {
 
 	/* If true, the user's namespace is the preferred namespace to display
 	 */
-	PreferredNamespace bool `json:"preferred_namespace,omitempty"`
+	PreferredNamespace *bool `json:"preferred_namespace,omitempty"`
 
 	/* Whether the user's email address has been verified
 
@@ -60,14 +60,27 @@ func (m *UserView) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAnonymous(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateAvatar(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateLogins(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateOrganizations(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateVerified(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -87,6 +100,32 @@ func (m *UserView) validateAnonymous(formats strfmt.Registry) error {
 }
 
 func (m *UserView) validateAvatar(formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *UserView) validateLogins(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Logins) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Logins); i++ {
+
+	}
+
+	return nil
+}
+
+func (m *UserView) validateOrganizations(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Organizations) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Organizations); i++ {
+
+	}
 
 	return nil
 }

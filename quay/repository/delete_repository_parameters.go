@@ -9,15 +9,29 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-DeleteRepositoryParams contains all the parameters to send to the API endpoint
+// NewDeleteRepositoryParams creates a new DeleteRepositoryParams object
+// with the default values initialized.
+func NewDeleteRepositoryParams() *DeleteRepositoryParams {
+	var ()
+	return &DeleteRepositoryParams{}
+}
+
+/*DeleteRepositoryParams contains all the parameters to send to the API endpoint
 for the delete repository operation typically these are written to a http.Request
 */
 type DeleteRepositoryParams struct {
-	/*
+
+	/*Repository
 	  The full path of the repository. e.g. namespace/name
+
 	*/
 	Repository string
+}
+
+// WithRepository adds the repository to the delete repository params
+func (o *DeleteRepositoryParams) WithRepository(repository string) *DeleteRepositoryParams {
+	o.Repository = repository
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

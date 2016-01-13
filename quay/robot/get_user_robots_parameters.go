@@ -10,15 +10,29 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-GetUserRobotsParams contains all the parameters to send to the API endpoint
+// NewGetUserRobotsParams creates a new GetUserRobotsParams object
+// with the default values initialized.
+func NewGetUserRobotsParams() *GetUserRobotsParams {
+	var ()
+	return &GetUserRobotsParams{}
+}
+
+/*GetUserRobotsParams contains all the parameters to send to the API endpoint
 for the get user robots operation typically these are written to a http.Request
 */
 type GetUserRobotsParams struct {
-	/*
+
+	/*Permissions
 	  Whether to include repostories and teams in which the robots have permission.
+
 	*/
-	Permissions bool
+	Permissions *bool
+}
+
+// WithPermissions adds the permissions to the get user robots params
+func (o *GetUserRobotsParams) WithPermissions(permissions *bool) *GetUserRobotsParams {
+	o.Permissions = permissions
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -26,9 +40,20 @@ func (o *GetUserRobotsParams) WriteToRequest(r client.Request, reg strfmt.Regist
 
 	var res []error
 
-	// query param permissions
-	if err := r.SetQueryParam("permissions", swag.FormatBool(o.Permissions)); err != nil {
-		return err
+	if o.Permissions != nil {
+
+		// query param permissions
+		var qrPermissions bool
+		if o.Permissions != nil {
+			qrPermissions = *o.Permissions
+		}
+		qPermissions := swag.FormatBool(qrPermissions)
+		if qPermissions != "" {
+			if err := r.SetQueryParam("permissions", qPermissions); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if len(res) > 0 {
