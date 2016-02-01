@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// GetTokensReader is a Reader for the GetTokens structure.
 type GetTokensReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetTokensReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewGetTokensOK() *GetTokensOK {
 	return &GetTokensOK{}
 }
 
-/*GetTokensOK
+/*GetTokensOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewGetTokensBadRequest() *GetTokensBadRequest {
 	return &GetTokensBadRequest{}
 }
 
-/*GetTokensBadRequest
+/*GetTokensBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewGetTokensUnauthorized() *GetTokensUnauthorized {
 	return &GetTokensUnauthorized{}
 }
 
-/*GetTokensUnauthorized
+/*GetTokensUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewGetTokensForbidden() *GetTokensForbidden {
 	return &GetTokensForbidden{}
 }
 
-/*GetTokensForbidden
+/*GetTokensForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewGetTokensNotFound() *GetTokensNotFound {
 	return &GetTokensNotFound{}
 }
 
-/*GetTokensNotFound
+/*GetTokensNotFound handles this case with default header values.
 
 Not found
 */

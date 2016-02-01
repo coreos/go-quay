@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// ChangeRepoVisibilityReader is a Reader for the ChangeRepoVisibility structure.
 type ChangeRepoVisibilityReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *ChangeRepoVisibilityReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewChangeRepoVisibilityOK() *ChangeRepoVisibilityOK {
 	return &ChangeRepoVisibilityOK{}
 }
 
-/*ChangeRepoVisibilityOK
+/*ChangeRepoVisibilityOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewChangeRepoVisibilityBadRequest() *ChangeRepoVisibilityBadRequest {
 	return &ChangeRepoVisibilityBadRequest{}
 }
 
-/*ChangeRepoVisibilityBadRequest
+/*ChangeRepoVisibilityBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewChangeRepoVisibilityUnauthorized() *ChangeRepoVisibilityUnauthorized {
 	return &ChangeRepoVisibilityUnauthorized{}
 }
 
-/*ChangeRepoVisibilityUnauthorized
+/*ChangeRepoVisibilityUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewChangeRepoVisibilityForbidden() *ChangeRepoVisibilityForbidden {
 	return &ChangeRepoVisibilityForbidden{}
 }
 
-/*ChangeRepoVisibilityForbidden
+/*ChangeRepoVisibilityForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewChangeRepoVisibilityNotFound() *ChangeRepoVisibilityNotFound {
 	return &ChangeRepoVisibilityNotFound{}
 }
 
-/*ChangeRepoVisibilityNotFound
+/*ChangeRepoVisibilityNotFound handles this case with default header values.
 
 Not found
 */

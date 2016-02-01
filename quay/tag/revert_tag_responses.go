@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// RevertTagReader is a Reader for the RevertTag structure.
 type RevertTagReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *RevertTagReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewRevertTagOK() *RevertTagOK {
 	return &RevertTagOK{}
 }
 
-/*RevertTagOK
+/*RevertTagOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewRevertTagBadRequest() *RevertTagBadRequest {
 	return &RevertTagBadRequest{}
 }
 
-/*RevertTagBadRequest
+/*RevertTagBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewRevertTagUnauthorized() *RevertTagUnauthorized {
 	return &RevertTagUnauthorized{}
 }
 
-/*RevertTagUnauthorized
+/*RevertTagUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewRevertTagForbidden() *RevertTagForbidden {
 	return &RevertTagForbidden{}
 }
 
-/*RevertTagForbidden
+/*RevertTagForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewRevertTagNotFound() *RevertTagNotFound {
 	return &RevertTagNotFound{}
 }
 
-/*RevertTagNotFound
+/*RevertTagNotFound handles this case with default header values.
 
 Not found
 */

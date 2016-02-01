@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// GetOrganizationPrototypePermissionsReader is a Reader for the GetOrganizationPrototypePermissions structure.
 type GetOrganizationPrototypePermissionsReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetOrganizationPrototypePermissionsReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewGetOrganizationPrototypePermissionsOK() *GetOrganizationPrototypePermiss
 	return &GetOrganizationPrototypePermissionsOK{}
 }
 
-/*GetOrganizationPrototypePermissionsOK
+/*GetOrganizationPrototypePermissionsOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewGetOrganizationPrototypePermissionsBadRequest() *GetOrganizationPrototyp
 	return &GetOrganizationPrototypePermissionsBadRequest{}
 }
 
-/*GetOrganizationPrototypePermissionsBadRequest
+/*GetOrganizationPrototypePermissionsBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewGetOrganizationPrototypePermissionsUnauthorized() *GetOrganizationProtot
 	return &GetOrganizationPrototypePermissionsUnauthorized{}
 }
 
-/*GetOrganizationPrototypePermissionsUnauthorized
+/*GetOrganizationPrototypePermissionsUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewGetOrganizationPrototypePermissionsForbidden() *GetOrganizationPrototype
 	return &GetOrganizationPrototypePermissionsForbidden{}
 }
 
-/*GetOrganizationPrototypePermissionsForbidden
+/*GetOrganizationPrototypePermissionsForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewGetOrganizationPrototypePermissionsNotFound() *GetOrganizationPrototypeP
 	return &GetOrganizationPrototypePermissionsNotFound{}
 }
 
-/*GetOrganizationPrototypePermissionsNotFound
+/*GetOrganizationPrototypePermissionsNotFound handles this case with default header values.
 
 Not found
 */

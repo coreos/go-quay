@@ -65,7 +65,7 @@ func (m *NewUser) Validate(formats strfmt.Registry) error {
 
 func (m *NewUser) validateEmail(formats strfmt.Registry) error {
 
-	if err := validate.Required("email", "body", string(m.Email)); err != nil {
+	if err := validate.RequiredString("email", "body", string(m.Email)); err != nil {
 		return err
 	}
 
@@ -74,7 +74,7 @@ func (m *NewUser) validateEmail(formats strfmt.Registry) error {
 
 func (m *NewUser) validatePassword(formats strfmt.Registry) error {
 
-	if err := validate.Required("password", "body", string(m.Password)); err != nil {
+	if err := validate.RequiredString("password", "body", string(m.Password)); err != nil {
 		return err
 	}
 
@@ -83,7 +83,7 @@ func (m *NewUser) validatePassword(formats strfmt.Registry) error {
 
 func (m *NewUser) validateUsername(formats strfmt.Registry) error {
 
-	if err := validate.Required("username", "body", string(m.Username)); err != nil {
+	if err := validate.RequiredString("username", "body", string(m.Username)); err != nil {
 		return err
 	}
 

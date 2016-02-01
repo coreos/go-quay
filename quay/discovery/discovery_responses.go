@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// DiscoveryReader is a Reader for the Discovery structure.
 type DiscoveryReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *DiscoveryReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewDiscoveryOK() *DiscoveryOK {
 	return &DiscoveryOK{}
 }
 
-/*DiscoveryOK
+/*DiscoveryOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewDiscoveryBadRequest() *DiscoveryBadRequest {
 	return &DiscoveryBadRequest{}
 }
 
-/*DiscoveryBadRequest
+/*DiscoveryBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewDiscoveryUnauthorized() *DiscoveryUnauthorized {
 	return &DiscoveryUnauthorized{}
 }
 
-/*DiscoveryUnauthorized
+/*DiscoveryUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewDiscoveryForbidden() *DiscoveryForbidden {
 	return &DiscoveryForbidden{}
 }
 
-/*DiscoveryForbidden
+/*DiscoveryForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewDiscoveryNotFound() *DiscoveryNotFound {
 	return &DiscoveryNotFound{}
 }
 
-/*DiscoveryNotFound
+/*DiscoveryNotFound handles this case with default header values.
 
 Not found
 */

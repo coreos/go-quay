@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// CreateOrganizationPrototypePermissionReader is a Reader for the CreateOrganizationPrototypePermission structure.
 type CreateOrganizationPrototypePermissionReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *CreateOrganizationPrototypePermissionReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewCreateOrganizationPrototypePermissionOK() *CreateOrganizationPrototypePe
 	return &CreateOrganizationPrototypePermissionOK{}
 }
 
-/*CreateOrganizationPrototypePermissionOK
+/*CreateOrganizationPrototypePermissionOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewCreateOrganizationPrototypePermissionBadRequest() *CreateOrganizationPro
 	return &CreateOrganizationPrototypePermissionBadRequest{}
 }
 
-/*CreateOrganizationPrototypePermissionBadRequest
+/*CreateOrganizationPrototypePermissionBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewCreateOrganizationPrototypePermissionUnauthorized() *CreateOrganizationP
 	return &CreateOrganizationPrototypePermissionUnauthorized{}
 }
 
-/*CreateOrganizationPrototypePermissionUnauthorized
+/*CreateOrganizationPrototypePermissionUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewCreateOrganizationPrototypePermissionForbidden() *CreateOrganizationProt
 	return &CreateOrganizationPrototypePermissionForbidden{}
 }
 
-/*CreateOrganizationPrototypePermissionForbidden
+/*CreateOrganizationPrototypePermissionForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewCreateOrganizationPrototypePermissionNotFound() *CreateOrganizationProto
 	return &CreateOrganizationPrototypePermissionNotFound{}
 }
 
-/*CreateOrganizationPrototypePermissionNotFound
+/*CreateOrganizationPrototypePermissionNotFound handles this case with default header values.
 
 Not found
 */

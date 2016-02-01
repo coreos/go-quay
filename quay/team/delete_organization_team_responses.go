@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// DeleteOrganizationTeamReader is a Reader for the DeleteOrganizationTeam structure.
 type DeleteOrganizationTeamReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *DeleteOrganizationTeamReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewDeleteOrganizationTeamNoContent() *DeleteOrganizationTeamNoContent {
 	return &DeleteOrganizationTeamNoContent{}
 }
 
-/*DeleteOrganizationTeamNoContent
+/*DeleteOrganizationTeamNoContent handles this case with default header values.
 
 Deleted
 */
@@ -87,7 +89,7 @@ func NewDeleteOrganizationTeamBadRequest() *DeleteOrganizationTeamBadRequest {
 	return &DeleteOrganizationTeamBadRequest{}
 }
 
-/*DeleteOrganizationTeamBadRequest
+/*DeleteOrganizationTeamBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewDeleteOrganizationTeamUnauthorized() *DeleteOrganizationTeamUnauthorized
 	return &DeleteOrganizationTeamUnauthorized{}
 }
 
-/*DeleteOrganizationTeamUnauthorized
+/*DeleteOrganizationTeamUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewDeleteOrganizationTeamForbidden() *DeleteOrganizationTeamForbidden {
 	return &DeleteOrganizationTeamForbidden{}
 }
 
-/*DeleteOrganizationTeamForbidden
+/*DeleteOrganizationTeamForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewDeleteOrganizationTeamNotFound() *DeleteOrganizationTeamNotFound {
 	return &DeleteOrganizationTeamNotFound{}
 }
 
-/*DeleteOrganizationTeamNotFound
+/*DeleteOrganizationTeamNotFound handles this case with default header values.
 
 Not found
 */

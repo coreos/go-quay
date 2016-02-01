@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// ChangeTagImageReader is a Reader for the ChangeTagImage structure.
 type ChangeTagImageReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *ChangeTagImageReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewChangeTagImageOK() *ChangeTagImageOK {
 	return &ChangeTagImageOK{}
 }
 
-/*ChangeTagImageOK
+/*ChangeTagImageOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewChangeTagImageBadRequest() *ChangeTagImageBadRequest {
 	return &ChangeTagImageBadRequest{}
 }
 
-/*ChangeTagImageBadRequest
+/*ChangeTagImageBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewChangeTagImageUnauthorized() *ChangeTagImageUnauthorized {
 	return &ChangeTagImageUnauthorized{}
 }
 
-/*ChangeTagImageUnauthorized
+/*ChangeTagImageUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewChangeTagImageForbidden() *ChangeTagImageForbidden {
 	return &ChangeTagImageForbidden{}
 }
 
-/*ChangeTagImageForbidden
+/*ChangeTagImageForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewChangeTagImageNotFound() *ChangeTagImageNotFound {
 	return &ChangeTagImageNotFound{}
 }
 
-/*ChangeTagImageNotFound
+/*ChangeTagImageNotFound handles this case with default header values.
 
 Not found
 */

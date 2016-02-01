@@ -23,8 +23,9 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-/*Cancels a repository build if it has not yet been picked up by a build worker.
- */
+/*
+Cancels a repository build if it has not yet been picked up by a build worker.
+*/
 func (a *Client) CancelRepoBuild(params *CancelRepoBuildParams, authInfo client.AuthInfoWriter) (*CancelRepoBuildNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -32,13 +33,14 @@ func (a *Client) CancelRepoBuild(params *CancelRepoBuildParams, authInfo client.
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "cancelRepoBuild",
-		Method:      "DELETE",
-		PathPattern: "/api/v1/repository/{repository}/build/{build_uuid}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &CancelRepoBuildReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "cancelRepoBuild",
+		Method:             "DELETE",
+		PathPattern:        "/api/v1/repository/{repository}/build/{build_uuid}",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CancelRepoBuildReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -46,8 +48,9 @@ func (a *Client) CancelRepoBuild(params *CancelRepoBuildParams, authInfo client.
 	return result.(*CancelRepoBuildNoContent), nil
 }
 
-/*Returns information about a build.
- */
+/*
+Returns information about a build.
+*/
 func (a *Client) GetRepoBuild(params *GetRepoBuildParams, authInfo client.AuthInfoWriter) (*GetRepoBuildOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -55,13 +58,14 @@ func (a *Client) GetRepoBuild(params *GetRepoBuildParams, authInfo client.AuthIn
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getRepoBuild",
-		Method:      "GET",
-		PathPattern: "/api/v1/repository/{repository}/build/{build_uuid}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetRepoBuildReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "getRepoBuild",
+		Method:             "GET",
+		PathPattern:        "/api/v1/repository/{repository}/build/{build_uuid}",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRepoBuildReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -69,8 +73,9 @@ func (a *Client) GetRepoBuild(params *GetRepoBuildParams, authInfo client.AuthIn
 	return result.(*GetRepoBuildOK), nil
 }
 
-/*Return the build logs for the build specified by the build uuid.
- */
+/*
+Return the build logs for the build specified by the build uuid.
+*/
 func (a *Client) GetRepoBuildLogs(params *GetRepoBuildLogsParams, authInfo client.AuthInfoWriter) (*GetRepoBuildLogsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -78,13 +83,14 @@ func (a *Client) GetRepoBuildLogs(params *GetRepoBuildLogsParams, authInfo clien
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getRepoBuildLogs",
-		Method:      "GET",
-		PathPattern: "/api/v1/repository/{repository}/build/{build_uuid}/logs",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetRepoBuildLogsReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "getRepoBuildLogs",
+		Method:             "GET",
+		PathPattern:        "/api/v1/repository/{repository}/build/{build_uuid}/logs",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRepoBuildLogsReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -92,8 +98,9 @@ func (a *Client) GetRepoBuildLogs(params *GetRepoBuildLogsParams, authInfo clien
 	return result.(*GetRepoBuildLogsOK), nil
 }
 
-/*Return the status for the builds specified by the build uuids.
- */
+/*
+Return the status for the builds specified by the build uuids.
+*/
 func (a *Client) GetRepoBuildStatus(params *GetRepoBuildStatusParams, authInfo client.AuthInfoWriter) (*GetRepoBuildStatusOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -101,13 +108,14 @@ func (a *Client) GetRepoBuildStatus(params *GetRepoBuildStatusParams, authInfo c
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getRepoBuildStatus",
-		Method:      "GET",
-		PathPattern: "/api/v1/repository/{repository}/build/{build_uuid}/status",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetRepoBuildStatusReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "getRepoBuildStatus",
+		Method:             "GET",
+		PathPattern:        "/api/v1/repository/{repository}/build/{build_uuid}/status",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRepoBuildStatusReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -115,8 +123,9 @@ func (a *Client) GetRepoBuildStatus(params *GetRepoBuildStatusParams, authInfo c
 	return result.(*GetRepoBuildStatusOK), nil
 }
 
-/*Get the list of repository builds.
- */
+/*
+Get the list of repository builds.
+*/
 func (a *Client) GetRepoBuilds(params *GetRepoBuildsParams, authInfo client.AuthInfoWriter) (*GetRepoBuildsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -124,13 +133,14 @@ func (a *Client) GetRepoBuilds(params *GetRepoBuildsParams, authInfo client.Auth
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getRepoBuilds",
-		Method:      "GET",
-		PathPattern: "/api/v1/repository/{repository}/build/",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetRepoBuildsReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "getRepoBuilds",
+		Method:             "GET",
+		PathPattern:        "/api/v1/repository/{repository}/build/",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRepoBuildsReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -138,8 +148,9 @@ func (a *Client) GetRepoBuilds(params *GetRepoBuildsParams, authInfo client.Auth
 	return result.(*GetRepoBuildsOK), nil
 }
 
-/*Request that a repository be built and pushed from the specified input.
- */
+/*
+Request that a repository be built and pushed from the specified input.
+*/
 func (a *Client) RequestRepoBuild(params *RequestRepoBuildParams, authInfo client.AuthInfoWriter) (*RequestRepoBuildOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -147,13 +158,14 @@ func (a *Client) RequestRepoBuild(params *RequestRepoBuildParams, authInfo clien
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "requestRepoBuild",
-		Method:      "POST",
-		PathPattern: "/api/v1/repository/{repository}/build/",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &RequestRepoBuildReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "requestRepoBuild",
+		Method:             "POST",
+		PathPattern:        "/api/v1/repository/{repository}/build/",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RequestRepoBuildReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err

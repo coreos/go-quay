@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// GetRepoBuildStatusReader is a Reader for the GetRepoBuildStatus structure.
 type GetRepoBuildStatusReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetRepoBuildStatusReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewGetRepoBuildStatusOK() *GetRepoBuildStatusOK {
 	return &GetRepoBuildStatusOK{}
 }
 
-/*GetRepoBuildStatusOK
+/*GetRepoBuildStatusOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewGetRepoBuildStatusBadRequest() *GetRepoBuildStatusBadRequest {
 	return &GetRepoBuildStatusBadRequest{}
 }
 
-/*GetRepoBuildStatusBadRequest
+/*GetRepoBuildStatusBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewGetRepoBuildStatusUnauthorized() *GetRepoBuildStatusUnauthorized {
 	return &GetRepoBuildStatusUnauthorized{}
 }
 
-/*GetRepoBuildStatusUnauthorized
+/*GetRepoBuildStatusUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewGetRepoBuildStatusForbidden() *GetRepoBuildStatusForbidden {
 	return &GetRepoBuildStatusForbidden{}
 }
 
-/*GetRepoBuildStatusForbidden
+/*GetRepoBuildStatusForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewGetRepoBuildStatusNotFound() *GetRepoBuildStatusNotFound {
 	return &GetRepoBuildStatusNotFound{}
 }
 
-/*GetRepoBuildStatusNotFound
+/*GetRepoBuildStatusNotFound handles this case with default header values.
 
 Not found
 */

@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// GetImageChangesReader is a Reader for the GetImageChanges structure.
 type GetImageChangesReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetImageChangesReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewGetImageChangesOK() *GetImageChangesOK {
 	return &GetImageChangesOK{}
 }
 
-/*GetImageChangesOK
+/*GetImageChangesOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewGetImageChangesBadRequest() *GetImageChangesBadRequest {
 	return &GetImageChangesBadRequest{}
 }
 
-/*GetImageChangesBadRequest
+/*GetImageChangesBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewGetImageChangesUnauthorized() *GetImageChangesUnauthorized {
 	return &GetImageChangesUnauthorized{}
 }
 
-/*GetImageChangesUnauthorized
+/*GetImageChangesUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewGetImageChangesForbidden() *GetImageChangesForbidden {
 	return &GetImageChangesForbidden{}
 }
 
-/*GetImageChangesForbidden
+/*GetImageChangesForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewGetImageChangesNotFound() *GetImageChangesNotFound {
 	return &GetImageChangesNotFound{}
 }
 
-/*GetImageChangesNotFound
+/*GetImageChangesNotFound handles this case with default header values.
 
 Not found
 */

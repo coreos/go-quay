@@ -23,8 +23,9 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-/*List all of the API endpoints available in the swagger API format.
- */
+/*
+List all of the API endpoints available in the swagger API format.
+*/
 func (a *Client) Discovery(params *DiscoveryParams) (*DiscoveryOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -32,12 +33,13 @@ func (a *Client) Discovery(params *DiscoveryParams) (*DiscoveryOK, error) {
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "discovery",
-		Method:      "GET",
-		PathPattern: "/api/v1/discovery",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &DiscoveryReader{formats: a.formats},
+		ID:                 "discovery",
+		Method:             "GET",
+		PathPattern:        "/api/v1/discovery",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DiscoveryReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err

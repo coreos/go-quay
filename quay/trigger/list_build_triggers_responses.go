@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// ListBuildTriggersReader is a Reader for the ListBuildTriggers structure.
 type ListBuildTriggersReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *ListBuildTriggersReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewListBuildTriggersOK() *ListBuildTriggersOK {
 	return &ListBuildTriggersOK{}
 }
 
-/*ListBuildTriggersOK
+/*ListBuildTriggersOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewListBuildTriggersBadRequest() *ListBuildTriggersBadRequest {
 	return &ListBuildTriggersBadRequest{}
 }
 
-/*ListBuildTriggersBadRequest
+/*ListBuildTriggersBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewListBuildTriggersUnauthorized() *ListBuildTriggersUnauthorized {
 	return &ListBuildTriggersUnauthorized{}
 }
 
-/*ListBuildTriggersUnauthorized
+/*ListBuildTriggersUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewListBuildTriggersForbidden() *ListBuildTriggersForbidden {
 	return &ListBuildTriggersForbidden{}
 }
 
-/*ListBuildTriggersForbidden
+/*ListBuildTriggersForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewListBuildTriggersNotFound() *ListBuildTriggersNotFound {
 	return &ListBuildTriggersNotFound{}
 }
 
-/*ListBuildTriggersNotFound
+/*ListBuildTriggersNotFound handles this case with default header values.
 
 Not found
 */

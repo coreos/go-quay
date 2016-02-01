@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// ListOrgLogsReader is a Reader for the ListOrgLogs structure.
 type ListOrgLogsReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *ListOrgLogsReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewListOrgLogsOK() *ListOrgLogsOK {
 	return &ListOrgLogsOK{}
 }
 
-/*ListOrgLogsOK
+/*ListOrgLogsOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewListOrgLogsBadRequest() *ListOrgLogsBadRequest {
 	return &ListOrgLogsBadRequest{}
 }
 
-/*ListOrgLogsBadRequest
+/*ListOrgLogsBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewListOrgLogsUnauthorized() *ListOrgLogsUnauthorized {
 	return &ListOrgLogsUnauthorized{}
 }
 
-/*ListOrgLogsUnauthorized
+/*ListOrgLogsUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewListOrgLogsForbidden() *ListOrgLogsForbidden {
 	return &ListOrgLogsForbidden{}
 }
 
-/*ListOrgLogsForbidden
+/*ListOrgLogsForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewListOrgLogsNotFound() *ListOrgLogsNotFound {
 	return &ListOrgLogsNotFound{}
 }
 
-/*ListOrgLogsNotFound
+/*ListOrgLogsNotFound handles this case with default header values.
 
 Not found
 */

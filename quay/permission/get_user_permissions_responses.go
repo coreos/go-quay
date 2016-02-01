@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// GetUserPermissionsReader is a Reader for the GetUserPermissions structure.
 type GetUserPermissionsReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetUserPermissionsReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewGetUserPermissionsOK() *GetUserPermissionsOK {
 	return &GetUserPermissionsOK{}
 }
 
-/*GetUserPermissionsOK
+/*GetUserPermissionsOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewGetUserPermissionsBadRequest() *GetUserPermissionsBadRequest {
 	return &GetUserPermissionsBadRequest{}
 }
 
-/*GetUserPermissionsBadRequest
+/*GetUserPermissionsBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewGetUserPermissionsUnauthorized() *GetUserPermissionsUnauthorized {
 	return &GetUserPermissionsUnauthorized{}
 }
 
-/*GetUserPermissionsUnauthorized
+/*GetUserPermissionsUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewGetUserPermissionsForbidden() *GetUserPermissionsForbidden {
 	return &GetUserPermissionsForbidden{}
 }
 
-/*GetUserPermissionsForbidden
+/*GetUserPermissionsForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewGetUserPermissionsNotFound() *GetUserPermissionsNotFound {
 	return &GetUserPermissionsNotFound{}
 }
 
-/*GetUserPermissionsNotFound
+/*GetUserPermissionsNotFound handles this case with default header values.
 
 Not found
 */

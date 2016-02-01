@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// UpdateOrganizationApplicationReader is a Reader for the UpdateOrganizationApplication structure.
 type UpdateOrganizationApplicationReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *UpdateOrganizationApplicationReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewUpdateOrganizationApplicationOK() *UpdateOrganizationApplicationOK {
 	return &UpdateOrganizationApplicationOK{}
 }
 
-/*UpdateOrganizationApplicationOK
+/*UpdateOrganizationApplicationOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewUpdateOrganizationApplicationBadRequest() *UpdateOrganizationApplication
 	return &UpdateOrganizationApplicationBadRequest{}
 }
 
-/*UpdateOrganizationApplicationBadRequest
+/*UpdateOrganizationApplicationBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewUpdateOrganizationApplicationUnauthorized() *UpdateOrganizationApplicati
 	return &UpdateOrganizationApplicationUnauthorized{}
 }
 
-/*UpdateOrganizationApplicationUnauthorized
+/*UpdateOrganizationApplicationUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewUpdateOrganizationApplicationForbidden() *UpdateOrganizationApplicationF
 	return &UpdateOrganizationApplicationForbidden{}
 }
 
-/*UpdateOrganizationApplicationForbidden
+/*UpdateOrganizationApplicationForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewUpdateOrganizationApplicationNotFound() *UpdateOrganizationApplicationNo
 	return &UpdateOrganizationApplicationNotFound{}
 }
 
-/*UpdateOrganizationApplicationNotFound
+/*UpdateOrganizationApplicationNotFound handles this case with default header values.
 
 Not found
 */

@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// GetLoggedInUserReader is a Reader for the GetLoggedInUser structure.
 type GetLoggedInUserReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetLoggedInUserReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewGetLoggedInUserOK() *GetLoggedInUserOK {
 	return &GetLoggedInUserOK{}
 }
 
-/*GetLoggedInUserOK
+/*GetLoggedInUserOK handles this case with default header values.
 
 Successful invocation
 */
@@ -95,7 +97,7 @@ func NewGetLoggedInUserBadRequest() *GetLoggedInUserBadRequest {
 	return &GetLoggedInUserBadRequest{}
 }
 
-/*GetLoggedInUserBadRequest
+/*GetLoggedInUserBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -124,7 +126,7 @@ func NewGetLoggedInUserUnauthorized() *GetLoggedInUserUnauthorized {
 	return &GetLoggedInUserUnauthorized{}
 }
 
-/*GetLoggedInUserUnauthorized
+/*GetLoggedInUserUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -145,7 +147,7 @@ func NewGetLoggedInUserForbidden() *GetLoggedInUserForbidden {
 	return &GetLoggedInUserForbidden{}
 }
 
-/*GetLoggedInUserForbidden
+/*GetLoggedInUserForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -166,7 +168,7 @@ func NewGetLoggedInUserNotFound() *GetLoggedInUserNotFound {
 	return &GetLoggedInUserNotFound{}
 }
 
-/*GetLoggedInUserNotFound
+/*GetLoggedInUserNotFound handles this case with default header values.
 
 Not found
 */

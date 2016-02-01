@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// GetRepoTagVulnerabilitiesReader is a Reader for the GetRepoTagVulnerabilities structure.
 type GetRepoTagVulnerabilitiesReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetRepoTagVulnerabilitiesReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewGetRepoTagVulnerabilitiesOK() *GetRepoTagVulnerabilitiesOK {
 	return &GetRepoTagVulnerabilitiesOK{}
 }
 
-/*GetRepoTagVulnerabilitiesOK
+/*GetRepoTagVulnerabilitiesOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewGetRepoTagVulnerabilitiesBadRequest() *GetRepoTagVulnerabilitiesBadReque
 	return &GetRepoTagVulnerabilitiesBadRequest{}
 }
 
-/*GetRepoTagVulnerabilitiesBadRequest
+/*GetRepoTagVulnerabilitiesBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewGetRepoTagVulnerabilitiesUnauthorized() *GetRepoTagVulnerabilitiesUnauth
 	return &GetRepoTagVulnerabilitiesUnauthorized{}
 }
 
-/*GetRepoTagVulnerabilitiesUnauthorized
+/*GetRepoTagVulnerabilitiesUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewGetRepoTagVulnerabilitiesForbidden() *GetRepoTagVulnerabilitiesForbidden
 	return &GetRepoTagVulnerabilitiesForbidden{}
 }
 
-/*GetRepoTagVulnerabilitiesForbidden
+/*GetRepoTagVulnerabilitiesForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewGetRepoTagVulnerabilitiesNotFound() *GetRepoTagVulnerabilitiesNotFound {
 	return &GetRepoTagVulnerabilitiesNotFound{}
 }
 
-/*GetRepoTagVulnerabilitiesNotFound
+/*GetRepoTagVulnerabilitiesNotFound handles this case with default header values.
 
 Not found
 */

@@ -23,8 +23,9 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-/*Get the information available for the specified image.
- */
+/*
+Get the information available for the specified image.
+*/
 func (a *Client) GetImage(params *GetImageParams, authInfo client.AuthInfoWriter) (*GetImageOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -32,13 +33,14 @@ func (a *Client) GetImage(params *GetImageParams, authInfo client.AuthInfoWriter
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getImage",
-		Method:      "GET",
-		PathPattern: "/api/v1/repository/{repository}/image/{image_id}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetImageReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "getImage",
+		Method:             "GET",
+		PathPattern:        "/api/v1/repository/{repository}/image/{image_id}",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetImageReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -46,8 +48,9 @@ func (a *Client) GetImage(params *GetImageParams, authInfo client.AuthInfoWriter
 	return result.(*GetImageOK), nil
 }
 
-/*Get the list of changes for the specified image.
- */
+/*
+Get the list of changes for the specified image.
+*/
 func (a *Client) GetImageChanges(params *GetImageChangesParams, authInfo client.AuthInfoWriter) (*GetImageChangesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -55,13 +58,14 @@ func (a *Client) GetImageChanges(params *GetImageChangesParams, authInfo client.
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getImageChanges",
-		Method:      "GET",
-		PathPattern: "/api/v1/repository/{repository}/image/{image_id}/changes",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetImageChangesReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "getImageChanges",
+		Method:             "GET",
+		PathPattern:        "/api/v1/repository/{repository}/image/{image_id}/changes",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetImageChangesReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -69,8 +73,9 @@ func (a *Client) GetImageChanges(params *GetImageChangesParams, authInfo client.
 	return result.(*GetImageChangesOK), nil
 }
 
-/*List the images for the specified repository.
- */
+/*
+List the images for the specified repository.
+*/
 func (a *Client) ListRepositoryImages(params *ListRepositoryImagesParams, authInfo client.AuthInfoWriter) (*ListRepositoryImagesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -78,13 +83,14 @@ func (a *Client) ListRepositoryImages(params *ListRepositoryImagesParams, authIn
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "listRepositoryImages",
-		Method:      "GET",
-		PathPattern: "/api/v1/repository/{repository}/image/",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &ListRepositoryImagesReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "listRepositoryImages",
+		Method:             "GET",
+		PathPattern:        "/api/v1/repository/{repository}/image/",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListRepositoryImagesReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err

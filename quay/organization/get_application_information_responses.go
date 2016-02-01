@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// GetApplicationInformationReader is a Reader for the GetApplicationInformation structure.
 type GetApplicationInformationReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetApplicationInformationReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewGetApplicationInformationOK() *GetApplicationInformationOK {
 	return &GetApplicationInformationOK{}
 }
 
-/*GetApplicationInformationOK
+/*GetApplicationInformationOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewGetApplicationInformationBadRequest() *GetApplicationInformationBadReque
 	return &GetApplicationInformationBadRequest{}
 }
 
-/*GetApplicationInformationBadRequest
+/*GetApplicationInformationBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewGetApplicationInformationUnauthorized() *GetApplicationInformationUnauth
 	return &GetApplicationInformationUnauthorized{}
 }
 
-/*GetApplicationInformationUnauthorized
+/*GetApplicationInformationUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewGetApplicationInformationForbidden() *GetApplicationInformationForbidden
 	return &GetApplicationInformationForbidden{}
 }
 
-/*GetApplicationInformationForbidden
+/*GetApplicationInformationForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewGetApplicationInformationNotFound() *GetApplicationInformationNotFound {
 	return &GetApplicationInformationNotFound{}
 }
 
-/*GetApplicationInformationNotFound
+/*GetApplicationInformationNotFound handles this case with default header values.
 
 Not found
 */

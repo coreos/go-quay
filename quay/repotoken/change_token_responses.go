@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// ChangeTokenReader is a Reader for the ChangeToken structure.
 type ChangeTokenReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *ChangeTokenReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewChangeTokenOK() *ChangeTokenOK {
 	return &ChangeTokenOK{}
 }
 
-/*ChangeTokenOK
+/*ChangeTokenOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewChangeTokenBadRequest() *ChangeTokenBadRequest {
 	return &ChangeTokenBadRequest{}
 }
 
-/*ChangeTokenBadRequest
+/*ChangeTokenBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewChangeTokenUnauthorized() *ChangeTokenUnauthorized {
 	return &ChangeTokenUnauthorized{}
 }
 
-/*ChangeTokenUnauthorized
+/*ChangeTokenUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewChangeTokenForbidden() *ChangeTokenForbidden {
 	return &ChangeTokenForbidden{}
 }
 
-/*ChangeTokenForbidden
+/*ChangeTokenForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewChangeTokenNotFound() *ChangeTokenNotFound {
 	return &ChangeTokenNotFound{}
 }
 
-/*ChangeTokenNotFound
+/*ChangeTokenNotFound handles this case with default header values.
 
 Not found
 */

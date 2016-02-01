@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// DeleteRepoNotificationReader is a Reader for the DeleteRepoNotification structure.
 type DeleteRepoNotificationReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *DeleteRepoNotificationReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewDeleteRepoNotificationNoContent() *DeleteRepoNotificationNoContent {
 	return &DeleteRepoNotificationNoContent{}
 }
 
-/*DeleteRepoNotificationNoContent
+/*DeleteRepoNotificationNoContent handles this case with default header values.
 
 Deleted
 */
@@ -87,7 +89,7 @@ func NewDeleteRepoNotificationBadRequest() *DeleteRepoNotificationBadRequest {
 	return &DeleteRepoNotificationBadRequest{}
 }
 
-/*DeleteRepoNotificationBadRequest
+/*DeleteRepoNotificationBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewDeleteRepoNotificationUnauthorized() *DeleteRepoNotificationUnauthorized
 	return &DeleteRepoNotificationUnauthorized{}
 }
 
-/*DeleteRepoNotificationUnauthorized
+/*DeleteRepoNotificationUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewDeleteRepoNotificationForbidden() *DeleteRepoNotificationForbidden {
 	return &DeleteRepoNotificationForbidden{}
 }
 
-/*DeleteRepoNotificationForbidden
+/*DeleteRepoNotificationForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewDeleteRepoNotificationNotFound() *DeleteRepoNotificationNotFound {
 	return &DeleteRepoNotificationNotFound{}
 }
 
-/*DeleteRepoNotificationNotFound
+/*DeleteRepoNotificationNotFound handles this case with default header values.
 
 Not found
 */

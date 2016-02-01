@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// ListRepoTagsReader is a Reader for the ListRepoTags structure.
 type ListRepoTagsReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *ListRepoTagsReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewListRepoTagsOK() *ListRepoTagsOK {
 	return &ListRepoTagsOK{}
 }
 
-/*ListRepoTagsOK
+/*ListRepoTagsOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewListRepoTagsBadRequest() *ListRepoTagsBadRequest {
 	return &ListRepoTagsBadRequest{}
 }
 
-/*ListRepoTagsBadRequest
+/*ListRepoTagsBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewListRepoTagsUnauthorized() *ListRepoTagsUnauthorized {
 	return &ListRepoTagsUnauthorized{}
 }
 
-/*ListRepoTagsUnauthorized
+/*ListRepoTagsUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewListRepoTagsForbidden() *ListRepoTagsForbidden {
 	return &ListRepoTagsForbidden{}
 }
 
-/*ListRepoTagsForbidden
+/*ListRepoTagsForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewListRepoTagsNotFound() *ListRepoTagsNotFound {
 	return &ListRepoTagsNotFound{}
 }
 
-/*ListRepoTagsNotFound
+/*ListRepoTagsNotFound handles this case with default header values.
 
 Not found
 */

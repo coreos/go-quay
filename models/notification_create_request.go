@@ -74,7 +74,7 @@ func (m *NotificationCreateRequest) validateConfig(formats strfmt.Registry) erro
 
 func (m *NotificationCreateRequest) validateEvent(formats strfmt.Registry) error {
 
-	if err := validate.Required("event", "body", string(m.Event)); err != nil {
+	if err := validate.RequiredString("event", "body", string(m.Event)); err != nil {
 		return err
 	}
 
@@ -83,7 +83,7 @@ func (m *NotificationCreateRequest) validateEvent(formats strfmt.Registry) error
 
 func (m *NotificationCreateRequest) validateMethod(formats strfmt.Registry) error {
 
-	if err := validate.Required("method", "body", string(m.Method)); err != nil {
+	if err := validate.RequiredString("method", "body", string(m.Method)); err != nil {
 		return err
 	}
 

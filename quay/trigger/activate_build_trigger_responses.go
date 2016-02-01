@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// ActivateBuildTriggerReader is a Reader for the ActivateBuildTrigger structure.
 type ActivateBuildTriggerReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *ActivateBuildTriggerReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewActivateBuildTriggerOK() *ActivateBuildTriggerOK {
 	return &ActivateBuildTriggerOK{}
 }
 
-/*ActivateBuildTriggerOK
+/*ActivateBuildTriggerOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewActivateBuildTriggerBadRequest() *ActivateBuildTriggerBadRequest {
 	return &ActivateBuildTriggerBadRequest{}
 }
 
-/*ActivateBuildTriggerBadRequest
+/*ActivateBuildTriggerBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewActivateBuildTriggerUnauthorized() *ActivateBuildTriggerUnauthorized {
 	return &ActivateBuildTriggerUnauthorized{}
 }
 
-/*ActivateBuildTriggerUnauthorized
+/*ActivateBuildTriggerUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewActivateBuildTriggerForbidden() *ActivateBuildTriggerForbidden {
 	return &ActivateBuildTriggerForbidden{}
 }
 
-/*ActivateBuildTriggerForbidden
+/*ActivateBuildTriggerForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewActivateBuildTriggerNotFound() *ActivateBuildTriggerNotFound {
 	return &ActivateBuildTriggerNotFound{}
 }
 
-/*ActivateBuildTriggerNotFound
+/*ActivateBuildTriggerNotFound handles this case with default header values.
 
 Not found
 */

@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// GetRepoNotificationReader is a Reader for the GetRepoNotification structure.
 type GetRepoNotificationReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetRepoNotificationReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewGetRepoNotificationOK() *GetRepoNotificationOK {
 	return &GetRepoNotificationOK{}
 }
 
-/*GetRepoNotificationOK
+/*GetRepoNotificationOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewGetRepoNotificationBadRequest() *GetRepoNotificationBadRequest {
 	return &GetRepoNotificationBadRequest{}
 }
 
-/*GetRepoNotificationBadRequest
+/*GetRepoNotificationBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewGetRepoNotificationUnauthorized() *GetRepoNotificationUnauthorized {
 	return &GetRepoNotificationUnauthorized{}
 }
 
-/*GetRepoNotificationUnauthorized
+/*GetRepoNotificationUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewGetRepoNotificationForbidden() *GetRepoNotificationForbidden {
 	return &GetRepoNotificationForbidden{}
 }
 
-/*GetRepoNotificationForbidden
+/*GetRepoNotificationForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewGetRepoNotificationNotFound() *GetRepoNotificationNotFound {
 	return &GetRepoNotificationNotFound{}
 }
 
-/*GetRepoNotificationNotFound
+/*GetRepoNotificationNotFound handles this case with default header values.
 
 Not found
 */

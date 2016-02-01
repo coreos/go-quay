@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// CreateStarReader is a Reader for the CreateStar structure.
 type CreateStarReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *CreateStarReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewCreateStarOK() *CreateStarOK {
 	return &CreateStarOK{}
 }
 
-/*CreateStarOK
+/*CreateStarOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewCreateStarBadRequest() *CreateStarBadRequest {
 	return &CreateStarBadRequest{}
 }
 
-/*CreateStarBadRequest
+/*CreateStarBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewCreateStarUnauthorized() *CreateStarUnauthorized {
 	return &CreateStarUnauthorized{}
 }
 
-/*CreateStarUnauthorized
+/*CreateStarUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewCreateStarForbidden() *CreateStarForbidden {
 	return &CreateStarForbidden{}
 }
 
-/*CreateStarForbidden
+/*CreateStarForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewCreateStarNotFound() *CreateStarNotFound {
 	return &CreateStarNotFound{}
 }
 
-/*CreateStarNotFound
+/*CreateStarNotFound handles this case with default header values.
 
 Not found
 */

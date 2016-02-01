@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// GetOrganizationReader is a Reader for the GetOrganization structure.
 type GetOrganizationReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetOrganizationReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewGetOrganizationOK() *GetOrganizationOK {
 	return &GetOrganizationOK{}
 }
 
-/*GetOrganizationOK
+/*GetOrganizationOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewGetOrganizationBadRequest() *GetOrganizationBadRequest {
 	return &GetOrganizationBadRequest{}
 }
 
-/*GetOrganizationBadRequest
+/*GetOrganizationBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewGetOrganizationUnauthorized() *GetOrganizationUnauthorized {
 	return &GetOrganizationUnauthorized{}
 }
 
-/*GetOrganizationUnauthorized
+/*GetOrganizationUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewGetOrganizationForbidden() *GetOrganizationForbidden {
 	return &GetOrganizationForbidden{}
 }
 
-/*GetOrganizationForbidden
+/*GetOrganizationForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewGetOrganizationNotFound() *GetOrganizationNotFound {
 	return &GetOrganizationNotFound{}
 }
 
-/*GetOrganizationNotFound
+/*GetOrganizationNotFound handles this case with default header values.
 
 Not found
 */

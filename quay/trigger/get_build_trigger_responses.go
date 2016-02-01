@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// GetBuildTriggerReader is a Reader for the GetBuildTrigger structure.
 type GetBuildTriggerReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetBuildTriggerReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewGetBuildTriggerOK() *GetBuildTriggerOK {
 	return &GetBuildTriggerOK{}
 }
 
-/*GetBuildTriggerOK
+/*GetBuildTriggerOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewGetBuildTriggerBadRequest() *GetBuildTriggerBadRequest {
 	return &GetBuildTriggerBadRequest{}
 }
 
-/*GetBuildTriggerBadRequest
+/*GetBuildTriggerBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewGetBuildTriggerUnauthorized() *GetBuildTriggerUnauthorized {
 	return &GetBuildTriggerUnauthorized{}
 }
 
-/*GetBuildTriggerUnauthorized
+/*GetBuildTriggerUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewGetBuildTriggerForbidden() *GetBuildTriggerForbidden {
 	return &GetBuildTriggerForbidden{}
 }
 
-/*GetBuildTriggerForbidden
+/*GetBuildTriggerForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewGetBuildTriggerNotFound() *GetBuildTriggerNotFound {
 	return &GetBuildTriggerNotFound{}
 }
 
-/*GetBuildTriggerNotFound
+/*GetBuildTriggerNotFound handles this case with default header values.
 
 Not found
 */

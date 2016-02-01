@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// ListRepoTeamPermissionsReader is a Reader for the ListRepoTeamPermissions structure.
 type ListRepoTeamPermissionsReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *ListRepoTeamPermissionsReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewListRepoTeamPermissionsOK() *ListRepoTeamPermissionsOK {
 	return &ListRepoTeamPermissionsOK{}
 }
 
-/*ListRepoTeamPermissionsOK
+/*ListRepoTeamPermissionsOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewListRepoTeamPermissionsBadRequest() *ListRepoTeamPermissionsBadRequest {
 	return &ListRepoTeamPermissionsBadRequest{}
 }
 
-/*ListRepoTeamPermissionsBadRequest
+/*ListRepoTeamPermissionsBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewListRepoTeamPermissionsUnauthorized() *ListRepoTeamPermissionsUnauthoriz
 	return &ListRepoTeamPermissionsUnauthorized{}
 }
 
-/*ListRepoTeamPermissionsUnauthorized
+/*ListRepoTeamPermissionsUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewListRepoTeamPermissionsForbidden() *ListRepoTeamPermissionsForbidden {
 	return &ListRepoTeamPermissionsForbidden{}
 }
 
-/*ListRepoTeamPermissionsForbidden
+/*ListRepoTeamPermissionsForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewListRepoTeamPermissionsNotFound() *ListRepoTeamPermissionsNotFound {
 	return &ListRepoTeamPermissionsNotFound{}
 }
 
-/*ListRepoTeamPermissionsNotFound
+/*ListRepoTeamPermissionsNotFound handles this case with default header values.
 
 Not found
 */

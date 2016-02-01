@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// DeleteRepositoryReader is a Reader for the DeleteRepository structure.
 type DeleteRepositoryReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *DeleteRepositoryReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewDeleteRepositoryNoContent() *DeleteRepositoryNoContent {
 	return &DeleteRepositoryNoContent{}
 }
 
-/*DeleteRepositoryNoContent
+/*DeleteRepositoryNoContent handles this case with default header values.
 
 Deleted
 */
@@ -87,7 +89,7 @@ func NewDeleteRepositoryBadRequest() *DeleteRepositoryBadRequest {
 	return &DeleteRepositoryBadRequest{}
 }
 
-/*DeleteRepositoryBadRequest
+/*DeleteRepositoryBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewDeleteRepositoryUnauthorized() *DeleteRepositoryUnauthorized {
 	return &DeleteRepositoryUnauthorized{}
 }
 
-/*DeleteRepositoryUnauthorized
+/*DeleteRepositoryUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewDeleteRepositoryForbidden() *DeleteRepositoryForbidden {
 	return &DeleteRepositoryForbidden{}
 }
 
-/*DeleteRepositoryForbidden
+/*DeleteRepositoryForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewDeleteRepositoryNotFound() *DeleteRepositoryNotFound {
 	return &DeleteRepositoryNotFound{}
 }
 
-/*DeleteRepositoryNotFound
+/*DeleteRepositoryNotFound handles this case with default header values.
 
 Not found
 */

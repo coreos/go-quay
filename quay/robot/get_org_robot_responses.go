@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// GetOrgRobotReader is a Reader for the GetOrgRobot structure.
 type GetOrgRobotReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetOrgRobotReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewGetOrgRobotOK() *GetOrgRobotOK {
 	return &GetOrgRobotOK{}
 }
 
-/*GetOrgRobotOK
+/*GetOrgRobotOK handles this case with default header values.
 
 Successful invocation
 */
@@ -95,7 +97,7 @@ func NewGetOrgRobotBadRequest() *GetOrgRobotBadRequest {
 	return &GetOrgRobotBadRequest{}
 }
 
-/*GetOrgRobotBadRequest
+/*GetOrgRobotBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -124,7 +126,7 @@ func NewGetOrgRobotUnauthorized() *GetOrgRobotUnauthorized {
 	return &GetOrgRobotUnauthorized{}
 }
 
-/*GetOrgRobotUnauthorized
+/*GetOrgRobotUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -145,7 +147,7 @@ func NewGetOrgRobotForbidden() *GetOrgRobotForbidden {
 	return &GetOrgRobotForbidden{}
 }
 
-/*GetOrgRobotForbidden
+/*GetOrgRobotForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -166,7 +168,7 @@ func NewGetOrgRobotNotFound() *GetOrgRobotNotFound {
 	return &GetOrgRobotNotFound{}
 }
 
-/*GetOrgRobotNotFound
+/*GetOrgRobotNotFound handles this case with default header values.
 
 Not found
 */

@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// CreateRepoReader is a Reader for the CreateRepo structure.
 type CreateRepoReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *CreateRepoReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewCreateRepoOK() *CreateRepoOK {
 	return &CreateRepoOK{}
 }
 
-/*CreateRepoOK
+/*CreateRepoOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewCreateRepoBadRequest() *CreateRepoBadRequest {
 	return &CreateRepoBadRequest{}
 }
 
-/*CreateRepoBadRequest
+/*CreateRepoBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewCreateRepoUnauthorized() *CreateRepoUnauthorized {
 	return &CreateRepoUnauthorized{}
 }
 
-/*CreateRepoUnauthorized
+/*CreateRepoUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewCreateRepoForbidden() *CreateRepoForbidden {
 	return &CreateRepoForbidden{}
 }
 
-/*CreateRepoForbidden
+/*CreateRepoForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewCreateRepoNotFound() *CreateRepoNotFound {
 	return &CreateRepoNotFound{}
 }
 
-/*CreateRepoNotFound
+/*CreateRepoNotFound handles this case with default header values.
 
 Not found
 */

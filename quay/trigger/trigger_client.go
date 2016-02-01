@@ -23,8 +23,9 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-/*Activate the specified build trigger.
- */
+/*
+Activate the specified build trigger.
+*/
 func (a *Client) ActivateBuildTrigger(params *ActivateBuildTriggerParams, authInfo client.AuthInfoWriter) (*ActivateBuildTriggerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -32,13 +33,14 @@ func (a *Client) ActivateBuildTrigger(params *ActivateBuildTriggerParams, authIn
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "activateBuildTrigger",
-		Method:      "POST",
-		PathPattern: "/api/v1/repository/{repository}/trigger/{trigger_uuid}/activate",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &ActivateBuildTriggerReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "activateBuildTrigger",
+		Method:             "POST",
+		PathPattern:        "/api/v1/repository/{repository}/trigger/{trigger_uuid}/activate",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ActivateBuildTriggerReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -46,8 +48,9 @@ func (a *Client) ActivateBuildTrigger(params *ActivateBuildTriggerParams, authIn
 	return result.(*ActivateBuildTriggerOK), nil
 }
 
-/*Delete the specified build trigger.
- */
+/*
+Delete the specified build trigger.
+*/
 func (a *Client) DeleteBuildTrigger(params *DeleteBuildTriggerParams, authInfo client.AuthInfoWriter) (*DeleteBuildTriggerNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -55,13 +58,14 @@ func (a *Client) DeleteBuildTrigger(params *DeleteBuildTriggerParams, authInfo c
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "deleteBuildTrigger",
-		Method:      "DELETE",
-		PathPattern: "/api/v1/repository/{repository}/trigger/{trigger_uuid}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &DeleteBuildTriggerReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "deleteBuildTrigger",
+		Method:             "DELETE",
+		PathPattern:        "/api/v1/repository/{repository}/trigger/{trigger_uuid}",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteBuildTriggerReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -69,8 +73,9 @@ func (a *Client) DeleteBuildTrigger(params *DeleteBuildTriggerParams, authInfo c
 	return result.(*DeleteBuildTriggerNoContent), nil
 }
 
-/*Get information for the specified build trigger.
- */
+/*
+Get information for the specified build trigger.
+*/
 func (a *Client) GetBuildTrigger(params *GetBuildTriggerParams, authInfo client.AuthInfoWriter) (*GetBuildTriggerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -78,13 +83,14 @@ func (a *Client) GetBuildTrigger(params *GetBuildTriggerParams, authInfo client.
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getBuildTrigger",
-		Method:      "GET",
-		PathPattern: "/api/v1/repository/{repository}/trigger/{trigger_uuid}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetBuildTriggerReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "getBuildTrigger",
+		Method:             "GET",
+		PathPattern:        "/api/v1/repository/{repository}/trigger/{trigger_uuid}",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetBuildTriggerReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -92,8 +98,9 @@ func (a *Client) GetBuildTrigger(params *GetBuildTriggerParams, authInfo client.
 	return result.(*GetBuildTriggerOK), nil
 }
 
-/*List the triggers for the specified repository.
- */
+/*
+List the triggers for the specified repository.
+*/
 func (a *Client) ListBuildTriggers(params *ListBuildTriggersParams, authInfo client.AuthInfoWriter) (*ListBuildTriggersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -101,13 +108,14 @@ func (a *Client) ListBuildTriggers(params *ListBuildTriggersParams, authInfo cli
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "listBuildTriggers",
-		Method:      "GET",
-		PathPattern: "/api/v1/repository/{repository}/trigger/",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &ListBuildTriggersReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "listBuildTriggers",
+		Method:             "GET",
+		PathPattern:        "/api/v1/repository/{repository}/trigger/",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListBuildTriggersReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -115,8 +123,9 @@ func (a *Client) ListBuildTriggers(params *ListBuildTriggersParams, authInfo cli
 	return result.(*ListBuildTriggersOK), nil
 }
 
-/*List the builds started by the specified trigger.
- */
+/*
+List the builds started by the specified trigger.
+*/
 func (a *Client) ListTriggerRecentBuilds(params *ListTriggerRecentBuildsParams, authInfo client.AuthInfoWriter) (*ListTriggerRecentBuildsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -124,13 +133,14 @@ func (a *Client) ListTriggerRecentBuilds(params *ListTriggerRecentBuildsParams, 
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "listTriggerRecentBuilds",
-		Method:      "GET",
-		PathPattern: "/api/v1/repository/{repository}/trigger/{trigger_uuid}/builds",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &ListTriggerRecentBuildsReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "listTriggerRecentBuilds",
+		Method:             "GET",
+		PathPattern:        "/api/v1/repository/{repository}/trigger/{trigger_uuid}/builds",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListTriggerRecentBuildsReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -138,8 +148,9 @@ func (a *Client) ListTriggerRecentBuilds(params *ListTriggerRecentBuildsParams, 
 	return result.(*ListTriggerRecentBuildsOK), nil
 }
 
-/*Manually start a build from the specified trigger.
- */
+/*
+Manually start a build from the specified trigger.
+*/
 func (a *Client) ManuallyStartBuildTrigger(params *ManuallyStartBuildTriggerParams, authInfo client.AuthInfoWriter) (*ManuallyStartBuildTriggerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -147,13 +158,14 @@ func (a *Client) ManuallyStartBuildTrigger(params *ManuallyStartBuildTriggerPara
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "manuallyStartBuildTrigger",
-		Method:      "POST",
-		PathPattern: "/api/v1/repository/{repository}/trigger/{trigger_uuid}/start",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &ManuallyStartBuildTriggerReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "manuallyStartBuildTrigger",
+		Method:             "POST",
+		PathPattern:        "/api/v1/repository/{repository}/trigger/{trigger_uuid}/start",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ManuallyStartBuildTriggerReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err

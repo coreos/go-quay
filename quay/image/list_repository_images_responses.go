@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// ListRepositoryImagesReader is a Reader for the ListRepositoryImages structure.
 type ListRepositoryImagesReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *ListRepositoryImagesReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewListRepositoryImagesOK() *ListRepositoryImagesOK {
 	return &ListRepositoryImagesOK{}
 }
 
-/*ListRepositoryImagesOK
+/*ListRepositoryImagesOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewListRepositoryImagesBadRequest() *ListRepositoryImagesBadRequest {
 	return &ListRepositoryImagesBadRequest{}
 }
 
-/*ListRepositoryImagesBadRequest
+/*ListRepositoryImagesBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewListRepositoryImagesUnauthorized() *ListRepositoryImagesUnauthorized {
 	return &ListRepositoryImagesUnauthorized{}
 }
 
-/*ListRepositoryImagesUnauthorized
+/*ListRepositoryImagesUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewListRepositoryImagesForbidden() *ListRepositoryImagesForbidden {
 	return &ListRepositoryImagesForbidden{}
 }
 
-/*ListRepositoryImagesForbidden
+/*ListRepositoryImagesForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewListRepositoryImagesNotFound() *ListRepositoryImagesNotFound {
 	return &ListRepositoryImagesNotFound{}
 }
 
-/*ListRepositoryImagesNotFound
+/*ListRepositoryImagesNotFound handles this case with default header values.
 
 Not found
 */

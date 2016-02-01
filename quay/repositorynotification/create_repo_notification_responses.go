@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// CreateRepoNotificationReader is a Reader for the CreateRepoNotification structure.
 type CreateRepoNotificationReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *CreateRepoNotificationReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewCreateRepoNotificationOK() *CreateRepoNotificationOK {
 	return &CreateRepoNotificationOK{}
 }
 
-/*CreateRepoNotificationOK
+/*CreateRepoNotificationOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewCreateRepoNotificationBadRequest() *CreateRepoNotificationBadRequest {
 	return &CreateRepoNotificationBadRequest{}
 }
 
-/*CreateRepoNotificationBadRequest
+/*CreateRepoNotificationBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewCreateRepoNotificationUnauthorized() *CreateRepoNotificationUnauthorized
 	return &CreateRepoNotificationUnauthorized{}
 }
 
-/*CreateRepoNotificationUnauthorized
+/*CreateRepoNotificationUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewCreateRepoNotificationForbidden() *CreateRepoNotificationForbidden {
 	return &CreateRepoNotificationForbidden{}
 }
 
-/*CreateRepoNotificationForbidden
+/*CreateRepoNotificationForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewCreateRepoNotificationNotFound() *CreateRepoNotificationNotFound {
 	return &CreateRepoNotificationNotFound{}
 }
 
-/*CreateRepoNotificationNotFound
+/*CreateRepoNotificationNotFound handles this case with default header values.
 
 Not found
 */

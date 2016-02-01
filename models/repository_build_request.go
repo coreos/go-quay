@@ -75,7 +75,7 @@ func (m *RepositoryBuildRequest) validateDockerTags(formats strfmt.Registry) err
 
 	for i := 0; i < len(m.DockerTags); i++ {
 
-		if err := validate.Required("docker_tags"+"."+strconv.Itoa(i), "body", string(m.DockerTags[i])); err != nil {
+		if err := validate.RequiredString("docker_tags"+"."+strconv.Itoa(i), "body", string(m.DockerTags[i])); err != nil {
 			return err
 		}
 

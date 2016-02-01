@@ -108,7 +108,7 @@ func (m *NewPrototype) validateRoleEnum(path, location string, value string) err
 
 func (m *NewPrototype) validateRole(formats strfmt.Registry) error {
 
-	if err := validate.Required("role", "body", string(m.Role)); err != nil {
+	if err := validate.RequiredString("role", "body", string(m.Role)); err != nil {
 		return err
 	}
 
@@ -149,7 +149,7 @@ func (m *NewPrototypeActivatingUser) Validate(formats strfmt.Registry) error {
 
 func (m *NewPrototypeActivatingUser) validateName(formats strfmt.Registry) error {
 
-	if err := validate.Required("activating_user"+"."+"name", "body", string(m.Name)); err != nil {
+	if err := validate.RequiredString("activating_user"+"."+"name", "body", string(m.Name)); err != nil {
 		return err
 	}
 
@@ -215,7 +215,7 @@ func (m *NewPrototypeDelegate) validateKindEnum(path, location string, value str
 
 func (m *NewPrototypeDelegate) validateKind(formats strfmt.Registry) error {
 
-	if err := validate.Required("delegate"+"."+"kind", "body", string(m.Kind)); err != nil {
+	if err := validate.RequiredString("delegate"+"."+"kind", "body", string(m.Kind)); err != nil {
 		return err
 	}
 
@@ -228,7 +228,7 @@ func (m *NewPrototypeDelegate) validateKind(formats strfmt.Registry) error {
 
 func (m *NewPrototypeDelegate) validateName(formats strfmt.Registry) error {
 
-	if err := validate.Required("delegate"+"."+"name", "body", string(m.Name)); err != nil {
+	if err := validate.RequiredString("delegate"+"."+"name", "body", string(m.Name)); err != nil {
 		return err
 	}
 

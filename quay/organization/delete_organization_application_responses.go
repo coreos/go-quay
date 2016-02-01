@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// DeleteOrganizationApplicationReader is a Reader for the DeleteOrganizationApplication structure.
 type DeleteOrganizationApplicationReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *DeleteOrganizationApplicationReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewDeleteOrganizationApplicationNoContent() *DeleteOrganizationApplicationN
 	return &DeleteOrganizationApplicationNoContent{}
 }
 
-/*DeleteOrganizationApplicationNoContent
+/*DeleteOrganizationApplicationNoContent handles this case with default header values.
 
 Deleted
 */
@@ -87,7 +89,7 @@ func NewDeleteOrganizationApplicationBadRequest() *DeleteOrganizationApplication
 	return &DeleteOrganizationApplicationBadRequest{}
 }
 
-/*DeleteOrganizationApplicationBadRequest
+/*DeleteOrganizationApplicationBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewDeleteOrganizationApplicationUnauthorized() *DeleteOrganizationApplicati
 	return &DeleteOrganizationApplicationUnauthorized{}
 }
 
-/*DeleteOrganizationApplicationUnauthorized
+/*DeleteOrganizationApplicationUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewDeleteOrganizationApplicationForbidden() *DeleteOrganizationApplicationF
 	return &DeleteOrganizationApplicationForbidden{}
 }
 
-/*DeleteOrganizationApplicationForbidden
+/*DeleteOrganizationApplicationForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewDeleteOrganizationApplicationNotFound() *DeleteOrganizationApplicationNo
 	return &DeleteOrganizationApplicationNotFound{}
 }
 
-/*DeleteOrganizationApplicationNotFound
+/*DeleteOrganizationApplicationNotFound handles this case with default header values.
 
 Not found
 */

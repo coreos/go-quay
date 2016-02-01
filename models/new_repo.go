@@ -67,7 +67,7 @@ func (m *NewRepo) Validate(formats strfmt.Registry) error {
 
 func (m *NewRepo) validateDescription(formats strfmt.Registry) error {
 
-	if err := validate.Required("description", "body", string(m.Description)); err != nil {
+	if err := validate.RequiredString("description", "body", string(m.Description)); err != nil {
 		return err
 	}
 
@@ -76,7 +76,7 @@ func (m *NewRepo) validateDescription(formats strfmt.Registry) error {
 
 func (m *NewRepo) validateRepository(formats strfmt.Registry) error {
 
-	if err := validate.Required("repository", "body", string(m.Repository)); err != nil {
+	if err := validate.RequiredString("repository", "body", string(m.Repository)); err != nil {
 		return err
 	}
 
@@ -103,7 +103,7 @@ func (m *NewRepo) validateVisibilityEnum(path, location string, value string) er
 
 func (m *NewRepo) validateVisibility(formats strfmt.Registry) error {
 
-	if err := validate.Required("visibility", "body", string(m.Visibility)); err != nil {
+	if err := validate.RequiredString("visibility", "body", string(m.Visibility)); err != nil {
 		return err
 	}
 

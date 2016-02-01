@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// GetRepoImagePackagesReader is a Reader for the GetRepoImagePackages structure.
 type GetRepoImagePackagesReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetRepoImagePackagesReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewGetRepoImagePackagesOK() *GetRepoImagePackagesOK {
 	return &GetRepoImagePackagesOK{}
 }
 
-/*GetRepoImagePackagesOK
+/*GetRepoImagePackagesOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewGetRepoImagePackagesBadRequest() *GetRepoImagePackagesBadRequest {
 	return &GetRepoImagePackagesBadRequest{}
 }
 
-/*GetRepoImagePackagesBadRequest
+/*GetRepoImagePackagesBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewGetRepoImagePackagesUnauthorized() *GetRepoImagePackagesUnauthorized {
 	return &GetRepoImagePackagesUnauthorized{}
 }
 
-/*GetRepoImagePackagesUnauthorized
+/*GetRepoImagePackagesUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewGetRepoImagePackagesForbidden() *GetRepoImagePackagesForbidden {
 	return &GetRepoImagePackagesForbidden{}
 }
 
-/*GetRepoImagePackagesForbidden
+/*GetRepoImagePackagesForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewGetRepoImagePackagesNotFound() *GetRepoImagePackagesNotFound {
 	return &GetRepoImagePackagesNotFound{}
 }
 
-/*GetRepoImagePackagesNotFound
+/*GetRepoImagePackagesNotFound handles this case with default header values.
 
 Not found
 */

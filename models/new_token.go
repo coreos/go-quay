@@ -39,7 +39,7 @@ func (m *NewToken) Validate(formats strfmt.Registry) error {
 
 func (m *NewToken) validateFriendlyName(formats strfmt.Registry) error {
 
-	if err := validate.Required("friendlyName", "body", string(m.FriendlyName)); err != nil {
+	if err := validate.RequiredString("friendlyName", "body", string(m.FriendlyName)); err != nil {
 		return err
 	}
 

@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// GetTeamPermissionsReader is a Reader for the GetTeamPermissions structure.
 type GetTeamPermissionsReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetTeamPermissionsReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewGetTeamPermissionsOK() *GetTeamPermissionsOK {
 	return &GetTeamPermissionsOK{}
 }
 
-/*GetTeamPermissionsOK
+/*GetTeamPermissionsOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewGetTeamPermissionsBadRequest() *GetTeamPermissionsBadRequest {
 	return &GetTeamPermissionsBadRequest{}
 }
 
-/*GetTeamPermissionsBadRequest
+/*GetTeamPermissionsBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewGetTeamPermissionsUnauthorized() *GetTeamPermissionsUnauthorized {
 	return &GetTeamPermissionsUnauthorized{}
 }
 
-/*GetTeamPermissionsUnauthorized
+/*GetTeamPermissionsUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewGetTeamPermissionsForbidden() *GetTeamPermissionsForbidden {
 	return &GetTeamPermissionsForbidden{}
 }
 
-/*GetTeamPermissionsForbidden
+/*GetTeamPermissionsForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewGetTeamPermissionsNotFound() *GetTeamPermissionsNotFound {
 	return &GetTeamPermissionsNotFound{}
 }
 
-/*GetTeamPermissionsNotFound
+/*GetTeamPermissionsNotFound handles this case with default header values.
 
 Not found
 */

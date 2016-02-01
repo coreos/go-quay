@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// ChangeUserPermissionsReader is a Reader for the ChangeUserPermissions structure.
 type ChangeUserPermissionsReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *ChangeUserPermissionsReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewChangeUserPermissionsOK() *ChangeUserPermissionsOK {
 	return &ChangeUserPermissionsOK{}
 }
 
-/*ChangeUserPermissionsOK
+/*ChangeUserPermissionsOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewChangeUserPermissionsBadRequest() *ChangeUserPermissionsBadRequest {
 	return &ChangeUserPermissionsBadRequest{}
 }
 
-/*ChangeUserPermissionsBadRequest
+/*ChangeUserPermissionsBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewChangeUserPermissionsUnauthorized() *ChangeUserPermissionsUnauthorized {
 	return &ChangeUserPermissionsUnauthorized{}
 }
 
-/*ChangeUserPermissionsUnauthorized
+/*ChangeUserPermissionsUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewChangeUserPermissionsForbidden() *ChangeUserPermissionsForbidden {
 	return &ChangeUserPermissionsForbidden{}
 }
 
-/*ChangeUserPermissionsForbidden
+/*ChangeUserPermissionsForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewChangeUserPermissionsNotFound() *ChangeUserPermissionsNotFound {
 	return &ChangeUserPermissionsNotFound{}
 }
 
-/*ChangeUserPermissionsNotFound
+/*ChangeUserPermissionsNotFound handles this case with default header values.
 
 Not found
 */

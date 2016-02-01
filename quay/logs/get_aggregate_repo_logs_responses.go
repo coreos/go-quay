@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// GetAggregateRepoLogsReader is a Reader for the GetAggregateRepoLogs structure.
 type GetAggregateRepoLogsReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetAggregateRepoLogsReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewGetAggregateRepoLogsOK() *GetAggregateRepoLogsOK {
 	return &GetAggregateRepoLogsOK{}
 }
 
-/*GetAggregateRepoLogsOK
+/*GetAggregateRepoLogsOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewGetAggregateRepoLogsBadRequest() *GetAggregateRepoLogsBadRequest {
 	return &GetAggregateRepoLogsBadRequest{}
 }
 
-/*GetAggregateRepoLogsBadRequest
+/*GetAggregateRepoLogsBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewGetAggregateRepoLogsUnauthorized() *GetAggregateRepoLogsUnauthorized {
 	return &GetAggregateRepoLogsUnauthorized{}
 }
 
-/*GetAggregateRepoLogsUnauthorized
+/*GetAggregateRepoLogsUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewGetAggregateRepoLogsForbidden() *GetAggregateRepoLogsForbidden {
 	return &GetAggregateRepoLogsForbidden{}
 }
 
-/*GetAggregateRepoLogsForbidden
+/*GetAggregateRepoLogsForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewGetAggregateRepoLogsNotFound() *GetAggregateRepoLogsNotFound {
 	return &GetAggregateRepoLogsNotFound{}
 }
 
-/*GetAggregateRepoLogsNotFound
+/*GetAggregateRepoLogsNotFound handles this case with default header values.
 
 Not found
 */

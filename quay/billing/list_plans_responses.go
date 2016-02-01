@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// ListPlansReader is a Reader for the ListPlans structure.
 type ListPlansReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *ListPlansReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewListPlansOK() *ListPlansOK {
 	return &ListPlansOK{}
 }
 
-/*ListPlansOK
+/*ListPlansOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewListPlansBadRequest() *ListPlansBadRequest {
 	return &ListPlansBadRequest{}
 }
 
-/*ListPlansBadRequest
+/*ListPlansBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewListPlansUnauthorized() *ListPlansUnauthorized {
 	return &ListPlansUnauthorized{}
 }
 
-/*ListPlansUnauthorized
+/*ListPlansUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewListPlansForbidden() *ListPlansForbidden {
 	return &ListPlansForbidden{}
 }
 
-/*ListPlansForbidden
+/*ListPlansForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewListPlansNotFound() *ListPlansNotFound {
 	return &ListPlansNotFound{}
 }
 
-/*ListPlansNotFound
+/*ListPlansNotFound handles this case with default header values.
 
 Not found
 */

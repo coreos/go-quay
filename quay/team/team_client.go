@@ -23,8 +23,9 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-/*Delete the specified team.
- */
+/*
+Delete the specified team.
+*/
 func (a *Client) DeleteOrganizationTeam(params *DeleteOrganizationTeamParams, authInfo client.AuthInfoWriter) (*DeleteOrganizationTeamNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -32,13 +33,14 @@ func (a *Client) DeleteOrganizationTeam(params *DeleteOrganizationTeamParams, au
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "deleteOrganizationTeam",
-		Method:      "DELETE",
-		PathPattern: "/api/v1/organization/{orgname}/team/{teamname}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &DeleteOrganizationTeamReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "deleteOrganizationTeam",
+		Method:             "DELETE",
+		PathPattern:        "/api/v1/organization/{orgname}/team/{teamname}",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteOrganizationTeamReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -46,8 +48,9 @@ func (a *Client) DeleteOrganizationTeam(params *DeleteOrganizationTeamParams, au
 	return result.(*DeleteOrganizationTeamNoContent), nil
 }
 
-/*Delete a member of a team. If the user is merely invited to join
-  the team, then the invite is removed instead.
+/*
+Delete a member of a team. If the user is merely invited to join
+        the team, then the invite is removed instead.
 */
 func (a *Client) DeleteOrganizationTeamMember(params *DeleteOrganizationTeamMemberParams, authInfo client.AuthInfoWriter) (*DeleteOrganizationTeamMemberNoContent, error) {
 	// TODO: Validate the params before sending
@@ -56,13 +59,14 @@ func (a *Client) DeleteOrganizationTeamMember(params *DeleteOrganizationTeamMemb
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "deleteOrganizationTeamMember",
-		Method:      "DELETE",
-		PathPattern: "/api/v1/organization/{orgname}/team/{teamname}/members/{membername}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &DeleteOrganizationTeamMemberReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "deleteOrganizationTeamMember",
+		Method:             "DELETE",
+		PathPattern:        "/api/v1/organization/{orgname}/team/{teamname}/members/{membername}",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteOrganizationTeamMemberReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -70,8 +74,9 @@ func (a *Client) DeleteOrganizationTeamMember(params *DeleteOrganizationTeamMemb
 	return result.(*DeleteOrganizationTeamMemberNoContent), nil
 }
 
-/*Delete an invite of an email address to join a team.
- */
+/*
+Delete an invite of an email address to join a team.
+*/
 func (a *Client) DeleteTeamMemberEmailInvite(params *DeleteTeamMemberEmailInviteParams, authInfo client.AuthInfoWriter) (*DeleteTeamMemberEmailInviteNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -79,13 +84,14 @@ func (a *Client) DeleteTeamMemberEmailInvite(params *DeleteTeamMemberEmailInvite
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "deleteTeamMemberEmailInvite",
-		Method:      "DELETE",
-		PathPattern: "/api/v1/organization/{orgname}/team/{teamname}/invite/{email}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &DeleteTeamMemberEmailInviteReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "deleteTeamMemberEmailInvite",
+		Method:             "DELETE",
+		PathPattern:        "/api/v1/organization/{orgname}/team/{teamname}/invite/{email}",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteTeamMemberEmailInviteReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -93,8 +99,9 @@ func (a *Client) DeleteTeamMemberEmailInvite(params *DeleteTeamMemberEmailInvite
 	return result.(*DeleteTeamMemberEmailInviteNoContent), nil
 }
 
-/*Retrieve the list of members for the specified team.
- */
+/*
+Retrieve the list of members for the specified team.
+*/
 func (a *Client) GetOrganizationTeamMembers(params *GetOrganizationTeamMembersParams, authInfo client.AuthInfoWriter) (*GetOrganizationTeamMembersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -102,13 +109,14 @@ func (a *Client) GetOrganizationTeamMembers(params *GetOrganizationTeamMembersPa
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getOrganizationTeamMembers",
-		Method:      "GET",
-		PathPattern: "/api/v1/organization/{orgname}/team/{teamname}/members",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetOrganizationTeamMembersReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "getOrganizationTeamMembers",
+		Method:             "GET",
+		PathPattern:        "/api/v1/organization/{orgname}/team/{teamname}/members",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetOrganizationTeamMembersReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -116,8 +124,9 @@ func (a *Client) GetOrganizationTeamMembers(params *GetOrganizationTeamMembersPa
 	return result.(*GetOrganizationTeamMembersOK), nil
 }
 
-/*Invites an email address to an existing team.
- */
+/*
+Invites an email address to an existing team.
+*/
 func (a *Client) InviteTeamMemberEmail(params *InviteTeamMemberEmailParams, authInfo client.AuthInfoWriter) (*InviteTeamMemberEmailOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -125,13 +134,14 @@ func (a *Client) InviteTeamMemberEmail(params *InviteTeamMemberEmailParams, auth
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "inviteTeamMemberEmail",
-		Method:      "PUT",
-		PathPattern: "/api/v1/organization/{orgname}/team/{teamname}/invite/{email}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &InviteTeamMemberEmailReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "inviteTeamMemberEmail",
+		Method:             "PUT",
+		PathPattern:        "/api/v1/organization/{orgname}/team/{teamname}/invite/{email}",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &InviteTeamMemberEmailReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -139,8 +149,9 @@ func (a *Client) InviteTeamMemberEmail(params *InviteTeamMemberEmailParams, auth
 	return result.(*InviteTeamMemberEmailOK), nil
 }
 
-/*Update the org-wide permission for the specified team.
- */
+/*
+Update the org-wide permission for the specified team.
+*/
 func (a *Client) UpdateOrganizationTeam(params *UpdateOrganizationTeamParams, authInfo client.AuthInfoWriter) (*UpdateOrganizationTeamOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -148,13 +159,14 @@ func (a *Client) UpdateOrganizationTeam(params *UpdateOrganizationTeamParams, au
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "updateOrganizationTeam",
-		Method:      "PUT",
-		PathPattern: "/api/v1/organization/{orgname}/team/{teamname}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &UpdateOrganizationTeamReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "updateOrganizationTeam",
+		Method:             "PUT",
+		PathPattern:        "/api/v1/organization/{orgname}/team/{teamname}",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateOrganizationTeamReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -162,8 +174,9 @@ func (a *Client) UpdateOrganizationTeam(params *UpdateOrganizationTeamParams, au
 	return result.(*UpdateOrganizationTeamOK), nil
 }
 
-/*Adds or invites a member to an existing team.
- */
+/*
+Adds or invites a member to an existing team.
+*/
 func (a *Client) UpdateOrganizationTeamMember(params *UpdateOrganizationTeamMemberParams, authInfo client.AuthInfoWriter) (*UpdateOrganizationTeamMemberOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -171,13 +184,14 @@ func (a *Client) UpdateOrganizationTeamMember(params *UpdateOrganizationTeamMemb
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "updateOrganizationTeamMember",
-		Method:      "PUT",
-		PathPattern: "/api/v1/organization/{orgname}/team/{teamname}/members/{membername}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &UpdateOrganizationTeamMemberReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "updateOrganizationTeamMember",
+		Method:             "PUT",
+		PathPattern:        "/api/v1/organization/{orgname}/team/{teamname}/members/{membername}",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateOrganizationTeamMemberReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err

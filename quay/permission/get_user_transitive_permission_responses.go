@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// GetUserTransitivePermissionReader is a Reader for the GetUserTransitivePermission structure.
 type GetUserTransitivePermissionReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetUserTransitivePermissionReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewGetUserTransitivePermissionOK() *GetUserTransitivePermissionOK {
 	return &GetUserTransitivePermissionOK{}
 }
 
-/*GetUserTransitivePermissionOK
+/*GetUserTransitivePermissionOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewGetUserTransitivePermissionBadRequest() *GetUserTransitivePermissionBadR
 	return &GetUserTransitivePermissionBadRequest{}
 }
 
-/*GetUserTransitivePermissionBadRequest
+/*GetUserTransitivePermissionBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewGetUserTransitivePermissionUnauthorized() *GetUserTransitivePermissionUn
 	return &GetUserTransitivePermissionUnauthorized{}
 }
 
-/*GetUserTransitivePermissionUnauthorized
+/*GetUserTransitivePermissionUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewGetUserTransitivePermissionForbidden() *GetUserTransitivePermissionForbi
 	return &GetUserTransitivePermissionForbidden{}
 }
 
-/*GetUserTransitivePermissionForbidden
+/*GetUserTransitivePermissionForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewGetUserTransitivePermissionNotFound() *GetUserTransitivePermissionNotFou
 	return &GetUserTransitivePermissionNotFound{}
 }
 
-/*GetUserTransitivePermissionNotFound
+/*GetUserTransitivePermissionNotFound handles this case with default header values.
 
 Not found
 */

@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// DeleteStarReader is a Reader for the DeleteStar structure.
 type DeleteStarReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *DeleteStarReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewDeleteStarNoContent() *DeleteStarNoContent {
 	return &DeleteStarNoContent{}
 }
 
-/*DeleteStarNoContent
+/*DeleteStarNoContent handles this case with default header values.
 
 Deleted
 */
@@ -87,7 +89,7 @@ func NewDeleteStarBadRequest() *DeleteStarBadRequest {
 	return &DeleteStarBadRequest{}
 }
 
-/*DeleteStarBadRequest
+/*DeleteStarBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewDeleteStarUnauthorized() *DeleteStarUnauthorized {
 	return &DeleteStarUnauthorized{}
 }
 
-/*DeleteStarUnauthorized
+/*DeleteStarUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewDeleteStarForbidden() *DeleteStarForbidden {
 	return &DeleteStarForbidden{}
 }
 
-/*DeleteStarForbidden
+/*DeleteStarForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewDeleteStarNotFound() *DeleteStarNotFound {
 	return &DeleteStarNotFound{}
 }
 
-/*DeleteStarNotFound
+/*DeleteStarNotFound handles this case with default header values.
 
 Not found
 */

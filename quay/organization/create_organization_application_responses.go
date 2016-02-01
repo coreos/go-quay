@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// CreateOrganizationApplicationReader is a Reader for the CreateOrganizationApplication structure.
 type CreateOrganizationApplicationReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *CreateOrganizationApplicationReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewCreateOrganizationApplicationOK() *CreateOrganizationApplicationOK {
 	return &CreateOrganizationApplicationOK{}
 }
 
-/*CreateOrganizationApplicationOK
+/*CreateOrganizationApplicationOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewCreateOrganizationApplicationBadRequest() *CreateOrganizationApplication
 	return &CreateOrganizationApplicationBadRequest{}
 }
 
-/*CreateOrganizationApplicationBadRequest
+/*CreateOrganizationApplicationBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewCreateOrganizationApplicationUnauthorized() *CreateOrganizationApplicati
 	return &CreateOrganizationApplicationUnauthorized{}
 }
 
-/*CreateOrganizationApplicationUnauthorized
+/*CreateOrganizationApplicationUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewCreateOrganizationApplicationForbidden() *CreateOrganizationApplicationF
 	return &CreateOrganizationApplicationForbidden{}
 }
 
-/*CreateOrganizationApplicationForbidden
+/*CreateOrganizationApplicationForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewCreateOrganizationApplicationNotFound() *CreateOrganizationApplicationNo
 	return &CreateOrganizationApplicationNotFound{}
 }
 
-/*CreateOrganizationApplicationNotFound
+/*CreateOrganizationApplicationNotFound handles this case with default header values.
 
 Not found
 */

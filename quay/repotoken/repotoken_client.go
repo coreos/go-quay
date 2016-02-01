@@ -23,8 +23,9 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-/*Update the permissions for the specified repository token.
- */
+/*
+Update the permissions for the specified repository token.
+*/
 func (a *Client) ChangeToken(params *ChangeTokenParams, authInfo client.AuthInfoWriter) (*ChangeTokenOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -32,13 +33,14 @@ func (a *Client) ChangeToken(params *ChangeTokenParams, authInfo client.AuthInfo
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "changeToken",
-		Method:      "PUT",
-		PathPattern: "/api/v1/repository/{repository}/tokens/{code}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &ChangeTokenReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "changeToken",
+		Method:             "PUT",
+		PathPattern:        "/api/v1/repository/{repository}/tokens/{code}",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ChangeTokenReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -46,8 +48,9 @@ func (a *Client) ChangeToken(params *ChangeTokenParams, authInfo client.AuthInfo
 	return result.(*ChangeTokenOK), nil
 }
 
-/*Create a new repository token.
- */
+/*
+Create a new repository token.
+*/
 func (a *Client) CreateToken(params *CreateTokenParams, authInfo client.AuthInfoWriter) (*CreateTokenOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -55,13 +58,14 @@ func (a *Client) CreateToken(params *CreateTokenParams, authInfo client.AuthInfo
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "createToken",
-		Method:      "POST",
-		PathPattern: "/api/v1/repository/{repository}/tokens/",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &CreateTokenReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "createToken",
+		Method:             "POST",
+		PathPattern:        "/api/v1/repository/{repository}/tokens/",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateTokenReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -69,8 +73,9 @@ func (a *Client) CreateToken(params *CreateTokenParams, authInfo client.AuthInfo
 	return result.(*CreateTokenOK), nil
 }
 
-/*Delete the repository token.
- */
+/*
+Delete the repository token.
+*/
 func (a *Client) DeleteToken(params *DeleteTokenParams, authInfo client.AuthInfoWriter) (*DeleteTokenNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -78,13 +83,14 @@ func (a *Client) DeleteToken(params *DeleteTokenParams, authInfo client.AuthInfo
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "deleteToken",
-		Method:      "DELETE",
-		PathPattern: "/api/v1/repository/{repository}/tokens/{code}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &DeleteTokenReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "deleteToken",
+		Method:             "DELETE",
+		PathPattern:        "/api/v1/repository/{repository}/tokens/{code}",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteTokenReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -92,8 +98,9 @@ func (a *Client) DeleteToken(params *DeleteTokenParams, authInfo client.AuthInfo
 	return result.(*DeleteTokenNoContent), nil
 }
 
-/*Fetch the specified repository token information.
- */
+/*
+Fetch the specified repository token information.
+*/
 func (a *Client) GetTokens(params *GetTokensParams, authInfo client.AuthInfoWriter) (*GetTokensOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -101,13 +108,14 @@ func (a *Client) GetTokens(params *GetTokensParams, authInfo client.AuthInfoWrit
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getTokens",
-		Method:      "GET",
-		PathPattern: "/api/v1/repository/{repository}/tokens/{code}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetTokensReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "getTokens",
+		Method:             "GET",
+		PathPattern:        "/api/v1/repository/{repository}/tokens/{code}",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetTokensReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -115,8 +123,9 @@ func (a *Client) GetTokens(params *GetTokensParams, authInfo client.AuthInfoWrit
 	return result.(*GetTokensOK), nil
 }
 
-/*List the tokens for the specified repository.
- */
+/*
+List the tokens for the specified repository.
+*/
 func (a *Client) ListRepoTokens(params *ListRepoTokensParams, authInfo client.AuthInfoWriter) (*ListRepoTokensOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -124,13 +133,14 @@ func (a *Client) ListRepoTokens(params *ListRepoTokensParams, authInfo client.Au
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "listRepoTokens",
-		Method:      "GET",
-		PathPattern: "/api/v1/repository/{repository}/tokens/",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &ListRepoTokensReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "listRepoTokens",
+		Method:             "GET",
+		PathPattern:        "/api/v1/repository/{repository}/tokens/",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListRepoTokensReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err

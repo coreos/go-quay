@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// InviteTeamMemberEmailReader is a Reader for the InviteTeamMemberEmail structure.
 type InviteTeamMemberEmailReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *InviteTeamMemberEmailReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewInviteTeamMemberEmailOK() *InviteTeamMemberEmailOK {
 	return &InviteTeamMemberEmailOK{}
 }
 
-/*InviteTeamMemberEmailOK
+/*InviteTeamMemberEmailOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewInviteTeamMemberEmailBadRequest() *InviteTeamMemberEmailBadRequest {
 	return &InviteTeamMemberEmailBadRequest{}
 }
 
-/*InviteTeamMemberEmailBadRequest
+/*InviteTeamMemberEmailBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewInviteTeamMemberEmailUnauthorized() *InviteTeamMemberEmailUnauthorized {
 	return &InviteTeamMemberEmailUnauthorized{}
 }
 
-/*InviteTeamMemberEmailUnauthorized
+/*InviteTeamMemberEmailUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewInviteTeamMemberEmailForbidden() *InviteTeamMemberEmailForbidden {
 	return &InviteTeamMemberEmailForbidden{}
 }
 
-/*InviteTeamMemberEmailForbidden
+/*InviteTeamMemberEmailForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewInviteTeamMemberEmailNotFound() *InviteTeamMemberEmailNotFound {
 	return &InviteTeamMemberEmailNotFound{}
 }
 
-/*InviteTeamMemberEmailNotFound
+/*InviteTeamMemberEmailNotFound handles this case with default header values.
 
 Not found
 */

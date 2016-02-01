@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// ListOrgInvoicesReader is a Reader for the ListOrgInvoices structure.
 type ListOrgInvoicesReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *ListOrgInvoicesReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewListOrgInvoicesOK() *ListOrgInvoicesOK {
 	return &ListOrgInvoicesOK{}
 }
 
-/*ListOrgInvoicesOK
+/*ListOrgInvoicesOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewListOrgInvoicesBadRequest() *ListOrgInvoicesBadRequest {
 	return &ListOrgInvoicesBadRequest{}
 }
 
-/*ListOrgInvoicesBadRequest
+/*ListOrgInvoicesBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewListOrgInvoicesUnauthorized() *ListOrgInvoicesUnauthorized {
 	return &ListOrgInvoicesUnauthorized{}
 }
 
-/*ListOrgInvoicesUnauthorized
+/*ListOrgInvoicesUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewListOrgInvoicesForbidden() *ListOrgInvoicesForbidden {
 	return &ListOrgInvoicesForbidden{}
 }
 
-/*ListOrgInvoicesForbidden
+/*ListOrgInvoicesForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewListOrgInvoicesNotFound() *ListOrgInvoicesNotFound {
 	return &ListOrgInvoicesNotFound{}
 }
 
-/*ListOrgInvoicesNotFound
+/*ListOrgInvoicesNotFound handles this case with default header values.
 
 Not found
 */

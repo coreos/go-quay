@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// DeleteTeamPermissionsReader is a Reader for the DeleteTeamPermissions structure.
 type DeleteTeamPermissionsReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *DeleteTeamPermissionsReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewDeleteTeamPermissionsNoContent() *DeleteTeamPermissionsNoContent {
 	return &DeleteTeamPermissionsNoContent{}
 }
 
-/*DeleteTeamPermissionsNoContent
+/*DeleteTeamPermissionsNoContent handles this case with default header values.
 
 Deleted
 */
@@ -87,7 +89,7 @@ func NewDeleteTeamPermissionsBadRequest() *DeleteTeamPermissionsBadRequest {
 	return &DeleteTeamPermissionsBadRequest{}
 }
 
-/*DeleteTeamPermissionsBadRequest
+/*DeleteTeamPermissionsBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewDeleteTeamPermissionsUnauthorized() *DeleteTeamPermissionsUnauthorized {
 	return &DeleteTeamPermissionsUnauthorized{}
 }
 
-/*DeleteTeamPermissionsUnauthorized
+/*DeleteTeamPermissionsUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewDeleteTeamPermissionsForbidden() *DeleteTeamPermissionsForbidden {
 	return &DeleteTeamPermissionsForbidden{}
 }
 
-/*DeleteTeamPermissionsForbidden
+/*DeleteTeamPermissionsForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewDeleteTeamPermissionsNotFound() *DeleteTeamPermissionsNotFound {
 	return &DeleteTeamPermissionsNotFound{}
 }
 
-/*DeleteTeamPermissionsNotFound
+/*DeleteTeamPermissionsNotFound handles this case with default header values.
 
 Not found
 */

@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// ListRepoNotificationsReader is a Reader for the ListRepoNotifications structure.
 type ListRepoNotificationsReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *ListRepoNotificationsReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewListRepoNotificationsOK() *ListRepoNotificationsOK {
 	return &ListRepoNotificationsOK{}
 }
 
-/*ListRepoNotificationsOK
+/*ListRepoNotificationsOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewListRepoNotificationsBadRequest() *ListRepoNotificationsBadRequest {
 	return &ListRepoNotificationsBadRequest{}
 }
 
-/*ListRepoNotificationsBadRequest
+/*ListRepoNotificationsBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewListRepoNotificationsUnauthorized() *ListRepoNotificationsUnauthorized {
 	return &ListRepoNotificationsUnauthorized{}
 }
 
-/*ListRepoNotificationsUnauthorized
+/*ListRepoNotificationsUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewListRepoNotificationsForbidden() *ListRepoNotificationsForbidden {
 	return &ListRepoNotificationsForbidden{}
 }
 
-/*ListRepoNotificationsForbidden
+/*ListRepoNotificationsForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewListRepoNotificationsNotFound() *ListRepoNotificationsNotFound {
 	return &ListRepoNotificationsNotFound{}
 }
 
-/*ListRepoNotificationsNotFound
+/*ListRepoNotificationsNotFound handles this case with default header values.
 
 Not found
 */

@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// DeleteUserRobotReader is a Reader for the DeleteUserRobot structure.
 type DeleteUserRobotReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *DeleteUserRobotReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewDeleteUserRobotNoContent() *DeleteUserRobotNoContent {
 	return &DeleteUserRobotNoContent{}
 }
 
-/*DeleteUserRobotNoContent
+/*DeleteUserRobotNoContent handles this case with default header values.
 
 Deleted
 */
@@ -87,7 +89,7 @@ func NewDeleteUserRobotBadRequest() *DeleteUserRobotBadRequest {
 	return &DeleteUserRobotBadRequest{}
 }
 
-/*DeleteUserRobotBadRequest
+/*DeleteUserRobotBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewDeleteUserRobotUnauthorized() *DeleteUserRobotUnauthorized {
 	return &DeleteUserRobotUnauthorized{}
 }
 
-/*DeleteUserRobotUnauthorized
+/*DeleteUserRobotUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewDeleteUserRobotForbidden() *DeleteUserRobotForbidden {
 	return &DeleteUserRobotForbidden{}
 }
 
-/*DeleteUserRobotForbidden
+/*DeleteUserRobotForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewDeleteUserRobotNotFound() *DeleteUserRobotNotFound {
 	return &DeleteUserRobotNotFound{}
 }
 
-/*DeleteUserRobotNotFound
+/*DeleteUserRobotNotFound handles this case with default header values.
 
 Not found
 */

@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// ManuallyStartBuildTriggerReader is a Reader for the ManuallyStartBuildTrigger structure.
 type ManuallyStartBuildTriggerReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *ManuallyStartBuildTriggerReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewManuallyStartBuildTriggerOK() *ManuallyStartBuildTriggerOK {
 	return &ManuallyStartBuildTriggerOK{}
 }
 
-/*ManuallyStartBuildTriggerOK
+/*ManuallyStartBuildTriggerOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewManuallyStartBuildTriggerBadRequest() *ManuallyStartBuildTriggerBadReque
 	return &ManuallyStartBuildTriggerBadRequest{}
 }
 
-/*ManuallyStartBuildTriggerBadRequest
+/*ManuallyStartBuildTriggerBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewManuallyStartBuildTriggerUnauthorized() *ManuallyStartBuildTriggerUnauth
 	return &ManuallyStartBuildTriggerUnauthorized{}
 }
 
-/*ManuallyStartBuildTriggerUnauthorized
+/*ManuallyStartBuildTriggerUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewManuallyStartBuildTriggerForbidden() *ManuallyStartBuildTriggerForbidden
 	return &ManuallyStartBuildTriggerForbidden{}
 }
 
-/*ManuallyStartBuildTriggerForbidden
+/*ManuallyStartBuildTriggerForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewManuallyStartBuildTriggerNotFound() *ManuallyStartBuildTriggerNotFound {
 	return &ManuallyStartBuildTriggerNotFound{}
 }
 
-/*ManuallyStartBuildTriggerNotFound
+/*ManuallyStartBuildTriggerNotFound handles this case with default header values.
 
 Not found
 */

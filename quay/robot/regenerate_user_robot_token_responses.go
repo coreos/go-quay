@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// RegenerateUserRobotTokenReader is a Reader for the RegenerateUserRobotToken structure.
 type RegenerateUserRobotTokenReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *RegenerateUserRobotTokenReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewRegenerateUserRobotTokenOK() *RegenerateUserRobotTokenOK {
 	return &RegenerateUserRobotTokenOK{}
 }
 
-/*RegenerateUserRobotTokenOK
+/*RegenerateUserRobotTokenOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewRegenerateUserRobotTokenBadRequest() *RegenerateUserRobotTokenBadRequest
 	return &RegenerateUserRobotTokenBadRequest{}
 }
 
-/*RegenerateUserRobotTokenBadRequest
+/*RegenerateUserRobotTokenBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewRegenerateUserRobotTokenUnauthorized() *RegenerateUserRobotTokenUnauthor
 	return &RegenerateUserRobotTokenUnauthorized{}
 }
 
-/*RegenerateUserRobotTokenUnauthorized
+/*RegenerateUserRobotTokenUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewRegenerateUserRobotTokenForbidden() *RegenerateUserRobotTokenForbidden {
 	return &RegenerateUserRobotTokenForbidden{}
 }
 
-/*RegenerateUserRobotTokenForbidden
+/*RegenerateUserRobotTokenForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewRegenerateUserRobotTokenNotFound() *RegenerateUserRobotTokenNotFound {
 	return &RegenerateUserRobotTokenNotFound{}
 }
 
-/*RegenerateUserRobotTokenNotFound
+/*RegenerateUserRobotTokenNotFound handles this case with default header values.
 
 Not found
 */

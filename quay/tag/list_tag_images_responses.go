@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// ListTagImagesReader is a Reader for the ListTagImages structure.
 type ListTagImagesReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *ListTagImagesReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewListTagImagesOK() *ListTagImagesOK {
 	return &ListTagImagesOK{}
 }
 
-/*ListTagImagesOK
+/*ListTagImagesOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewListTagImagesBadRequest() *ListTagImagesBadRequest {
 	return &ListTagImagesBadRequest{}
 }
 
-/*ListTagImagesBadRequest
+/*ListTagImagesBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewListTagImagesUnauthorized() *ListTagImagesUnauthorized {
 	return &ListTagImagesUnauthorized{}
 }
 
-/*ListTagImagesUnauthorized
+/*ListTagImagesUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewListTagImagesForbidden() *ListTagImagesForbidden {
 	return &ListTagImagesForbidden{}
 }
 
-/*ListTagImagesForbidden
+/*ListTagImagesForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewListTagImagesNotFound() *ListTagImagesNotFound {
 	return &ListTagImagesNotFound{}
 }
 
-/*ListTagImagesNotFound
+/*ListTagImagesNotFound handles this case with default header values.
 
 Not found
 */

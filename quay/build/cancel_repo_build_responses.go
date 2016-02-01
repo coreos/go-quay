@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// CancelRepoBuildReader is a Reader for the CancelRepoBuild structure.
 type CancelRepoBuildReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *CancelRepoBuildReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewCancelRepoBuildNoContent() *CancelRepoBuildNoContent {
 	return &CancelRepoBuildNoContent{}
 }
 
-/*CancelRepoBuildNoContent
+/*CancelRepoBuildNoContent handles this case with default header values.
 
 Deleted
 */
@@ -87,7 +89,7 @@ func NewCancelRepoBuildBadRequest() *CancelRepoBuildBadRequest {
 	return &CancelRepoBuildBadRequest{}
 }
 
-/*CancelRepoBuildBadRequest
+/*CancelRepoBuildBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewCancelRepoBuildUnauthorized() *CancelRepoBuildUnauthorized {
 	return &CancelRepoBuildUnauthorized{}
 }
 
-/*CancelRepoBuildUnauthorized
+/*CancelRepoBuildUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewCancelRepoBuildForbidden() *CancelRepoBuildForbidden {
 	return &CancelRepoBuildForbidden{}
 }
 
-/*CancelRepoBuildForbidden
+/*CancelRepoBuildForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewCancelRepoBuildNotFound() *CancelRepoBuildNotFound {
 	return &CancelRepoBuildNotFound{}
 }
 
-/*CancelRepoBuildNotFound
+/*CancelRepoBuildNotFound handles this case with default header values.
 
 Not found
 */

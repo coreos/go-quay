@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// DeleteOrganizationPrototypePermissionReader is a Reader for the DeleteOrganizationPrototypePermission structure.
 type DeleteOrganizationPrototypePermissionReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *DeleteOrganizationPrototypePermissionReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewDeleteOrganizationPrototypePermissionNoContent() *DeleteOrganizationProt
 	return &DeleteOrganizationPrototypePermissionNoContent{}
 }
 
-/*DeleteOrganizationPrototypePermissionNoContent
+/*DeleteOrganizationPrototypePermissionNoContent handles this case with default header values.
 
 Deleted
 */
@@ -87,7 +89,7 @@ func NewDeleteOrganizationPrototypePermissionBadRequest() *DeleteOrganizationPro
 	return &DeleteOrganizationPrototypePermissionBadRequest{}
 }
 
-/*DeleteOrganizationPrototypePermissionBadRequest
+/*DeleteOrganizationPrototypePermissionBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewDeleteOrganizationPrototypePermissionUnauthorized() *DeleteOrganizationP
 	return &DeleteOrganizationPrototypePermissionUnauthorized{}
 }
 
-/*DeleteOrganizationPrototypePermissionUnauthorized
+/*DeleteOrganizationPrototypePermissionUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewDeleteOrganizationPrototypePermissionForbidden() *DeleteOrganizationProt
 	return &DeleteOrganizationPrototypePermissionForbidden{}
 }
 
-/*DeleteOrganizationPrototypePermissionForbidden
+/*DeleteOrganizationPrototypePermissionForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewDeleteOrganizationPrototypePermissionNotFound() *DeleteOrganizationProto
 	return &DeleteOrganizationPrototypePermissionNotFound{}
 }
 
-/*DeleteOrganizationPrototypePermissionNotFound
+/*DeleteOrganizationPrototypePermissionNotFound handles this case with default header values.
 
 Not found
 */

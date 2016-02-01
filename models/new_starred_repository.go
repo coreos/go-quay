@@ -50,7 +50,7 @@ func (m *NewStarredRepository) Validate(formats strfmt.Registry) error {
 
 func (m *NewStarredRepository) validateNamespace(formats strfmt.Registry) error {
 
-	if err := validate.Required("namespace", "body", string(m.Namespace)); err != nil {
+	if err := validate.RequiredString("namespace", "body", string(m.Namespace)); err != nil {
 		return err
 	}
 
@@ -59,7 +59,7 @@ func (m *NewStarredRepository) validateNamespace(formats strfmt.Registry) error 
 
 func (m *NewStarredRepository) validateRepository(formats strfmt.Registry) error {
 
-	if err := validate.Required("repository", "body", string(m.Repository)); err != nil {
+	if err := validate.RequiredString("repository", "body", string(m.Repository)); err != nil {
 		return err
 	}
 

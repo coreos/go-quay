@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// GetRepoBuildLogsReader is a Reader for the GetRepoBuildLogs structure.
 type GetRepoBuildLogsReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetRepoBuildLogsReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewGetRepoBuildLogsOK() *GetRepoBuildLogsOK {
 	return &GetRepoBuildLogsOK{}
 }
 
-/*GetRepoBuildLogsOK
+/*GetRepoBuildLogsOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewGetRepoBuildLogsBadRequest() *GetRepoBuildLogsBadRequest {
 	return &GetRepoBuildLogsBadRequest{}
 }
 
-/*GetRepoBuildLogsBadRequest
+/*GetRepoBuildLogsBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewGetRepoBuildLogsUnauthorized() *GetRepoBuildLogsUnauthorized {
 	return &GetRepoBuildLogsUnauthorized{}
 }
 
-/*GetRepoBuildLogsUnauthorized
+/*GetRepoBuildLogsUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewGetRepoBuildLogsForbidden() *GetRepoBuildLogsForbidden {
 	return &GetRepoBuildLogsForbidden{}
 }
 
-/*GetRepoBuildLogsForbidden
+/*GetRepoBuildLogsForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewGetRepoBuildLogsNotFound() *GetRepoBuildLogsNotFound {
 	return &GetRepoBuildLogsNotFound{}
 }
 
-/*GetRepoBuildLogsNotFound
+/*GetRepoBuildLogsNotFound handles this case with default header values.
 
 Not found
 */

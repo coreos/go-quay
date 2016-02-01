@@ -39,7 +39,7 @@ func (m *RevertTag) Validate(formats strfmt.Registry) error {
 
 func (m *RevertTag) validateImage(formats strfmt.Registry) error {
 
-	if err := validate.Required("image", "body", string(m.Image)); err != nil {
+	if err := validate.RequiredString("image", "body", string(m.Image)); err != nil {
 		return err
 	}
 

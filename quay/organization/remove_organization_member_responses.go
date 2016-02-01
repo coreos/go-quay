@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// RemoveOrganizationMemberReader is a Reader for the RemoveOrganizationMember structure.
 type RemoveOrganizationMemberReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *RemoveOrganizationMemberReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewRemoveOrganizationMemberNoContent() *RemoveOrganizationMemberNoContent {
 	return &RemoveOrganizationMemberNoContent{}
 }
 
-/*RemoveOrganizationMemberNoContent
+/*RemoveOrganizationMemberNoContent handles this case with default header values.
 
 Deleted
 */
@@ -87,7 +89,7 @@ func NewRemoveOrganizationMemberBadRequest() *RemoveOrganizationMemberBadRequest
 	return &RemoveOrganizationMemberBadRequest{}
 }
 
-/*RemoveOrganizationMemberBadRequest
+/*RemoveOrganizationMemberBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewRemoveOrganizationMemberUnauthorized() *RemoveOrganizationMemberUnauthor
 	return &RemoveOrganizationMemberUnauthorized{}
 }
 
-/*RemoveOrganizationMemberUnauthorized
+/*RemoveOrganizationMemberUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewRemoveOrganizationMemberForbidden() *RemoveOrganizationMemberForbidden {
 	return &RemoveOrganizationMemberForbidden{}
 }
 
-/*RemoveOrganizationMemberForbidden
+/*RemoveOrganizationMemberForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewRemoveOrganizationMemberNotFound() *RemoveOrganizationMemberNotFound {
 	return &RemoveOrganizationMemberNotFound{}
 }
 
-/*RemoveOrganizationMemberNotFound
+/*RemoveOrganizationMemberNotFound handles this case with default header values.
 
 Not found
 */

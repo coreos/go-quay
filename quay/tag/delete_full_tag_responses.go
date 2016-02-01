@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// DeleteFullTagReader is a Reader for the DeleteFullTag structure.
 type DeleteFullTagReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *DeleteFullTagReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewDeleteFullTagNoContent() *DeleteFullTagNoContent {
 	return &DeleteFullTagNoContent{}
 }
 
-/*DeleteFullTagNoContent
+/*DeleteFullTagNoContent handles this case with default header values.
 
 Deleted
 */
@@ -87,7 +89,7 @@ func NewDeleteFullTagBadRequest() *DeleteFullTagBadRequest {
 	return &DeleteFullTagBadRequest{}
 }
 
-/*DeleteFullTagBadRequest
+/*DeleteFullTagBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewDeleteFullTagUnauthorized() *DeleteFullTagUnauthorized {
 	return &DeleteFullTagUnauthorized{}
 }
 
-/*DeleteFullTagUnauthorized
+/*DeleteFullTagUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewDeleteFullTagForbidden() *DeleteFullTagForbidden {
 	return &DeleteFullTagForbidden{}
 }
 
-/*DeleteFullTagForbidden
+/*DeleteFullTagForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewDeleteFullTagNotFound() *DeleteFullTagNotFound {
 	return &DeleteFullTagNotFound{}
 }
 
-/*DeleteFullTagNotFound
+/*DeleteFullTagNotFound handles this case with default header values.
 
 Not found
 */

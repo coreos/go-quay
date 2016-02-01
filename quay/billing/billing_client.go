@@ -23,8 +23,9 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-/*List the invoices for the specified orgnaization.
- */
+/*
+List the invoices for the specified orgnaization.
+*/
 func (a *Client) ListOrgInvoices(params *ListOrgInvoicesParams, authInfo client.AuthInfoWriter) (*ListOrgInvoicesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -32,13 +33,14 @@ func (a *Client) ListOrgInvoices(params *ListOrgInvoicesParams, authInfo client.
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "listOrgInvoices",
-		Method:      "GET",
-		PathPattern: "/api/v1/organization/{orgname}/invoices",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &ListOrgInvoicesReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "listOrgInvoices",
+		Method:             "GET",
+		PathPattern:        "/api/v1/organization/{orgname}/invoices",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListOrgInvoicesReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -46,8 +48,9 @@ func (a *Client) ListOrgInvoices(params *ListOrgInvoicesParams, authInfo client.
 	return result.(*ListOrgInvoicesOK), nil
 }
 
-/*List the avaialble plans.
- */
+/*
+List the avaialble plans.
+*/
 func (a *Client) ListPlans(params *ListPlansParams) (*ListPlansOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -55,12 +58,13 @@ func (a *Client) ListPlans(params *ListPlansParams) (*ListPlansOK, error) {
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "listPlans",
-		Method:      "GET",
-		PathPattern: "/api/v1/plans/",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &ListPlansReader{formats: a.formats},
+		ID:                 "listPlans",
+		Method:             "GET",
+		PathPattern:        "/api/v1/plans/",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListPlansReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err

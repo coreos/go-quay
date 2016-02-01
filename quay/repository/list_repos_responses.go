@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// ListReposReader is a Reader for the ListRepos structure.
 type ListReposReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *ListReposReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewListReposOK() *ListReposOK {
 	return &ListReposOK{}
 }
 
-/*ListReposOK
+/*ListReposOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewListReposBadRequest() *ListReposBadRequest {
 	return &ListReposBadRequest{}
 }
 
-/*ListReposBadRequest
+/*ListReposBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewListReposUnauthorized() *ListReposUnauthorized {
 	return &ListReposUnauthorized{}
 }
 
-/*ListReposUnauthorized
+/*ListReposUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewListReposForbidden() *ListReposForbidden {
 	return &ListReposForbidden{}
 }
 
-/*ListReposForbidden
+/*ListReposForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewListReposNotFound() *ListReposNotFound {
 	return &ListReposNotFound{}
 }
 
-/*ListReposNotFound
+/*ListReposNotFound handles this case with default header values.
 
 Not found
 */

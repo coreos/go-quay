@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// GetOrgRobotPermissionsReader is a Reader for the GetOrgRobotPermissions structure.
 type GetOrgRobotPermissionsReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetOrgRobotPermissionsReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewGetOrgRobotPermissionsOK() *GetOrgRobotPermissionsOK {
 	return &GetOrgRobotPermissionsOK{}
 }
 
-/*GetOrgRobotPermissionsOK
+/*GetOrgRobotPermissionsOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewGetOrgRobotPermissionsBadRequest() *GetOrgRobotPermissionsBadRequest {
 	return &GetOrgRobotPermissionsBadRequest{}
 }
 
-/*GetOrgRobotPermissionsBadRequest
+/*GetOrgRobotPermissionsBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewGetOrgRobotPermissionsUnauthorized() *GetOrgRobotPermissionsUnauthorized
 	return &GetOrgRobotPermissionsUnauthorized{}
 }
 
-/*GetOrgRobotPermissionsUnauthorized
+/*GetOrgRobotPermissionsUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewGetOrgRobotPermissionsForbidden() *GetOrgRobotPermissionsForbidden {
 	return &GetOrgRobotPermissionsForbidden{}
 }
 
-/*GetOrgRobotPermissionsForbidden
+/*GetOrgRobotPermissionsForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewGetOrgRobotPermissionsNotFound() *GetOrgRobotPermissionsNotFound {
 	return &GetOrgRobotPermissionsNotFound{}
 }
 
-/*GetOrgRobotPermissionsNotFound
+/*GetOrgRobotPermissionsNotFound handles this case with default header values.
 
 Not found
 */

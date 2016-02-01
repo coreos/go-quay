@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// ListRepoLogsReader is a Reader for the ListRepoLogs structure.
 type ListRepoLogsReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *ListRepoLogsReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewListRepoLogsOK() *ListRepoLogsOK {
 	return &ListRepoLogsOK{}
 }
 
-/*ListRepoLogsOK
+/*ListRepoLogsOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewListRepoLogsBadRequest() *ListRepoLogsBadRequest {
 	return &ListRepoLogsBadRequest{}
 }
 
-/*ListRepoLogsBadRequest
+/*ListRepoLogsBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewListRepoLogsUnauthorized() *ListRepoLogsUnauthorized {
 	return &ListRepoLogsUnauthorized{}
 }
 
-/*ListRepoLogsUnauthorized
+/*ListRepoLogsUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewListRepoLogsForbidden() *ListRepoLogsForbidden {
 	return &ListRepoLogsForbidden{}
 }
 
-/*ListRepoLogsForbidden
+/*ListRepoLogsForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewListRepoLogsNotFound() *ListRepoLogsNotFound {
 	return &ListRepoLogsNotFound{}
 }
 
-/*ListRepoLogsNotFound
+/*ListRepoLogsNotFound handles this case with default header values.
 
 Not found
 */

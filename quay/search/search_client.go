@@ -23,8 +23,9 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-/*Get a list of entities and resources that match the specified query.
- */
+/*
+Get a list of entities and resources that match the specified query.
+*/
 func (a *Client) ConductSearch(params *ConductSearchParams, authInfo client.AuthInfoWriter) (*ConductSearchOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -32,13 +33,14 @@ func (a *Client) ConductSearch(params *ConductSearchParams, authInfo client.Auth
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "conductSearch",
-		Method:      "GET",
-		PathPattern: "/api/v1/find/all",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &ConductSearchReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "conductSearch",
+		Method:             "GET",
+		PathPattern:        "/api/v1/find/all",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ConductSearchReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -46,8 +48,9 @@ func (a *Client) ConductSearch(params *ConductSearchParams, authInfo client.Auth
 	return result.(*ConductSearchOK), nil
 }
 
-/*Get a list of entities that match the specified prefix.
- */
+/*
+Get a list of entities that match the specified prefix.
+*/
 func (a *Client) GetMatchingEntities(params *GetMatchingEntitiesParams) (*GetMatchingEntitiesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -55,12 +58,13 @@ func (a *Client) GetMatchingEntities(params *GetMatchingEntitiesParams) (*GetMat
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getMatchingEntities",
-		Method:      "GET",
-		PathPattern: "/api/v1/entities/{prefix}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetMatchingEntitiesReader{formats: a.formats},
+		ID:                 "getMatchingEntities",
+		Method:             "GET",
+		PathPattern:        "/api/v1/entities/{prefix}",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetMatchingEntitiesReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err

@@ -23,8 +23,9 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-/*Change which image a tag points to or create a new tag.
- */
+/*
+Change which image a tag points to or create a new tag.
+*/
 func (a *Client) ChangeTagImage(params *ChangeTagImageParams, authInfo client.AuthInfoWriter) (*ChangeTagImageOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -32,13 +33,14 @@ func (a *Client) ChangeTagImage(params *ChangeTagImageParams, authInfo client.Au
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "changeTagImage",
-		Method:      "PUT",
-		PathPattern: "/api/v1/repository/{repository}/tag/{tag}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &ChangeTagImageReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "changeTagImage",
+		Method:             "PUT",
+		PathPattern:        "/api/v1/repository/{repository}/tag/{tag}",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ChangeTagImageReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -46,8 +48,9 @@ func (a *Client) ChangeTagImage(params *ChangeTagImageParams, authInfo client.Au
 	return result.(*ChangeTagImageOK), nil
 }
 
-/*Delete the specified repository tag.
- */
+/*
+Delete the specified repository tag.
+*/
 func (a *Client) DeleteFullTag(params *DeleteFullTagParams, authInfo client.AuthInfoWriter) (*DeleteFullTagNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -55,13 +58,14 @@ func (a *Client) DeleteFullTag(params *DeleteFullTagParams, authInfo client.Auth
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "deleteFullTag",
-		Method:      "DELETE",
-		PathPattern: "/api/v1/repository/{repository}/tag/{tag}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &DeleteFullTagReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "deleteFullTag",
+		Method:             "DELETE",
+		PathPattern:        "/api/v1/repository/{repository}/tag/{tag}",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteFullTagReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -69,8 +73,9 @@ func (a *Client) DeleteFullTag(params *DeleteFullTagParams, authInfo client.Auth
 	return result.(*DeleteFullTagNoContent), nil
 }
 
-/*ListRepoTags list repo tags API
- */
+/*
+ListRepoTags list repo tags API
+*/
 func (a *Client) ListRepoTags(params *ListRepoTagsParams, authInfo client.AuthInfoWriter) (*ListRepoTagsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -78,13 +83,14 @@ func (a *Client) ListRepoTags(params *ListRepoTagsParams, authInfo client.AuthIn
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "listRepoTags",
-		Method:      "GET",
-		PathPattern: "/api/v1/repository/{repository}/tag/",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &ListRepoTagsReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "listRepoTags",
+		Method:             "GET",
+		PathPattern:        "/api/v1/repository/{repository}/tag/",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListRepoTagsReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -92,8 +98,9 @@ func (a *Client) ListRepoTags(params *ListRepoTagsParams, authInfo client.AuthIn
 	return result.(*ListRepoTagsOK), nil
 }
 
-/*List the images for the specified repository tag.
- */
+/*
+List the images for the specified repository tag.
+*/
 func (a *Client) ListTagImages(params *ListTagImagesParams, authInfo client.AuthInfoWriter) (*ListTagImagesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -101,13 +108,14 @@ func (a *Client) ListTagImages(params *ListTagImagesParams, authInfo client.Auth
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "listTagImages",
-		Method:      "GET",
-		PathPattern: "/api/v1/repository/{repository}/tag/{tag}/images",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &ListTagImagesReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "listTagImages",
+		Method:             "GET",
+		PathPattern:        "/api/v1/repository/{repository}/tag/{tag}/images",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListTagImagesReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -115,8 +123,9 @@ func (a *Client) ListTagImages(params *ListTagImagesParams, authInfo client.Auth
 	return result.(*ListTagImagesOK), nil
 }
 
-/*Reverts a repository tag back to a previous image in the repository.
- */
+/*
+Reverts a repository tag back to a previous image in the repository.
+*/
 func (a *Client) RevertTag(params *RevertTagParams, authInfo client.AuthInfoWriter) (*RevertTagOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -124,13 +133,14 @@ func (a *Client) RevertTag(params *RevertTagParams, authInfo client.AuthInfoWrit
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "revertTag",
-		Method:      "POST",
-		PathPattern: "/api/v1/repository/{repository}/tag/{tag}/revert",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &RevertTagReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "revertTag",
+		Method:             "POST",
+		PathPattern:        "/api/v1/repository/{repository}/tag/{tag}/revert",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RevertTagReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err

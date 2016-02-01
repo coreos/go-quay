@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// UpdateOrganizationTeamMemberReader is a Reader for the UpdateOrganizationTeamMember structure.
 type UpdateOrganizationTeamMemberReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *UpdateOrganizationTeamMemberReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewUpdateOrganizationTeamMemberOK() *UpdateOrganizationTeamMemberOK {
 	return &UpdateOrganizationTeamMemberOK{}
 }
 
-/*UpdateOrganizationTeamMemberOK
+/*UpdateOrganizationTeamMemberOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewUpdateOrganizationTeamMemberBadRequest() *UpdateOrganizationTeamMemberBa
 	return &UpdateOrganizationTeamMemberBadRequest{}
 }
 
-/*UpdateOrganizationTeamMemberBadRequest
+/*UpdateOrganizationTeamMemberBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewUpdateOrganizationTeamMemberUnauthorized() *UpdateOrganizationTeamMember
 	return &UpdateOrganizationTeamMemberUnauthorized{}
 }
 
-/*UpdateOrganizationTeamMemberUnauthorized
+/*UpdateOrganizationTeamMemberUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewUpdateOrganizationTeamMemberForbidden() *UpdateOrganizationTeamMemberFor
 	return &UpdateOrganizationTeamMemberForbidden{}
 }
 
-/*UpdateOrganizationTeamMemberForbidden
+/*UpdateOrganizationTeamMemberForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewUpdateOrganizationTeamMemberNotFound() *UpdateOrganizationTeamMemberNotF
 	return &UpdateOrganizationTeamMemberNotFound{}
 }
 
-/*UpdateOrganizationTeamMemberNotFound
+/*UpdateOrganizationTeamMemberNotFound handles this case with default header values.
 
 Not found
 */

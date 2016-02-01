@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// UpdateRepoReader is a Reader for the UpdateRepo structure.
 type UpdateRepoReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *UpdateRepoReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewUpdateRepoOK() *UpdateRepoOK {
 	return &UpdateRepoOK{}
 }
 
-/*UpdateRepoOK
+/*UpdateRepoOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewUpdateRepoBadRequest() *UpdateRepoBadRequest {
 	return &UpdateRepoBadRequest{}
 }
 
-/*UpdateRepoBadRequest
+/*UpdateRepoBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewUpdateRepoUnauthorized() *UpdateRepoUnauthorized {
 	return &UpdateRepoUnauthorized{}
 }
 
-/*UpdateRepoUnauthorized
+/*UpdateRepoUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewUpdateRepoForbidden() *UpdateRepoForbidden {
 	return &UpdateRepoForbidden{}
 }
 
-/*UpdateRepoForbidden
+/*UpdateRepoForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewUpdateRepoNotFound() *UpdateRepoNotFound {
 	return &UpdateRepoNotFound{}
 }
 
-/*UpdateRepoNotFound
+/*UpdateRepoNotFound handles this case with default header values.
 
 Not found
 */

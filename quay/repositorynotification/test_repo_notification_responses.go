@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// TestRepoNotificationReader is a Reader for the TestRepoNotification structure.
 type TestRepoNotificationReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *TestRepoNotificationReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewTestRepoNotificationOK() *TestRepoNotificationOK {
 	return &TestRepoNotificationOK{}
 }
 
-/*TestRepoNotificationOK
+/*TestRepoNotificationOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewTestRepoNotificationBadRequest() *TestRepoNotificationBadRequest {
 	return &TestRepoNotificationBadRequest{}
 }
 
-/*TestRepoNotificationBadRequest
+/*TestRepoNotificationBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewTestRepoNotificationUnauthorized() *TestRepoNotificationUnauthorized {
 	return &TestRepoNotificationUnauthorized{}
 }
 
-/*TestRepoNotificationUnauthorized
+/*TestRepoNotificationUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewTestRepoNotificationForbidden() *TestRepoNotificationForbidden {
 	return &TestRepoNotificationForbidden{}
 }
 
-/*TestRepoNotificationForbidden
+/*TestRepoNotificationForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewTestRepoNotificationNotFound() *TestRepoNotificationNotFound {
 	return &TestRepoNotificationNotFound{}
 }
 
-/*TestRepoNotificationNotFound
+/*TestRepoNotificationNotFound handles this case with default header values.
 
 Not found
 */

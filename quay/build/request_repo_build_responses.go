@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// RequestRepoBuildReader is a Reader for the RequestRepoBuild structure.
 type RequestRepoBuildReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *RequestRepoBuildReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewRequestRepoBuildOK() *RequestRepoBuildOK {
 	return &RequestRepoBuildOK{}
 }
 
-/*RequestRepoBuildOK
+/*RequestRepoBuildOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewRequestRepoBuildBadRequest() *RequestRepoBuildBadRequest {
 	return &RequestRepoBuildBadRequest{}
 }
 
-/*RequestRepoBuildBadRequest
+/*RequestRepoBuildBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewRequestRepoBuildUnauthorized() *RequestRepoBuildUnauthorized {
 	return &RequestRepoBuildUnauthorized{}
 }
 
-/*RequestRepoBuildUnauthorized
+/*RequestRepoBuildUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewRequestRepoBuildForbidden() *RequestRepoBuildForbidden {
 	return &RequestRepoBuildForbidden{}
 }
 
-/*RequestRepoBuildForbidden
+/*RequestRepoBuildForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewRequestRepoBuildNotFound() *RequestRepoBuildNotFound {
 	return &RequestRepoBuildNotFound{}
 }
 
-/*RequestRepoBuildNotFound
+/*RequestRepoBuildNotFound handles this case with default header values.
 
 Not found
 */

@@ -59,7 +59,7 @@ func (m *ChangeVisibility) validateVisibilityEnum(path, location string, value s
 
 func (m *ChangeVisibility) validateVisibility(formats strfmt.Registry) error {
 
-	if err := validate.Required("visibility", "body", string(m.Visibility)); err != nil {
+	if err := validate.RequiredString("visibility", "body", string(m.Visibility)); err != nil {
 		return err
 	}
 

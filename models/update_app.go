@@ -69,7 +69,7 @@ func (m *UpdateApp) Validate(formats strfmt.Registry) error {
 
 func (m *UpdateApp) validateApplicationURI(formats strfmt.Registry) error {
 
-	if err := validate.Required("application_uri", "body", string(m.ApplicationURI)); err != nil {
+	if err := validate.RequiredString("application_uri", "body", string(m.ApplicationURI)); err != nil {
 		return err
 	}
 
@@ -78,7 +78,7 @@ func (m *UpdateApp) validateApplicationURI(formats strfmt.Registry) error {
 
 func (m *UpdateApp) validateName(formats strfmt.Registry) error {
 
-	if err := validate.Required("name", "body", string(m.Name)); err != nil {
+	if err := validate.RequiredString("name", "body", string(m.Name)); err != nil {
 		return err
 	}
 
@@ -87,7 +87,7 @@ func (m *UpdateApp) validateName(formats strfmt.Registry) error {
 
 func (m *UpdateApp) validateRedirectURI(formats strfmt.Registry) error {
 
-	if err := validate.Required("redirect_uri", "body", string(m.RedirectURI)); err != nil {
+	if err := validate.RequiredString("redirect_uri", "body", string(m.RedirectURI)); err != nil {
 		return err
 	}
 

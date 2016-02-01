@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// ChangeOrganizationDetailsReader is a Reader for the ChangeOrganizationDetails structure.
 type ChangeOrganizationDetailsReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *ChangeOrganizationDetailsReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewChangeOrganizationDetailsOK() *ChangeOrganizationDetailsOK {
 	return &ChangeOrganizationDetailsOK{}
 }
 
-/*ChangeOrganizationDetailsOK
+/*ChangeOrganizationDetailsOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewChangeOrganizationDetailsBadRequest() *ChangeOrganizationDetailsBadReque
 	return &ChangeOrganizationDetailsBadRequest{}
 }
 
-/*ChangeOrganizationDetailsBadRequest
+/*ChangeOrganizationDetailsBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewChangeOrganizationDetailsUnauthorized() *ChangeOrganizationDetailsUnauth
 	return &ChangeOrganizationDetailsUnauthorized{}
 }
 
-/*ChangeOrganizationDetailsUnauthorized
+/*ChangeOrganizationDetailsUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewChangeOrganizationDetailsForbidden() *ChangeOrganizationDetailsForbidden
 	return &ChangeOrganizationDetailsForbidden{}
 }
 
-/*ChangeOrganizationDetailsForbidden
+/*ChangeOrganizationDetailsForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewChangeOrganizationDetailsNotFound() *ChangeOrganizationDetailsNotFound {
 	return &ChangeOrganizationDetailsNotFound{}
 }
 
-/*ChangeOrganizationDetailsNotFound
+/*ChangeOrganizationDetailsNotFound handles this case with default header values.
 
 Not found
 */

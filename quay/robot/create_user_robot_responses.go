@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// CreateUserRobotReader is a Reader for the CreateUserRobot structure.
 type CreateUserRobotReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *CreateUserRobotReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewCreateUserRobotOK() *CreateUserRobotOK {
 	return &CreateUserRobotOK{}
 }
 
-/*CreateUserRobotOK
+/*CreateUserRobotOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewCreateUserRobotBadRequest() *CreateUserRobotBadRequest {
 	return &CreateUserRobotBadRequest{}
 }
 
-/*CreateUserRobotBadRequest
+/*CreateUserRobotBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewCreateUserRobotUnauthorized() *CreateUserRobotUnauthorized {
 	return &CreateUserRobotUnauthorized{}
 }
 
-/*CreateUserRobotUnauthorized
+/*CreateUserRobotUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewCreateUserRobotForbidden() *CreateUserRobotForbidden {
 	return &CreateUserRobotForbidden{}
 }
 
-/*CreateUserRobotForbidden
+/*CreateUserRobotForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewCreateUserRobotNotFound() *CreateUserRobotNotFound {
 	return &CreateUserRobotNotFound{}
 }
 
-/*CreateUserRobotNotFound
+/*CreateUserRobotNotFound handles this case with default header values.
 
 Not found
 */

@@ -23,8 +23,9 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-/*Fetches the packages added/removed in the given repo image.
- */
+/*
+Fetches the packages added/removed in the given repo image.
+*/
 func (a *Client) GetRepoImagePackages(params *GetRepoImagePackagesParams, authInfo client.AuthInfoWriter) (*GetRepoImagePackagesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -32,13 +33,14 @@ func (a *Client) GetRepoImagePackages(params *GetRepoImagePackagesParams, authIn
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getRepoImagePackages",
-		Method:      "GET",
-		PathPattern: "/api/v1/repository/{repository}/image/{imageid}/packages",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetRepoImagePackagesReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "getRepoImagePackages",
+		Method:             "GET",
+		PathPattern:        "/api/v1/repository/{repository}/image/{imageid}/packages",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRepoImagePackagesReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -46,8 +48,9 @@ func (a *Client) GetRepoImagePackages(params *GetRepoImagePackagesParams, authIn
 	return result.(*GetRepoImagePackagesOK), nil
 }
 
-/*Fetches the vulnerabilities (if any) for a repository tag.
- */
+/*
+Fetches the vulnerabilities (if any) for a repository tag.
+*/
 func (a *Client) GetRepoTagVulnerabilities(params *GetRepoTagVulnerabilitiesParams, authInfo client.AuthInfoWriter) (*GetRepoTagVulnerabilitiesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -55,13 +58,14 @@ func (a *Client) GetRepoTagVulnerabilities(params *GetRepoTagVulnerabilitiesPara
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getRepoTagVulnerabilities",
-		Method:      "GET",
-		PathPattern: "/api/v1/repository/{repository}/tag/{tag}/vulnerabilities",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetRepoTagVulnerabilitiesReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "getRepoTagVulnerabilities",
+		Method:             "GET",
+		PathPattern:        "/api/v1/repository/{repository}/tag/{tag}/vulnerabilities",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRepoTagVulnerabilitiesReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err

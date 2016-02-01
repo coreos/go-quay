@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// DeleteTokenReader is a Reader for the DeleteToken structure.
 type DeleteTokenReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *DeleteTokenReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewDeleteTokenNoContent() *DeleteTokenNoContent {
 	return &DeleteTokenNoContent{}
 }
 
-/*DeleteTokenNoContent
+/*DeleteTokenNoContent handles this case with default header values.
 
 Deleted
 */
@@ -87,7 +89,7 @@ func NewDeleteTokenBadRequest() *DeleteTokenBadRequest {
 	return &DeleteTokenBadRequest{}
 }
 
-/*DeleteTokenBadRequest
+/*DeleteTokenBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewDeleteTokenUnauthorized() *DeleteTokenUnauthorized {
 	return &DeleteTokenUnauthorized{}
 }
 
-/*DeleteTokenUnauthorized
+/*DeleteTokenUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewDeleteTokenForbidden() *DeleteTokenForbidden {
 	return &DeleteTokenForbidden{}
 }
 
-/*DeleteTokenForbidden
+/*DeleteTokenForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewDeleteTokenNotFound() *DeleteTokenNotFound {
 	return &DeleteTokenNotFound{}
 }
 
-/*DeleteTokenNotFound
+/*DeleteTokenNotFound handles this case with default header values.
 
 Not found
 */

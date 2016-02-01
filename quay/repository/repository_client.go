@@ -23,8 +23,9 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-/*Change the visibility of a repository.
- */
+/*
+Change the visibility of a repository.
+*/
 func (a *Client) ChangeRepoVisibility(params *ChangeRepoVisibilityParams, authInfo client.AuthInfoWriter) (*ChangeRepoVisibilityOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -32,13 +33,14 @@ func (a *Client) ChangeRepoVisibility(params *ChangeRepoVisibilityParams, authIn
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "changeRepoVisibility",
-		Method:      "POST",
-		PathPattern: "/api/v1/repository/{repository}/changevisibility",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &ChangeRepoVisibilityReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "changeRepoVisibility",
+		Method:             "POST",
+		PathPattern:        "/api/v1/repository/{repository}/changevisibility",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ChangeRepoVisibilityReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -46,8 +48,9 @@ func (a *Client) ChangeRepoVisibility(params *ChangeRepoVisibilityParams, authIn
 	return result.(*ChangeRepoVisibilityOK), nil
 }
 
-/*Create a new repository.
- */
+/*
+Create a new repository.
+*/
 func (a *Client) CreateRepo(params *CreateRepoParams, authInfo client.AuthInfoWriter) (*CreateRepoOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -55,13 +58,14 @@ func (a *Client) CreateRepo(params *CreateRepoParams, authInfo client.AuthInfoWr
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "createRepo",
-		Method:      "POST",
-		PathPattern: "/api/v1/repository",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &CreateRepoReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "createRepo",
+		Method:             "POST",
+		PathPattern:        "/api/v1/repository",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateRepoReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -69,8 +73,9 @@ func (a *Client) CreateRepo(params *CreateRepoParams, authInfo client.AuthInfoWr
 	return result.(*CreateRepoOK), nil
 }
 
-/*Delete a repository.
- */
+/*
+Delete a repository.
+*/
 func (a *Client) DeleteRepository(params *DeleteRepositoryParams, authInfo client.AuthInfoWriter) (*DeleteRepositoryNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -78,13 +83,14 @@ func (a *Client) DeleteRepository(params *DeleteRepositoryParams, authInfo clien
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "deleteRepository",
-		Method:      "DELETE",
-		PathPattern: "/api/v1/repository/{repository}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &DeleteRepositoryReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "deleteRepository",
+		Method:             "DELETE",
+		PathPattern:        "/api/v1/repository/{repository}",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteRepositoryReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -92,8 +98,9 @@ func (a *Client) DeleteRepository(params *DeleteRepositoryParams, authInfo clien
 	return result.(*DeleteRepositoryNoContent), nil
 }
 
-/*Fetch the specified repository.
- */
+/*
+Fetch the specified repository.
+*/
 func (a *Client) GetRepo(params *GetRepoParams, authInfo client.AuthInfoWriter) (*GetRepoOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -101,13 +108,14 @@ func (a *Client) GetRepo(params *GetRepoParams, authInfo client.AuthInfoWriter) 
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getRepo",
-		Method:      "GET",
-		PathPattern: "/api/v1/repository/{repository}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetRepoReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "getRepo",
+		Method:             "GET",
+		PathPattern:        "/api/v1/repository/{repository}",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRepoReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -115,8 +123,9 @@ func (a *Client) GetRepo(params *GetRepoParams, authInfo client.AuthInfoWriter) 
 	return result.(*GetRepoOK), nil
 }
 
-/*Fetch the list of repositories visible to the current user under a variety of situations.
- */
+/*
+Fetch the list of repositories visible to the current user under a variety of situations.
+*/
 func (a *Client) ListRepos(params *ListReposParams, authInfo client.AuthInfoWriter) (*ListReposOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -124,13 +133,14 @@ func (a *Client) ListRepos(params *ListReposParams, authInfo client.AuthInfoWrit
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "listRepos",
-		Method:      "GET",
-		PathPattern: "/api/v1/repository",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &ListReposReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "listRepos",
+		Method:             "GET",
+		PathPattern:        "/api/v1/repository",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListReposReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -138,8 +148,9 @@ func (a *Client) ListRepos(params *ListReposParams, authInfo client.AuthInfoWrit
 	return result.(*ListReposOK), nil
 }
 
-/*Update the description in the specified repository.
- */
+/*
+Update the description in the specified repository.
+*/
 func (a *Client) UpdateRepo(params *UpdateRepoParams, authInfo client.AuthInfoWriter) (*UpdateRepoOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -147,13 +158,14 @@ func (a *Client) UpdateRepo(params *UpdateRepoParams, authInfo client.AuthInfoWr
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "updateRepo",
-		Method:      "PUT",
-		PathPattern: "/api/v1/repository/{repository}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &UpdateRepoReader{formats: a.formats},
-		AuthInfo:    authInfo,
+		ID:                 "updateRepo",
+		Method:             "PUT",
+		PathPattern:        "/api/v1/repository/{repository}",
+		ProducesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateRepoReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err

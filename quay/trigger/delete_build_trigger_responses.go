@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// DeleteBuildTriggerReader is a Reader for the DeleteBuildTrigger structure.
 type DeleteBuildTriggerReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *DeleteBuildTriggerReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewDeleteBuildTriggerNoContent() *DeleteBuildTriggerNoContent {
 	return &DeleteBuildTriggerNoContent{}
 }
 
-/*DeleteBuildTriggerNoContent
+/*DeleteBuildTriggerNoContent handles this case with default header values.
 
 Deleted
 */
@@ -87,7 +89,7 @@ func NewDeleteBuildTriggerBadRequest() *DeleteBuildTriggerBadRequest {
 	return &DeleteBuildTriggerBadRequest{}
 }
 
-/*DeleteBuildTriggerBadRequest
+/*DeleteBuildTriggerBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewDeleteBuildTriggerUnauthorized() *DeleteBuildTriggerUnauthorized {
 	return &DeleteBuildTriggerUnauthorized{}
 }
 
-/*DeleteBuildTriggerUnauthorized
+/*DeleteBuildTriggerUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewDeleteBuildTriggerForbidden() *DeleteBuildTriggerForbidden {
 	return &DeleteBuildTriggerForbidden{}
 }
 
-/*DeleteBuildTriggerForbidden
+/*DeleteBuildTriggerForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewDeleteBuildTriggerNotFound() *DeleteBuildTriggerNotFound {
 	return &DeleteBuildTriggerNotFound{}
 }
 
-/*DeleteBuildTriggerNotFound
+/*DeleteBuildTriggerNotFound handles this case with default header values.
 
 Not found
 */

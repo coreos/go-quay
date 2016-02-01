@@ -59,7 +59,7 @@ func (m *TeamPermission) validateRoleEnum(path, location string, value string) e
 
 func (m *TeamPermission) validateRole(formats strfmt.Registry) error {
 
-	if err := validate.Required("role", "body", string(m.Role)); err != nil {
+	if err := validate.RequiredString("role", "body", string(m.Role)); err != nil {
 		return err
 	}
 

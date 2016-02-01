@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// GetMatchingEntitiesReader is a Reader for the GetMatchingEntities structure.
 type GetMatchingEntitiesReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetMatchingEntitiesReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewGetMatchingEntitiesOK() *GetMatchingEntitiesOK {
 	return &GetMatchingEntitiesOK{}
 }
 
-/*GetMatchingEntitiesOK
+/*GetMatchingEntitiesOK handles this case with default header values.
 
 Successful invocation
 */
@@ -87,7 +89,7 @@ func NewGetMatchingEntitiesBadRequest() *GetMatchingEntitiesBadRequest {
 	return &GetMatchingEntitiesBadRequest{}
 }
 
-/*GetMatchingEntitiesBadRequest
+/*GetMatchingEntitiesBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewGetMatchingEntitiesUnauthorized() *GetMatchingEntitiesUnauthorized {
 	return &GetMatchingEntitiesUnauthorized{}
 }
 
-/*GetMatchingEntitiesUnauthorized
+/*GetMatchingEntitiesUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewGetMatchingEntitiesForbidden() *GetMatchingEntitiesForbidden {
 	return &GetMatchingEntitiesForbidden{}
 }
 
-/*GetMatchingEntitiesForbidden
+/*GetMatchingEntitiesForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewGetMatchingEntitiesNotFound() *GetMatchingEntitiesNotFound {
 	return &GetMatchingEntitiesNotFound{}
 }
 
-/*GetMatchingEntitiesNotFound
+/*GetMatchingEntitiesNotFound handles this case with default header values.
 
 Not found
 */

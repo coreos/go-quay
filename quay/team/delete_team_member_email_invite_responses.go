@@ -14,10 +14,12 @@ import (
 	"github.com/coreos/go-quay/models"
 )
 
+// DeleteTeamMemberEmailInviteReader is a Reader for the DeleteTeamMemberEmailInvite structure.
 type DeleteTeamMemberEmailInviteReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *DeleteTeamMemberEmailInviteReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -66,7 +68,7 @@ func NewDeleteTeamMemberEmailInviteNoContent() *DeleteTeamMemberEmailInviteNoCon
 	return &DeleteTeamMemberEmailInviteNoContent{}
 }
 
-/*DeleteTeamMemberEmailInviteNoContent
+/*DeleteTeamMemberEmailInviteNoContent handles this case with default header values.
 
 Deleted
 */
@@ -87,7 +89,7 @@ func NewDeleteTeamMemberEmailInviteBadRequest() *DeleteTeamMemberEmailInviteBadR
 	return &DeleteTeamMemberEmailInviteBadRequest{}
 }
 
-/*DeleteTeamMemberEmailInviteBadRequest
+/*DeleteTeamMemberEmailInviteBadRequest handles this case with default header values.
 
 Bad Request
 */
@@ -116,7 +118,7 @@ func NewDeleteTeamMemberEmailInviteUnauthorized() *DeleteTeamMemberEmailInviteUn
 	return &DeleteTeamMemberEmailInviteUnauthorized{}
 }
 
-/*DeleteTeamMemberEmailInviteUnauthorized
+/*DeleteTeamMemberEmailInviteUnauthorized handles this case with default header values.
 
 Session required
 */
@@ -137,7 +139,7 @@ func NewDeleteTeamMemberEmailInviteForbidden() *DeleteTeamMemberEmailInviteForbi
 	return &DeleteTeamMemberEmailInviteForbidden{}
 }
 
-/*DeleteTeamMemberEmailInviteForbidden
+/*DeleteTeamMemberEmailInviteForbidden handles this case with default header values.
 
 Unauthorized access
 */
@@ -158,7 +160,7 @@ func NewDeleteTeamMemberEmailInviteNotFound() *DeleteTeamMemberEmailInviteNotFou
 	return &DeleteTeamMemberEmailInviteNotFound{}
 }
 
-/*DeleteTeamMemberEmailInviteNotFound
+/*DeleteTeamMemberEmailInviteNotFound handles this case with default header values.
 
 Not found
 */
