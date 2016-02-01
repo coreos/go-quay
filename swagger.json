@@ -1058,7 +1058,10 @@
       "get": {
         "responses": {
           "200": {
-            "description": "Successful invocation"
+            "description": "Successful invocation",
+            "schema": {
+              "$ref": "#/definitions/Member"
+            }
           },
           "404": {
             "description": "Not found"
@@ -6399,6 +6402,57 @@
       "properties": {
         "message": {
           "type": "string"
+        }
+      }
+    },
+    "Avatar": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "color": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "hash": {
+          "type": "string"
+        }
+      }
+    },
+    "Team": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "avatar": {
+          "$ref": "#/definitions/Avatar"
+        }
+      }
+    },
+    "Member": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "avatar": {
+          "$ref": "#/definitions/Avatar"
+        },
+        "teams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Team"
+          }
+        },
+        "repositories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     }
