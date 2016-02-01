@@ -73,13 +73,21 @@ func NewGetOrganizationMemberOK() *GetOrganizationMemberOK {
 Successful invocation
 */
 type GetOrganizationMemberOK struct {
+	Payload *models.Member
 }
 
 func (o *GetOrganizationMemberOK) Error() string {
-	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/members/{membername}][%d] getOrganizationMemberOK ", 200)
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/members/{membername}][%d] getOrganizationMemberOK  %+v", 200, o.Payload)
 }
 
 func (o *GetOrganizationMemberOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Member)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
