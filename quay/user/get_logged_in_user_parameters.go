@@ -12,7 +12,7 @@ import (
 // NewGetLoggedInUserParams creates a new GetLoggedInUserParams object
 // with the default values initialized.
 func NewGetLoggedInUserParams() *GetLoggedInUserParams {
-	var ()
+
 	return &GetLoggedInUserParams{}
 }
 

@@ -23,8 +23,10 @@ type Member struct {
 	Avatar *Avatar `json:"avatar,omitempty"`
 
 	/* Name name
-	 */
-	Name *string `json:"name,omitempty"`
+
+	Required: true
+	*/
+	Name string `json:"name,omitempty"`
 
 	/* Repositories repositories
 	 */
@@ -39,6 +41,11 @@ type Member struct {
 func (m *Member) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateName(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if err := m.validateRepositories(formats); err != nil {
 		// prop
 		res = append(res, err)
@@ -52,6 +59,15 @@ func (m *Member) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Member) validateName(formats strfmt.Registry) error {
+
+	if err := validate.RequiredString("name", "body", string(m.Name)); err != nil {
+		return err
+	}
+
 	return nil
 }
 

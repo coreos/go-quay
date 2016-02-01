@@ -12,7 +12,7 @@ import (
 // NewListPlansParams creates a new ListPlansParams object
 // with the default values initialized.
 func NewListPlansParams() *ListPlansParams {
-	var ()
+
 	return &ListPlansParams{}
 }
 
