@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *GetRepoBuildsReader) ReadResponse(response client.Response, consumer ht
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewGetRepoBuildsBadRequest() *GetRepoBuildsBadRequest {
 Bad Request
 */
 type GetRepoBuildsBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *GetRepoBuildsBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *GetRepoBuildsBadRequest) Error() string {
 
 func (o *GetRepoBuildsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewGetRepoBuildsUnauthorized() *GetRepoBuildsUnauthorized {
 Session required
 */
 type GetRepoBuildsUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *GetRepoBuildsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /api/v1/repository/{repository}/build/][%d] getRepoBuildsUnauthorized ", 401)
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/build/][%d] getRepoBuildsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetRepoBuildsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewGetRepoBuildsForbidden() *GetRepoBuildsForbidden {
 Unauthorized access
 */
 type GetRepoBuildsForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *GetRepoBuildsForbidden) Error() string {
-	return fmt.Sprintf("[GET /api/v1/repository/{repository}/build/][%d] getRepoBuildsForbidden ", 403)
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/build/][%d] getRepoBuildsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetRepoBuildsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewGetRepoBuildsNotFound() *GetRepoBuildsNotFound {
 Not found
 */
 type GetRepoBuildsNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *GetRepoBuildsNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/v1/repository/{repository}/build/][%d] getRepoBuildsNotFound ", 404)
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/build/][%d] getRepoBuildsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetRepoBuildsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

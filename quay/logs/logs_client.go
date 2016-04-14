@@ -4,10 +4,9 @@ package logs
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"fmt"
-
 	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 )
 
 // New creates a new logs API client.
@@ -24,7 +23,7 @@ type Client struct {
 }
 
 /*
-Gets the aggregated logs for the specified organization.
+GetAggregateOrgLogs Gets the aggregated logs for the specified organization.
 */
 func (a *Client) GetAggregateOrgLogs(params *GetAggregateOrgLogsParams, authInfo client.AuthInfoWriter) (*GetAggregateOrgLogsOK, error) {
 	// TODO: Validate the params before sending
@@ -37,6 +36,7 @@ func (a *Client) GetAggregateOrgLogs(params *GetAggregateOrgLogsParams, authInfo
 		Method:             "GET",
 		PathPattern:        "/api/v1/organization/{orgname}/aggregatelogs",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAggregateOrgLogsReader{formats: a.formats},
@@ -49,7 +49,7 @@ func (a *Client) GetAggregateOrgLogs(params *GetAggregateOrgLogsParams, authInfo
 }
 
 /*
-Returns the aggregated logs for the specified repository.
+GetAggregateRepoLogs Returns the aggregated logs for the specified repository.
 */
 func (a *Client) GetAggregateRepoLogs(params *GetAggregateRepoLogsParams, authInfo client.AuthInfoWriter) (*GetAggregateRepoLogsOK, error) {
 	// TODO: Validate the params before sending
@@ -62,6 +62,7 @@ func (a *Client) GetAggregateRepoLogs(params *GetAggregateRepoLogsParams, authIn
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/aggregatelogs",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAggregateRepoLogsReader{formats: a.formats},
@@ -74,7 +75,33 @@ func (a *Client) GetAggregateRepoLogs(params *GetAggregateRepoLogsParams, authIn
 }
 
 /*
-List the logs for the specified organization.
+GetAggregateUserLogs Returns the aggregated logs for the current user.
+*/
+func (a *Client) GetAggregateUserLogs(params *GetAggregateUserLogsParams, authInfo client.AuthInfoWriter) (*GetAggregateUserLogsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAggregateUserLogsParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:                 "getAggregateUserLogs",
+		Method:             "GET",
+		PathPattern:        "/api/v1/user/aggregatelogs",
+		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAggregateUserLogsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetAggregateUserLogsOK), nil
+}
+
+/*
+ListOrgLogs List the logs for the specified organization.
 */
 func (a *Client) ListOrgLogs(params *ListOrgLogsParams, authInfo client.AuthInfoWriter) (*ListOrgLogsOK, error) {
 	// TODO: Validate the params before sending
@@ -87,6 +114,7 @@ func (a *Client) ListOrgLogs(params *ListOrgLogsParams, authInfo client.AuthInfo
 		Method:             "GET",
 		PathPattern:        "/api/v1/organization/{orgname}/logs",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListOrgLogsReader{formats: a.formats},
@@ -99,7 +127,7 @@ func (a *Client) ListOrgLogs(params *ListOrgLogsParams, authInfo client.AuthInfo
 }
 
 /*
-List the logs for the specified repository.
+ListRepoLogs List the logs for the specified repository.
 */
 func (a *Client) ListRepoLogs(params *ListRepoLogsParams, authInfo client.AuthInfoWriter) (*ListRepoLogsOK, error) {
 	// TODO: Validate the params before sending
@@ -112,6 +140,7 @@ func (a *Client) ListRepoLogs(params *ListRepoLogsParams, authInfo client.AuthIn
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/logs",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListRepoLogsReader{formats: a.formats},
@@ -123,27 +152,33 @@ func (a *Client) ListRepoLogs(params *ListRepoLogsParams, authInfo client.AuthIn
 	return result.(*ListRepoLogsOK), nil
 }
 
+/*
+ListUserLogs List the logs for the current user.
+*/
+func (a *Client) ListUserLogs(params *ListUserLogsParams, authInfo client.AuthInfoWriter) (*ListUserLogsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListUserLogsParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:                 "listUserLogs",
+		Method:             "GET",
+		PathPattern:        "/api/v1/user/logs",
+		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListUserLogsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*ListUserLogsOK), nil
+}
+
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport client.Transport) {
 	a.transport = transport
-}
-
-// NewAPIError creates a new API error
-func NewAPIError(opName string, response interface{}, code int) APIError {
-	return APIError{
-		OperationName: opName,
-		Response:      response,
-		Code:          code,
-	}
-}
-
-// APIError wraps an error model and captures the status code
-type APIError struct {
-	OperationName string
-	Response      interface{}
-	Code          int
-}
-
-func (a APIError) Error() string {
-	return fmt.Sprintf("%s (status %d): %+v ", a.OperationName, a.Code, a.Response)
 }

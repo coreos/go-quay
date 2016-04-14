@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *ListOrgInvoicesReader) ReadResponse(response client.Response, consumer 
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewListOrgInvoicesBadRequest() *ListOrgInvoicesBadRequest {
 Bad Request
 */
 type ListOrgInvoicesBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *ListOrgInvoicesBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *ListOrgInvoicesBadRequest) Error() string {
 
 func (o *ListOrgInvoicesBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewListOrgInvoicesUnauthorized() *ListOrgInvoicesUnauthorized {
 Session required
 */
 type ListOrgInvoicesUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *ListOrgInvoicesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/invoices][%d] listOrgInvoicesUnauthorized ", 401)
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/invoices][%d] listOrgInvoicesUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListOrgInvoicesUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewListOrgInvoicesForbidden() *ListOrgInvoicesForbidden {
 Unauthorized access
 */
 type ListOrgInvoicesForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *ListOrgInvoicesForbidden) Error() string {
-	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/invoices][%d] listOrgInvoicesForbidden ", 403)
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/invoices][%d] listOrgInvoicesForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListOrgInvoicesForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewListOrgInvoicesNotFound() *ListOrgInvoicesNotFound {
 Not found
 */
 type ListOrgInvoicesNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *ListOrgInvoicesNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/invoices][%d] listOrgInvoicesNotFound ", 404)
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/invoices][%d] listOrgInvoicesNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListOrgInvoicesNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

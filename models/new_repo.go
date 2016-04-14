@@ -6,9 +6,10 @@ package models
 import (
 	"encoding/json"
 
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*NewRepo Description of a new repository
@@ -21,23 +22,23 @@ type NewRepo struct {
 
 	Required: true
 	*/
-	Description string `json:"description,omitempty"`
+	Description *string `json:"description"`
 
 	/* Namespace in which the repository should be created. If omitted, the username of the caller is used
 	 */
-	Namespace *string `json:"namespace,omitempty"`
+	Namespace string `json:"namespace,omitempty"`
 
 	/* Repository name
 
 	Required: true
 	*/
-	Repository string `json:"repository,omitempty"`
+	Repository *string `json:"repository"`
 
 	/* Visibility which the repository will start with
 
 	Required: true
 	*/
-	Visibility string `json:"visibility,omitempty"`
+	Visibility *string `json:"visibility"`
 }
 
 // Validate validates this new repo
@@ -67,7 +68,7 @@ func (m *NewRepo) Validate(formats strfmt.Registry) error {
 
 func (m *NewRepo) validateDescription(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("description", "body", string(m.Description)); err != nil {
+	if err := validate.Required("description", "body", m.Description); err != nil {
 		return err
 	}
 
@@ -76,26 +77,27 @@ func (m *NewRepo) validateDescription(formats strfmt.Registry) error {
 
 func (m *NewRepo) validateRepository(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("repository", "body", string(m.Repository)); err != nil {
+	if err := validate.Required("repository", "body", m.Repository); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var newRepoVisibilityEnum []interface{}
+var newRepoTypeVisibilityPropEnum []interface{}
 
+// prop value enum
 func (m *NewRepo) validateVisibilityEnum(path, location string, value string) error {
-	if newRepoVisibilityEnum == nil {
+	if newRepoTypeVisibilityPropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["public","private"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			newRepoVisibilityEnum = append(newRepoVisibilityEnum, v)
+			newRepoTypeVisibilityPropEnum = append(newRepoTypeVisibilityPropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, newRepoVisibilityEnum); err != nil {
+	if err := validate.Enum(path, location, value, newRepoTypeVisibilityPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -103,11 +105,12 @@ func (m *NewRepo) validateVisibilityEnum(path, location string, value string) er
 
 func (m *NewRepo) validateVisibility(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("visibility", "body", string(m.Visibility)); err != nil {
+	if err := validate.Required("visibility", "body", m.Visibility); err != nil {
 		return err
 	}
 
-	if err := m.validateVisibilityEnum("visibility", "body", m.Visibility); err != nil {
+	// value enum
+	if err := m.validateVisibilityEnum("visibility", "body", *m.Visibility); err != nil {
 		return err
 	}
 

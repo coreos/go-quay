@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *DeleteRepoNotificationReader) ReadResponse(response client.Response, co
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewDeleteRepoNotificationBadRequest() *DeleteRepoNotificationBadRequest {
 Bad Request
 */
 type DeleteRepoNotificationBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *DeleteRepoNotificationBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *DeleteRepoNotificationBadRequest) Error() string {
 
 func (o *DeleteRepoNotificationBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewDeleteRepoNotificationUnauthorized() *DeleteRepoNotificationUnauthorized
 Session required
 */
 type DeleteRepoNotificationUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *DeleteRepoNotificationUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/notification/{uuid}][%d] deleteRepoNotificationUnauthorized ", 401)
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/notification/{uuid}][%d] deleteRepoNotificationUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteRepoNotificationUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewDeleteRepoNotificationForbidden() *DeleteRepoNotificationForbidden {
 Unauthorized access
 */
 type DeleteRepoNotificationForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *DeleteRepoNotificationForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/notification/{uuid}][%d] deleteRepoNotificationForbidden ", 403)
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/notification/{uuid}][%d] deleteRepoNotificationForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteRepoNotificationForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewDeleteRepoNotificationNotFound() *DeleteRepoNotificationNotFound {
 Not found
 */
 type DeleteRepoNotificationNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *DeleteRepoNotificationNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/notification/{uuid}][%d] deleteRepoNotificationNotFound ", 404)
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/notification/{uuid}][%d] deleteRepoNotificationNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteRepoNotificationNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

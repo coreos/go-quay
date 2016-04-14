@@ -4,10 +4,11 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
-	"github.com/go-swagger/go-swagger/swag"
 )
 
 /*UpdateUser Fields which can be updated in a user.
@@ -18,17 +19,21 @@ type UpdateUser struct {
 
 	/* The user's email address
 	 */
-	Email *string `json:"email,omitempty"`
+	Email string `json:"email,omitempty"`
 
 	/* Whether the user desires to receive an invoice email.
 	 */
-	InvoiceEmail *bool `json:"invoice_email,omitempty"`
+	InvoiceEmail bool `json:"invoice_email,omitempty"`
+
+	/* Custom email address for receiving invoices
+	 */
+	InvoiceEmailAddress string `json:"invoice_email_address,omitempty"`
 
 	/* The user's password
 	 */
-	Password *string `json:"password,omitempty"`
+	Password string `json:"password,omitempty"`
 
-	/* TagExpiration tag expiration
+	/* tag expiration
 
 	Maximum: 2.592e+06
 	Minimum: 0
@@ -37,7 +42,7 @@ type UpdateUser struct {
 
 	/* The user's username
 	 */
-	Username *string `json:"username,omitempty"`
+	Username string `json:"username,omitempty"`
 }
 
 // Validate validates this update user
@@ -61,11 +66,11 @@ func (m *UpdateUser) validateTagExpiration(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if err := validate.Minimum("tag_expiration", "body", float64(*m.TagExpiration), 0, false); err != nil {
+	if err := validate.MinimumInt("tag_expiration", "body", int64(*m.TagExpiration), 0, false); err != nil {
 		return err
 	}
 
-	if err := validate.Maximum("tag_expiration", "body", float64(*m.TagExpiration), 2.592e+06, false); err != nil {
+	if err := validate.MaximumInt("tag_expiration", "body", int64(*m.TagExpiration), 2.592e+06, false); err != nil {
 		return err
 	}
 

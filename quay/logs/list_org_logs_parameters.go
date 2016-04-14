@@ -6,8 +6,9 @@ package logs
 import (
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/strfmt"
 	"github.com/go-swagger/go-swagger/swag"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 )
 
 // NewListOrgLogsParams creates a new ListOrgLogsParams object
@@ -27,6 +28,11 @@ type ListOrgLogsParams struct {
 
 	*/
 	Endtime *string
+	/*NextPage
+	  The page token for the next page
+
+	*/
+	NextPage *string
 	/*Orgname
 	  The name of the organization
 
@@ -52,6 +58,12 @@ type ListOrgLogsParams struct {
 // WithEndtime adds the endtime to the list org logs params
 func (o *ListOrgLogsParams) WithEndtime(endtime *string) *ListOrgLogsParams {
 	o.Endtime = endtime
+	return o
+}
+
+// WithNextPage adds the nextPage to the list org logs params
+func (o *ListOrgLogsParams) WithNextPage(nextPage *string) *ListOrgLogsParams {
+	o.NextPage = nextPage
 	return o
 }
 
@@ -94,6 +106,22 @@ func (o *ListOrgLogsParams) WriteToRequest(r client.Request, reg strfmt.Registry
 		qEndtime := qrEndtime
 		if qEndtime != "" {
 			if err := r.SetQueryParam("endtime", qEndtime); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.NextPage != nil {
+
+		// query param next_page
+		var qrNextPage string
+		if o.NextPage != nil {
+			qrNextPage = *o.NextPage
+		}
+		qNextPage := qrNextPage
+		if qNextPage != "" {
+			if err := r.SetQueryParam("next_page", qNextPage); err != nil {
 				return err
 			}
 		}

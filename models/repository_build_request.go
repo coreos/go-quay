@@ -4,12 +4,11 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"strconv"
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
 
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
-	"github.com/go-swagger/go-swagger/swag"
 )
 
 /*RepositoryBuildRequest Description of a new repository build.
@@ -20,7 +19,7 @@ type RepositoryBuildRequest struct {
 
 	/* The URL of the .tar.gz to build. Must start with "http" or "https".
 	 */
-	ArchiveURL *string `json:"archive_url,omitempty"`
+	ArchiveURL string `json:"archive_url,omitempty"`
 
 	/* The tags to which the built images will be pushed. If none specified, "latest" is used.
 
@@ -31,15 +30,15 @@ type RepositoryBuildRequest struct {
 
 	/* The file id that was generated when the build spec was uploaded
 	 */
-	FileID *string `json:"file_id,omitempty"`
+	FileID string `json:"file_id,omitempty"`
 
 	/* Username of a Quay robot account to use as pull credentials
 	 */
-	PullRobot *string `json:"pull_robot,omitempty"`
+	PullRobot string `json:"pull_robot,omitempty"`
 
 	/* Subdirectory in which the Dockerfile can be found
 	 */
-	Subdirectory *string `json:"subdirectory,omitempty"`
+	Subdirectory string `json:"subdirectory,omitempty"`
 }
 
 // Validate validates this repository build request
@@ -71,14 +70,6 @@ func (m *RepositoryBuildRequest) validateDockerTags(formats strfmt.Registry) err
 
 	if err := validate.UniqueItems("docker_tags", "body", m.DockerTags); err != nil {
 		return err
-	}
-
-	for i := 0; i < len(m.DockerTags); i++ {
-
-		if err := validate.RequiredString("docker_tags"+"."+strconv.Itoa(i), "body", string(m.DockerTags[i])); err != nil {
-			return err
-		}
-
 	}
 
 	return nil

@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *ConductSearchReader) ReadResponse(response client.Response, consumer ht
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewConductSearchBadRequest() *ConductSearchBadRequest {
 Bad Request
 */
 type ConductSearchBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *ConductSearchBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *ConductSearchBadRequest) Error() string {
 
 func (o *ConductSearchBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewConductSearchUnauthorized() *ConductSearchUnauthorized {
 Session required
 */
 type ConductSearchUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *ConductSearchUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /api/v1/find/all][%d] conductSearchUnauthorized ", 401)
+	return fmt.Sprintf("[GET /api/v1/find/all][%d] conductSearchUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ConductSearchUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewConductSearchForbidden() *ConductSearchForbidden {
 Unauthorized access
 */
 type ConductSearchForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *ConductSearchForbidden) Error() string {
-	return fmt.Sprintf("[GET /api/v1/find/all][%d] conductSearchForbidden ", 403)
+	return fmt.Sprintf("[GET /api/v1/find/all][%d] conductSearchForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ConductSearchForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewConductSearchNotFound() *ConductSearchNotFound {
 Not found
 */
 type ConductSearchNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *ConductSearchNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/v1/find/all][%d] conductSearchNotFound ", 404)
+	return fmt.Sprintf("[GET /api/v1/find/all][%d] conductSearchNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ConductSearchNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

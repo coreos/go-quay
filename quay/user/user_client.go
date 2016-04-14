@@ -4,10 +4,9 @@ package user
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"fmt"
-
 	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 )
 
 // New creates a new user API client.
@@ -24,9 +23,9 @@ type Client struct {
 }
 
 /*
-Star a repository.
+CreateStar Star a repository.
 */
-func (a *Client) CreateStar(params *CreateStarParams, authInfo client.AuthInfoWriter) (*CreateStarOK, error) {
+func (a *Client) CreateStar(params *CreateStarParams, authInfo client.AuthInfoWriter) (*CreateStarCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateStarParams()
@@ -37,6 +36,7 @@ func (a *Client) CreateStar(params *CreateStarParams, authInfo client.AuthInfoWr
 		Method:             "POST",
 		PathPattern:        "/api/v1/user/starred",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateStarReader{formats: a.formats},
@@ -45,13 +45,13 @@ func (a *Client) CreateStar(params *CreateStarParams, authInfo client.AuthInfoWr
 	if err != nil {
 		return nil, err
 	}
-	return result.(*CreateStarOK), nil
+	return result.(*CreateStarCreated), nil
 }
 
 /*
-Removes a star from a repository.
+DeleteStar Removes a star from a repository.
 */
-func (a *Client) DeleteStar(params *DeleteStarParams) (*DeleteStarNoContent, error) {
+func (a *Client) DeleteStar(params *DeleteStarParams, authInfo client.AuthInfoWriter) (*DeleteStarNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteStarParams()
@@ -62,9 +62,11 @@ func (a *Client) DeleteStar(params *DeleteStarParams) (*DeleteStarNoContent, err
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/user/starred/{repository}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteStarReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -73,7 +75,7 @@ func (a *Client) DeleteStar(params *DeleteStarParams) (*DeleteStarNoContent, err
 }
 
 /*
-Get user information for the authenticated user.
+GetLoggedInUser Get user information for the authenticated user.
 */
 func (a *Client) GetLoggedInUser(params *GetLoggedInUserParams, authInfo client.AuthInfoWriter) (*GetLoggedInUserOK, error) {
 	// TODO: Validate the params before sending
@@ -86,6 +88,7 @@ func (a *Client) GetLoggedInUser(params *GetLoggedInUserParams, authInfo client.
 		Method:             "GET",
 		PathPattern:        "/api/v1/user/",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetLoggedInUserReader{formats: a.formats},
@@ -98,7 +101,7 @@ func (a *Client) GetLoggedInUser(params *GetLoggedInUserParams, authInfo client.
 }
 
 /*
-Get user information for the specified user.
+GetUserInformation Get user information for the specified user.
 */
 func (a *Client) GetUserInformation(params *GetUserInformationParams) (*GetUserInformationOK, error) {
 	// TODO: Validate the params before sending
@@ -111,6 +114,7 @@ func (a *Client) GetUserInformation(params *GetUserInformationParams) (*GetUserI
 		Method:             "GET",
 		PathPattern:        "/api/v1/users/{username}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserInformationReader{formats: a.formats},
@@ -122,9 +126,9 @@ func (a *Client) GetUserInformation(params *GetUserInformationParams) (*GetUserI
 }
 
 /*
-List all starred repositories.
+ListStarredRepos List all starred repositories.
 */
-func (a *Client) ListStarredRepos(params *ListStarredReposParams) (*ListStarredReposOK, error) {
+func (a *Client) ListStarredRepos(params *ListStarredReposParams, authInfo client.AuthInfoWriter) (*ListStarredReposOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListStarredReposParams()
@@ -135,9 +139,11 @@ func (a *Client) ListStarredRepos(params *ListStarredReposParams) (*ListStarredR
 		Method:             "GET",
 		PathPattern:        "/api/v1/user/starred",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListStarredReposReader{formats: a.formats},
+		AuthInfo:           authInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -148,24 +154,4 @@ func (a *Client) ListStarredRepos(params *ListStarredReposParams) (*ListStarredR
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport client.Transport) {
 	a.transport = transport
-}
-
-// NewAPIError creates a new API error
-func NewAPIError(opName string, response interface{}, code int) APIError {
-	return APIError{
-		OperationName: opName,
-		Response:      response,
-		Code:          code,
-	}
-}
-
-// APIError wraps an error model and captures the status code
-type APIError struct {
-	OperationName string
-	Response      interface{}
-	Code          int
-}
-
-func (a APIError) Error() string {
-	return fmt.Sprintf("%s (status %d): %+v ", a.OperationName, a.Code, a.Response)
 }

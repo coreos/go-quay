@@ -6,11 +6,13 @@ package quay
 import (
 	"github.com/go-swagger/go-swagger/client"
 	httptransport "github.com/go-swagger/go-swagger/httpkit/client"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/quay/billing"
 	"github.com/coreos/go-quay/quay/build"
 	"github.com/coreos/go-quay/quay/discovery"
+	"github.com/coreos/go-quay/quay/error"
 	"github.com/coreos/go-quay/quay/image"
 	"github.com/coreos/go-quay/quay/logs"
 	"github.com/coreos/go-quay/quay/organization"
@@ -50,6 +52,8 @@ func New(transport client.Transport, formats strfmt.Registry) *Client {
 	cli.Build = build.New(transport, formats)
 
 	cli.Discovery = discovery.New(transport, formats)
+
+	cli.Error = error.New(transport, formats)
 
 	cli.Image = image.New(transport, formats)
 
@@ -91,6 +95,8 @@ type Client struct {
 	Build *build.Client
 
 	Discovery *discovery.Client
+
+	Error *error.Client
 
 	Image *image.Client
 
@@ -134,6 +140,8 @@ func (c *Client) SetTransport(transport client.Transport) {
 	c.Build.SetTransport(transport)
 
 	c.Discovery.SetTransport(transport)
+
+	c.Error.SetTransport(transport)
 
 	c.Image.SetTransport(transport)
 

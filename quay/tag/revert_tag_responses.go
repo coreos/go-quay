@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -23,8 +24,8 @@ type RevertTagReader struct {
 func (o *RevertTagReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
-	case 200:
-		result := NewRevertTagOK()
+	case 201:
+		result := NewRevertTagCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -59,27 +60,27 @@ func (o *RevertTagReader) ReadResponse(response client.Response, consumer httpki
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-// NewRevertTagOK creates a RevertTagOK with default headers values
-func NewRevertTagOK() *RevertTagOK {
-	return &RevertTagOK{}
+// NewRevertTagCreated creates a RevertTagCreated with default headers values
+func NewRevertTagCreated() *RevertTagCreated {
+	return &RevertTagCreated{}
 }
 
-/*RevertTagOK handles this case with default header values.
+/*RevertTagCreated handles this case with default header values.
 
-Successful invocation
+Successful creation
 */
-type RevertTagOK struct {
+type RevertTagCreated struct {
 }
 
-func (o *RevertTagOK) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository/{repository}/tag/{tag}/revert][%d] revertTagOK ", 200)
+func (o *RevertTagCreated) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/tag/{tag}/revert][%d] revertTagCreated ", 201)
 }
 
-func (o *RevertTagOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *RevertTagCreated) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -94,7 +95,7 @@ func NewRevertTagBadRequest() *RevertTagBadRequest {
 Bad Request
 */
 type RevertTagBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *RevertTagBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *RevertTagBadRequest) Error() string {
 
 func (o *RevertTagBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewRevertTagUnauthorized() *RevertTagUnauthorized {
 Session required
 */
 type RevertTagUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *RevertTagUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository/{repository}/tag/{tag}/revert][%d] revertTagUnauthorized ", 401)
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/tag/{tag}/revert][%d] revertTagUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RevertTagUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewRevertTagForbidden() *RevertTagForbidden {
 Unauthorized access
 */
 type RevertTagForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *RevertTagForbidden) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository/{repository}/tag/{tag}/revert][%d] revertTagForbidden ", 403)
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/tag/{tag}/revert][%d] revertTagForbidden  %+v", 403, o.Payload)
 }
 
 func (o *RevertTagForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewRevertTagNotFound() *RevertTagNotFound {
 Not found
 */
 type RevertTagNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *RevertTagNotFound) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository/{repository}/tag/{tag}/revert][%d] revertTagNotFound ", 404)
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/tag/{tag}/revert][%d] revertTagNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RevertTagNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

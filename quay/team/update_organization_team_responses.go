@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *UpdateOrganizationTeamReader) ReadResponse(response client.Response, co
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewUpdateOrganizationTeamBadRequest() *UpdateOrganizationTeamBadRequest {
 Bad Request
 */
 type UpdateOrganizationTeamBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *UpdateOrganizationTeamBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *UpdateOrganizationTeamBadRequest) Error() string {
 
 func (o *UpdateOrganizationTeamBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewUpdateOrganizationTeamUnauthorized() *UpdateOrganizationTeamUnauthorized
 Session required
 */
 type UpdateOrganizationTeamUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *UpdateOrganizationTeamUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}][%d] updateOrganizationTeamUnauthorized ", 401)
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}][%d] updateOrganizationTeamUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateOrganizationTeamUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewUpdateOrganizationTeamForbidden() *UpdateOrganizationTeamForbidden {
 Unauthorized access
 */
 type UpdateOrganizationTeamForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *UpdateOrganizationTeamForbidden) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}][%d] updateOrganizationTeamForbidden ", 403)
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}][%d] updateOrganizationTeamForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateOrganizationTeamForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewUpdateOrganizationTeamNotFound() *UpdateOrganizationTeamNotFound {
 Not found
 */
 type UpdateOrganizationTeamNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *UpdateOrganizationTeamNotFound) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}][%d] updateOrganizationTeamNotFound ", 404)
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}][%d] updateOrganizationTeamNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateOrganizationTeamNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

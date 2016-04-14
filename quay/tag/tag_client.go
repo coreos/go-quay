@@ -4,10 +4,9 @@ package tag
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"fmt"
-
 	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 )
 
 // New creates a new tag API client.
@@ -24,7 +23,7 @@ type Client struct {
 }
 
 /*
-Change which image a tag points to or create a new tag.
+ChangeTagImage Change which image a tag points to or create a new tag.
 */
 func (a *Client) ChangeTagImage(params *ChangeTagImageParams, authInfo client.AuthInfoWriter) (*ChangeTagImageOK, error) {
 	// TODO: Validate the params before sending
@@ -37,6 +36,7 @@ func (a *Client) ChangeTagImage(params *ChangeTagImageParams, authInfo client.Au
 		Method:             "PUT",
 		PathPattern:        "/api/v1/repository/{repository}/tag/{tag}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ChangeTagImageReader{formats: a.formats},
@@ -49,7 +49,7 @@ func (a *Client) ChangeTagImage(params *ChangeTagImageParams, authInfo client.Au
 }
 
 /*
-Delete the specified repository tag.
+DeleteFullTag Delete the specified repository tag.
 */
 func (a *Client) DeleteFullTag(params *DeleteFullTagParams, authInfo client.AuthInfoWriter) (*DeleteFullTagNoContent, error) {
 	// TODO: Validate the params before sending
@@ -62,6 +62,7 @@ func (a *Client) DeleteFullTag(params *DeleteFullTagParams, authInfo client.Auth
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/repository/{repository}/tag/{tag}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteFullTagReader{formats: a.formats},
@@ -87,6 +88,7 @@ func (a *Client) ListRepoTags(params *ListRepoTagsParams, authInfo client.AuthIn
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/tag/",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListRepoTagsReader{formats: a.formats},
@@ -99,7 +101,7 @@ func (a *Client) ListRepoTags(params *ListRepoTagsParams, authInfo client.AuthIn
 }
 
 /*
-List the images for the specified repository tag.
+ListTagImages List the images for the specified repository tag.
 */
 func (a *Client) ListTagImages(params *ListTagImagesParams, authInfo client.AuthInfoWriter) (*ListTagImagesOK, error) {
 	// TODO: Validate the params before sending
@@ -112,6 +114,7 @@ func (a *Client) ListTagImages(params *ListTagImagesParams, authInfo client.Auth
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/tag/{tag}/images",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListTagImagesReader{formats: a.formats},
@@ -124,9 +127,9 @@ func (a *Client) ListTagImages(params *ListTagImagesParams, authInfo client.Auth
 }
 
 /*
-Reverts a repository tag back to a previous image in the repository.
+RevertTag Reverts a repository tag back to a previous image in the repository.
 */
-func (a *Client) RevertTag(params *RevertTagParams, authInfo client.AuthInfoWriter) (*RevertTagOK, error) {
+func (a *Client) RevertTag(params *RevertTagParams, authInfo client.AuthInfoWriter) (*RevertTagCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRevertTagParams()
@@ -137,6 +140,7 @@ func (a *Client) RevertTag(params *RevertTagParams, authInfo client.AuthInfoWrit
 		Method:             "POST",
 		PathPattern:        "/api/v1/repository/{repository}/tag/{tag}/revert",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RevertTagReader{formats: a.formats},
@@ -145,30 +149,10 @@ func (a *Client) RevertTag(params *RevertTagParams, authInfo client.AuthInfoWrit
 	if err != nil {
 		return nil, err
 	}
-	return result.(*RevertTagOK), nil
+	return result.(*RevertTagCreated), nil
 }
 
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport client.Transport) {
 	a.transport = transport
-}
-
-// NewAPIError creates a new API error
-func NewAPIError(opName string, response interface{}, code int) APIError {
-	return APIError{
-		OperationName: opName,
-		Response:      response,
-		Code:          code,
-	}
-}
-
-// APIError wraps an error model and captures the status code
-type APIError struct {
-	OperationName string
-	Response      interface{}
-	Code          int
-}
-
-func (a APIError) Error() string {
-	return fmt.Sprintf("%s (status %d): %+v ", a.OperationName, a.Code, a.Response)
 }

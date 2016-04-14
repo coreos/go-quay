@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *GetApplicationInformationReader) ReadResponse(response client.Response,
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewGetApplicationInformationBadRequest() *GetApplicationInformationBadReque
 Bad Request
 */
 type GetApplicationInformationBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *GetApplicationInformationBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *GetApplicationInformationBadRequest) Error() string {
 
 func (o *GetApplicationInformationBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewGetApplicationInformationUnauthorized() *GetApplicationInformationUnauth
 Session required
 */
 type GetApplicationInformationUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *GetApplicationInformationUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /api/v1/app/{client_id}][%d] getApplicationInformationUnauthorized ", 401)
+	return fmt.Sprintf("[GET /api/v1/app/{client_id}][%d] getApplicationInformationUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetApplicationInformationUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewGetApplicationInformationForbidden() *GetApplicationInformationForbidden
 Unauthorized access
 */
 type GetApplicationInformationForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *GetApplicationInformationForbidden) Error() string {
-	return fmt.Sprintf("[GET /api/v1/app/{client_id}][%d] getApplicationInformationForbidden ", 403)
+	return fmt.Sprintf("[GET /api/v1/app/{client_id}][%d] getApplicationInformationForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetApplicationInformationForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewGetApplicationInformationNotFound() *GetApplicationInformationNotFound {
 Not found
 */
 type GetApplicationInformationNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *GetApplicationInformationNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/v1/app/{client_id}][%d] getApplicationInformationNotFound ", 404)
+	return fmt.Sprintf("[GET /api/v1/app/{client_id}][%d] getApplicationInformationNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetApplicationInformationNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

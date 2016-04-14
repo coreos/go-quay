@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *InviteTeamMemberEmailReader) ReadResponse(response client.Response, con
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewInviteTeamMemberEmailBadRequest() *InviteTeamMemberEmailBadRequest {
 Bad Request
 */
 type InviteTeamMemberEmailBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *InviteTeamMemberEmailBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *InviteTeamMemberEmailBadRequest) Error() string {
 
 func (o *InviteTeamMemberEmailBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewInviteTeamMemberEmailUnauthorized() *InviteTeamMemberEmailUnauthorized {
 Session required
 */
 type InviteTeamMemberEmailUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *InviteTeamMemberEmailUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}/invite/{email}][%d] inviteTeamMemberEmailUnauthorized ", 401)
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}/invite/{email}][%d] inviteTeamMemberEmailUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *InviteTeamMemberEmailUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewInviteTeamMemberEmailForbidden() *InviteTeamMemberEmailForbidden {
 Unauthorized access
 */
 type InviteTeamMemberEmailForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *InviteTeamMemberEmailForbidden) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}/invite/{email}][%d] inviteTeamMemberEmailForbidden ", 403)
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}/invite/{email}][%d] inviteTeamMemberEmailForbidden  %+v", 403, o.Payload)
 }
 
 func (o *InviteTeamMemberEmailForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewInviteTeamMemberEmailNotFound() *InviteTeamMemberEmailNotFound {
 Not found
 */
 type InviteTeamMemberEmailNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *InviteTeamMemberEmailNotFound) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}/invite/{email}][%d] inviteTeamMemberEmailNotFound ", 404)
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}/invite/{email}][%d] inviteTeamMemberEmailNotFound  %+v", 404, o.Payload)
 }
 
 func (o *InviteTeamMemberEmailNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

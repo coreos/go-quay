@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *ChangeUserPermissionsReader) ReadResponse(response client.Response, con
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewChangeUserPermissionsBadRequest() *ChangeUserPermissionsBadRequest {
 Bad Request
 */
 type ChangeUserPermissionsBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *ChangeUserPermissionsBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *ChangeUserPermissionsBadRequest) Error() string {
 
 func (o *ChangeUserPermissionsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewChangeUserPermissionsUnauthorized() *ChangeUserPermissionsUnauthorized {
 Session required
 */
 type ChangeUserPermissionsUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *ChangeUserPermissionsUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/permissions/user/{username}][%d] changeUserPermissionsUnauthorized ", 401)
+	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/permissions/user/{username}][%d] changeUserPermissionsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ChangeUserPermissionsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewChangeUserPermissionsForbidden() *ChangeUserPermissionsForbidden {
 Unauthorized access
 */
 type ChangeUserPermissionsForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *ChangeUserPermissionsForbidden) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/permissions/user/{username}][%d] changeUserPermissionsForbidden ", 403)
+	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/permissions/user/{username}][%d] changeUserPermissionsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ChangeUserPermissionsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewChangeUserPermissionsNotFound() *ChangeUserPermissionsNotFound {
 Not found
 */
 type ChangeUserPermissionsNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *ChangeUserPermissionsNotFound) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/permissions/user/{username}][%d] changeUserPermissionsNotFound ", 404)
+	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/permissions/user/{username}][%d] changeUserPermissionsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ChangeUserPermissionsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

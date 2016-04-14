@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *DeleteUserPermissionsReader) ReadResponse(response client.Response, con
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewDeleteUserPermissionsBadRequest() *DeleteUserPermissionsBadRequest {
 Bad Request
 */
 type DeleteUserPermissionsBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *DeleteUserPermissionsBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *DeleteUserPermissionsBadRequest) Error() string {
 
 func (o *DeleteUserPermissionsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewDeleteUserPermissionsUnauthorized() *DeleteUserPermissionsUnauthorized {
 Session required
 */
 type DeleteUserPermissionsUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *DeleteUserPermissionsUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/permissions/user/{username}][%d] deleteUserPermissionsUnauthorized ", 401)
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/permissions/user/{username}][%d] deleteUserPermissionsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteUserPermissionsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewDeleteUserPermissionsForbidden() *DeleteUserPermissionsForbidden {
 Unauthorized access
 */
 type DeleteUserPermissionsForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *DeleteUserPermissionsForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/permissions/user/{username}][%d] deleteUserPermissionsForbidden ", 403)
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/permissions/user/{username}][%d] deleteUserPermissionsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteUserPermissionsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewDeleteUserPermissionsNotFound() *DeleteUserPermissionsNotFound {
 Not found
 */
 type DeleteUserPermissionsNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *DeleteUserPermissionsNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/permissions/user/{username}][%d] deleteUserPermissionsNotFound ", 404)
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/permissions/user/{username}][%d] deleteUserPermissionsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteUserPermissionsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

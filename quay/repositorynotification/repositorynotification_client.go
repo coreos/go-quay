@@ -4,10 +4,9 @@ package repositorynotification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"fmt"
-
 	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 )
 
 // New creates a new repositorynotification API client.
@@ -24,9 +23,9 @@ type Client struct {
 }
 
 /*
-Create a new notification for the specified repository.
+CreateRepoNotification Create a new notification for the specified repository.
 */
-func (a *Client) CreateRepoNotification(params *CreateRepoNotificationParams, authInfo client.AuthInfoWriter) (*CreateRepoNotificationOK, error) {
+func (a *Client) CreateRepoNotification(params *CreateRepoNotificationParams, authInfo client.AuthInfoWriter) (*CreateRepoNotificationCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateRepoNotificationParams()
@@ -37,6 +36,7 @@ func (a *Client) CreateRepoNotification(params *CreateRepoNotificationParams, au
 		Method:             "POST",
 		PathPattern:        "/api/v1/repository/{repository}/notification/",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateRepoNotificationReader{formats: a.formats},
@@ -45,11 +45,11 @@ func (a *Client) CreateRepoNotification(params *CreateRepoNotificationParams, au
 	if err != nil {
 		return nil, err
 	}
-	return result.(*CreateRepoNotificationOK), nil
+	return result.(*CreateRepoNotificationCreated), nil
 }
 
 /*
-Deletes the specified notification.
+DeleteRepoNotification Deletes the specified notification.
 */
 func (a *Client) DeleteRepoNotification(params *DeleteRepoNotificationParams, authInfo client.AuthInfoWriter) (*DeleteRepoNotificationNoContent, error) {
 	// TODO: Validate the params before sending
@@ -62,6 +62,7 @@ func (a *Client) DeleteRepoNotification(params *DeleteRepoNotificationParams, au
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/repository/{repository}/notification/{uuid}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteRepoNotificationReader{formats: a.formats},
@@ -74,7 +75,7 @@ func (a *Client) DeleteRepoNotification(params *DeleteRepoNotificationParams, au
 }
 
 /*
-Get information for the specified notification.
+GetRepoNotification Get information for the specified notification.
 */
 func (a *Client) GetRepoNotification(params *GetRepoNotificationParams, authInfo client.AuthInfoWriter) (*GetRepoNotificationOK, error) {
 	// TODO: Validate the params before sending
@@ -87,6 +88,7 @@ func (a *Client) GetRepoNotification(params *GetRepoNotificationParams, authInfo
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/notification/{uuid}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetRepoNotificationReader{formats: a.formats},
@@ -99,7 +101,7 @@ func (a *Client) GetRepoNotification(params *GetRepoNotificationParams, authInfo
 }
 
 /*
-List the notifications for the specified repository.
+ListRepoNotifications List the notifications for the specified repository.
 */
 func (a *Client) ListRepoNotifications(params *ListRepoNotificationsParams, authInfo client.AuthInfoWriter) (*ListRepoNotificationsOK, error) {
 	// TODO: Validate the params before sending
@@ -112,6 +114,7 @@ func (a *Client) ListRepoNotifications(params *ListRepoNotificationsParams, auth
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/notification/",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListRepoNotificationsReader{formats: a.formats},
@@ -124,9 +127,9 @@ func (a *Client) ListRepoNotifications(params *ListRepoNotificationsParams, auth
 }
 
 /*
-Queues a test notification for this repository.
+TestRepoNotification Queues a test notification for this repository.
 */
-func (a *Client) TestRepoNotification(params *TestRepoNotificationParams, authInfo client.AuthInfoWriter) (*TestRepoNotificationOK, error) {
+func (a *Client) TestRepoNotification(params *TestRepoNotificationParams, authInfo client.AuthInfoWriter) (*TestRepoNotificationCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewTestRepoNotificationParams()
@@ -137,6 +140,7 @@ func (a *Client) TestRepoNotification(params *TestRepoNotificationParams, authIn
 		Method:             "POST",
 		PathPattern:        "/api/v1/repository/{repository}/notification/{uuid}/test",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &TestRepoNotificationReader{formats: a.formats},
@@ -145,30 +149,10 @@ func (a *Client) TestRepoNotification(params *TestRepoNotificationParams, authIn
 	if err != nil {
 		return nil, err
 	}
-	return result.(*TestRepoNotificationOK), nil
+	return result.(*TestRepoNotificationCreated), nil
 }
 
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport client.Transport) {
 	a.transport = transport
-}
-
-// NewAPIError creates a new API error
-func NewAPIError(opName string, response interface{}, code int) APIError {
-	return APIError{
-		OperationName: opName,
-		Response:      response,
-		Code:          code,
-	}
-}
-
-// APIError wraps an error model and captures the status code
-type APIError struct {
-	OperationName string
-	Response      interface{}
-	Code          int
-}
-
-func (a APIError) Error() string {
-	return fmt.Sprintf("%s (status %d): %+v ", a.OperationName, a.Code, a.Response)
 }

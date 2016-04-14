@@ -6,9 +6,10 @@ package models
 import (
 	"encoding/json"
 
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*TeamDescription Description of a team
@@ -19,13 +20,13 @@ type TeamDescription struct {
 
 	/* Markdown description for the team
 	 */
-	Description *string `json:"description,omitempty"`
+	Description string `json:"description,omitempty"`
 
 	/* Org wide permissions that should apply to the team
 
 	Required: true
 	*/
-	Role string `json:"role,omitempty"`
+	Role *string `json:"role"`
 }
 
 // Validate validates this team description
@@ -43,19 +44,20 @@ func (m *TeamDescription) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var teamDescriptionRoleEnum []interface{}
+var teamDescriptionTypeRolePropEnum []interface{}
 
+// prop value enum
 func (m *TeamDescription) validateRoleEnum(path, location string, value string) error {
-	if teamDescriptionRoleEnum == nil {
+	if teamDescriptionTypeRolePropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["member","creator","admin"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			teamDescriptionRoleEnum = append(teamDescriptionRoleEnum, v)
+			teamDescriptionTypeRolePropEnum = append(teamDescriptionTypeRolePropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, teamDescriptionRoleEnum); err != nil {
+	if err := validate.Enum(path, location, value, teamDescriptionTypeRolePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -63,11 +65,12 @@ func (m *TeamDescription) validateRoleEnum(path, location string, value string) 
 
 func (m *TeamDescription) validateRole(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("role", "body", string(m.Role)); err != nil {
+	if err := validate.Required("role", "body", m.Role); err != nil {
 		return err
 	}
 
-	if err := m.validateRoleEnum("role", "body", m.Role); err != nil {
+	// value enum
+	if err := m.validateRoleEnum("role", "body", *m.Role); err != nil {
 		return err
 	}
 

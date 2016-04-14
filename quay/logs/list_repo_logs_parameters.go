@@ -6,8 +6,9 @@ package logs
 import (
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/strfmt"
 	"github.com/go-swagger/go-swagger/swag"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 )
 
 // NewListRepoLogsParams creates a new ListRepoLogsParams object
@@ -27,6 +28,11 @@ type ListRepoLogsParams struct {
 
 	*/
 	Endtime *string
+	/*NextPage
+	  The page token for the next page
+
+	*/
+	NextPage *string
 	/*Page
 	  The page number for the logs
 
@@ -47,6 +53,12 @@ type ListRepoLogsParams struct {
 // WithEndtime adds the endtime to the list repo logs params
 func (o *ListRepoLogsParams) WithEndtime(endtime *string) *ListRepoLogsParams {
 	o.Endtime = endtime
+	return o
+}
+
+// WithNextPage adds the nextPage to the list repo logs params
+func (o *ListRepoLogsParams) WithNextPage(nextPage *string) *ListRepoLogsParams {
+	o.NextPage = nextPage
 	return o
 }
 
@@ -83,6 +95,22 @@ func (o *ListRepoLogsParams) WriteToRequest(r client.Request, reg strfmt.Registr
 		qEndtime := qrEndtime
 		if qEndtime != "" {
 			if err := r.SetQueryParam("endtime", qEndtime); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.NextPage != nil {
+
+		// query param next_page
+		var qrNextPage string
+		if o.NextPage != nil {
+			qrNextPage = *o.NextPage
+		}
+		qNextPage := qrNextPage
+		if qNextPage != "" {
+			if err := r.SetQueryParam("next_page", qNextPage); err != nil {
 				return err
 			}
 		}

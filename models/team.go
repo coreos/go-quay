@@ -4,26 +4,27 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*Team Team team
+/*Team team
 
 swagger:model Team
 */
 type Team struct {
 
-	/* Avatar avatar
+	/* avatar
 	 */
 	Avatar *Avatar `json:"avatar,omitempty"`
 
-	/* Name name
+	/* name
 
 	Required: true
 	*/
-	Name string `json:"name,omitempty"`
+	Name *string `json:"name"`
 }
 
 // Validate validates this team
@@ -43,7 +44,7 @@ func (m *Team) Validate(formats strfmt.Registry) error {
 
 func (m *Team) validateName(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("name", "body", string(m.Name)); err != nil {
+	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
 	}
 

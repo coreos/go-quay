@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -23,8 +24,8 @@ type CreateStarReader struct {
 func (o *CreateStarReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
-	case 200:
-		result := NewCreateStarOK()
+	case 201:
+		result := NewCreateStarCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -59,27 +60,27 @@ func (o *CreateStarReader) ReadResponse(response client.Response, consumer httpk
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-// NewCreateStarOK creates a CreateStarOK with default headers values
-func NewCreateStarOK() *CreateStarOK {
-	return &CreateStarOK{}
+// NewCreateStarCreated creates a CreateStarCreated with default headers values
+func NewCreateStarCreated() *CreateStarCreated {
+	return &CreateStarCreated{}
 }
 
-/*CreateStarOK handles this case with default header values.
+/*CreateStarCreated handles this case with default header values.
 
-Successful invocation
+Successful creation
 */
-type CreateStarOK struct {
+type CreateStarCreated struct {
 }
 
-func (o *CreateStarOK) Error() string {
-	return fmt.Sprintf("[POST /api/v1/user/starred][%d] createStarOK ", 200)
+func (o *CreateStarCreated) Error() string {
+	return fmt.Sprintf("[POST /api/v1/user/starred][%d] createStarCreated ", 201)
 }
 
-func (o *CreateStarOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateStarCreated) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -94,7 +95,7 @@ func NewCreateStarBadRequest() *CreateStarBadRequest {
 Bad Request
 */
 type CreateStarBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *CreateStarBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *CreateStarBadRequest) Error() string {
 
 func (o *CreateStarBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewCreateStarUnauthorized() *CreateStarUnauthorized {
 Session required
 */
 type CreateStarUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *CreateStarUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /api/v1/user/starred][%d] createStarUnauthorized ", 401)
+	return fmt.Sprintf("[POST /api/v1/user/starred][%d] createStarUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateStarUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewCreateStarForbidden() *CreateStarForbidden {
 Unauthorized access
 */
 type CreateStarForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *CreateStarForbidden) Error() string {
-	return fmt.Sprintf("[POST /api/v1/user/starred][%d] createStarForbidden ", 403)
+	return fmt.Sprintf("[POST /api/v1/user/starred][%d] createStarForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateStarForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewCreateStarNotFound() *CreateStarNotFound {
 Not found
 */
 type CreateStarNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *CreateStarNotFound) Error() string {
-	return fmt.Sprintf("[POST /api/v1/user/starred][%d] createStarNotFound ", 404)
+	return fmt.Sprintf("[POST /api/v1/user/starred][%d] createStarNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateStarNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

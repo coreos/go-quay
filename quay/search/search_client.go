@@ -4,10 +4,9 @@ package search
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"fmt"
-
 	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 )
 
 // New creates a new search API client.
@@ -24,7 +23,7 @@ type Client struct {
 }
 
 /*
-Get a list of entities and resources that match the specified query.
+ConductSearch Get a list of entities and resources that match the specified query.
 */
 func (a *Client) ConductSearch(params *ConductSearchParams, authInfo client.AuthInfoWriter) (*ConductSearchOK, error) {
 	// TODO: Validate the params before sending
@@ -37,6 +36,7 @@ func (a *Client) ConductSearch(params *ConductSearchParams, authInfo client.Auth
 		Method:             "GET",
 		PathPattern:        "/api/v1/find/all",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ConductSearchReader{formats: a.formats},
@@ -49,7 +49,7 @@ func (a *Client) ConductSearch(params *ConductSearchParams, authInfo client.Auth
 }
 
 /*
-Get a list of entities that match the specified prefix.
+GetMatchingEntities Get a list of entities that match the specified prefix.
 */
 func (a *Client) GetMatchingEntities(params *GetMatchingEntitiesParams) (*GetMatchingEntitiesOK, error) {
 	// TODO: Validate the params before sending
@@ -62,6 +62,7 @@ func (a *Client) GetMatchingEntities(params *GetMatchingEntitiesParams) (*GetMat
 		Method:             "GET",
 		PathPattern:        "/api/v1/entities/{prefix}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetMatchingEntitiesReader{formats: a.formats},
@@ -75,24 +76,4 @@ func (a *Client) GetMatchingEntities(params *GetMatchingEntitiesParams) (*GetMat
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport client.Transport) {
 	a.transport = transport
-}
-
-// NewAPIError creates a new API error
-func NewAPIError(opName string, response interface{}, code int) APIError {
-	return APIError{
-		OperationName: opName,
-		Response:      response,
-		Code:          code,
-	}
-}
-
-// APIError wraps an error model and captures the status code
-type APIError struct {
-	OperationName string
-	Response      interface{}
-	Code          int
-}
-
-func (a APIError) Error() string {
-	return fmt.Sprintf("%s (status %d): %+v ", a.OperationName, a.Code, a.Response)
 }

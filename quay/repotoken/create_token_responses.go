@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -23,8 +24,8 @@ type CreateTokenReader struct {
 func (o *CreateTokenReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
-	case 200:
-		result := NewCreateTokenOK()
+	case 201:
+		result := NewCreateTokenCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -59,27 +60,27 @@ func (o *CreateTokenReader) ReadResponse(response client.Response, consumer http
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-// NewCreateTokenOK creates a CreateTokenOK with default headers values
-func NewCreateTokenOK() *CreateTokenOK {
-	return &CreateTokenOK{}
+// NewCreateTokenCreated creates a CreateTokenCreated with default headers values
+func NewCreateTokenCreated() *CreateTokenCreated {
+	return &CreateTokenCreated{}
 }
 
-/*CreateTokenOK handles this case with default header values.
+/*CreateTokenCreated handles this case with default header values.
 
-Successful invocation
+Successful creation
 */
-type CreateTokenOK struct {
+type CreateTokenCreated struct {
 }
 
-func (o *CreateTokenOK) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository/{repository}/tokens/][%d] createTokenOK ", 200)
+func (o *CreateTokenCreated) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/tokens/][%d] createTokenCreated ", 201)
 }
 
-func (o *CreateTokenOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateTokenCreated) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -94,7 +95,7 @@ func NewCreateTokenBadRequest() *CreateTokenBadRequest {
 Bad Request
 */
 type CreateTokenBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *CreateTokenBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *CreateTokenBadRequest) Error() string {
 
 func (o *CreateTokenBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewCreateTokenUnauthorized() *CreateTokenUnauthorized {
 Session required
 */
 type CreateTokenUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *CreateTokenUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository/{repository}/tokens/][%d] createTokenUnauthorized ", 401)
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/tokens/][%d] createTokenUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateTokenUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewCreateTokenForbidden() *CreateTokenForbidden {
 Unauthorized access
 */
 type CreateTokenForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *CreateTokenForbidden) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository/{repository}/tokens/][%d] createTokenForbidden ", 403)
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/tokens/][%d] createTokenForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateTokenForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewCreateTokenNotFound() *CreateTokenNotFound {
 Not found
 */
 type CreateTokenNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *CreateTokenNotFound) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository/{repository}/tokens/][%d] createTokenNotFound ", 404)
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/tokens/][%d] createTokenNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateTokenNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

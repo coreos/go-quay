@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *GetLoggedInUserReader) ReadResponse(response client.Response, consumer 
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -102,7 +103,7 @@ func NewGetLoggedInUserBadRequest() *GetLoggedInUserBadRequest {
 Bad Request
 */
 type GetLoggedInUserBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *GetLoggedInUserBadRequest) Error() string {
@@ -111,7 +112,7 @@ func (o *GetLoggedInUserBadRequest) Error() string {
 
 func (o *GetLoggedInUserBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -131,13 +132,21 @@ func NewGetLoggedInUserUnauthorized() *GetLoggedInUserUnauthorized {
 Session required
 */
 type GetLoggedInUserUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *GetLoggedInUserUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /api/v1/user/][%d] getLoggedInUserUnauthorized ", 401)
+	return fmt.Sprintf("[GET /api/v1/user/][%d] getLoggedInUserUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetLoggedInUserUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -152,13 +161,21 @@ func NewGetLoggedInUserForbidden() *GetLoggedInUserForbidden {
 Unauthorized access
 */
 type GetLoggedInUserForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *GetLoggedInUserForbidden) Error() string {
-	return fmt.Sprintf("[GET /api/v1/user/][%d] getLoggedInUserForbidden ", 403)
+	return fmt.Sprintf("[GET /api/v1/user/][%d] getLoggedInUserForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetLoggedInUserForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -173,13 +190,21 @@ func NewGetLoggedInUserNotFound() *GetLoggedInUserNotFound {
 Not found
 */
 type GetLoggedInUserNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *GetLoggedInUserNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/v1/user/][%d] getLoggedInUserNotFound ", 404)
+	return fmt.Sprintf("[GET /api/v1/user/][%d] getLoggedInUserNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetLoggedInUserNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *GetImageReader) ReadResponse(response client.Response, consumer httpkit
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewGetImageBadRequest() *GetImageBadRequest {
 Bad Request
 */
 type GetImageBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *GetImageBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *GetImageBadRequest) Error() string {
 
 func (o *GetImageBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewGetImageUnauthorized() *GetImageUnauthorized {
 Session required
 */
 type GetImageUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *GetImageUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/{image_id}][%d] getImageUnauthorized ", 401)
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/{image_id}][%d] getImageUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetImageUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewGetImageForbidden() *GetImageForbidden {
 Unauthorized access
 */
 type GetImageForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *GetImageForbidden) Error() string {
-	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/{image_id}][%d] getImageForbidden ", 403)
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/{image_id}][%d] getImageForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetImageForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewGetImageNotFound() *GetImageNotFound {
 Not found
 */
 type GetImageNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *GetImageNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/{image_id}][%d] getImageNotFound ", 404)
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/{image_id}][%d] getImageNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetImageNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

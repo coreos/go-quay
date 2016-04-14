@@ -6,9 +6,10 @@ package models
 import (
 	"encoding/json"
 
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*UserPermission Description of a user permission.
@@ -21,7 +22,7 @@ type UserPermission struct {
 
 	Required: true
 	*/
-	Role string `json:"role,omitempty"`
+	Role *string `json:"role"`
 }
 
 // Validate validates this user permission
@@ -39,19 +40,20 @@ func (m *UserPermission) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var userPermissionRoleEnum []interface{}
+var userPermissionTypeRolePropEnum []interface{}
 
+// prop value enum
 func (m *UserPermission) validateRoleEnum(path, location string, value string) error {
-	if userPermissionRoleEnum == nil {
+	if userPermissionTypeRolePropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["read","write","admin"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			userPermissionRoleEnum = append(userPermissionRoleEnum, v)
+			userPermissionTypeRolePropEnum = append(userPermissionTypeRolePropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, userPermissionRoleEnum); err != nil {
+	if err := validate.Enum(path, location, value, userPermissionTypeRolePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -59,11 +61,12 @@ func (m *UserPermission) validateRoleEnum(path, location string, value string) e
 
 func (m *UserPermission) validateRole(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("role", "body", string(m.Role)); err != nil {
+	if err := validate.Required("role", "body", m.Role); err != nil {
 		return err
 	}
 
-	if err := m.validateRoleEnum("role", "body", m.Role); err != nil {
+	// value enum
+	if err := m.validateRoleEnum("role", "body", *m.Role); err != nil {
 		return err
 	}
 

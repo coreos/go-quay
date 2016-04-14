@@ -6,10 +6,11 @@ package models
 import (
 	"encoding/json"
 
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
-	"github.com/go-swagger/go-swagger/swag"
 )
 
 /*NewPrototype Description of a new prototype
@@ -18,21 +19,21 @@ swagger:model NewPrototype
 */
 type NewPrototype struct {
 
-	/* ActivatingUser activating user
+	/* activating user
 	 */
 	ActivatingUser *NewPrototypeActivatingUser `json:"activating_user,omitempty"`
 
-	/* Delegate delegate
+	/* delegate
 
 	Required: true
 	*/
-	Delegate *NewPrototypeDelegate `json:"delegate,omitempty"`
+	Delegate *NewPrototypeDelegate `json:"delegate"`
 
 	/* Role that should be applied to the delegate
 
 	Required: true
 	*/
-	Role string `json:"role,omitempty"`
+	Role *string `json:"role"`
 }
 
 // Validate validates this new prototype
@@ -88,19 +89,20 @@ func (m *NewPrototype) validateDelegate(formats strfmt.Registry) error {
 	return nil
 }
 
-var newPrototypeRoleEnum []interface{}
+var newPrototypeTypeRolePropEnum []interface{}
 
+// prop value enum
 func (m *NewPrototype) validateRoleEnum(path, location string, value string) error {
-	if newPrototypeRoleEnum == nil {
+	if newPrototypeTypeRolePropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["read","write","admin"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			newPrototypeRoleEnum = append(newPrototypeRoleEnum, v)
+			newPrototypeTypeRolePropEnum = append(newPrototypeTypeRolePropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, newPrototypeRoleEnum); err != nil {
+	if err := validate.Enum(path, location, value, newPrototypeTypeRolePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -108,11 +110,12 @@ func (m *NewPrototype) validateRoleEnum(path, location string, value string) err
 
 func (m *NewPrototype) validateRole(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("role", "body", string(m.Role)); err != nil {
+	if err := validate.Required("role", "body", m.Role); err != nil {
 		return err
 	}
 
-	if err := m.validateRoleEnum("role", "body", m.Role); err != nil {
+	// value enum
+	if err := m.validateRoleEnum("role", "body", *m.Role); err != nil {
 		return err
 	}
 
@@ -129,7 +132,7 @@ type NewPrototypeActivatingUser struct {
 
 	Required: true
 	*/
-	Name string `json:"name,omitempty"`
+	Name *string `json:"name"`
 }
 
 // Validate validates this new prototype activating user
@@ -149,7 +152,7 @@ func (m *NewPrototypeActivatingUser) Validate(formats strfmt.Registry) error {
 
 func (m *NewPrototypeActivatingUser) validateName(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("activating_user"+"."+"name", "body", string(m.Name)); err != nil {
+	if err := validate.Required("activating_user"+"."+"name", "body", m.Name); err != nil {
 		return err
 	}
 
@@ -166,13 +169,13 @@ type NewPrototypeDelegate struct {
 
 	Required: true
 	*/
-	Kind string `json:"kind,omitempty"`
+	Kind *string `json:"kind"`
 
 	/* The name for the delegate team or user
 
 	Required: true
 	*/
-	Name string `json:"name,omitempty"`
+	Name *string `json:"name"`
 }
 
 // Validate validates this new prototype delegate
@@ -195,19 +198,20 @@ func (m *NewPrototypeDelegate) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var newPrototypeDelegateKindEnum []interface{}
+var newPrototypeDelegateTypeKindPropEnum []interface{}
 
+// prop value enum
 func (m *NewPrototypeDelegate) validateKindEnum(path, location string, value string) error {
-	if newPrototypeDelegateKindEnum == nil {
+	if newPrototypeDelegateTypeKindPropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["user","team"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			newPrototypeDelegateKindEnum = append(newPrototypeDelegateKindEnum, v)
+			newPrototypeDelegateTypeKindPropEnum = append(newPrototypeDelegateTypeKindPropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, newPrototypeDelegateKindEnum); err != nil {
+	if err := validate.Enum(path, location, value, newPrototypeDelegateTypeKindPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -215,11 +219,12 @@ func (m *NewPrototypeDelegate) validateKindEnum(path, location string, value str
 
 func (m *NewPrototypeDelegate) validateKind(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("delegate"+"."+"kind", "body", string(m.Kind)); err != nil {
+	if err := validate.Required("delegate"+"."+"kind", "body", m.Kind); err != nil {
 		return err
 	}
 
-	if err := m.validateKindEnum("delegate"+"."+"kind", "body", m.Kind); err != nil {
+	// value enum
+	if err := m.validateKindEnum("delegate"+"."+"kind", "body", *m.Kind); err != nil {
 		return err
 	}
 
@@ -228,7 +233,7 @@ func (m *NewPrototypeDelegate) validateKind(formats strfmt.Registry) error {
 
 func (m *NewPrototypeDelegate) validateName(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("delegate"+"."+"name", "body", string(m.Name)); err != nil {
+	if err := validate.Required("delegate"+"."+"name", "body", m.Name); err != nil {
 		return err
 	}
 

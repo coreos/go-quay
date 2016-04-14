@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *GetAggregateOrgLogsReader) ReadResponse(response client.Response, consu
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewGetAggregateOrgLogsBadRequest() *GetAggregateOrgLogsBadRequest {
 Bad Request
 */
 type GetAggregateOrgLogsBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *GetAggregateOrgLogsBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *GetAggregateOrgLogsBadRequest) Error() string {
 
 func (o *GetAggregateOrgLogsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewGetAggregateOrgLogsUnauthorized() *GetAggregateOrgLogsUnauthorized {
 Session required
 */
 type GetAggregateOrgLogsUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *GetAggregateOrgLogsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/aggregatelogs][%d] getAggregateOrgLogsUnauthorized ", 401)
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/aggregatelogs][%d] getAggregateOrgLogsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetAggregateOrgLogsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewGetAggregateOrgLogsForbidden() *GetAggregateOrgLogsForbidden {
 Unauthorized access
 */
 type GetAggregateOrgLogsForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *GetAggregateOrgLogsForbidden) Error() string {
-	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/aggregatelogs][%d] getAggregateOrgLogsForbidden ", 403)
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/aggregatelogs][%d] getAggregateOrgLogsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetAggregateOrgLogsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewGetAggregateOrgLogsNotFound() *GetAggregateOrgLogsNotFound {
 Not found
 */
 type GetAggregateOrgLogsNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *GetAggregateOrgLogsNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/aggregatelogs][%d] getAggregateOrgLogsNotFound ", 404)
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/aggregatelogs][%d] getAggregateOrgLogsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetAggregateOrgLogsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

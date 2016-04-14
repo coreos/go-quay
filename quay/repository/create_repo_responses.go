@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -23,8 +24,8 @@ type CreateRepoReader struct {
 func (o *CreateRepoReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
-	case 200:
-		result := NewCreateRepoOK()
+	case 201:
+		result := NewCreateRepoCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -59,27 +60,27 @@ func (o *CreateRepoReader) ReadResponse(response client.Response, consumer httpk
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-// NewCreateRepoOK creates a CreateRepoOK with default headers values
-func NewCreateRepoOK() *CreateRepoOK {
-	return &CreateRepoOK{}
+// NewCreateRepoCreated creates a CreateRepoCreated with default headers values
+func NewCreateRepoCreated() *CreateRepoCreated {
+	return &CreateRepoCreated{}
 }
 
-/*CreateRepoOK handles this case with default header values.
+/*CreateRepoCreated handles this case with default header values.
 
-Successful invocation
+Successful creation
 */
-type CreateRepoOK struct {
+type CreateRepoCreated struct {
 }
 
-func (o *CreateRepoOK) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository][%d] createRepoOK ", 200)
+func (o *CreateRepoCreated) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository][%d] createRepoCreated ", 201)
 }
 
-func (o *CreateRepoOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateRepoCreated) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -94,7 +95,7 @@ func NewCreateRepoBadRequest() *CreateRepoBadRequest {
 Bad Request
 */
 type CreateRepoBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *CreateRepoBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *CreateRepoBadRequest) Error() string {
 
 func (o *CreateRepoBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewCreateRepoUnauthorized() *CreateRepoUnauthorized {
 Session required
 */
 type CreateRepoUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *CreateRepoUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository][%d] createRepoUnauthorized ", 401)
+	return fmt.Sprintf("[POST /api/v1/repository][%d] createRepoUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateRepoUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewCreateRepoForbidden() *CreateRepoForbidden {
 Unauthorized access
 */
 type CreateRepoForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *CreateRepoForbidden) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository][%d] createRepoForbidden ", 403)
+	return fmt.Sprintf("[POST /api/v1/repository][%d] createRepoForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateRepoForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewCreateRepoNotFound() *CreateRepoNotFound {
 Not found
 */
 type CreateRepoNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *CreateRepoNotFound) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository][%d] createRepoNotFound ", 404)
+	return fmt.Sprintf("[POST /api/v1/repository][%d] createRepoNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateRepoNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

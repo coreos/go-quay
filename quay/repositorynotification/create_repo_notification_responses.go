@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -23,8 +24,8 @@ type CreateRepoNotificationReader struct {
 func (o *CreateRepoNotificationReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
-	case 200:
-		result := NewCreateRepoNotificationOK()
+	case 201:
+		result := NewCreateRepoNotificationCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -59,27 +60,27 @@ func (o *CreateRepoNotificationReader) ReadResponse(response client.Response, co
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-// NewCreateRepoNotificationOK creates a CreateRepoNotificationOK with default headers values
-func NewCreateRepoNotificationOK() *CreateRepoNotificationOK {
-	return &CreateRepoNotificationOK{}
+// NewCreateRepoNotificationCreated creates a CreateRepoNotificationCreated with default headers values
+func NewCreateRepoNotificationCreated() *CreateRepoNotificationCreated {
+	return &CreateRepoNotificationCreated{}
 }
 
-/*CreateRepoNotificationOK handles this case with default header values.
+/*CreateRepoNotificationCreated handles this case with default header values.
 
-Successful invocation
+Successful creation
 */
-type CreateRepoNotificationOK struct {
+type CreateRepoNotificationCreated struct {
 }
 
-func (o *CreateRepoNotificationOK) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository/{repository}/notification/][%d] createRepoNotificationOK ", 200)
+func (o *CreateRepoNotificationCreated) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/notification/][%d] createRepoNotificationCreated ", 201)
 }
 
-func (o *CreateRepoNotificationOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateRepoNotificationCreated) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -94,7 +95,7 @@ func NewCreateRepoNotificationBadRequest() *CreateRepoNotificationBadRequest {
 Bad Request
 */
 type CreateRepoNotificationBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *CreateRepoNotificationBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *CreateRepoNotificationBadRequest) Error() string {
 
 func (o *CreateRepoNotificationBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewCreateRepoNotificationUnauthorized() *CreateRepoNotificationUnauthorized
 Session required
 */
 type CreateRepoNotificationUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *CreateRepoNotificationUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository/{repository}/notification/][%d] createRepoNotificationUnauthorized ", 401)
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/notification/][%d] createRepoNotificationUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateRepoNotificationUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewCreateRepoNotificationForbidden() *CreateRepoNotificationForbidden {
 Unauthorized access
 */
 type CreateRepoNotificationForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *CreateRepoNotificationForbidden) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository/{repository}/notification/][%d] createRepoNotificationForbidden ", 403)
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/notification/][%d] createRepoNotificationForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateRepoNotificationForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewCreateRepoNotificationNotFound() *CreateRepoNotificationNotFound {
 Not found
 */
 type CreateRepoNotificationNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *CreateRepoNotificationNotFound) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository/{repository}/notification/][%d] createRepoNotificationNotFound ", 404)
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/notification/][%d] createRepoNotificationNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateRepoNotificationNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

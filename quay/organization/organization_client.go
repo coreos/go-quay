@@ -4,10 +4,9 @@ package organization
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"fmt"
-
 	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 )
 
 // New creates a new organization API client.
@@ -24,7 +23,7 @@ type Client struct {
 }
 
 /*
-Change the details for the specified organization.
+ChangeOrganizationDetails Change the details for the specified organization.
 */
 func (a *Client) ChangeOrganizationDetails(params *ChangeOrganizationDetailsParams, authInfo client.AuthInfoWriter) (*ChangeOrganizationDetailsOK, error) {
 	// TODO: Validate the params before sending
@@ -37,6 +36,7 @@ func (a *Client) ChangeOrganizationDetails(params *ChangeOrganizationDetailsPara
 		Method:             "PUT",
 		PathPattern:        "/api/v1/organization/{orgname}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ChangeOrganizationDetailsReader{formats: a.formats},
@@ -49,9 +49,35 @@ func (a *Client) ChangeOrganizationDetails(params *ChangeOrganizationDetailsPara
 }
 
 /*
-Creates a new application under this organization.
+CreateOrganization Create a new organization.
 */
-func (a *Client) CreateOrganizationApplication(params *CreateOrganizationApplicationParams, authInfo client.AuthInfoWriter) (*CreateOrganizationApplicationOK, error) {
+func (a *Client) CreateOrganization(params *CreateOrganizationParams, authInfo client.AuthInfoWriter) (*CreateOrganizationCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateOrganizationParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:                 "createOrganization",
+		Method:             "POST",
+		PathPattern:        "/api/v1/organization/",
+		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateOrganizationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*CreateOrganizationCreated), nil
+}
+
+/*
+CreateOrganizationApplication Creates a new application under this organization.
+*/
+func (a *Client) CreateOrganizationApplication(params *CreateOrganizationApplicationParams, authInfo client.AuthInfoWriter) (*CreateOrganizationApplicationCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateOrganizationApplicationParams()
@@ -62,6 +88,7 @@ func (a *Client) CreateOrganizationApplication(params *CreateOrganizationApplica
 		Method:             "POST",
 		PathPattern:        "/api/v1/organization/{orgname}/applications",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateOrganizationApplicationReader{formats: a.formats},
@@ -70,11 +97,11 @@ func (a *Client) CreateOrganizationApplication(params *CreateOrganizationApplica
 	if err != nil {
 		return nil, err
 	}
-	return result.(*CreateOrganizationApplicationOK), nil
+	return result.(*CreateOrganizationApplicationCreated), nil
 }
 
 /*
-Deletes the application under this organization.
+DeleteOrganizationApplication Deletes the application under this organization.
 */
 func (a *Client) DeleteOrganizationApplication(params *DeleteOrganizationApplicationParams, authInfo client.AuthInfoWriter) (*DeleteOrganizationApplicationNoContent, error) {
 	// TODO: Validate the params before sending
@@ -87,6 +114,7 @@ func (a *Client) DeleteOrganizationApplication(params *DeleteOrganizationApplica
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/organization/{orgname}/applications/{client_id}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteOrganizationApplicationReader{formats: a.formats},
@@ -99,7 +127,7 @@ func (a *Client) DeleteOrganizationApplication(params *DeleteOrganizationApplica
 }
 
 /*
-Get information on the specified application.
+GetApplicationInformation Get information on the specified application.
 */
 func (a *Client) GetApplicationInformation(params *GetApplicationInformationParams) (*GetApplicationInformationOK, error) {
 	// TODO: Validate the params before sending
@@ -112,6 +140,7 @@ func (a *Client) GetApplicationInformation(params *GetApplicationInformationPara
 		Method:             "GET",
 		PathPattern:        "/api/v1/app/{client_id}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetApplicationInformationReader{formats: a.formats},
@@ -123,7 +152,7 @@ func (a *Client) GetApplicationInformation(params *GetApplicationInformationPara
 }
 
 /*
-Get the details for the specified organization
+GetOrganization Get the details for the specified organization
 */
 func (a *Client) GetOrganization(params *GetOrganizationParams, authInfo client.AuthInfoWriter) (*GetOrganizationOK, error) {
 	// TODO: Validate the params before sending
@@ -136,6 +165,7 @@ func (a *Client) GetOrganization(params *GetOrganizationParams, authInfo client.
 		Method:             "GET",
 		PathPattern:        "/api/v1/organization/{orgname}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetOrganizationReader{formats: a.formats},
@@ -148,7 +178,7 @@ func (a *Client) GetOrganization(params *GetOrganizationParams, authInfo client.
 }
 
 /*
-Retrieves the application with the specified client_id under the specified organization
+GetOrganizationApplication Retrieves the application with the specified client_id under the specified organization
 */
 func (a *Client) GetOrganizationApplication(params *GetOrganizationApplicationParams, authInfo client.AuthInfoWriter) (*GetOrganizationApplicationOK, error) {
 	// TODO: Validate the params before sending
@@ -161,6 +191,7 @@ func (a *Client) GetOrganizationApplication(params *GetOrganizationApplicationPa
 		Method:             "GET",
 		PathPattern:        "/api/v1/organization/{orgname}/applications/{client_id}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetOrganizationApplicationReader{formats: a.formats},
@@ -173,7 +204,7 @@ func (a *Client) GetOrganizationApplication(params *GetOrganizationApplicationPa
 }
 
 /*
-List the applications for the specified organization
+GetOrganizationApplications List the applications for the specified organization
 */
 func (a *Client) GetOrganizationApplications(params *GetOrganizationApplicationsParams, authInfo client.AuthInfoWriter) (*GetOrganizationApplicationsOK, error) {
 	// TODO: Validate the params before sending
@@ -186,6 +217,7 @@ func (a *Client) GetOrganizationApplications(params *GetOrganizationApplications
 		Method:             "GET",
 		PathPattern:        "/api/v1/organization/{orgname}/applications",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetOrganizationApplicationsReader{formats: a.formats},
@@ -198,7 +230,7 @@ func (a *Client) GetOrganizationApplications(params *GetOrganizationApplications
 }
 
 /*
-Retrieves the details of a member of the organization.
+GetOrganizationMember Retrieves the details of a member of the organization.
 */
 func (a *Client) GetOrganizationMember(params *GetOrganizationMemberParams, authInfo client.AuthInfoWriter) (*GetOrganizationMemberOK, error) {
 	// TODO: Validate the params before sending
@@ -211,6 +243,7 @@ func (a *Client) GetOrganizationMember(params *GetOrganizationMemberParams, auth
 		Method:             "GET",
 		PathPattern:        "/api/v1/organization/{orgname}/members/{membername}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetOrganizationMemberReader{formats: a.formats},
@@ -223,7 +256,7 @@ func (a *Client) GetOrganizationMember(params *GetOrganizationMemberParams, auth
 }
 
 /*
-List the human members of the specified organization.
+GetOrganizationMembers List the human members of the specified organization.
 */
 func (a *Client) GetOrganizationMembers(params *GetOrganizationMembersParams, authInfo client.AuthInfoWriter) (*GetOrganizationMembersOK, error) {
 	// TODO: Validate the params before sending
@@ -236,6 +269,7 @@ func (a *Client) GetOrganizationMembers(params *GetOrganizationMembersParams, au
 		Method:             "GET",
 		PathPattern:        "/api/v1/organization/{orgname}/members",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetOrganizationMembersReader{formats: a.formats},
@@ -248,7 +282,7 @@ func (a *Client) GetOrganizationMembers(params *GetOrganizationMembersParams, au
 }
 
 /*
-Removes a member from an organization, revoking all its repository
+RemoveOrganizationMember Removes a member from an organization, revoking all its repository
         priviledges and removing it from all teams in the organization.
 */
 func (a *Client) RemoveOrganizationMember(params *RemoveOrganizationMemberParams, authInfo client.AuthInfoWriter) (*RemoveOrganizationMemberNoContent, error) {
@@ -262,6 +296,7 @@ func (a *Client) RemoveOrganizationMember(params *RemoveOrganizationMemberParams
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/organization/{orgname}/members/{membername}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RemoveOrganizationMemberReader{formats: a.formats},
@@ -274,7 +309,7 @@ func (a *Client) RemoveOrganizationMember(params *RemoveOrganizationMemberParams
 }
 
 /*
-Updates an application under this organization.
+UpdateOrganizationApplication Updates an application under this organization.
 */
 func (a *Client) UpdateOrganizationApplication(params *UpdateOrganizationApplicationParams, authInfo client.AuthInfoWriter) (*UpdateOrganizationApplicationOK, error) {
 	// TODO: Validate the params before sending
@@ -287,6 +322,7 @@ func (a *Client) UpdateOrganizationApplication(params *UpdateOrganizationApplica
 		Method:             "PUT",
 		PathPattern:        "/api/v1/organization/{orgname}/applications/{client_id}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateOrganizationApplicationReader{formats: a.formats},
@@ -301,24 +337,4 @@ func (a *Client) UpdateOrganizationApplication(params *UpdateOrganizationApplica
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport client.Transport) {
 	a.transport = transport
-}
-
-// NewAPIError creates a new API error
-func NewAPIError(opName string, response interface{}, code int) APIError {
-	return APIError{
-		OperationName: opName,
-		Response:      response,
-		Code:          code,
-	}
-}
-
-// APIError wraps an error model and captures the status code
-type APIError struct {
-	OperationName string
-	Response      interface{}
-	Code          int
-}
-
-func (a APIError) Error() string {
-	return fmt.Sprintf("%s (status %d): %+v ", a.OperationName, a.Code, a.Response)
 }

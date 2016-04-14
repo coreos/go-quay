@@ -4,10 +4,9 @@ package billing
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"fmt"
-
 	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 )
 
 // New creates a new billing API client.
@@ -24,7 +23,7 @@ type Client struct {
 }
 
 /*
-List the invoices for the specified orgnaization.
+ListOrgInvoices List the invoices for the specified orgnaization.
 */
 func (a *Client) ListOrgInvoices(params *ListOrgInvoicesParams, authInfo client.AuthInfoWriter) (*ListOrgInvoicesOK, error) {
 	// TODO: Validate the params before sending
@@ -37,6 +36,7 @@ func (a *Client) ListOrgInvoices(params *ListOrgInvoicesParams, authInfo client.
 		Method:             "GET",
 		PathPattern:        "/api/v1/organization/{orgname}/invoices",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListOrgInvoicesReader{formats: a.formats},
@@ -49,7 +49,7 @@ func (a *Client) ListOrgInvoices(params *ListOrgInvoicesParams, authInfo client.
 }
 
 /*
-List the avaialble plans.
+ListPlans List the avaialble plans.
 */
 func (a *Client) ListPlans(params *ListPlansParams) (*ListPlansOK, error) {
 	// TODO: Validate the params before sending
@@ -62,6 +62,7 @@ func (a *Client) ListPlans(params *ListPlansParams) (*ListPlansOK, error) {
 		Method:             "GET",
 		PathPattern:        "/api/v1/plans/",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListPlansReader{formats: a.formats},
@@ -75,24 +76,4 @@ func (a *Client) ListPlans(params *ListPlansParams) (*ListPlansOK, error) {
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport client.Transport) {
 	a.transport = transport
-}
-
-// NewAPIError creates a new API error
-func NewAPIError(opName string, response interface{}, code int) APIError {
-	return APIError{
-		OperationName: opName,
-		Response:      response,
-		Code:          code,
-	}
-}
-
-// APIError wraps an error model and captures the status code
-type APIError struct {
-	OperationName string
-	Response      interface{}
-	Code          int
-}
-
-func (a APIError) Error() string {
-	return fmt.Sprintf("%s (status %d): %+v ", a.OperationName, a.Code, a.Response)
 }

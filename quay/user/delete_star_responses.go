@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *DeleteStarReader) ReadResponse(response client.Response, consumer httpk
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewDeleteStarBadRequest() *DeleteStarBadRequest {
 Bad Request
 */
 type DeleteStarBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *DeleteStarBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *DeleteStarBadRequest) Error() string {
 
 func (o *DeleteStarBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewDeleteStarUnauthorized() *DeleteStarUnauthorized {
 Session required
 */
 type DeleteStarUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *DeleteStarUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/user/starred/{repository}][%d] deleteStarUnauthorized ", 401)
+	return fmt.Sprintf("[DELETE /api/v1/user/starred/{repository}][%d] deleteStarUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteStarUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewDeleteStarForbidden() *DeleteStarForbidden {
 Unauthorized access
 */
 type DeleteStarForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *DeleteStarForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/user/starred/{repository}][%d] deleteStarForbidden ", 403)
+	return fmt.Sprintf("[DELETE /api/v1/user/starred/{repository}][%d] deleteStarForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteStarForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewDeleteStarNotFound() *DeleteStarNotFound {
 Not found
 */
 type DeleteStarNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *DeleteStarNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/user/starred/{repository}][%d] deleteStarNotFound ", 404)
+	return fmt.Sprintf("[DELETE /api/v1/user/starred/{repository}][%d] deleteStarNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteStarNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

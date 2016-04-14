@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *ChangeTokenReader) ReadResponse(response client.Response, consumer http
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewChangeTokenBadRequest() *ChangeTokenBadRequest {
 Bad Request
 */
 type ChangeTokenBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *ChangeTokenBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *ChangeTokenBadRequest) Error() string {
 
 func (o *ChangeTokenBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewChangeTokenUnauthorized() *ChangeTokenUnauthorized {
 Session required
 */
 type ChangeTokenUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *ChangeTokenUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/tokens/{code}][%d] changeTokenUnauthorized ", 401)
+	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/tokens/{code}][%d] changeTokenUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ChangeTokenUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewChangeTokenForbidden() *ChangeTokenForbidden {
 Unauthorized access
 */
 type ChangeTokenForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *ChangeTokenForbidden) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/tokens/{code}][%d] changeTokenForbidden ", 403)
+	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/tokens/{code}][%d] changeTokenForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ChangeTokenForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewChangeTokenNotFound() *ChangeTokenNotFound {
 Not found
 */
 type ChangeTokenNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *ChangeTokenNotFound) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/tokens/{code}][%d] changeTokenNotFound ", 404)
+	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/tokens/{code}][%d] changeTokenNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ChangeTokenNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

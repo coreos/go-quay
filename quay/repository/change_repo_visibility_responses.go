@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -23,8 +24,8 @@ type ChangeRepoVisibilityReader struct {
 func (o *ChangeRepoVisibilityReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
-	case 200:
-		result := NewChangeRepoVisibilityOK()
+	case 201:
+		result := NewChangeRepoVisibilityCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -59,27 +60,27 @@ func (o *ChangeRepoVisibilityReader) ReadResponse(response client.Response, cons
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-// NewChangeRepoVisibilityOK creates a ChangeRepoVisibilityOK with default headers values
-func NewChangeRepoVisibilityOK() *ChangeRepoVisibilityOK {
-	return &ChangeRepoVisibilityOK{}
+// NewChangeRepoVisibilityCreated creates a ChangeRepoVisibilityCreated with default headers values
+func NewChangeRepoVisibilityCreated() *ChangeRepoVisibilityCreated {
+	return &ChangeRepoVisibilityCreated{}
 }
 
-/*ChangeRepoVisibilityOK handles this case with default header values.
+/*ChangeRepoVisibilityCreated handles this case with default header values.
 
-Successful invocation
+Successful creation
 */
-type ChangeRepoVisibilityOK struct {
+type ChangeRepoVisibilityCreated struct {
 }
 
-func (o *ChangeRepoVisibilityOK) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository/{repository}/changevisibility][%d] changeRepoVisibilityOK ", 200)
+func (o *ChangeRepoVisibilityCreated) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/changevisibility][%d] changeRepoVisibilityCreated ", 201)
 }
 
-func (o *ChangeRepoVisibilityOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ChangeRepoVisibilityCreated) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -94,7 +95,7 @@ func NewChangeRepoVisibilityBadRequest() *ChangeRepoVisibilityBadRequest {
 Bad Request
 */
 type ChangeRepoVisibilityBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *ChangeRepoVisibilityBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *ChangeRepoVisibilityBadRequest) Error() string {
 
 func (o *ChangeRepoVisibilityBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewChangeRepoVisibilityUnauthorized() *ChangeRepoVisibilityUnauthorized {
 Session required
 */
 type ChangeRepoVisibilityUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *ChangeRepoVisibilityUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository/{repository}/changevisibility][%d] changeRepoVisibilityUnauthorized ", 401)
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/changevisibility][%d] changeRepoVisibilityUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ChangeRepoVisibilityUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewChangeRepoVisibilityForbidden() *ChangeRepoVisibilityForbidden {
 Unauthorized access
 */
 type ChangeRepoVisibilityForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *ChangeRepoVisibilityForbidden) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository/{repository}/changevisibility][%d] changeRepoVisibilityForbidden ", 403)
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/changevisibility][%d] changeRepoVisibilityForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ChangeRepoVisibilityForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewChangeRepoVisibilityNotFound() *ChangeRepoVisibilityNotFound {
 Not found
 */
 type ChangeRepoVisibilityNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *ChangeRepoVisibilityNotFound) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository/{repository}/changevisibility][%d] changeRepoVisibilityNotFound ", 404)
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/changevisibility][%d] changeRepoVisibilityNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ChangeRepoVisibilityNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

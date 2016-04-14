@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *GetOrgRobotsReader) ReadResponse(response client.Response, consumer htt
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewGetOrgRobotsBadRequest() *GetOrgRobotsBadRequest {
 Bad Request
 */
 type GetOrgRobotsBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *GetOrgRobotsBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *GetOrgRobotsBadRequest) Error() string {
 
 func (o *GetOrgRobotsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewGetOrgRobotsUnauthorized() *GetOrgRobotsUnauthorized {
 Session required
 */
 type GetOrgRobotsUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *GetOrgRobotsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/robots][%d] getOrgRobotsUnauthorized ", 401)
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/robots][%d] getOrgRobotsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetOrgRobotsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewGetOrgRobotsForbidden() *GetOrgRobotsForbidden {
 Unauthorized access
 */
 type GetOrgRobotsForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *GetOrgRobotsForbidden) Error() string {
-	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/robots][%d] getOrgRobotsForbidden ", 403)
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/robots][%d] getOrgRobotsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetOrgRobotsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewGetOrgRobotsNotFound() *GetOrgRobotsNotFound {
 Not found
 */
 type GetOrgRobotsNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *GetOrgRobotsNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/robots][%d] getOrgRobotsNotFound ", 404)
+	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/robots][%d] getOrgRobotsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetOrgRobotsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

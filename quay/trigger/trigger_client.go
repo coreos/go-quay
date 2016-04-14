@@ -4,10 +4,9 @@ package trigger
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"fmt"
-
 	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 )
 
 // New creates a new trigger API client.
@@ -24,9 +23,9 @@ type Client struct {
 }
 
 /*
-Activate the specified build trigger.
+ActivateBuildTrigger Activate the specified build trigger.
 */
-func (a *Client) ActivateBuildTrigger(params *ActivateBuildTriggerParams, authInfo client.AuthInfoWriter) (*ActivateBuildTriggerOK, error) {
+func (a *Client) ActivateBuildTrigger(params *ActivateBuildTriggerParams, authInfo client.AuthInfoWriter) (*ActivateBuildTriggerCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewActivateBuildTriggerParams()
@@ -37,6 +36,7 @@ func (a *Client) ActivateBuildTrigger(params *ActivateBuildTriggerParams, authIn
 		Method:             "POST",
 		PathPattern:        "/api/v1/repository/{repository}/trigger/{trigger_uuid}/activate",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ActivateBuildTriggerReader{formats: a.formats},
@@ -45,11 +45,11 @@ func (a *Client) ActivateBuildTrigger(params *ActivateBuildTriggerParams, authIn
 	if err != nil {
 		return nil, err
 	}
-	return result.(*ActivateBuildTriggerOK), nil
+	return result.(*ActivateBuildTriggerCreated), nil
 }
 
 /*
-Delete the specified build trigger.
+DeleteBuildTrigger Delete the specified build trigger.
 */
 func (a *Client) DeleteBuildTrigger(params *DeleteBuildTriggerParams, authInfo client.AuthInfoWriter) (*DeleteBuildTriggerNoContent, error) {
 	// TODO: Validate the params before sending
@@ -62,6 +62,7 @@ func (a *Client) DeleteBuildTrigger(params *DeleteBuildTriggerParams, authInfo c
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/repository/{repository}/trigger/{trigger_uuid}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteBuildTriggerReader{formats: a.formats},
@@ -74,7 +75,7 @@ func (a *Client) DeleteBuildTrigger(params *DeleteBuildTriggerParams, authInfo c
 }
 
 /*
-Get information for the specified build trigger.
+GetBuildTrigger Get information for the specified build trigger.
 */
 func (a *Client) GetBuildTrigger(params *GetBuildTriggerParams, authInfo client.AuthInfoWriter) (*GetBuildTriggerOK, error) {
 	// TODO: Validate the params before sending
@@ -87,6 +88,7 @@ func (a *Client) GetBuildTrigger(params *GetBuildTriggerParams, authInfo client.
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/trigger/{trigger_uuid}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetBuildTriggerReader{formats: a.formats},
@@ -99,7 +101,7 @@ func (a *Client) GetBuildTrigger(params *GetBuildTriggerParams, authInfo client.
 }
 
 /*
-List the triggers for the specified repository.
+ListBuildTriggers List the triggers for the specified repository.
 */
 func (a *Client) ListBuildTriggers(params *ListBuildTriggersParams, authInfo client.AuthInfoWriter) (*ListBuildTriggersOK, error) {
 	// TODO: Validate the params before sending
@@ -112,6 +114,7 @@ func (a *Client) ListBuildTriggers(params *ListBuildTriggersParams, authInfo cli
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/trigger/",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListBuildTriggersReader{formats: a.formats},
@@ -124,7 +127,7 @@ func (a *Client) ListBuildTriggers(params *ListBuildTriggersParams, authInfo cli
 }
 
 /*
-List the builds started by the specified trigger.
+ListTriggerRecentBuilds List the builds started by the specified trigger.
 */
 func (a *Client) ListTriggerRecentBuilds(params *ListTriggerRecentBuildsParams, authInfo client.AuthInfoWriter) (*ListTriggerRecentBuildsOK, error) {
 	// TODO: Validate the params before sending
@@ -137,6 +140,7 @@ func (a *Client) ListTriggerRecentBuilds(params *ListTriggerRecentBuildsParams, 
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/trigger/{trigger_uuid}/builds",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListTriggerRecentBuildsReader{formats: a.formats},
@@ -149,9 +153,9 @@ func (a *Client) ListTriggerRecentBuilds(params *ListTriggerRecentBuildsParams, 
 }
 
 /*
-Manually start a build from the specified trigger.
+ManuallyStartBuildTrigger Manually start a build from the specified trigger.
 */
-func (a *Client) ManuallyStartBuildTrigger(params *ManuallyStartBuildTriggerParams, authInfo client.AuthInfoWriter) (*ManuallyStartBuildTriggerOK, error) {
+func (a *Client) ManuallyStartBuildTrigger(params *ManuallyStartBuildTriggerParams, authInfo client.AuthInfoWriter) (*ManuallyStartBuildTriggerCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewManuallyStartBuildTriggerParams()
@@ -162,6 +166,7 @@ func (a *Client) ManuallyStartBuildTrigger(params *ManuallyStartBuildTriggerPara
 		Method:             "POST",
 		PathPattern:        "/api/v1/repository/{repository}/trigger/{trigger_uuid}/start",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ManuallyStartBuildTriggerReader{formats: a.formats},
@@ -170,30 +175,10 @@ func (a *Client) ManuallyStartBuildTrigger(params *ManuallyStartBuildTriggerPara
 	if err != nil {
 		return nil, err
 	}
-	return result.(*ManuallyStartBuildTriggerOK), nil
+	return result.(*ManuallyStartBuildTriggerCreated), nil
 }
 
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport client.Transport) {
 	a.transport = transport
-}
-
-// NewAPIError creates a new API error
-func NewAPIError(opName string, response interface{}, code int) APIError {
-	return APIError{
-		OperationName: opName,
-		Response:      response,
-		Code:          code,
-	}
-}
-
-// APIError wraps an error model and captures the status code
-type APIError struct {
-	OperationName string
-	Response      interface{}
-	Code          int
-}
-
-func (a APIError) Error() string {
-	return fmt.Sprintf("%s (status %d): %+v ", a.OperationName, a.Code, a.Response)
 }

@@ -4,10 +4,9 @@ package permission
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"fmt"
-
 	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 )
 
 // New creates a new permission API client.
@@ -24,7 +23,7 @@ type Client struct {
 }
 
 /*
-Update the existing team permission.
+ChangeTeamPermissions Update the existing team permission.
 */
 func (a *Client) ChangeTeamPermissions(params *ChangeTeamPermissionsParams, authInfo client.AuthInfoWriter) (*ChangeTeamPermissionsOK, error) {
 	// TODO: Validate the params before sending
@@ -37,6 +36,7 @@ func (a *Client) ChangeTeamPermissions(params *ChangeTeamPermissionsParams, auth
 		Method:             "PUT",
 		PathPattern:        "/api/v1/repository/{repository}/permissions/team/{teamname}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ChangeTeamPermissionsReader{formats: a.formats},
@@ -49,7 +49,7 @@ func (a *Client) ChangeTeamPermissions(params *ChangeTeamPermissionsParams, auth
 }
 
 /*
-Update the perimssions for an existing repository.
+ChangeUserPermissions Update the perimssions for an existing repository.
 */
 func (a *Client) ChangeUserPermissions(params *ChangeUserPermissionsParams, authInfo client.AuthInfoWriter) (*ChangeUserPermissionsOK, error) {
 	// TODO: Validate the params before sending
@@ -62,6 +62,7 @@ func (a *Client) ChangeUserPermissions(params *ChangeUserPermissionsParams, auth
 		Method:             "PUT",
 		PathPattern:        "/api/v1/repository/{repository}/permissions/user/{username}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ChangeUserPermissionsReader{formats: a.formats},
@@ -74,7 +75,7 @@ func (a *Client) ChangeUserPermissions(params *ChangeUserPermissionsParams, auth
 }
 
 /*
-Delete the permission for the specified team.
+DeleteTeamPermissions Delete the permission for the specified team.
 */
 func (a *Client) DeleteTeamPermissions(params *DeleteTeamPermissionsParams, authInfo client.AuthInfoWriter) (*DeleteTeamPermissionsNoContent, error) {
 	// TODO: Validate the params before sending
@@ -87,6 +88,7 @@ func (a *Client) DeleteTeamPermissions(params *DeleteTeamPermissionsParams, auth
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/repository/{repository}/permissions/team/{teamname}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteTeamPermissionsReader{formats: a.formats},
@@ -99,7 +101,7 @@ func (a *Client) DeleteTeamPermissions(params *DeleteTeamPermissionsParams, auth
 }
 
 /*
-Delete the permission for the user.
+DeleteUserPermissions Delete the permission for the user.
 */
 func (a *Client) DeleteUserPermissions(params *DeleteUserPermissionsParams, authInfo client.AuthInfoWriter) (*DeleteUserPermissionsNoContent, error) {
 	// TODO: Validate the params before sending
@@ -112,6 +114,7 @@ func (a *Client) DeleteUserPermissions(params *DeleteUserPermissionsParams, auth
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/repository/{repository}/permissions/user/{username}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteUserPermissionsReader{formats: a.formats},
@@ -124,7 +127,7 @@ func (a *Client) DeleteUserPermissions(params *DeleteUserPermissionsParams, auth
 }
 
 /*
-Fetch the permission for the specified team.
+GetTeamPermissions Fetch the permission for the specified team.
 */
 func (a *Client) GetTeamPermissions(params *GetTeamPermissionsParams, authInfo client.AuthInfoWriter) (*GetTeamPermissionsOK, error) {
 	// TODO: Validate the params before sending
@@ -137,6 +140,7 @@ func (a *Client) GetTeamPermissions(params *GetTeamPermissionsParams, authInfo c
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/permissions/team/{teamname}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetTeamPermissionsReader{formats: a.formats},
@@ -149,7 +153,7 @@ func (a *Client) GetTeamPermissions(params *GetTeamPermissionsParams, authInfo c
 }
 
 /*
-Get the Fetch the permission for the specified user.
+GetUserPermissions Get the Fetch the permission for the specified user.
 */
 func (a *Client) GetUserPermissions(params *GetUserPermissionsParams, authInfo client.AuthInfoWriter) (*GetUserPermissionsOK, error) {
 	// TODO: Validate the params before sending
@@ -162,6 +166,7 @@ func (a *Client) GetUserPermissions(params *GetUserPermissionsParams, authInfo c
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/permissions/user/{username}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserPermissionsReader{formats: a.formats},
@@ -174,7 +179,7 @@ func (a *Client) GetUserPermissions(params *GetUserPermissionsParams, authInfo c
 }
 
 /*
-Get the fetch the permission for the specified user.
+GetUserTransitivePermission Get the fetch the permission for the specified user.
 */
 func (a *Client) GetUserTransitivePermission(params *GetUserTransitivePermissionParams, authInfo client.AuthInfoWriter) (*GetUserTransitivePermissionOK, error) {
 	// TODO: Validate the params before sending
@@ -187,6 +192,7 @@ func (a *Client) GetUserTransitivePermission(params *GetUserTransitivePermission
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/permissions/user/{username}/transitive",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserTransitivePermissionReader{formats: a.formats},
@@ -199,7 +205,7 @@ func (a *Client) GetUserTransitivePermission(params *GetUserTransitivePermission
 }
 
 /*
-List all team permission.
+ListRepoTeamPermissions List all team permission.
 */
 func (a *Client) ListRepoTeamPermissions(params *ListRepoTeamPermissionsParams, authInfo client.AuthInfoWriter) (*ListRepoTeamPermissionsOK, error) {
 	// TODO: Validate the params before sending
@@ -212,6 +218,7 @@ func (a *Client) ListRepoTeamPermissions(params *ListRepoTeamPermissionsParams, 
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/permissions/team/",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListRepoTeamPermissionsReader{formats: a.formats},
@@ -224,7 +231,7 @@ func (a *Client) ListRepoTeamPermissions(params *ListRepoTeamPermissionsParams, 
 }
 
 /*
-List all user permissions.
+ListRepoUserPermissions List all user permissions.
 */
 func (a *Client) ListRepoUserPermissions(params *ListRepoUserPermissionsParams, authInfo client.AuthInfoWriter) (*ListRepoUserPermissionsOK, error) {
 	// TODO: Validate the params before sending
@@ -237,6 +244,7 @@ func (a *Client) ListRepoUserPermissions(params *ListRepoUserPermissionsParams, 
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/permissions/user/",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListRepoUserPermissionsReader{formats: a.formats},
@@ -251,24 +259,4 @@ func (a *Client) ListRepoUserPermissions(params *ListRepoUserPermissionsParams, 
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport client.Transport) {
 	a.transport = transport
-}
-
-// NewAPIError creates a new API error
-func NewAPIError(opName string, response interface{}, code int) APIError {
-	return APIError{
-		OperationName: opName,
-		Response:      response,
-		Code:          code,
-	}
-}
-
-// APIError wraps an error model and captures the status code
-type APIError struct {
-	OperationName string
-	Response      interface{}
-	Code          int
-}
-
-func (a APIError) Error() string {
-	return fmt.Sprintf("%s (status %d): %+v ", a.OperationName, a.Code, a.Response)
 }

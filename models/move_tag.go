@@ -4,9 +4,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*MoveTag Description of to which image a new or existing tag should point
@@ -19,7 +20,7 @@ type MoveTag struct {
 
 	Required: true
 	*/
-	Image string `json:"image,omitempty"`
+	Image *string `json:"image"`
 }
 
 // Validate validates this move tag
@@ -39,7 +40,7 @@ func (m *MoveTag) Validate(formats strfmt.Registry) error {
 
 func (m *MoveTag) validateImage(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("image", "body", string(m.Image)); err != nil {
+	if err := validate.Required("image", "body", m.Image); err != nil {
 		return err
 	}
 

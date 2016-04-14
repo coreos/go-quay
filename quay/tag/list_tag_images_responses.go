@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *ListTagImagesReader) ReadResponse(response client.Response, consumer ht
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewListTagImagesBadRequest() *ListTagImagesBadRequest {
 Bad Request
 */
 type ListTagImagesBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *ListTagImagesBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *ListTagImagesBadRequest) Error() string {
 
 func (o *ListTagImagesBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewListTagImagesUnauthorized() *ListTagImagesUnauthorized {
 Session required
 */
 type ListTagImagesUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *ListTagImagesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tag/{tag}/images][%d] listTagImagesUnauthorized ", 401)
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tag/{tag}/images][%d] listTagImagesUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListTagImagesUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewListTagImagesForbidden() *ListTagImagesForbidden {
 Unauthorized access
 */
 type ListTagImagesForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *ListTagImagesForbidden) Error() string {
-	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tag/{tag}/images][%d] listTagImagesForbidden ", 403)
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tag/{tag}/images][%d] listTagImagesForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListTagImagesForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewListTagImagesNotFound() *ListTagImagesNotFound {
 Not found
 */
 type ListTagImagesNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *ListTagImagesNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tag/{tag}/images][%d] listTagImagesNotFound ", 404)
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tag/{tag}/images][%d] listTagImagesNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListTagImagesNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

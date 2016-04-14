@@ -4,10 +4,9 @@ package team
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"fmt"
-
 	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 )
 
 // New creates a new team API client.
@@ -24,7 +23,7 @@ type Client struct {
 }
 
 /*
-Delete the specified team.
+DeleteOrganizationTeam Delete the specified team.
 */
 func (a *Client) DeleteOrganizationTeam(params *DeleteOrganizationTeamParams, authInfo client.AuthInfoWriter) (*DeleteOrganizationTeamNoContent, error) {
 	// TODO: Validate the params before sending
@@ -37,6 +36,7 @@ func (a *Client) DeleteOrganizationTeam(params *DeleteOrganizationTeamParams, au
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/organization/{orgname}/team/{teamname}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteOrganizationTeamReader{formats: a.formats},
@@ -49,7 +49,7 @@ func (a *Client) DeleteOrganizationTeam(params *DeleteOrganizationTeamParams, au
 }
 
 /*
-Delete a member of a team. If the user is merely invited to join
+DeleteOrganizationTeamMember Delete a member of a team. If the user is merely invited to join
         the team, then the invite is removed instead.
 */
 func (a *Client) DeleteOrganizationTeamMember(params *DeleteOrganizationTeamMemberParams, authInfo client.AuthInfoWriter) (*DeleteOrganizationTeamMemberNoContent, error) {
@@ -63,6 +63,7 @@ func (a *Client) DeleteOrganizationTeamMember(params *DeleteOrganizationTeamMemb
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/organization/{orgname}/team/{teamname}/members/{membername}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteOrganizationTeamMemberReader{formats: a.formats},
@@ -75,7 +76,7 @@ func (a *Client) DeleteOrganizationTeamMember(params *DeleteOrganizationTeamMemb
 }
 
 /*
-Delete an invite of an email address to join a team.
+DeleteTeamMemberEmailInvite Delete an invite of an email address to join a team.
 */
 func (a *Client) DeleteTeamMemberEmailInvite(params *DeleteTeamMemberEmailInviteParams, authInfo client.AuthInfoWriter) (*DeleteTeamMemberEmailInviteNoContent, error) {
 	// TODO: Validate the params before sending
@@ -88,6 +89,7 @@ func (a *Client) DeleteTeamMemberEmailInvite(params *DeleteTeamMemberEmailInvite
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/organization/{orgname}/team/{teamname}/invite/{email}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteTeamMemberEmailInviteReader{formats: a.formats},
@@ -100,7 +102,7 @@ func (a *Client) DeleteTeamMemberEmailInvite(params *DeleteTeamMemberEmailInvite
 }
 
 /*
-Retrieve the list of members for the specified team.
+GetOrganizationTeamMembers Retrieve the list of members for the specified team.
 */
 func (a *Client) GetOrganizationTeamMembers(params *GetOrganizationTeamMembersParams, authInfo client.AuthInfoWriter) (*GetOrganizationTeamMembersOK, error) {
 	// TODO: Validate the params before sending
@@ -113,6 +115,7 @@ func (a *Client) GetOrganizationTeamMembers(params *GetOrganizationTeamMembersPa
 		Method:             "GET",
 		PathPattern:        "/api/v1/organization/{orgname}/team/{teamname}/members",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetOrganizationTeamMembersReader{formats: a.formats},
@@ -125,7 +128,7 @@ func (a *Client) GetOrganizationTeamMembers(params *GetOrganizationTeamMembersPa
 }
 
 /*
-Invites an email address to an existing team.
+InviteTeamMemberEmail Invites an email address to an existing team.
 */
 func (a *Client) InviteTeamMemberEmail(params *InviteTeamMemberEmailParams, authInfo client.AuthInfoWriter) (*InviteTeamMemberEmailOK, error) {
 	// TODO: Validate the params before sending
@@ -138,6 +141,7 @@ func (a *Client) InviteTeamMemberEmail(params *InviteTeamMemberEmailParams, auth
 		Method:             "PUT",
 		PathPattern:        "/api/v1/organization/{orgname}/team/{teamname}/invite/{email}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &InviteTeamMemberEmailReader{formats: a.formats},
@@ -150,7 +154,7 @@ func (a *Client) InviteTeamMemberEmail(params *InviteTeamMemberEmailParams, auth
 }
 
 /*
-Update the org-wide permission for the specified team.
+UpdateOrganizationTeam Update the org-wide permission for the specified team.
 */
 func (a *Client) UpdateOrganizationTeam(params *UpdateOrganizationTeamParams, authInfo client.AuthInfoWriter) (*UpdateOrganizationTeamOK, error) {
 	// TODO: Validate the params before sending
@@ -163,6 +167,7 @@ func (a *Client) UpdateOrganizationTeam(params *UpdateOrganizationTeamParams, au
 		Method:             "PUT",
 		PathPattern:        "/api/v1/organization/{orgname}/team/{teamname}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateOrganizationTeamReader{formats: a.formats},
@@ -175,7 +180,7 @@ func (a *Client) UpdateOrganizationTeam(params *UpdateOrganizationTeamParams, au
 }
 
 /*
-Adds or invites a member to an existing team.
+UpdateOrganizationTeamMember Adds or invites a member to an existing team.
 */
 func (a *Client) UpdateOrganizationTeamMember(params *UpdateOrganizationTeamMemberParams, authInfo client.AuthInfoWriter) (*UpdateOrganizationTeamMemberOK, error) {
 	// TODO: Validate the params before sending
@@ -188,6 +193,7 @@ func (a *Client) UpdateOrganizationTeamMember(params *UpdateOrganizationTeamMemb
 		Method:             "PUT",
 		PathPattern:        "/api/v1/organization/{orgname}/team/{teamname}/members/{membername}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateOrganizationTeamMemberReader{formats: a.formats},
@@ -202,24 +208,4 @@ func (a *Client) UpdateOrganizationTeamMember(params *UpdateOrganizationTeamMemb
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport client.Transport) {
 	a.transport = transport
-}
-
-// NewAPIError creates a new API error
-func NewAPIError(opName string, response interface{}, code int) APIError {
-	return APIError{
-		OperationName: opName,
-		Response:      response,
-		Code:          code,
-	}
-}
-
-// APIError wraps an error model and captures the status code
-type APIError struct {
-	OperationName string
-	Response      interface{}
-	Code          int
-}
-
-func (a APIError) Error() string {
-	return fmt.Sprintf("%s (status %d): %+v ", a.OperationName, a.Code, a.Response)
 }

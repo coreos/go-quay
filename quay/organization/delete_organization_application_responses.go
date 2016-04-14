@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *DeleteOrganizationApplicationReader) ReadResponse(response client.Respo
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewDeleteOrganizationApplicationBadRequest() *DeleteOrganizationApplication
 Bad Request
 */
 type DeleteOrganizationApplicationBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *DeleteOrganizationApplicationBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *DeleteOrganizationApplicationBadRequest) Error() string {
 
 func (o *DeleteOrganizationApplicationBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewDeleteOrganizationApplicationUnauthorized() *DeleteOrganizationApplicati
 Session required
 */
 type DeleteOrganizationApplicationUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *DeleteOrganizationApplicationUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/applications/{client_id}][%d] deleteOrganizationApplicationUnauthorized ", 401)
+	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/applications/{client_id}][%d] deleteOrganizationApplicationUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteOrganizationApplicationUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewDeleteOrganizationApplicationForbidden() *DeleteOrganizationApplicationF
 Unauthorized access
 */
 type DeleteOrganizationApplicationForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *DeleteOrganizationApplicationForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/applications/{client_id}][%d] deleteOrganizationApplicationForbidden ", 403)
+	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/applications/{client_id}][%d] deleteOrganizationApplicationForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteOrganizationApplicationForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewDeleteOrganizationApplicationNotFound() *DeleteOrganizationApplicationNo
 Not found
 */
 type DeleteOrganizationApplicationNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *DeleteOrganizationApplicationNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/applications/{client_id}][%d] deleteOrganizationApplicationNotFound ", 404)
+	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/applications/{client_id}][%d] deleteOrganizationApplicationNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteOrganizationApplicationNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

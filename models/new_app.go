@@ -4,9 +4,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*NewApp Description of a new organization application.
@@ -17,25 +18,25 @@ type NewApp struct {
 
 	/* The URI for the application's homepage
 	 */
-	ApplicationURI *string `json:"application_uri,omitempty"`
+	ApplicationURI string `json:"application_uri,omitempty"`
 
 	/* The e-mail address of the avatar to use for the application
 	 */
-	AvatarEmail *string `json:"avatar_email,omitempty"`
+	AvatarEmail string `json:"avatar_email,omitempty"`
 
 	/* The human-readable description for the application
 	 */
-	Description *string `json:"description,omitempty"`
+	Description string `json:"description,omitempty"`
 
 	/* The name of the application
 
 	Required: true
 	*/
-	Name string `json:"name,omitempty"`
+	Name *string `json:"name"`
 
 	/* The URI for the application's OAuth redirect
 	 */
-	RedirectURI *string `json:"redirect_uri,omitempty"`
+	RedirectURI string `json:"redirect_uri,omitempty"`
 }
 
 // Validate validates this new app
@@ -55,7 +56,7 @@ func (m *NewApp) Validate(formats strfmt.Registry) error {
 
 func (m *NewApp) validateName(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("name", "body", string(m.Name)); err != nil {
+	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
 	}
 

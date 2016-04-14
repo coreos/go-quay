@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *ListStarredReposReader) ReadResponse(response client.Response, consumer
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewListStarredReposBadRequest() *ListStarredReposBadRequest {
 Bad Request
 */
 type ListStarredReposBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *ListStarredReposBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *ListStarredReposBadRequest) Error() string {
 
 func (o *ListStarredReposBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewListStarredReposUnauthorized() *ListStarredReposUnauthorized {
 Session required
 */
 type ListStarredReposUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *ListStarredReposUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /api/v1/user/starred][%d] listStarredReposUnauthorized ", 401)
+	return fmt.Sprintf("[GET /api/v1/user/starred][%d] listStarredReposUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListStarredReposUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewListStarredReposForbidden() *ListStarredReposForbidden {
 Unauthorized access
 */
 type ListStarredReposForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *ListStarredReposForbidden) Error() string {
-	return fmt.Sprintf("[GET /api/v1/user/starred][%d] listStarredReposForbidden ", 403)
+	return fmt.Sprintf("[GET /api/v1/user/starred][%d] listStarredReposForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListStarredReposForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewListStarredReposNotFound() *ListStarredReposNotFound {
 Not found
 */
 type ListStarredReposNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *ListStarredReposNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/v1/user/starred][%d] listStarredReposNotFound ", 404)
+	return fmt.Sprintf("[GET /api/v1/user/starred][%d] listStarredReposNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListStarredReposNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

@@ -4,11 +4,12 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*BuildTriggerActivateRequest BuildTriggerActivateRequest build trigger activate request
+/*BuildTriggerActivateRequest build trigger activate request
 
 swagger:model BuildTriggerActivateRequest
 */
@@ -18,11 +19,11 @@ type BuildTriggerActivateRequest struct {
 
 	Required: true
 	*/
-	Config interface{} `json:"config,omitempty"`
+	Config interface{} `json:"config"`
 
 	/* The name of the robot that will be used to pull images.
 	 */
-	PullRobot *string `json:"pull_robot,omitempty"`
+	PullRobot string `json:"pull_robot,omitempty"`
 }
 
 // Validate validates this build trigger activate request

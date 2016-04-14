@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *CancelRepoBuildReader) ReadResponse(response client.Response, consumer 
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewCancelRepoBuildBadRequest() *CancelRepoBuildBadRequest {
 Bad Request
 */
 type CancelRepoBuildBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *CancelRepoBuildBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *CancelRepoBuildBadRequest) Error() string {
 
 func (o *CancelRepoBuildBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewCancelRepoBuildUnauthorized() *CancelRepoBuildUnauthorized {
 Session required
 */
 type CancelRepoBuildUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *CancelRepoBuildUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/build/{build_uuid}][%d] cancelRepoBuildUnauthorized ", 401)
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/build/{build_uuid}][%d] cancelRepoBuildUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CancelRepoBuildUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewCancelRepoBuildForbidden() *CancelRepoBuildForbidden {
 Unauthorized access
 */
 type CancelRepoBuildForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *CancelRepoBuildForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/build/{build_uuid}][%d] cancelRepoBuildForbidden ", 403)
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/build/{build_uuid}][%d] cancelRepoBuildForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CancelRepoBuildForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewCancelRepoBuildNotFound() *CancelRepoBuildNotFound {
 Not found
 */
 type CancelRepoBuildNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *CancelRepoBuildNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/build/{build_uuid}][%d] cancelRepoBuildNotFound ", 404)
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/build/{build_uuid}][%d] cancelRepoBuildNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CancelRepoBuildNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

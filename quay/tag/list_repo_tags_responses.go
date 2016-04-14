@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *ListRepoTagsReader) ReadResponse(response client.Response, consumer htt
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewListRepoTagsBadRequest() *ListRepoTagsBadRequest {
 Bad Request
 */
 type ListRepoTagsBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *ListRepoTagsBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *ListRepoTagsBadRequest) Error() string {
 
 func (o *ListRepoTagsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewListRepoTagsUnauthorized() *ListRepoTagsUnauthorized {
 Session required
 */
 type ListRepoTagsUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *ListRepoTagsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tag/][%d] listRepoTagsUnauthorized ", 401)
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tag/][%d] listRepoTagsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListRepoTagsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewListRepoTagsForbidden() *ListRepoTagsForbidden {
 Unauthorized access
 */
 type ListRepoTagsForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *ListRepoTagsForbidden) Error() string {
-	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tag/][%d] listRepoTagsForbidden ", 403)
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tag/][%d] listRepoTagsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListRepoTagsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewListRepoTagsNotFound() *ListRepoTagsNotFound {
 Not found
 */
 type ListRepoTagsNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *ListRepoTagsNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tag/][%d] listRepoTagsNotFound ", 404)
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tag/][%d] listRepoTagsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListRepoTagsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

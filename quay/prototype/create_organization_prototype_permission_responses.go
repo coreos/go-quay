@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -23,8 +24,8 @@ type CreateOrganizationPrototypePermissionReader struct {
 func (o *CreateOrganizationPrototypePermissionReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
-	case 200:
-		result := NewCreateOrganizationPrototypePermissionOK()
+	case 201:
+		result := NewCreateOrganizationPrototypePermissionCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -59,27 +60,27 @@ func (o *CreateOrganizationPrototypePermissionReader) ReadResponse(response clie
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-// NewCreateOrganizationPrototypePermissionOK creates a CreateOrganizationPrototypePermissionOK with default headers values
-func NewCreateOrganizationPrototypePermissionOK() *CreateOrganizationPrototypePermissionOK {
-	return &CreateOrganizationPrototypePermissionOK{}
+// NewCreateOrganizationPrototypePermissionCreated creates a CreateOrganizationPrototypePermissionCreated with default headers values
+func NewCreateOrganizationPrototypePermissionCreated() *CreateOrganizationPrototypePermissionCreated {
+	return &CreateOrganizationPrototypePermissionCreated{}
 }
 
-/*CreateOrganizationPrototypePermissionOK handles this case with default header values.
+/*CreateOrganizationPrototypePermissionCreated handles this case with default header values.
 
-Successful invocation
+Successful creation
 */
-type CreateOrganizationPrototypePermissionOK struct {
+type CreateOrganizationPrototypePermissionCreated struct {
 }
 
-func (o *CreateOrganizationPrototypePermissionOK) Error() string {
-	return fmt.Sprintf("[POST /api/v1/organization/{orgname}/prototypes][%d] createOrganizationPrototypePermissionOK ", 200)
+func (o *CreateOrganizationPrototypePermissionCreated) Error() string {
+	return fmt.Sprintf("[POST /api/v1/organization/{orgname}/prototypes][%d] createOrganizationPrototypePermissionCreated ", 201)
 }
 
-func (o *CreateOrganizationPrototypePermissionOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateOrganizationPrototypePermissionCreated) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -94,7 +95,7 @@ func NewCreateOrganizationPrototypePermissionBadRequest() *CreateOrganizationPro
 Bad Request
 */
 type CreateOrganizationPrototypePermissionBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *CreateOrganizationPrototypePermissionBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *CreateOrganizationPrototypePermissionBadRequest) Error() string {
 
 func (o *CreateOrganizationPrototypePermissionBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewCreateOrganizationPrototypePermissionUnauthorized() *CreateOrganizationP
 Session required
 */
 type CreateOrganizationPrototypePermissionUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *CreateOrganizationPrototypePermissionUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /api/v1/organization/{orgname}/prototypes][%d] createOrganizationPrototypePermissionUnauthorized ", 401)
+	return fmt.Sprintf("[POST /api/v1/organization/{orgname}/prototypes][%d] createOrganizationPrototypePermissionUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateOrganizationPrototypePermissionUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewCreateOrganizationPrototypePermissionForbidden() *CreateOrganizationProt
 Unauthorized access
 */
 type CreateOrganizationPrototypePermissionForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *CreateOrganizationPrototypePermissionForbidden) Error() string {
-	return fmt.Sprintf("[POST /api/v1/organization/{orgname}/prototypes][%d] createOrganizationPrototypePermissionForbidden ", 403)
+	return fmt.Sprintf("[POST /api/v1/organization/{orgname}/prototypes][%d] createOrganizationPrototypePermissionForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateOrganizationPrototypePermissionForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewCreateOrganizationPrototypePermissionNotFound() *CreateOrganizationProto
 Not found
 */
 type CreateOrganizationPrototypePermissionNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *CreateOrganizationPrototypePermissionNotFound) Error() string {
-	return fmt.Sprintf("[POST /api/v1/organization/{orgname}/prototypes][%d] createOrganizationPrototypePermissionNotFound ", 404)
+	return fmt.Sprintf("[POST /api/v1/organization/{orgname}/prototypes][%d] createOrganizationPrototypePermissionNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateOrganizationPrototypePermissionNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

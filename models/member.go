@@ -4,35 +4,34 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"strconv"
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
 
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
-	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*Member Member member
+/*Member member
 
 swagger:model Member
 */
 type Member struct {
 
-	/* Avatar avatar
+	/* avatar
 	 */
 	Avatar *Avatar `json:"avatar,omitempty"`
 
-	/* Name name
+	/* name
 
 	Required: true
 	*/
-	Name string `json:"name,omitempty"`
+	Name *string `json:"name"`
 
-	/* Repositories repositories
+	/* repositories
 	 */
 	Repositories []string `json:"repositories,omitempty"`
 
-	/* Teams teams
+	/* teams
 	 */
 	Teams []*Team `json:"teams,omitempty"`
 }
@@ -64,7 +63,7 @@ func (m *Member) Validate(formats strfmt.Registry) error {
 
 func (m *Member) validateName(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("name", "body", string(m.Name)); err != nil {
+	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
 	}
 
@@ -77,14 +76,6 @@ func (m *Member) validateRepositories(formats strfmt.Registry) error {
 		return nil
 	}
 
-	for i := 0; i < len(m.Repositories); i++ {
-
-		if err := validate.RequiredString("repositories"+"."+strconv.Itoa(i), "body", string(m.Repositories[i])); err != nil {
-			return err
-		}
-
-	}
-
 	return nil
 }
 
@@ -92,17 +83,6 @@ func (m *Member) validateTeams(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Teams) { // not required
 		return nil
-	}
-
-	for i := 0; i < len(m.Teams); i++ {
-
-		if m.Teams[i] != nil {
-
-			if err := m.Teams[i].Validate(formats); err != nil {
-				return err
-			}
-		}
-
 	}
 
 	return nil

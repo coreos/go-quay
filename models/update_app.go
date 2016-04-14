@@ -4,9 +4,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*UpdateApp Description of an updated application.
@@ -19,27 +20,27 @@ type UpdateApp struct {
 
 	Required: true
 	*/
-	ApplicationURI string `json:"application_uri,omitempty"`
+	ApplicationURI *string `json:"application_uri"`
 
 	/* The e-mail address of the avatar to use for the application
 	 */
-	AvatarEmail *string `json:"avatar_email,omitempty"`
+	AvatarEmail string `json:"avatar_email,omitempty"`
 
 	/* The human-readable description for the application
 	 */
-	Description *string `json:"description,omitempty"`
+	Description string `json:"description,omitempty"`
 
 	/* The name of the application
 
 	Required: true
 	*/
-	Name string `json:"name,omitempty"`
+	Name *string `json:"name"`
 
 	/* The URI for the application's OAuth redirect
 
 	Required: true
 	*/
-	RedirectURI string `json:"redirect_uri,omitempty"`
+	RedirectURI *string `json:"redirect_uri"`
 }
 
 // Validate validates this update app
@@ -69,7 +70,7 @@ func (m *UpdateApp) Validate(formats strfmt.Registry) error {
 
 func (m *UpdateApp) validateApplicationURI(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("application_uri", "body", string(m.ApplicationURI)); err != nil {
+	if err := validate.Required("application_uri", "body", m.ApplicationURI); err != nil {
 		return err
 	}
 
@@ -78,7 +79,7 @@ func (m *UpdateApp) validateApplicationURI(formats strfmt.Registry) error {
 
 func (m *UpdateApp) validateName(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("name", "body", string(m.Name)); err != nil {
+	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
 	}
 
@@ -87,7 +88,7 @@ func (m *UpdateApp) validateName(formats strfmt.Registry) error {
 
 func (m *UpdateApp) validateRedirectURI(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("redirect_uri", "body", string(m.RedirectURI)); err != nil {
+	if err := validate.Required("redirect_uri", "body", m.RedirectURI); err != nil {
 		return err
 	}
 

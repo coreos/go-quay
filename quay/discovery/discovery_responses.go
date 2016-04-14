@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *DiscoveryReader) ReadResponse(response client.Response, consumer httpki
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewDiscoveryBadRequest() *DiscoveryBadRequest {
 Bad Request
 */
 type DiscoveryBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *DiscoveryBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *DiscoveryBadRequest) Error() string {
 
 func (o *DiscoveryBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewDiscoveryUnauthorized() *DiscoveryUnauthorized {
 Session required
 */
 type DiscoveryUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *DiscoveryUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /api/v1/discovery][%d] discoveryUnauthorized ", 401)
+	return fmt.Sprintf("[GET /api/v1/discovery][%d] discoveryUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DiscoveryUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewDiscoveryForbidden() *DiscoveryForbidden {
 Unauthorized access
 */
 type DiscoveryForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *DiscoveryForbidden) Error() string {
-	return fmt.Sprintf("[GET /api/v1/discovery][%d] discoveryForbidden ", 403)
+	return fmt.Sprintf("[GET /api/v1/discovery][%d] discoveryForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DiscoveryForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewDiscoveryNotFound() *DiscoveryNotFound {
 Not found
 */
 type DiscoveryNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *DiscoveryNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/v1/discovery][%d] discoveryNotFound ", 404)
+	return fmt.Sprintf("[GET /api/v1/discovery][%d] discoveryNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DiscoveryNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

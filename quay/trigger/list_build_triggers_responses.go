@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *ListBuildTriggersReader) ReadResponse(response client.Response, consume
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewListBuildTriggersBadRequest() *ListBuildTriggersBadRequest {
 Bad Request
 */
 type ListBuildTriggersBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *ListBuildTriggersBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *ListBuildTriggersBadRequest) Error() string {
 
 func (o *ListBuildTriggersBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewListBuildTriggersUnauthorized() *ListBuildTriggersUnauthorized {
 Session required
 */
 type ListBuildTriggersUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *ListBuildTriggersUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /api/v1/repository/{repository}/trigger/][%d] listBuildTriggersUnauthorized ", 401)
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/trigger/][%d] listBuildTriggersUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListBuildTriggersUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewListBuildTriggersForbidden() *ListBuildTriggersForbidden {
 Unauthorized access
 */
 type ListBuildTriggersForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *ListBuildTriggersForbidden) Error() string {
-	return fmt.Sprintf("[GET /api/v1/repository/{repository}/trigger/][%d] listBuildTriggersForbidden ", 403)
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/trigger/][%d] listBuildTriggersForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListBuildTriggersForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewListBuildTriggersNotFound() *ListBuildTriggersNotFound {
 Not found
 */
 type ListBuildTriggersNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *ListBuildTriggersNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/v1/repository/{repository}/trigger/][%d] listBuildTriggersNotFound ", 404)
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/trigger/][%d] listBuildTriggersNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListBuildTriggersNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

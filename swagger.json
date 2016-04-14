@@ -9,6 +9,11 @@
     "title": "Quay Frontend"
   },
   "paths": {
+    "/logarchive/{file_id}": {
+      "x-name": "data.archivedlogs.LogArchiveHandlers",
+      "x-tag": "archivedlogs",
+      "x-path": "/logarchive/{file_id}"
+    },
     "/api/v1/organization/{orgname}/invoices": {
       "x-name": "endpoints.api.billing.OrganizationInvoiceList",
       "parameters": [
@@ -28,18 +33,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -76,18 +90,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -116,18 +139,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -171,22 +203,31 @@
       "x-tag": "build",
       "post": {
         "responses": {
-          "200": {
-            "description": "Successful invocation"
+          "201": {
+            "description": "Successful creation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -248,18 +289,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -317,18 +367,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -366,21 +425,30 @@
       "delete": {
         "responses": {
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "204": {
             "description": "Deleted"
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -440,18 +508,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -495,18 +572,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -524,6 +610,68 @@
           }
         ],
         "operationId": "discovery"
+      }
+    },
+    "/api/v1/error/{error_type}": {
+      "x-name": "endpoints.api.error.Error",
+      "parameters": [
+        {
+          "description": "The error code identifying the type of error.",
+          "required": true,
+          "type": "string",
+          "name": "error_type",
+          "in": "path"
+        }
+      ],
+      "x-tag": "error",
+      "x-path": "/api/v1/error/{error_type}",
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Successful invocation",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorDescription"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "401": {
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          }
+        },
+        "tags": [
+          "error"
+        ],
+        "description": "Get a detailed description of the error",
+        "parameters": [
+          {
+            "description": "The error code identifying the type of error.",
+            "required": true,
+            "type": "string",
+            "name": "error_type",
+            "in": "path"
+          }
+        ],
+        "operationId": "getErrorDescription"
       }
     },
     "/api/v1/repository/{repository}/image/{image_id}": {
@@ -552,18 +700,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -597,77 +754,6 @@
         "description": "Get the information available for the specified image."
       }
     },
-    "/api/v1/repository/{repository}/image/{image_id}/changes": {
-      "x-name": "endpoints.api.image.RepositoryImageChanges",
-      "parameters": [
-        {
-          "description": "The Docker image ID",
-          "required": true,
-          "type": "string",
-          "name": "image_id",
-          "in": "path"
-        },
-        {
-          "description": "The full path of the repository. e.g. namespace/name",
-          "required": true,
-          "type": "string",
-          "name": "repository",
-          "in": "path"
-        }
-      ],
-      "x-tag": "image",
-      "x-path": "/api/v1/repository/{repository}/image/{image_id}/changes",
-      "get": {
-        "responses": {
-          "200": {
-            "description": "Successful invocation"
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "403": {
-            "description": "Unauthorized access"
-          },
-          "401": {
-            "description": "Session required"
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "$ref": "#/definitions/GeneralError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "description": "The Docker image ID",
-            "required": true,
-            "type": "string",
-            "name": "image_id",
-            "in": "path"
-          },
-          {
-            "description": "The full path of the repository. e.g. namespace/name",
-            "required": true,
-            "type": "string",
-            "name": "repository",
-            "in": "path"
-          }
-        ],
-        "tags": [
-          "image"
-        ],
-        "security": [
-          {
-            "oauth2_implicit": [
-              "repo:read"
-            ]
-          }
-        ],
-        "operationId": "getImageChanges",
-        "description": "Get the list of changes for the specified image."
-      }
-    },
     "/api/v1/repository/{repository}/image/": {
       "x-name": "endpoints.api.image.RepositoryImageList",
       "parameters": [
@@ -687,18 +773,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -744,18 +839,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -822,18 +926,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -844,6 +957,13 @@
             "type": "string",
             "name": "orgname",
             "in": "path"
+          },
+          {
+            "description": "The page token for the next page",
+            "required": false,
+            "type": "string",
+            "name": "next_page",
+            "in": "query"
           },
           {
             "description": "The page number for the logs",
@@ -907,18 +1027,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -929,6 +1058,13 @@
             "type": "string",
             "name": "repository",
             "in": "path"
+          },
+          {
+            "description": "The page token for the next page",
+            "required": false,
+            "type": "string",
+            "name": "next_page",
+            "in": "query"
           },
           {
             "description": "The page number for the logs",
@@ -966,6 +1102,155 @@
         "description": "List the logs for the specified repository."
       }
     },
+    "/api/v1/user/logs": {
+      "x-name": "endpoints.api.logs.UserLogs",
+      "x-tag": "logs",
+      "x-path": "/api/v1/user/logs",
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Successful invocation"
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "401": {
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The page token for the next page",
+            "required": false,
+            "type": "string",
+            "name": "next_page",
+            "in": "query"
+          },
+          {
+            "description": "Username for which to filter logs.",
+            "required": false,
+            "type": "string",
+            "name": "performer",
+            "in": "query"
+          },
+          {
+            "description": "Latest time to which to get logs. (%m/%d/%Y %Z)",
+            "required": false,
+            "type": "string",
+            "name": "endtime",
+            "in": "query"
+          },
+          {
+            "description": "Earliest time from which to get logs. (%m/%d/%Y %Z)",
+            "required": false,
+            "type": "string",
+            "name": "starttime",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "logs"
+        ],
+        "security": [
+          {
+            "oauth2_implicit": [
+              "user:admin"
+            ]
+          }
+        ],
+        "operationId": "listUserLogs",
+        "description": "List the logs for the current user."
+      }
+    },
+    "/api/v1/user/aggregatelogs": {
+      "x-name": "endpoints.api.logs.UserAggregateLogs",
+      "x-tag": "logs",
+      "x-path": "/api/v1/user/aggregatelogs",
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Successful invocation"
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "401": {
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "Username for which to filter logs.",
+            "required": false,
+            "type": "string",
+            "name": "performer",
+            "in": "query"
+          },
+          {
+            "description": "Latest time to which to get logs. (%m/%d/%Y %Z)",
+            "required": false,
+            "type": "string",
+            "name": "endtime",
+            "in": "query"
+          },
+          {
+            "description": "Earliest time from which to get logs. (%m/%d/%Y %Z)",
+            "required": false,
+            "type": "string",
+            "name": "starttime",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "logs"
+        ],
+        "security": [
+          {
+            "oauth2_implicit": [
+              "user:admin"
+            ]
+          }
+        ],
+        "operationId": "getAggregateUserLogs",
+        "description": "Returns the aggregated logs for the current user."
+      }
+    },
     "/api/v1/repository/{repository}/aggregatelogs": {
       "x-name": "endpoints.api.logs.RepositoryAggregateLogs",
       "parameters": [
@@ -985,18 +1270,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -1064,18 +1358,27 @@
             }
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -1113,21 +1416,30 @@
       "delete": {
         "responses": {
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "204": {
             "description": "Deleted"
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -1178,18 +1490,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -1223,18 +1544,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -1294,18 +1624,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -1346,18 +1685,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -1402,21 +1750,30 @@
       "delete": {
         "responses": {
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "204": {
             "description": "Deleted"
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -1450,6 +1807,124 @@
         "description": "Deletes the application under this organization."
       }
     },
+    "/api/v1/organization/": {
+      "post": {
+        "responses": {
+          "201": {
+            "description": "Successful creation"
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "401": {
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/NewOrg"
+            },
+            "description": "Request body contents.",
+            "required": true,
+            "name": "body",
+            "in": "body"
+          }
+        ],
+        "tags": [
+          "organization"
+        ],
+        "security": [
+          {
+            "oauth2_implicit": [
+              "user:admin"
+            ]
+          }
+        ],
+        "operationId": "createOrganization",
+        "description": "Create a new organization."
+      },
+      "x-name": "endpoints.api.organization.OrganizationList",
+      "x-tag": "organization",
+      "x-path": "/api/v1/organization/"
+    },
+    "/api/v1/app/{client_id}": {
+      "x-name": "endpoints.api.organization.ApplicationInformation",
+      "parameters": [
+        {
+          "description": "The OAuth client ID",
+          "required": true,
+          "type": "string",
+          "name": "client_id",
+          "in": "path"
+        }
+      ],
+      "x-tag": "organization",
+      "x-path": "/api/v1/app/{client_id}",
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Successful invocation"
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "401": {
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          }
+        },
+        "tags": [
+          "organization"
+        ],
+        "description": "Get information on the specified application.",
+        "parameters": [
+          {
+            "description": "The OAuth client ID",
+            "required": true,
+            "type": "string",
+            "name": "client_id",
+            "in": "path"
+          }
+        ],
+        "operationId": "getApplicationInformation"
+      }
+    },
     "/api/v1/organization/{orgname}/applications": {
       "x-name": "endpoints.api.organization.OrganizationApplications",
       "parameters": [
@@ -1467,18 +1942,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -1508,22 +1992,31 @@
       "x-tag": "organization",
       "post": {
         "responses": {
-          "200": {
-            "description": "Successful invocation"
+          "201": {
+            "description": "Successful creation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -1578,18 +2071,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -1616,236 +2118,6 @@
         "description": "List the human members of the specified organization."
       }
     },
-    "/api/v1/app/{client_id}": {
-      "x-name": "endpoints.api.organization.ApplicationInformation",
-      "parameters": [
-        {
-          "description": "The OAuth client ID",
-          "required": true,
-          "type": "string",
-          "name": "client_id",
-          "in": "path"
-        }
-      ],
-      "x-tag": "organization",
-      "x-path": "/api/v1/app/{client_id}",
-      "get": {
-        "responses": {
-          "200": {
-            "description": "Successful invocation"
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "403": {
-            "description": "Unauthorized access"
-          },
-          "401": {
-            "description": "Session required"
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "$ref": "#/definitions/GeneralError"
-            }
-          }
-        },
-        "tags": [
-          "organization"
-        ],
-        "description": "Get information on the specified application.",
-        "parameters": [
-          {
-            "description": "The OAuth client ID",
-            "required": true,
-            "type": "string",
-            "name": "client_id",
-            "in": "path"
-          }
-        ],
-        "operationId": "getApplicationInformation"
-      }
-    },
-    "/api/v1/repository/{repository}/permissions/team/{teamname}": {
-      "x-name": "endpoints.api.permission.RepositoryTeamPermission",
-      "parameters": [
-        {
-          "description": "The full path of the repository. e.g. namespace/name",
-          "required": true,
-          "type": "string",
-          "name": "repository",
-          "in": "path"
-        },
-        {
-          "description": "The name of the team to which the permission applies",
-          "required": true,
-          "type": "string",
-          "name": "teamname",
-          "in": "path"
-        }
-      ],
-      "get": {
-        "responses": {
-          "200": {
-            "description": "Successful invocation"
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "403": {
-            "description": "Unauthorized access"
-          },
-          "401": {
-            "description": "Session required"
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "$ref": "#/definitions/GeneralError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "description": "The name of the team to which the permission applies",
-            "required": true,
-            "type": "string",
-            "name": "teamname",
-            "in": "path"
-          },
-          {
-            "description": "The full path of the repository. e.g. namespace/name",
-            "required": true,
-            "type": "string",
-            "name": "repository",
-            "in": "path"
-          }
-        ],
-        "tags": [
-          "permission"
-        ],
-        "security": [
-          {
-            "oauth2_implicit": [
-              "repo:admin"
-            ]
-          }
-        ],
-        "operationId": "getTeamPermissions",
-        "description": "Fetch the permission for the specified team."
-      },
-      "x-path": "/api/v1/repository/{repository}/permissions/team/{teamname}",
-      "x-tag": "permission",
-      "put": {
-        "responses": {
-          "200": {
-            "description": "Successful invocation"
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "403": {
-            "description": "Unauthorized access"
-          },
-          "401": {
-            "description": "Session required"
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "$ref": "#/definitions/GeneralError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "description": "The name of the team to which the permission applies",
-            "required": true,
-            "type": "string",
-            "name": "teamname",
-            "in": "path"
-          },
-          {
-            "description": "The full path of the repository. e.g. namespace/name",
-            "required": true,
-            "type": "string",
-            "name": "repository",
-            "in": "path"
-          },
-          {
-            "schema": {
-              "$ref": "#/definitions/TeamPermission"
-            },
-            "description": "Request body contents.",
-            "required": true,
-            "name": "body",
-            "in": "body"
-          }
-        ],
-        "tags": [
-          "permission"
-        ],
-        "security": [
-          {
-            "oauth2_implicit": [
-              "repo:admin"
-            ]
-          }
-        ],
-        "operationId": "changeTeamPermissions",
-        "description": "Update the existing team permission."
-      },
-      "delete": {
-        "responses": {
-          "404": {
-            "description": "Not found"
-          },
-          "403": {
-            "description": "Unauthorized access"
-          },
-          "204": {
-            "description": "Deleted"
-          },
-          "401": {
-            "description": "Session required"
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "$ref": "#/definitions/GeneralError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "description": "The name of the team to which the permission applies",
-            "required": true,
-            "type": "string",
-            "name": "teamname",
-            "in": "path"
-          },
-          {
-            "description": "The full path of the repository. e.g. namespace/name",
-            "required": true,
-            "type": "string",
-            "name": "repository",
-            "in": "path"
-          }
-        ],
-        "tags": [
-          "permission"
-        ],
-        "security": [
-          {
-            "oauth2_implicit": [
-              "repo:admin"
-            ]
-          }
-        ],
-        "operationId": "deleteTeamPermissions",
-        "description": "Delete the permission for the specified team."
-      }
-    },
     "/api/v1/repository/{repository}/permissions/user/": {
       "x-name": "endpoints.api.permission.RepositoryUserPermissionList",
       "parameters": [
@@ -1865,18 +2137,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -1922,18 +2203,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -1960,6 +2250,213 @@
         "description": "List all team permission."
       }
     },
+    "/api/v1/repository/{repository}/permissions/team/{teamname}": {
+      "x-name": "endpoints.api.permission.RepositoryTeamPermission",
+      "parameters": [
+        {
+          "description": "The full path of the repository. e.g. namespace/name",
+          "required": true,
+          "type": "string",
+          "name": "repository",
+          "in": "path"
+        },
+        {
+          "description": "The name of the team to which the permission applies",
+          "required": true,
+          "type": "string",
+          "name": "teamname",
+          "in": "path"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Successful invocation"
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "401": {
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The name of the team to which the permission applies",
+            "required": true,
+            "type": "string",
+            "name": "teamname",
+            "in": "path"
+          },
+          {
+            "description": "The full path of the repository. e.g. namespace/name",
+            "required": true,
+            "type": "string",
+            "name": "repository",
+            "in": "path"
+          }
+        ],
+        "tags": [
+          "permission"
+        ],
+        "security": [
+          {
+            "oauth2_implicit": [
+              "repo:admin"
+            ]
+          }
+        ],
+        "operationId": "getTeamPermissions",
+        "description": "Fetch the permission for the specified team."
+      },
+      "x-path": "/api/v1/repository/{repository}/permissions/team/{teamname}",
+      "x-tag": "permission",
+      "put": {
+        "responses": {
+          "200": {
+            "description": "Successful invocation"
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "401": {
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The name of the team to which the permission applies",
+            "required": true,
+            "type": "string",
+            "name": "teamname",
+            "in": "path"
+          },
+          {
+            "description": "The full path of the repository. e.g. namespace/name",
+            "required": true,
+            "type": "string",
+            "name": "repository",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/TeamPermission"
+            },
+            "description": "Request body contents.",
+            "required": true,
+            "name": "body",
+            "in": "body"
+          }
+        ],
+        "tags": [
+          "permission"
+        ],
+        "security": [
+          {
+            "oauth2_implicit": [
+              "repo:admin"
+            ]
+          }
+        ],
+        "operationId": "changeTeamPermissions",
+        "description": "Update the existing team permission."
+      },
+      "delete": {
+        "responses": {
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "204": {
+            "description": "Deleted"
+          },
+          "401": {
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The name of the team to which the permission applies",
+            "required": true,
+            "type": "string",
+            "name": "teamname",
+            "in": "path"
+          },
+          {
+            "description": "The full path of the repository. e.g. namespace/name",
+            "required": true,
+            "type": "string",
+            "name": "repository",
+            "in": "path"
+          }
+        ],
+        "tags": [
+          "permission"
+        ],
+        "security": [
+          {
+            "oauth2_implicit": [
+              "repo:admin"
+            ]
+          }
+        ],
+        "operationId": "deleteTeamPermissions",
+        "description": "Delete the permission for the specified team."
+      }
+    },
     "/api/v1/repository/{repository}/permissions/user/{username}": {
       "x-name": "endpoints.api.permission.RepositoryUserPermission",
       "parameters": [
@@ -1984,18 +2481,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -2036,18 +2542,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -2092,21 +2607,30 @@
       "delete": {
         "responses": {
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "204": {
             "description": "Deleted"
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -2166,18 +2690,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -2228,18 +2761,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -2269,22 +2811,31 @@
       "x-tag": "prototype",
       "post": {
         "responses": {
-          "200": {
-            "description": "Successful invocation"
+          "201": {
+            "description": "Successful creation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -2346,18 +2897,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -2402,21 +2962,30 @@
       "delete": {
         "responses": {
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "204": {
             "description": "Deleted"
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -2453,22 +3022,31 @@
     "/api/v1/repository": {
       "post": {
         "responses": {
-          "200": {
-            "description": "Successful invocation"
+          "201": {
+            "description": "Successful creation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -2505,22 +3083,38 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
         "parameters": [
+          {
+            "description": "The page token for the next page",
+            "required": false,
+            "type": "string",
+            "name": "next_page",
+            "in": "query"
+          },
           {
             "description": "Whether to include the repository's popularity metric.",
             "required": false,
@@ -2555,20 +3149,6 @@
             "type": "string",
             "name": "namespace",
             "in": "query"
-          },
-          {
-            "description": "Limit on the number of results (int)",
-            "required": false,
-            "type": "integer",
-            "name": "limit",
-            "in": "query"
-          },
-          {
-            "description": "Offset page number. (int)",
-            "required": false,
-            "type": "integer",
-            "name": "page",
-            "in": "query"
           }
         ],
         "tags": [
@@ -2588,22 +3168,31 @@
     "/api/v1/repository/{repository}/changevisibility": {
       "post": {
         "responses": {
-          "200": {
-            "description": "Successful invocation"
+          "201": {
+            "description": "Successful creation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -2668,18 +3257,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -2713,18 +3311,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -2762,21 +3369,30 @@
       "delete": {
         "responses": {
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "204": {
             "description": "Deleted"
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -2803,134 +3419,34 @@
         "description": "Delete a repository."
       }
     },
-    "/api/v1/repository/{repository}/notification/": {
-      "x-name": "endpoints.api.repositorynotification.RepositoryNotificationList",
-      "parameters": [
-        {
-          "description": "The full path of the repository. e.g. namespace/name",
-          "required": true,
-          "type": "string",
-          "name": "repository",
-          "in": "path"
-        }
-      ],
-      "get": {
-        "responses": {
-          "200": {
-            "description": "Successful invocation"
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "403": {
-            "description": "Unauthorized access"
-          },
-          "401": {
-            "description": "Session required"
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "$ref": "#/definitions/GeneralError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "description": "The full path of the repository. e.g. namespace/name",
-            "required": true,
-            "type": "string",
-            "name": "repository",
-            "in": "path"
-          }
-        ],
-        "tags": [
-          "repositorynotification"
-        ],
-        "security": [
-          {
-            "oauth2_implicit": [
-              "repo:admin"
-            ]
-          }
-        ],
-        "operationId": "listRepoNotifications",
-        "description": "List the notifications for the specified repository."
-      },
-      "x-path": "/api/v1/repository/{repository}/notification/",
-      "x-tag": "repositorynotification",
-      "post": {
-        "responses": {
-          "200": {
-            "description": "Successful invocation"
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "403": {
-            "description": "Unauthorized access"
-          },
-          "401": {
-            "description": "Session required"
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "$ref": "#/definitions/GeneralError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "description": "The full path of the repository. e.g. namespace/name",
-            "required": true,
-            "type": "string",
-            "name": "repository",
-            "in": "path"
-          },
-          {
-            "schema": {
-              "$ref": "#/definitions/NotificationCreateRequest"
-            },
-            "description": "Request body contents.",
-            "required": true,
-            "name": "body",
-            "in": "body"
-          }
-        ],
-        "tags": [
-          "repositorynotification"
-        ],
-        "security": [
-          {
-            "oauth2_implicit": [
-              "repo:admin"
-            ]
-          }
-        ],
-        "operationId": "createRepoNotification",
-        "description": "Create a new notification for the specified repository."
-      }
-    },
     "/api/v1/repository/{repository}/notification/{uuid}/test": {
       "post": {
         "responses": {
-          "200": {
-            "description": "Successful invocation"
+          "201": {
+            "description": "Successful creation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -2983,6 +3499,133 @@
       "x-tag": "repositorynotification",
       "x-path": "/api/v1/repository/{repository}/notification/{uuid}/test"
     },
+    "/api/v1/repository/{repository}/notification/": {
+      "x-name": "endpoints.api.repositorynotification.RepositoryNotificationList",
+      "parameters": [
+        {
+          "description": "The full path of the repository. e.g. namespace/name",
+          "required": true,
+          "type": "string",
+          "name": "repository",
+          "in": "path"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Successful invocation"
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "401": {
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The full path of the repository. e.g. namespace/name",
+            "required": true,
+            "type": "string",
+            "name": "repository",
+            "in": "path"
+          }
+        ],
+        "tags": [
+          "repositorynotification"
+        ],
+        "security": [
+          {
+            "oauth2_implicit": [
+              "repo:admin"
+            ]
+          }
+        ],
+        "operationId": "listRepoNotifications",
+        "description": "List the notifications for the specified repository."
+      },
+      "x-path": "/api/v1/repository/{repository}/notification/",
+      "x-tag": "repositorynotification",
+      "post": {
+        "responses": {
+          "201": {
+            "description": "Successful creation"
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "401": {
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The full path of the repository. e.g. namespace/name",
+            "required": true,
+            "type": "string",
+            "name": "repository",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/NotificationCreateRequest"
+            },
+            "description": "Request body contents.",
+            "required": true,
+            "name": "body",
+            "in": "body"
+          }
+        ],
+        "tags": [
+          "repositorynotification"
+        ],
+        "security": [
+          {
+            "oauth2_implicit": [
+              "repo:admin"
+            ]
+          }
+        ],
+        "operationId": "createRepoNotification",
+        "description": "Create a new notification for the specified repository."
+      }
+    },
     "/api/v1/repository/{repository}/notification/{uuid}": {
       "x-name": "endpoints.api.repositorynotification.RepositoryNotification",
       "parameters": [
@@ -3007,18 +3650,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -3056,21 +3708,30 @@
       "delete": {
         "responses": {
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "204": {
             "description": "Deleted"
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -3121,18 +3782,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -3162,22 +3832,31 @@
       "x-tag": "repotoken",
       "post": {
         "responses": {
-          "200": {
-            "description": "Successful invocation"
+          "201": {
+            "description": "Successful creation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -3237,18 +3916,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -3289,18 +3977,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -3345,21 +4042,30 @@
       "delete": {
         "responses": {
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "204": {
             "description": "Deleted"
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -3393,128 +4099,6 @@
         "description": "Delete the repository token."
       }
     },
-    "/api/v1/user/robots/{robot_shortname}": {
-      "x-name": "endpoints.api.robot.UserRobot",
-      "parameters": [
-        {
-          "description": "The short name for the robot, without any user or organization prefix",
-          "required": true,
-          "type": "string",
-          "name": "robot_shortname",
-          "in": "path"
-        }
-      ],
-      "get": {
-        "responses": {
-          "200": {
-            "description": "Successful invocation"
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "403": {
-            "description": "Unauthorized access"
-          },
-          "401": {
-            "description": "Session required"
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "$ref": "#/definitions/GeneralError"
-            }
-          }
-        },
-        "tags": [
-          "robot"
-        ],
-        "description": "Returns the user's robot with the specified name.",
-        "parameters": [
-          {
-            "description": "The short name for the robot, without any user or organization prefix",
-            "required": true,
-            "type": "string",
-            "name": "robot_shortname",
-            "in": "path"
-          }
-        ],
-        "operationId": "getUserRobot"
-      },
-      "x-path": "/api/v1/user/robots/{robot_shortname}",
-      "x-tag": "robot",
-      "put": {
-        "responses": {
-          "200": {
-            "description": "Successful invocation"
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "403": {
-            "description": "Unauthorized access"
-          },
-          "401": {
-            "description": "Session required"
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "$ref": "#/definitions/GeneralError"
-            }
-          }
-        },
-        "tags": [
-          "robot"
-        ],
-        "description": "Create a new user robot with the specified name.",
-        "parameters": [
-          {
-            "description": "The short name for the robot, without any user or organization prefix",
-            "required": true,
-            "type": "string",
-            "name": "robot_shortname",
-            "in": "path"
-          }
-        ],
-        "operationId": "createUserRobot"
-      },
-      "delete": {
-        "responses": {
-          "404": {
-            "description": "Not found"
-          },
-          "403": {
-            "description": "Unauthorized access"
-          },
-          "204": {
-            "description": "Deleted"
-          },
-          "401": {
-            "description": "Session required"
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "$ref": "#/definitions/GeneralError"
-            }
-          }
-        },
-        "tags": [
-          "robot"
-        ],
-        "description": "Delete an existing robot.",
-        "parameters": [
-          {
-            "description": "The short name for the robot, without any user or organization prefix",
-            "required": true,
-            "type": "string",
-            "name": "robot_shortname",
-            "in": "path"
-          }
-        ],
-        "operationId": "deleteUserRobot"
-      }
-    },
     "/api/v1/user/robots": {
       "x-name": "endpoints.api.robot.UserRobotList",
       "x-tag": "robot",
@@ -3525,25 +4109,30 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
-        "tags": [
-          "robot"
-        ],
-        "description": "List the available robots for the user.",
         "parameters": [
           {
             "description": "Whether to include repostories and teams in which the robots have permission.",
@@ -3553,7 +4142,18 @@
             "in": "query"
           }
         ],
-        "operationId": "getUserRobots"
+        "tags": [
+          "robot"
+        ],
+        "security": [
+          {
+            "oauth2_implicit": [
+              "user:admin"
+            ]
+          }
+        ],
+        "operationId": "getUserRobots",
+        "description": "List the available robots for the user."
       }
     },
     "/api/v1/organization/{orgname}/robots/{robot_shortname}/permissions": {
@@ -3582,25 +4182,30 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
-        "tags": [
-          "robot"
-        ],
-        "description": "Returns the list of repository permissions for the org's robot.",
         "parameters": [
           {
             "description": "The name of the organization",
@@ -3617,28 +4222,48 @@
             "in": "path"
           }
         ],
-        "operationId": "getOrgRobotPermissions"
+        "tags": [
+          "robot"
+        ],
+        "security": [
+          {
+            "oauth2_implicit": [
+              "user:admin"
+            ]
+          }
+        ],
+        "operationId": "getOrgRobotPermissions",
+        "description": "Returns the list of repository permissions for the org's robot."
       }
     },
     "/api/v1/organization/{orgname}/robots/{robot_shortname}/regenerate": {
       "post": {
         "responses": {
-          "200": {
-            "description": "Successful invocation"
+          "201": {
+            "description": "Successful creation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -3710,18 +4335,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -3774,25 +4408,30 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
-        "tags": [
-          "robot"
-        ],
-        "description": "Returns the list of repository permissions for the user's robot.",
         "parameters": [
           {
             "description": "The short name for the robot, without any user or organization prefix",
@@ -3802,35 +4441,51 @@
             "in": "path"
           }
         ],
-        "operationId": "getUserRobotPermissions"
+        "tags": [
+          "robot"
+        ],
+        "security": [
+          {
+            "oauth2_implicit": [
+              "user:admin"
+            ]
+          }
+        ],
+        "operationId": "getUserRobotPermissions",
+        "description": "Returns the list of repository permissions for the user's robot."
       }
     },
     "/api/v1/user/robots/{robot_shortname}/regenerate": {
       "post": {
         "responses": {
-          "200": {
-            "description": "Successful invocation"
+          "201": {
+            "description": "Successful creation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
-        "tags": [
-          "robot"
-        ],
-        "description": "Regenerates the token for a user's robot.",
         "parameters": [
           {
             "description": "The short name for the robot, without any user or organization prefix",
@@ -3840,7 +4495,18 @@
             "in": "path"
           }
         ],
-        "operationId": "regenerateUserRobotToken"
+        "tags": [
+          "robot"
+        ],
+        "security": [
+          {
+            "oauth2_implicit": [
+              "user:admin"
+            ]
+          }
+        ],
+        "operationId": "regenerateUserRobotToken",
+        "description": "Regenerates the token for a user's robot."
       },
       "x-name": "endpoints.api.robot.RegenerateUserRobot",
       "parameters": [
@@ -3878,22 +4544,31 @@
           "200": {
             "description": "Successful invocation",
             "schema": {
-              "$ref": "#/definitions/Robot"
+                "$ref": "#/definitions/Robot"
             }
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -3930,34 +4605,51 @@
       "x-tag": "robot",
       "put": {
         "responses": {
-          "201": {
-            "description": "Succesfully created",
+          "200": {
+            "description": "Successful invocation",
             "schema": {
-              "$ref": "#/definitions/Robot"
+                "$ref": "#/definitions/Robot"
             }
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
         "parameters": [
           {
-            "$ref": "#/parameters/OrgName"
+            "description": "The name of the organization",
+            "required": true,
+            "type": "string",
+            "name": "orgname",
+            "in": "path"
           },
           {
-            "$ref": "#/parameters/RobotShortName"
+            "description": "The short name for the robot, without any user or organization prefix",
+            "required": true,
+            "type": "string",
+            "name": "robot_shortname",
+            "in": "path"
           }
         ],
         "tags": [
@@ -3976,21 +4668,30 @@
       "delete": {
         "responses": {
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "204": {
             "description": "Deleted"
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -4024,6 +4725,176 @@
         "description": "Delete an existing organization robot."
       }
     },
+    "/api/v1/user/robots/{robot_shortname}": {
+      "x-name": "endpoints.api.robot.UserRobot",
+      "parameters": [
+        {
+          "description": "The short name for the robot, without any user or organization prefix",
+          "required": true,
+          "type": "string",
+          "name": "robot_shortname",
+          "in": "path"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Successful invocation"
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "401": {
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The short name for the robot, without any user or organization prefix",
+            "required": true,
+            "type": "string",
+            "name": "robot_shortname",
+            "in": "path"
+          }
+        ],
+        "tags": [
+          "robot"
+        ],
+        "security": [
+          {
+            "oauth2_implicit": [
+              "user:admin"
+            ]
+          }
+        ],
+        "operationId": "getUserRobot",
+        "description": "Returns the user's robot with the specified name."
+      },
+      "x-path": "/api/v1/user/robots/{robot_shortname}",
+      "x-tag": "robot",
+      "put": {
+        "responses": {
+          "200": {
+            "description": "Successful invocation"
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "401": {
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The short name for the robot, without any user or organization prefix",
+            "required": true,
+            "type": "string",
+            "name": "robot_shortname",
+            "in": "path"
+          }
+        ],
+        "tags": [
+          "robot"
+        ],
+        "security": [
+          {
+            "oauth2_implicit": [
+              "user:admin"
+            ]
+          }
+        ],
+        "operationId": "createUserRobot",
+        "description": "Create a new user robot with the specified name."
+      },
+      "delete": {
+        "responses": {
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "204": {
+            "description": "Deleted"
+          },
+          "401": {
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The short name for the robot, without any user or organization prefix",
+            "required": true,
+            "type": "string",
+            "name": "robot_shortname",
+            "in": "path"
+          }
+        ],
+        "tags": [
+          "robot"
+        ],
+        "security": [
+          {
+            "oauth2_implicit": [
+              "user:admin"
+            ]
+          }
+        ],
+        "operationId": "deleteUserRobot",
+        "description": "Delete an existing robot."
+      }
+    },
     "/api/v1/find/all": {
       "x-name": "endpoints.api.search.ConductSearch",
       "x-tag": "search",
@@ -4034,18 +4905,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -4082,18 +4962,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -4134,8 +5023,8 @@
         "operationId": "getMatchingEntities"
       }
     },
-    "/api/v1/repository/{repository}/image/{imageid}/packages": {
-      "x-name": "endpoints.api.secscan.RepositoryImagePackages",
+    "/api/v1/repository/{repository}/image/{imageid}/security": {
+      "x-name": "endpoints.api.secscan.RepositoryImageSecurity",
       "parameters": [
         {
           "description": "The full path of the repository. e.g. namespace/name",
@@ -4153,25 +5042,34 @@
         }
       ],
       "x-tag": "secscan",
-      "x-path": "/api/v1/repository/{repository}/image/{imageid}/packages",
+      "x-path": "/api/v1/repository/{repository}/image/{imageid}/security",
       "get": {
         "responses": {
           "200": {
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -4189,83 +5087,12 @@
             "type": "string",
             "name": "imageid",
             "in": "path"
-          }
-        ],
-        "tags": [
-          "secscan"
-        ],
-        "security": [
-          {
-            "oauth2_implicit": [
-              "repo:read"
-            ]
-          }
-        ],
-        "operationId": "getRepoImagePackages",
-        "description": "Fetches the packages added/removed in the given repo image."
-      }
-    },
-    "/api/v1/repository/{repository}/tag/{tag}/vulnerabilities": {
-      "x-name": "endpoints.api.secscan.RepositoryTagVulnerabilities",
-      "parameters": [
-        {
-          "description": "The name of the tag",
-          "required": true,
-          "type": "string",
-          "name": "tag",
-          "in": "path"
-        },
-        {
-          "description": "The full path of the repository. e.g. namespace/name",
-          "required": true,
-          "type": "string",
-          "name": "repository",
-          "in": "path"
-        }
-      ],
-      "x-tag": "secscan",
-      "x-path": "/api/v1/repository/{repository}/tag/{tag}/vulnerabilities",
-      "get": {
-        "responses": {
-          "200": {
-            "description": "Successful invocation"
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "403": {
-            "description": "Unauthorized access"
-          },
-          "401": {
-            "description": "Session required"
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "$ref": "#/definitions/GeneralError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "description": "The name of the tag",
-            "required": true,
-            "type": "string",
-            "name": "tag",
-            "in": "path"
           },
           {
-            "description": "The full path of the repository. e.g. namespace/name",
-            "required": true,
-            "type": "string",
-            "name": "repository",
-            "in": "path"
-          },
-          {
-            "description": "Minimum vulnerability priority",
+            "description": "Include vulnerabilities informations",
             "required": false,
-            "type": "string",
-            "name": "minimumPriority",
+            "type": "boolean",
+            "name": "vulnerabilities",
             "in": "query"
           }
         ],
@@ -4279,29 +5106,38 @@
             ]
           }
         ],
-        "operationId": "getRepoTagVulnerabilities",
-        "description": "Fetches the vulnerabilities (if any) for a repository tag."
+        "operationId": "getRepoImageSecurity",
+        "description": "Fetches the features and vulnerabilities (if any) for a repository tag."
       }
     },
     "/api/v1/repository/{repository}/tag/{tag}/revert": {
       "post": {
         "responses": {
-          "200": {
-            "description": "Successful invocation"
+          "201": {
+            "description": "Successful creation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -4389,18 +5225,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -4467,18 +5312,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -4523,21 +5377,30 @@
       "delete": {
         "responses": {
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "204": {
             "description": "Deleted"
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -4590,18 +5453,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -4675,18 +5547,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -4734,18 +5615,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -4791,21 +5681,30 @@
       "delete": {
         "responses": {
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "204": {
             "description": "Deleted"
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -4872,18 +5771,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -4928,21 +5836,30 @@
       "delete": {
         "responses": {
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "204": {
             "description": "Deleted"
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -5009,18 +5926,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -5063,21 +5989,30 @@
       "delete": {
         "responses": {
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "204": {
             "description": "Deleted"
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -5137,18 +6072,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -5178,22 +6122,31 @@
     "/api/v1/repository/{repository}/trigger/{trigger_uuid}/activate": {
       "post": {
         "responses": {
-          "200": {
-            "description": "Successful invocation"
+          "201": {
+            "description": "Successful creation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -5258,22 +6211,31 @@
     "/api/v1/repository/{repository}/trigger/{trigger_uuid}/start": {
       "post": {
         "responses": {
-          "200": {
-            "description": "Successful invocation"
+          "201": {
+            "description": "Successful creation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -5361,18 +6323,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -5437,18 +6408,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -5486,21 +6466,30 @@
       "delete": {
         "responses": {
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "204": {
             "description": "Deleted"
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -5547,18 +6536,27 @@
             }
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -5587,18 +6585,27 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -5621,22 +6628,31 @@
     "/api/v1/user/starred": {
       "post": {
         "responses": {
-          "200": {
-            "description": "Successful invocation"
+          "201": {
+            "description": "Successful creation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
@@ -5673,42 +6689,51 @@
             "description": "Successful invocation"
           },
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
-        "tags": [
-          "user"
-        ],
-        "description": "List all starred repositories.",
         "parameters": [
           {
-            "description": "Limit on the number of results (int)",
+            "description": "The page token for the next page",
             "required": false,
-            "type": "integer",
-            "name": "limit",
-            "in": "query"
-          },
-          {
-            "description": "Offset page number. (int)",
-            "required": false,
-            "type": "integer",
-            "name": "page",
+            "type": "string",
+            "name": "next_page",
             "in": "query"
           }
         ],
-        "operationId": "listStarredRepos"
+        "tags": [
+          "user"
+        ],
+        "security": [
+          {
+            "oauth2_implicit": [
+              "user:admin"
+            ]
+          }
+        ],
+        "operationId": "listStarredRepos",
+        "description": "List all starred repositories."
       }
     },
     "/api/v1/user/starred/{repository}": {
@@ -5727,28 +6752,33 @@
       "delete": {
         "responses": {
           "404": {
-            "description": "Not found"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "403": {
-            "description": "Unauthorized access"
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "204": {
             "description": "Deleted"
           },
           "401": {
-            "description": "Session required"
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/GeneralError"
+              "$ref": "#/definitions/ApiError"
             }
           }
         },
-        "tags": [
-          "user"
-        ],
-        "description": "Removes a star from a repository.",
         "parameters": [
           {
             "description": "The full path of the repository. e.g. namespace/name",
@@ -5758,8 +6788,24 @@
             "in": "path"
           }
         ],
-        "operationId": "deleteStar"
+        "tags": [
+          "user"
+        ],
+        "security": [
+          {
+            "oauth2_implicit": [
+              "user:admin"
+            ]
+          }
+        ],
+        "operationId": "deleteStar",
+        "description": "Removes a star from a repository."
       }
+    },
+    "/userfiles/{file_id}": {
+      "x-name": "data.userfiles.UserfilesHandlers",
+      "x-tag": "userfiles",
+      "x-path": "/userfiles/{file_id}"
     }
   },
   "host": "quay.io",
@@ -5767,6 +6813,10 @@
     "https"
   ],
   "tags": [
+    {
+      "name": "archivedlogs",
+      "description": ""
+    },
     {
       "name": "billing",
       "description": "Billing information, subscriptions, and plan information."
@@ -5780,8 +6830,12 @@
       "description": "API discovery information."
     },
     {
+      "name": "error",
+      "description": "Error details API"
+    },
+    {
       "name": "image",
-      "description": "List and lookup repository images, and download image diffs."
+      "description": "List and lookup repository images."
     },
     {
       "name": "logs",
@@ -5821,7 +6875,7 @@
     },
     {
       "name": "secscan",
-      "description": "List and manage repository vulnerabilities and other sec information."
+      "description": "List and manage repository vulnerabilities and other security information."
     },
     {
       "name": "tag",
@@ -5838,21 +6892,13 @@
     {
       "name": "user",
       "description": "Manage the current user."
+    },
+    {
+      "name": "userfiles",
+      "description": ""
     }
   ],
   "definitions": {
-    "Robot": {
-      "type": "object",
-      "description": "A robot account",
-      "properties": {
-        "token": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        }
-      }
-    },
     "RepositoryBuildRequest": {
       "type": "object",
       "description": "Description of a new repository build.",
@@ -5888,7 +6934,8 @@
       "required": [
         "event",
         "method",
-        "config"
+        "config",
+        "eventConfig"
       ],
       "type": "object",
       "description": "Information for creating a notification on a repository",
@@ -5970,6 +7017,13 @@
         "username": {
           "type": "string",
           "description": "The user's username"
+        },
+        "invoice_email_address": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Custom email address for receiving invoices"
         },
         "invoice_email": {
           "type": "boolean",
@@ -6073,6 +7127,24 @@
         "description": {
           "type": "string",
           "description": "Markdown description for the team"
+        }
+      }
+    },
+    "NewOrg": {
+      "required": [
+        "name",
+        "email"
+      ],
+      "type": "object",
+      "description": "Description of a new organization.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Organization username"
+        },
+        "email": {
+          "type": "string",
+          "description": "Organization contact email"
         }
       }
     },
@@ -6198,6 +7270,40 @@
         }
       }
     },
+    "ApiError": {
+      "required": [
+        "status",
+        "type",
+        "title"
+      ],
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "description": "Status code of the response."
+        },
+        "error_message": {
+          "type": "string",
+          "description": "Deprecated; alias for detail"
+        },
+        "title": {
+          "type": "string",
+          "description": "Unique error code to identify the type of error."
+        },
+        "error_type": {
+          "type": "string",
+          "description": "Deprecated; alias for detail"
+        },
+        "detail": {
+          "type": "string",
+          "description": "Details about the specific instance of the error."
+        },
+        "type": {
+          "type": "string",
+          "description": "Reference to the type of the error."
+        }
+      }
+    },
     "RevertTag": {
       "required": [
         "image"
@@ -6208,6 +7314,41 @@
         "image": {
           "type": "string",
           "description": "Image identifier to which the tag should point"
+        }
+      }
+    },
+    "ApiErrorDescription": {
+      "required": [
+        "type",
+        "description",
+        "title"
+      ],
+      "type": "object",
+      "description": "Description of an error",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "A reference to the error type resource"
+        },
+        "description": {
+          "type": "string",
+          "description": "A more detailed description of the error that may include help for fixing the issue."
+        },
+        "title": {
+          "enum": [
+            "downstream_issue",
+            "exceeds_license",
+            "expired_token",
+            "external_service_timeout",
+            "fresh_login_required",
+            "insufficient_scope",
+            "invalid_request",
+            "invalid_response",
+            "invalid_token",
+            "not_found"
+          ],
+          "type": "string",
+          "description": "The title of the error. Can be used to uniquely identify the kind of error."
         }
       }
     },
@@ -6293,6 +7434,13 @@
       "type": "object",
       "description": "Description of updates for an existing organization",
       "properties": {
+        "invoice_email_address": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The email address at which to receive invoices"
+        },
         "invoice_email": {
           "type": "boolean",
           "description": "Whether the organization desires to receive emails for invoices"
@@ -6397,14 +7545,6 @@
         }
       }
     },
-    "GeneralError": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string"
-        }
-      }
-    },
     "Avatar": {
       "type": "object",
       "properties": {
@@ -6461,6 +7601,18 @@
           }
         }
       }
+    },
+    "Robot": {
+      "type": "object",
+      "description": "A robot account",
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
     }
   },
   "parameters": {
@@ -6483,7 +7635,7 @@
       "minLength": 4,
       "maxLength": 30,
       "pattern": "[a-z0-9_]+"
-    }
+     }
   },
   "basePath": "/",
   "swagger": "2.0",
@@ -6497,6 +7649,7 @@
         "repo:read": "This application will be able to view and pull all repositories visible to the granting user or robot account",
         "repo:create": "This application will be able to create repositories in to any namespaces that the granting user or robot account is allowed to create repositories",
         "repo:admin": "This application will have administrator access to all repositories to which the granting user or robot account has access",
+        "user:admin": "This application will be able to administer your account including creating robots and granting them permissions to your repositories. You should have absolute trust in the requesting application before granting this permission.",
         "org:admin": "This application will be able to administer your organizations including creating robots, creating teams, adjusting team membership, and changing billing settings. You should have absolute trust in the requesting application before granting this permission.",
         "user:read": "This application will be able to read user information such as username and email address."
       }

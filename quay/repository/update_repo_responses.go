@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *UpdateRepoReader) ReadResponse(response client.Response, consumer httpk
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewUpdateRepoBadRequest() *UpdateRepoBadRequest {
 Bad Request
 */
 type UpdateRepoBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *UpdateRepoBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *UpdateRepoBadRequest) Error() string {
 
 func (o *UpdateRepoBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewUpdateRepoUnauthorized() *UpdateRepoUnauthorized {
 Session required
 */
 type UpdateRepoUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *UpdateRepoUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/repository/{repository}][%d] updateRepoUnauthorized ", 401)
+	return fmt.Sprintf("[PUT /api/v1/repository/{repository}][%d] updateRepoUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateRepoUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewUpdateRepoForbidden() *UpdateRepoForbidden {
 Unauthorized access
 */
 type UpdateRepoForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *UpdateRepoForbidden) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/repository/{repository}][%d] updateRepoForbidden ", 403)
+	return fmt.Sprintf("[PUT /api/v1/repository/{repository}][%d] updateRepoForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateRepoForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewUpdateRepoNotFound() *UpdateRepoNotFound {
 Not found
 */
 type UpdateRepoNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *UpdateRepoNotFound) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/repository/{repository}][%d] updateRepoNotFound ", 404)
+	return fmt.Sprintf("[PUT /api/v1/repository/{repository}][%d] updateRepoNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateRepoNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

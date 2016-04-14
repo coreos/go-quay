@@ -6,8 +6,8 @@ package user
 import (
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/strfmt"
-	"github.com/go-swagger/go-swagger/swag"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 )
 
 // NewListStarredReposParams creates a new ListStarredReposParams object
@@ -22,27 +22,16 @@ for the list starred repos operation typically these are written to a http.Reque
 */
 type ListStarredReposParams struct {
 
-	/*Limit
-	  Limit on the number of results (int)
+	/*NextPage
+	  The page token for the next page
 
 	*/
-	Limit *int64
-	/*Page
-	  Offset page number. (int)
-
-	*/
-	Page *int64
+	NextPage *string
 }
 
-// WithLimit adds the limit to the list starred repos params
-func (o *ListStarredReposParams) WithLimit(limit *int64) *ListStarredReposParams {
-	o.Limit = limit
-	return o
-}
-
-// WithPage adds the page to the list starred repos params
-func (o *ListStarredReposParams) WithPage(page *int64) *ListStarredReposParams {
-	o.Page = page
+// WithNextPage adds the nextPage to the list starred repos params
+func (o *ListStarredReposParams) WithNextPage(nextPage *string) *ListStarredReposParams {
+	o.NextPage = nextPage
 	return o
 }
 
@@ -51,32 +40,16 @@ func (o *ListStarredReposParams) WriteToRequest(r client.Request, reg strfmt.Reg
 
 	var res []error
 
-	if o.Limit != nil {
+	if o.NextPage != nil {
 
-		// query param limit
-		var qrLimit int64
-		if o.Limit != nil {
-			qrLimit = *o.Limit
+		// query param next_page
+		var qrNextPage string
+		if o.NextPage != nil {
+			qrNextPage = *o.NextPage
 		}
-		qLimit := swag.FormatInt64(qrLimit)
-		if qLimit != "" {
-			if err := r.SetQueryParam("limit", qLimit); err != nil {
-				return err
-			}
-		}
-
-	}
-
-	if o.Page != nil {
-
-		// query param page
-		var qrPage int64
-		if o.Page != nil {
-			qrPage = *o.Page
-		}
-		qPage := swag.FormatInt64(qrPage)
-		if qPage != "" {
-			if err := r.SetQueryParam("page", qPage); err != nil {
+		qNextPage := qrNextPage
+		if qNextPage != "" {
+			if err := r.SetQueryParam("next_page", qNextPage); err != nil {
 				return err
 			}
 		}

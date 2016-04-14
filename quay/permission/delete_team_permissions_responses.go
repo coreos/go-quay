@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *DeleteTeamPermissionsReader) ReadResponse(response client.Response, con
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewDeleteTeamPermissionsBadRequest() *DeleteTeamPermissionsBadRequest {
 Bad Request
 */
 type DeleteTeamPermissionsBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *DeleteTeamPermissionsBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *DeleteTeamPermissionsBadRequest) Error() string {
 
 func (o *DeleteTeamPermissionsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewDeleteTeamPermissionsUnauthorized() *DeleteTeamPermissionsUnauthorized {
 Session required
 */
 type DeleteTeamPermissionsUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *DeleteTeamPermissionsUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/permissions/team/{teamname}][%d] deleteTeamPermissionsUnauthorized ", 401)
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/permissions/team/{teamname}][%d] deleteTeamPermissionsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteTeamPermissionsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewDeleteTeamPermissionsForbidden() *DeleteTeamPermissionsForbidden {
 Unauthorized access
 */
 type DeleteTeamPermissionsForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *DeleteTeamPermissionsForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/permissions/team/{teamname}][%d] deleteTeamPermissionsForbidden ", 403)
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/permissions/team/{teamname}][%d] deleteTeamPermissionsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteTeamPermissionsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewDeleteTeamPermissionsNotFound() *DeleteTeamPermissionsNotFound {
 Not found
 */
 type DeleteTeamPermissionsNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *DeleteTeamPermissionsNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/permissions/team/{teamname}][%d] deleteTeamPermissionsNotFound ", 404)
+	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/permissions/team/{teamname}][%d] deleteTeamPermissionsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteTeamPermissionsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

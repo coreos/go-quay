@@ -4,9 +4,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*NewUser Fields which must be specified for a new user.
@@ -19,23 +20,23 @@ type NewUser struct {
 
 	Required: true
 	*/
-	Email string `json:"email,omitempty"`
+	Email *string `json:"email"`
 
 	/* The optional invite code
 	 */
-	InviteCode *string `json:"invite_code,omitempty"`
+	InviteCode string `json:"invite_code,omitempty"`
 
 	/* The user's password
 
 	Required: true
 	*/
-	Password string `json:"password,omitempty"`
+	Password *string `json:"password"`
 
 	/* The user's username
 
 	Required: true
 	*/
-	Username string `json:"username,omitempty"`
+	Username *string `json:"username"`
 }
 
 // Validate validates this new user
@@ -65,7 +66,7 @@ func (m *NewUser) Validate(formats strfmt.Registry) error {
 
 func (m *NewUser) validateEmail(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("email", "body", string(m.Email)); err != nil {
+	if err := validate.Required("email", "body", m.Email); err != nil {
 		return err
 	}
 
@@ -74,7 +75,7 @@ func (m *NewUser) validateEmail(formats strfmt.Registry) error {
 
 func (m *NewUser) validatePassword(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("password", "body", string(m.Password)); err != nil {
+	if err := validate.Required("password", "body", m.Password); err != nil {
 		return err
 	}
 
@@ -83,7 +84,7 @@ func (m *NewUser) validatePassword(formats strfmt.Registry) error {
 
 func (m *NewUser) validateUsername(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("username", "body", string(m.Username)); err != nil {
+	if err := validate.Required("username", "body", m.Username); err != nil {
 		return err
 	}
 

@@ -4,10 +4,9 @@ package repository
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"fmt"
-
 	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 )
 
 // New creates a new repository API client.
@@ -24,9 +23,9 @@ type Client struct {
 }
 
 /*
-Change the visibility of a repository.
+ChangeRepoVisibility Change the visibility of a repository.
 */
-func (a *Client) ChangeRepoVisibility(params *ChangeRepoVisibilityParams, authInfo client.AuthInfoWriter) (*ChangeRepoVisibilityOK, error) {
+func (a *Client) ChangeRepoVisibility(params *ChangeRepoVisibilityParams, authInfo client.AuthInfoWriter) (*ChangeRepoVisibilityCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewChangeRepoVisibilityParams()
@@ -37,6 +36,7 @@ func (a *Client) ChangeRepoVisibility(params *ChangeRepoVisibilityParams, authIn
 		Method:             "POST",
 		PathPattern:        "/api/v1/repository/{repository}/changevisibility",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ChangeRepoVisibilityReader{formats: a.formats},
@@ -45,13 +45,13 @@ func (a *Client) ChangeRepoVisibility(params *ChangeRepoVisibilityParams, authIn
 	if err != nil {
 		return nil, err
 	}
-	return result.(*ChangeRepoVisibilityOK), nil
+	return result.(*ChangeRepoVisibilityCreated), nil
 }
 
 /*
-Create a new repository.
+CreateRepo Create a new repository.
 */
-func (a *Client) CreateRepo(params *CreateRepoParams, authInfo client.AuthInfoWriter) (*CreateRepoOK, error) {
+func (a *Client) CreateRepo(params *CreateRepoParams, authInfo client.AuthInfoWriter) (*CreateRepoCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateRepoParams()
@@ -62,6 +62,7 @@ func (a *Client) CreateRepo(params *CreateRepoParams, authInfo client.AuthInfoWr
 		Method:             "POST",
 		PathPattern:        "/api/v1/repository",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateRepoReader{formats: a.formats},
@@ -70,11 +71,11 @@ func (a *Client) CreateRepo(params *CreateRepoParams, authInfo client.AuthInfoWr
 	if err != nil {
 		return nil, err
 	}
-	return result.(*CreateRepoOK), nil
+	return result.(*CreateRepoCreated), nil
 }
 
 /*
-Delete a repository.
+DeleteRepository Delete a repository.
 */
 func (a *Client) DeleteRepository(params *DeleteRepositoryParams, authInfo client.AuthInfoWriter) (*DeleteRepositoryNoContent, error) {
 	// TODO: Validate the params before sending
@@ -87,6 +88,7 @@ func (a *Client) DeleteRepository(params *DeleteRepositoryParams, authInfo clien
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/repository/{repository}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteRepositoryReader{formats: a.formats},
@@ -99,7 +101,7 @@ func (a *Client) DeleteRepository(params *DeleteRepositoryParams, authInfo clien
 }
 
 /*
-Fetch the specified repository.
+GetRepo Fetch the specified repository.
 */
 func (a *Client) GetRepo(params *GetRepoParams, authInfo client.AuthInfoWriter) (*GetRepoOK, error) {
 	// TODO: Validate the params before sending
@@ -112,6 +114,7 @@ func (a *Client) GetRepo(params *GetRepoParams, authInfo client.AuthInfoWriter) 
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetRepoReader{formats: a.formats},
@@ -124,7 +127,7 @@ func (a *Client) GetRepo(params *GetRepoParams, authInfo client.AuthInfoWriter) 
 }
 
 /*
-Fetch the list of repositories visible to the current user under a variety of situations.
+ListRepos Fetch the list of repositories visible to the current user under a variety of situations.
 */
 func (a *Client) ListRepos(params *ListReposParams, authInfo client.AuthInfoWriter) (*ListReposOK, error) {
 	// TODO: Validate the params before sending
@@ -137,6 +140,7 @@ func (a *Client) ListRepos(params *ListReposParams, authInfo client.AuthInfoWrit
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListReposReader{formats: a.formats},
@@ -149,7 +153,7 @@ func (a *Client) ListRepos(params *ListReposParams, authInfo client.AuthInfoWrit
 }
 
 /*
-Update the description in the specified repository.
+UpdateRepo Update the description in the specified repository.
 */
 func (a *Client) UpdateRepo(params *UpdateRepoParams, authInfo client.AuthInfoWriter) (*UpdateRepoOK, error) {
 	// TODO: Validate the params before sending
@@ -162,6 +166,7 @@ func (a *Client) UpdateRepo(params *UpdateRepoParams, authInfo client.AuthInfoWr
 		Method:             "PUT",
 		PathPattern:        "/api/v1/repository/{repository}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateRepoReader{formats: a.formats},
@@ -176,24 +181,4 @@ func (a *Client) UpdateRepo(params *UpdateRepoParams, authInfo client.AuthInfoWr
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport client.Transport) {
 	a.transport = transport
-}
-
-// NewAPIError creates a new API error
-func NewAPIError(opName string, response interface{}, code int) APIError {
-	return APIError{
-		OperationName: opName,
-		Response:      response,
-		Code:          code,
-	}
-}
-
-// APIError wraps an error model and captures the status code
-type APIError struct {
-	OperationName string
-	Response      interface{}
-	Code          int
-}
-
-func (a APIError) Error() string {
-	return fmt.Sprintf("%s (status %d): %+v ", a.OperationName, a.Code, a.Response)
 }

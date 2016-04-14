@@ -4,10 +4,11 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
-	"github.com/go-swagger/go-swagger/swag"
 )
 
 /*UserView Describes a user
@@ -20,21 +21,21 @@ type UserView struct {
 
 	Required: true
 	*/
-	Anonymous bool `json:"anonymous,omitempty"`
+	Anonymous *bool `json:"anonymous"`
 
 	/* Avatar data representing the user's icon
 
 	Required: true
 	*/
-	Avatar interface{} `json:"avatar,omitempty"`
+	Avatar interface{} `json:"avatar"`
 
 	/* Whether the user has permission to create repositories
 	 */
-	CanCreateRepo *bool `json:"can_create_repo,omitempty"`
+	CanCreateRepo bool `json:"can_create_repo,omitempty"`
 
 	/* The user's email address
 	 */
-	Email *string `json:"email,omitempty"`
+	Email string `json:"email,omitempty"`
 
 	/* The list of external login providers against which the user has authenticated
 	 */
@@ -46,13 +47,13 @@ type UserView struct {
 
 	/* If true, the user's namespace is the preferred namespace to display
 	 */
-	PreferredNamespace *bool `json:"preferred_namespace,omitempty"`
+	PreferredNamespace bool `json:"preferred_namespace,omitempty"`
 
 	/* Whether the user's email address has been verified
 
 	Required: true
 	*/
-	Verified bool `json:"verified,omitempty"`
+	Verified *bool `json:"verified"`
 }
 
 // Validate validates this user view
@@ -92,7 +93,7 @@ func (m *UserView) Validate(formats strfmt.Registry) error {
 
 func (m *UserView) validateAnonymous(formats strfmt.Registry) error {
 
-	if err := validate.Required("anonymous", "body", bool(m.Anonymous)); err != nil {
+	if err := validate.Required("anonymous", "body", m.Anonymous); err != nil {
 		return err
 	}
 
@@ -110,10 +111,6 @@ func (m *UserView) validateLogins(formats strfmt.Registry) error {
 		return nil
 	}
 
-	for i := 0; i < len(m.Logins); i++ {
-
-	}
-
 	return nil
 }
 
@@ -123,16 +120,12 @@ func (m *UserView) validateOrganizations(formats strfmt.Registry) error {
 		return nil
 	}
 
-	for i := 0; i < len(m.Organizations); i++ {
-
-	}
-
 	return nil
 }
 
 func (m *UserView) validateVerified(formats strfmt.Registry) error {
 
-	if err := validate.Required("verified", "body", bool(m.Verified)); err != nil {
+	if err := validate.Required("verified", "body", m.Verified); err != nil {
 		return err
 	}
 

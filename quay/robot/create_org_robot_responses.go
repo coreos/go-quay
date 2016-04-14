@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -23,8 +24,8 @@ type CreateOrgRobotReader struct {
 func (o *CreateOrgRobotReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
-	case 201:
-		result := NewCreateOrgRobotCreated()
+	case 200:
+		result := NewCreateOrgRobotOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -59,28 +60,28 @@ func (o *CreateOrgRobotReader) ReadResponse(response client.Response, consumer h
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-// NewCreateOrgRobotCreated creates a CreateOrgRobotCreated with default headers values
-func NewCreateOrgRobotCreated() *CreateOrgRobotCreated {
-	return &CreateOrgRobotCreated{}
+// NewCreateOrgRobotOK creates a CreateOrgRobotOK with default headers values
+func NewCreateOrgRobotOK() *CreateOrgRobotOK {
+	return &CreateOrgRobotOK{}
 }
 
-/*CreateOrgRobotCreated handles this case with default header values.
+/*CreateOrgRobotOK handles this case with default header values.
 
-Succesfully created
+Successful invocation
 */
-type CreateOrgRobotCreated struct {
+type CreateOrgRobotOK struct {
 	Payload *models.Robot
 }
 
-func (o *CreateOrgRobotCreated) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/robots/{robot_shortname}][%d] createOrgRobotCreated  %+v", 201, o.Payload)
+func (o *CreateOrgRobotOK) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/robots/{robot_shortname}][%d] createOrgRobotOK  %+v", 200, o.Payload)
 }
 
-func (o *CreateOrgRobotCreated) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateOrgRobotOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.Robot)
 
@@ -102,7 +103,7 @@ func NewCreateOrgRobotBadRequest() *CreateOrgRobotBadRequest {
 Bad Request
 */
 type CreateOrgRobotBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *CreateOrgRobotBadRequest) Error() string {
@@ -111,7 +112,7 @@ func (o *CreateOrgRobotBadRequest) Error() string {
 
 func (o *CreateOrgRobotBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -131,13 +132,21 @@ func NewCreateOrgRobotUnauthorized() *CreateOrgRobotUnauthorized {
 Session required
 */
 type CreateOrgRobotUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *CreateOrgRobotUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/robots/{robot_shortname}][%d] createOrgRobotUnauthorized ", 401)
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/robots/{robot_shortname}][%d] createOrgRobotUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateOrgRobotUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -152,13 +161,21 @@ func NewCreateOrgRobotForbidden() *CreateOrgRobotForbidden {
 Unauthorized access
 */
 type CreateOrgRobotForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *CreateOrgRobotForbidden) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/robots/{robot_shortname}][%d] createOrgRobotForbidden ", 403)
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/robots/{robot_shortname}][%d] createOrgRobotForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateOrgRobotForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -173,13 +190,21 @@ func NewCreateOrgRobotNotFound() *CreateOrgRobotNotFound {
 Not found
 */
 type CreateOrgRobotNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *CreateOrgRobotNotFound) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/robots/{robot_shortname}][%d] createOrgRobotNotFound ", 404)
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/robots/{robot_shortname}][%d] createOrgRobotNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateOrgRobotNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

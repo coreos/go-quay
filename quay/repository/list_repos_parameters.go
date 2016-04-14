@@ -6,8 +6,9 @@ package repository
 import (
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/strfmt"
 	"github.com/go-swagger/go-swagger/swag"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 )
 
 // NewListReposParams creates a new ListReposParams object
@@ -27,21 +28,16 @@ type ListReposParams struct {
 
 	*/
 	LastModified *bool
-	/*Limit
-	  Limit on the number of results (int)
-
-	*/
-	Limit *int64
 	/*Namespace
 	  Filters the repositories returned to this namespace
 
 	*/
 	Namespace *string
-	/*Page
-	  Offset page number. (int)
+	/*NextPage
+	  The page token for the next page
 
 	*/
-	Page *int64
+	NextPage *string
 	/*Popularity
 	  Whether to include the repository's popularity metric.
 
@@ -65,21 +61,15 @@ func (o *ListReposParams) WithLastModified(lastModified *bool) *ListReposParams 
 	return o
 }
 
-// WithLimit adds the limit to the list repos params
-func (o *ListReposParams) WithLimit(limit *int64) *ListReposParams {
-	o.Limit = limit
-	return o
-}
-
 // WithNamespace adds the namespace to the list repos params
 func (o *ListReposParams) WithNamespace(namespace *string) *ListReposParams {
 	o.Namespace = namespace
 	return o
 }
 
-// WithPage adds the page to the list repos params
-func (o *ListReposParams) WithPage(page *int64) *ListReposParams {
-	o.Page = page
+// WithNextPage adds the nextPage to the list repos params
+func (o *ListReposParams) WithNextPage(nextPage *string) *ListReposParams {
+	o.NextPage = nextPage
 	return o
 }
 
@@ -122,22 +112,6 @@ func (o *ListReposParams) WriteToRequest(r client.Request, reg strfmt.Registry) 
 
 	}
 
-	if o.Limit != nil {
-
-		// query param limit
-		var qrLimit int64
-		if o.Limit != nil {
-			qrLimit = *o.Limit
-		}
-		qLimit := swag.FormatInt64(qrLimit)
-		if qLimit != "" {
-			if err := r.SetQueryParam("limit", qLimit); err != nil {
-				return err
-			}
-		}
-
-	}
-
 	if o.Namespace != nil {
 
 		// query param namespace
@@ -154,16 +128,16 @@ func (o *ListReposParams) WriteToRequest(r client.Request, reg strfmt.Registry) 
 
 	}
 
-	if o.Page != nil {
+	if o.NextPage != nil {
 
-		// query param page
-		var qrPage int64
-		if o.Page != nil {
-			qrPage = *o.Page
+		// query param next_page
+		var qrNextPage string
+		if o.NextPage != nil {
+			qrNextPage = *o.NextPage
 		}
-		qPage := swag.FormatInt64(qrPage)
-		if qPage != "" {
-			if err := r.SetQueryParam("page", qPage); err != nil {
+		qNextPage := qrNextPage
+		if qNextPage != "" {
+			if err := r.SetQueryParam("next_page", qNextPage); err != nil {
 				return err
 			}
 		}

@@ -4,10 +4,9 @@ package repotoken
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"fmt"
-
 	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 )
 
 // New creates a new repotoken API client.
@@ -24,7 +23,7 @@ type Client struct {
 }
 
 /*
-Update the permissions for the specified repository token.
+ChangeToken Update the permissions for the specified repository token.
 */
 func (a *Client) ChangeToken(params *ChangeTokenParams, authInfo client.AuthInfoWriter) (*ChangeTokenOK, error) {
 	// TODO: Validate the params before sending
@@ -37,6 +36,7 @@ func (a *Client) ChangeToken(params *ChangeTokenParams, authInfo client.AuthInfo
 		Method:             "PUT",
 		PathPattern:        "/api/v1/repository/{repository}/tokens/{code}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ChangeTokenReader{formats: a.formats},
@@ -49,9 +49,9 @@ func (a *Client) ChangeToken(params *ChangeTokenParams, authInfo client.AuthInfo
 }
 
 /*
-Create a new repository token.
+CreateToken Create a new repository token.
 */
-func (a *Client) CreateToken(params *CreateTokenParams, authInfo client.AuthInfoWriter) (*CreateTokenOK, error) {
+func (a *Client) CreateToken(params *CreateTokenParams, authInfo client.AuthInfoWriter) (*CreateTokenCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateTokenParams()
@@ -62,6 +62,7 @@ func (a *Client) CreateToken(params *CreateTokenParams, authInfo client.AuthInfo
 		Method:             "POST",
 		PathPattern:        "/api/v1/repository/{repository}/tokens/",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateTokenReader{formats: a.formats},
@@ -70,11 +71,11 @@ func (a *Client) CreateToken(params *CreateTokenParams, authInfo client.AuthInfo
 	if err != nil {
 		return nil, err
 	}
-	return result.(*CreateTokenOK), nil
+	return result.(*CreateTokenCreated), nil
 }
 
 /*
-Delete the repository token.
+DeleteToken Delete the repository token.
 */
 func (a *Client) DeleteToken(params *DeleteTokenParams, authInfo client.AuthInfoWriter) (*DeleteTokenNoContent, error) {
 	// TODO: Validate the params before sending
@@ -87,6 +88,7 @@ func (a *Client) DeleteToken(params *DeleteTokenParams, authInfo client.AuthInfo
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/repository/{repository}/tokens/{code}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteTokenReader{formats: a.formats},
@@ -99,7 +101,7 @@ func (a *Client) DeleteToken(params *DeleteTokenParams, authInfo client.AuthInfo
 }
 
 /*
-Fetch the specified repository token information.
+GetTokens Fetch the specified repository token information.
 */
 func (a *Client) GetTokens(params *GetTokensParams, authInfo client.AuthInfoWriter) (*GetTokensOK, error) {
 	// TODO: Validate the params before sending
@@ -112,6 +114,7 @@ func (a *Client) GetTokens(params *GetTokensParams, authInfo client.AuthInfoWrit
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/tokens/{code}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetTokensReader{formats: a.formats},
@@ -124,7 +127,7 @@ func (a *Client) GetTokens(params *GetTokensParams, authInfo client.AuthInfoWrit
 }
 
 /*
-List the tokens for the specified repository.
+ListRepoTokens List the tokens for the specified repository.
 */
 func (a *Client) ListRepoTokens(params *ListRepoTokensParams, authInfo client.AuthInfoWriter) (*ListRepoTokensOK, error) {
 	// TODO: Validate the params before sending
@@ -137,6 +140,7 @@ func (a *Client) ListRepoTokens(params *ListRepoTokensParams, authInfo client.Au
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/tokens/",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListRepoTokensReader{formats: a.formats},
@@ -151,24 +155,4 @@ func (a *Client) ListRepoTokens(params *ListRepoTokensParams, authInfo client.Au
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport client.Transport) {
 	a.transport = transport
-}
-
-// NewAPIError creates a new API error
-func NewAPIError(opName string, response interface{}, code int) APIError {
-	return APIError{
-		OperationName: opName,
-		Response:      response,
-		Code:          code,
-	}
-}
-
-// APIError wraps an error model and captures the status code
-type APIError struct {
-	OperationName string
-	Response      interface{}
-	Code          int
-}
-
-func (a APIError) Error() string {
-	return fmt.Sprintf("%s (status %d): %+v ", a.OperationName, a.Code, a.Response)
 }

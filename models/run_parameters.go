@@ -13,11 +13,11 @@ type RunParameters struct {
 
 	/* (SCM only) If specified, the name of the branch to build.
 	 */
-	BranchName *string `json:"branch_name,omitempty"`
+	BranchName string `json:"branch_name,omitempty"`
 
 	/* (Custom Only) If specified, the ref/SHA1 used to checkout a git repository.
 	 */
-	CommitSha *string `json:"commit_sha,omitempty"`
+	CommitSha string `json:"commit_sha,omitempty"`
 
 	/* (SCM Only) If specified, the ref to build.
 	 */

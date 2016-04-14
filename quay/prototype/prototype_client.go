@@ -4,10 +4,9 @@ package prototype
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"fmt"
-
 	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 )
 
 // New creates a new prototype API client.
@@ -24,9 +23,9 @@ type Client struct {
 }
 
 /*
-Create a new permission prototype.
+CreateOrganizationPrototypePermission Create a new permission prototype.
 */
-func (a *Client) CreateOrganizationPrototypePermission(params *CreateOrganizationPrototypePermissionParams, authInfo client.AuthInfoWriter) (*CreateOrganizationPrototypePermissionOK, error) {
+func (a *Client) CreateOrganizationPrototypePermission(params *CreateOrganizationPrototypePermissionParams, authInfo client.AuthInfoWriter) (*CreateOrganizationPrototypePermissionCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateOrganizationPrototypePermissionParams()
@@ -37,6 +36,7 @@ func (a *Client) CreateOrganizationPrototypePermission(params *CreateOrganizatio
 		Method:             "POST",
 		PathPattern:        "/api/v1/organization/{orgname}/prototypes",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateOrganizationPrototypePermissionReader{formats: a.formats},
@@ -45,11 +45,11 @@ func (a *Client) CreateOrganizationPrototypePermission(params *CreateOrganizatio
 	if err != nil {
 		return nil, err
 	}
-	return result.(*CreateOrganizationPrototypePermissionOK), nil
+	return result.(*CreateOrganizationPrototypePermissionCreated), nil
 }
 
 /*
-Delete an existing permission prototype.
+DeleteOrganizationPrototypePermission Delete an existing permission prototype.
 */
 func (a *Client) DeleteOrganizationPrototypePermission(params *DeleteOrganizationPrototypePermissionParams, authInfo client.AuthInfoWriter) (*DeleteOrganizationPrototypePermissionNoContent, error) {
 	// TODO: Validate the params before sending
@@ -62,6 +62,7 @@ func (a *Client) DeleteOrganizationPrototypePermission(params *DeleteOrganizatio
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/organization/{orgname}/prototypes/{prototypeid}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteOrganizationPrototypePermissionReader{formats: a.formats},
@@ -74,7 +75,7 @@ func (a *Client) DeleteOrganizationPrototypePermission(params *DeleteOrganizatio
 }
 
 /*
-List the existing prototypes for this organization.
+GetOrganizationPrototypePermissions List the existing prototypes for this organization.
 */
 func (a *Client) GetOrganizationPrototypePermissions(params *GetOrganizationPrototypePermissionsParams, authInfo client.AuthInfoWriter) (*GetOrganizationPrototypePermissionsOK, error) {
 	// TODO: Validate the params before sending
@@ -87,6 +88,7 @@ func (a *Client) GetOrganizationPrototypePermissions(params *GetOrganizationProt
 		Method:             "GET",
 		PathPattern:        "/api/v1/organization/{orgname}/prototypes",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetOrganizationPrototypePermissionsReader{formats: a.formats},
@@ -99,7 +101,7 @@ func (a *Client) GetOrganizationPrototypePermissions(params *GetOrganizationProt
 }
 
 /*
-Update the role of an existing permission prototype.
+UpdateOrganizationPrototypePermission Update the role of an existing permission prototype.
 */
 func (a *Client) UpdateOrganizationPrototypePermission(params *UpdateOrganizationPrototypePermissionParams, authInfo client.AuthInfoWriter) (*UpdateOrganizationPrototypePermissionOK, error) {
 	// TODO: Validate the params before sending
@@ -112,6 +114,7 @@ func (a *Client) UpdateOrganizationPrototypePermission(params *UpdateOrganizatio
 		Method:             "PUT",
 		PathPattern:        "/api/v1/organization/{orgname}/prototypes/{prototypeid}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateOrganizationPrototypePermissionReader{formats: a.formats},
@@ -126,24 +129,4 @@ func (a *Client) UpdateOrganizationPrototypePermission(params *UpdateOrganizatio
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport client.Transport) {
 	a.transport = transport
-}
-
-// NewAPIError creates a new API error
-func NewAPIError(opName string, response interface{}, code int) APIError {
-	return APIError{
-		OperationName: opName,
-		Response:      response,
-		Code:          code,
-	}
-}
-
-// APIError wraps an error model and captures the status code
-type APIError struct {
-	OperationName string
-	Response      interface{}
-	Code          int
-}
-
-func (a APIError) Error() string {
-	return fmt.Sprintf("%s (status %d): %+v ", a.OperationName, a.Code, a.Response)
 }

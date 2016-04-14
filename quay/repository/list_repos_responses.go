@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *ListReposReader) ReadResponse(response client.Response, consumer httpki
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewListReposBadRequest() *ListReposBadRequest {
 Bad Request
 */
 type ListReposBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *ListReposBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *ListReposBadRequest) Error() string {
 
 func (o *ListReposBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewListReposUnauthorized() *ListReposUnauthorized {
 Session required
 */
 type ListReposUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *ListReposUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /api/v1/repository][%d] listReposUnauthorized ", 401)
+	return fmt.Sprintf("[GET /api/v1/repository][%d] listReposUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListReposUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewListReposForbidden() *ListReposForbidden {
 Unauthorized access
 */
 type ListReposForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *ListReposForbidden) Error() string {
-	return fmt.Sprintf("[GET /api/v1/repository][%d] listReposForbidden ", 403)
+	return fmt.Sprintf("[GET /api/v1/repository][%d] listReposForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListReposForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewListReposNotFound() *ListReposNotFound {
 Not found
 */
 type ListReposNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *ListReposNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/v1/repository][%d] listReposNotFound ", 404)
+	return fmt.Sprintf("[GET /api/v1/repository][%d] listReposNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListReposNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

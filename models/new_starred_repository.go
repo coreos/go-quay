@@ -4,12 +4,13 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*NewStarredRepository NewStarredRepository new starred repository
+/*NewStarredRepository new starred repository
 
 swagger:model NewStarredRepository
 */
@@ -19,13 +20,13 @@ type NewStarredRepository struct {
 
 	Required: true
 	*/
-	Namespace string `json:"namespace,omitempty"`
+	Namespace *string `json:"namespace"`
 
 	/* Repository name
 
 	Required: true
 	*/
-	Repository string `json:"repository,omitempty"`
+	Repository *string `json:"repository"`
 }
 
 // Validate validates this new starred repository
@@ -50,7 +51,7 @@ func (m *NewStarredRepository) Validate(formats strfmt.Registry) error {
 
 func (m *NewStarredRepository) validateNamespace(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("namespace", "body", string(m.Namespace)); err != nil {
+	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
 		return err
 	}
 
@@ -59,7 +60,7 @@ func (m *NewStarredRepository) validateNamespace(formats strfmt.Registry) error 
 
 func (m *NewStarredRepository) validateRepository(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("repository", "body", string(m.Repository)); err != nil {
+	if err := validate.Required("repository", "body", m.Repository); err != nil {
 		return err
 	}
 

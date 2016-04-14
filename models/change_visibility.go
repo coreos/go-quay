@@ -6,9 +6,10 @@ package models
 import (
 	"encoding/json"
 
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*ChangeVisibility Change the visibility for the repository.
@@ -21,7 +22,7 @@ type ChangeVisibility struct {
 
 	Required: true
 	*/
-	Visibility string `json:"visibility,omitempty"`
+	Visibility *string `json:"visibility"`
 }
 
 // Validate validates this change visibility
@@ -39,19 +40,20 @@ func (m *ChangeVisibility) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var changeVisibilityVisibilityEnum []interface{}
+var changeVisibilityTypeVisibilityPropEnum []interface{}
 
+// prop value enum
 func (m *ChangeVisibility) validateVisibilityEnum(path, location string, value string) error {
-	if changeVisibilityVisibilityEnum == nil {
+	if changeVisibilityTypeVisibilityPropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["public","private"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			changeVisibilityVisibilityEnum = append(changeVisibilityVisibilityEnum, v)
+			changeVisibilityTypeVisibilityPropEnum = append(changeVisibilityTypeVisibilityPropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, changeVisibilityVisibilityEnum); err != nil {
+	if err := validate.Enum(path, location, value, changeVisibilityTypeVisibilityPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -59,11 +61,12 @@ func (m *ChangeVisibility) validateVisibilityEnum(path, location string, value s
 
 func (m *ChangeVisibility) validateVisibility(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("visibility", "body", string(m.Visibility)); err != nil {
+	if err := validate.Required("visibility", "body", m.Visibility); err != nil {
 		return err
 	}
 
-	if err := m.validateVisibilityEnum("visibility", "body", m.Visibility); err != nil {
+	// value enum
+	if err := m.validateVisibilityEnum("visibility", "body", *m.Visibility); err != nil {
 		return err
 	}
 

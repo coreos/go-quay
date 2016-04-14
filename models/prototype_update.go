@@ -6,9 +6,10 @@ package models
 import (
 	"encoding/json"
 
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*PrototypeUpdate Description of a the new prototype role
@@ -21,7 +22,7 @@ type PrototypeUpdate struct {
 
 	Required: true
 	*/
-	Role string `json:"role,omitempty"`
+	Role *string `json:"role"`
 }
 
 // Validate validates this prototype update
@@ -39,19 +40,20 @@ func (m *PrototypeUpdate) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var prototypeUpdateRoleEnum []interface{}
+var prototypeUpdateTypeRolePropEnum []interface{}
 
+// prop value enum
 func (m *PrototypeUpdate) validateRoleEnum(path, location string, value string) error {
-	if prototypeUpdateRoleEnum == nil {
+	if prototypeUpdateTypeRolePropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["read","write","admin"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			prototypeUpdateRoleEnum = append(prototypeUpdateRoleEnum, v)
+			prototypeUpdateTypeRolePropEnum = append(prototypeUpdateTypeRolePropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, prototypeUpdateRoleEnum); err != nil {
+	if err := validate.Enum(path, location, value, prototypeUpdateTypeRolePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -59,11 +61,12 @@ func (m *PrototypeUpdate) validateRoleEnum(path, location string, value string) 
 
 func (m *PrototypeUpdate) validateRole(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("role", "body", string(m.Role)); err != nil {
+	if err := validate.Required("role", "body", m.Role); err != nil {
 		return err
 	}
 
-	if err := m.validateRoleEnum("role", "body", m.Role); err != nil {
+	// value enum
+	if err := m.validateRoleEnum("role", "body", *m.Role); err != nil {
 		return err
 	}
 

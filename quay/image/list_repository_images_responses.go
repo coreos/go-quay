@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *ListRepositoryImagesReader) ReadResponse(response client.Response, cons
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewListRepositoryImagesBadRequest() *ListRepositoryImagesBadRequest {
 Bad Request
 */
 type ListRepositoryImagesBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *ListRepositoryImagesBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *ListRepositoryImagesBadRequest) Error() string {
 
 func (o *ListRepositoryImagesBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewListRepositoryImagesUnauthorized() *ListRepositoryImagesUnauthorized {
 Session required
 */
 type ListRepositoryImagesUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *ListRepositoryImagesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/][%d] listRepositoryImagesUnauthorized ", 401)
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/][%d] listRepositoryImagesUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ListRepositoryImagesUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewListRepositoryImagesForbidden() *ListRepositoryImagesForbidden {
 Unauthorized access
 */
 type ListRepositoryImagesForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *ListRepositoryImagesForbidden) Error() string {
-	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/][%d] listRepositoryImagesForbidden ", 403)
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/][%d] listRepositoryImagesForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ListRepositoryImagesForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewListRepositoryImagesNotFound() *ListRepositoryImagesNotFound {
 Not found
 */
 type ListRepositoryImagesNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *ListRepositoryImagesNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/][%d] listRepositoryImagesNotFound ", 404)
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/][%d] listRepositoryImagesNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListRepositoryImagesNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

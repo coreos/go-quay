@@ -4,9 +4,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*RepoUpdate Fields which can be updated in a repository.
@@ -19,7 +20,7 @@ type RepoUpdate struct {
 
 	Required: true
 	*/
-	Description string `json:"description,omitempty"`
+	Description *string `json:"description"`
 }
 
 // Validate validates this repo update
@@ -39,7 +40,7 @@ func (m *RepoUpdate) Validate(formats strfmt.Registry) error {
 
 func (m *RepoUpdate) validateDescription(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("description", "body", string(m.Description)); err != nil {
+	if err := validate.Required("description", "body", m.Description); err != nil {
 		return err
 	}
 

@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *ChangeTagImageReader) ReadResponse(response client.Response, consumer h
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewChangeTagImageBadRequest() *ChangeTagImageBadRequest {
 Bad Request
 */
 type ChangeTagImageBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *ChangeTagImageBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *ChangeTagImageBadRequest) Error() string {
 
 func (o *ChangeTagImageBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewChangeTagImageUnauthorized() *ChangeTagImageUnauthorized {
 Session required
 */
 type ChangeTagImageUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *ChangeTagImageUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/tag/{tag}][%d] changeTagImageUnauthorized ", 401)
+	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/tag/{tag}][%d] changeTagImageUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ChangeTagImageUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewChangeTagImageForbidden() *ChangeTagImageForbidden {
 Unauthorized access
 */
 type ChangeTagImageForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *ChangeTagImageForbidden) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/tag/{tag}][%d] changeTagImageForbidden ", 403)
+	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/tag/{tag}][%d] changeTagImageForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ChangeTagImageForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewChangeTagImageNotFound() *ChangeTagImageNotFound {
 Not found
 */
 type ChangeTagImageNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *ChangeTagImageNotFound) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/tag/{tag}][%d] changeTagImageNotFound ", 404)
+	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/tag/{tag}][%d] changeTagImageNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ChangeTagImageNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

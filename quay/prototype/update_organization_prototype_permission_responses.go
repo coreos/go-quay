@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *UpdateOrganizationPrototypePermissionReader) ReadResponse(response clie
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewUpdateOrganizationPrototypePermissionBadRequest() *UpdateOrganizationPro
 Bad Request
 */
 type UpdateOrganizationPrototypePermissionBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *UpdateOrganizationPrototypePermissionBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *UpdateOrganizationPrototypePermissionBadRequest) Error() string {
 
 func (o *UpdateOrganizationPrototypePermissionBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewUpdateOrganizationPrototypePermissionUnauthorized() *UpdateOrganizationP
 Session required
 */
 type UpdateOrganizationPrototypePermissionUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *UpdateOrganizationPrototypePermissionUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/prototypes/{prototypeid}][%d] updateOrganizationPrototypePermissionUnauthorized ", 401)
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/prototypes/{prototypeid}][%d] updateOrganizationPrototypePermissionUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateOrganizationPrototypePermissionUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewUpdateOrganizationPrototypePermissionForbidden() *UpdateOrganizationProt
 Unauthorized access
 */
 type UpdateOrganizationPrototypePermissionForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *UpdateOrganizationPrototypePermissionForbidden) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/prototypes/{prototypeid}][%d] updateOrganizationPrototypePermissionForbidden ", 403)
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/prototypes/{prototypeid}][%d] updateOrganizationPrototypePermissionForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateOrganizationPrototypePermissionForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewUpdateOrganizationPrototypePermissionNotFound() *UpdateOrganizationProto
 Not found
 */
 type UpdateOrganizationPrototypePermissionNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *UpdateOrganizationPrototypePermissionNotFound) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/prototypes/{prototypeid}][%d] updateOrganizationPrototypePermissionNotFound ", 404)
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/prototypes/{prototypeid}][%d] updateOrganizationPrototypePermissionNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateOrganizationPrototypePermissionNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

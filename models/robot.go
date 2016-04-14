@@ -11,13 +11,13 @@ swagger:model Robot
 */
 type Robot struct {
 
-	/* Name name
+	/* name
 	 */
-	Name *string `json:"name,omitempty"`
+	Name string `json:"name,omitempty"`
 
-	/* Token token
+	/* token
 	 */
-	Token *string `json:"token,omitempty"`
+	Token string `json:"token,omitempty"`
 }
 
 // Validate validates this robot

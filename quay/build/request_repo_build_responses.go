@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -23,8 +24,8 @@ type RequestRepoBuildReader struct {
 func (o *RequestRepoBuildReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
-	case 200:
-		result := NewRequestRepoBuildOK()
+	case 201:
+		result := NewRequestRepoBuildCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -59,27 +60,27 @@ func (o *RequestRepoBuildReader) ReadResponse(response client.Response, consumer
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-// NewRequestRepoBuildOK creates a RequestRepoBuildOK with default headers values
-func NewRequestRepoBuildOK() *RequestRepoBuildOK {
-	return &RequestRepoBuildOK{}
+// NewRequestRepoBuildCreated creates a RequestRepoBuildCreated with default headers values
+func NewRequestRepoBuildCreated() *RequestRepoBuildCreated {
+	return &RequestRepoBuildCreated{}
 }
 
-/*RequestRepoBuildOK handles this case with default header values.
+/*RequestRepoBuildCreated handles this case with default header values.
 
-Successful invocation
+Successful creation
 */
-type RequestRepoBuildOK struct {
+type RequestRepoBuildCreated struct {
 }
 
-func (o *RequestRepoBuildOK) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository/{repository}/build/][%d] requestRepoBuildOK ", 200)
+func (o *RequestRepoBuildCreated) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/build/][%d] requestRepoBuildCreated ", 201)
 }
 
-func (o *RequestRepoBuildOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *RequestRepoBuildCreated) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -94,7 +95,7 @@ func NewRequestRepoBuildBadRequest() *RequestRepoBuildBadRequest {
 Bad Request
 */
 type RequestRepoBuildBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *RequestRepoBuildBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *RequestRepoBuildBadRequest) Error() string {
 
 func (o *RequestRepoBuildBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewRequestRepoBuildUnauthorized() *RequestRepoBuildUnauthorized {
 Session required
 */
 type RequestRepoBuildUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *RequestRepoBuildUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository/{repository}/build/][%d] requestRepoBuildUnauthorized ", 401)
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/build/][%d] requestRepoBuildUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *RequestRepoBuildUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewRequestRepoBuildForbidden() *RequestRepoBuildForbidden {
 Unauthorized access
 */
 type RequestRepoBuildForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *RequestRepoBuildForbidden) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository/{repository}/build/][%d] requestRepoBuildForbidden ", 403)
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/build/][%d] requestRepoBuildForbidden  %+v", 403, o.Payload)
 }
 
 func (o *RequestRepoBuildForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewRequestRepoBuildNotFound() *RequestRepoBuildNotFound {
 Not found
 */
 type RequestRepoBuildNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *RequestRepoBuildNotFound) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository/{repository}/build/][%d] requestRepoBuildNotFound ", 404)
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/build/][%d] requestRepoBuildNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RequestRepoBuildNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

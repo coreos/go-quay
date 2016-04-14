@@ -4,10 +4,9 @@ package image
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"fmt"
-
 	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 )
 
 // New creates a new image API client.
@@ -24,7 +23,7 @@ type Client struct {
 }
 
 /*
-Get the information available for the specified image.
+GetImage Get the information available for the specified image.
 */
 func (a *Client) GetImage(params *GetImageParams, authInfo client.AuthInfoWriter) (*GetImageOK, error) {
 	// TODO: Validate the params before sending
@@ -37,6 +36,7 @@ func (a *Client) GetImage(params *GetImageParams, authInfo client.AuthInfoWriter
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/image/{image_id}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetImageReader{formats: a.formats},
@@ -49,32 +49,7 @@ func (a *Client) GetImage(params *GetImageParams, authInfo client.AuthInfoWriter
 }
 
 /*
-Get the list of changes for the specified image.
-*/
-func (a *Client) GetImageChanges(params *GetImageChangesParams, authInfo client.AuthInfoWriter) (*GetImageChangesOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetImageChangesParams()
-	}
-
-	result, err := a.transport.Submit(&client.Operation{
-		ID:                 "getImageChanges",
-		Method:             "GET",
-		PathPattern:        "/api/v1/repository/{repository}/image/{image_id}/changes",
-		ProducesMediaTypes: []string{""},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetImageChangesReader{formats: a.formats},
-		AuthInfo:           authInfo,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*GetImageChangesOK), nil
-}
-
-/*
-List the images for the specified repository.
+ListRepositoryImages List the images for the specified repository.
 */
 func (a *Client) ListRepositoryImages(params *ListRepositoryImagesParams, authInfo client.AuthInfoWriter) (*ListRepositoryImagesOK, error) {
 	// TODO: Validate the params before sending
@@ -87,6 +62,7 @@ func (a *Client) ListRepositoryImages(params *ListRepositoryImagesParams, authIn
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/image/",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListRepositoryImagesReader{formats: a.formats},
@@ -101,24 +77,4 @@ func (a *Client) ListRepositoryImages(params *ListRepositoryImagesParams, authIn
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport client.Transport) {
 	a.transport = transport
-}
-
-// NewAPIError creates a new API error
-func NewAPIError(opName string, response interface{}, code int) APIError {
-	return APIError{
-		OperationName: opName,
-		Response:      response,
-		Code:          code,
-	}
-}
-
-// APIError wraps an error model and captures the status code
-type APIError struct {
-	OperationName string
-	Response      interface{}
-	Code          int
-}
-
-func (a APIError) Error() string {
-	return fmt.Sprintf("%s (status %d): %+v ", a.OperationName, a.Code, a.Response)
 }

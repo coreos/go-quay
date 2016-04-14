@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -23,8 +24,8 @@ type ActivateBuildTriggerReader struct {
 func (o *ActivateBuildTriggerReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
-	case 200:
-		result := NewActivateBuildTriggerOK()
+	case 201:
+		result := NewActivateBuildTriggerCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -59,27 +60,27 @@ func (o *ActivateBuildTriggerReader) ReadResponse(response client.Response, cons
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-// NewActivateBuildTriggerOK creates a ActivateBuildTriggerOK with default headers values
-func NewActivateBuildTriggerOK() *ActivateBuildTriggerOK {
-	return &ActivateBuildTriggerOK{}
+// NewActivateBuildTriggerCreated creates a ActivateBuildTriggerCreated with default headers values
+func NewActivateBuildTriggerCreated() *ActivateBuildTriggerCreated {
+	return &ActivateBuildTriggerCreated{}
 }
 
-/*ActivateBuildTriggerOK handles this case with default header values.
+/*ActivateBuildTriggerCreated handles this case with default header values.
 
-Successful invocation
+Successful creation
 */
-type ActivateBuildTriggerOK struct {
+type ActivateBuildTriggerCreated struct {
 }
 
-func (o *ActivateBuildTriggerOK) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository/{repository}/trigger/{trigger_uuid}/activate][%d] activateBuildTriggerOK ", 200)
+func (o *ActivateBuildTriggerCreated) Error() string {
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/trigger/{trigger_uuid}/activate][%d] activateBuildTriggerCreated ", 201)
 }
 
-func (o *ActivateBuildTriggerOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ActivateBuildTriggerCreated) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -94,7 +95,7 @@ func NewActivateBuildTriggerBadRequest() *ActivateBuildTriggerBadRequest {
 Bad Request
 */
 type ActivateBuildTriggerBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *ActivateBuildTriggerBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *ActivateBuildTriggerBadRequest) Error() string {
 
 func (o *ActivateBuildTriggerBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewActivateBuildTriggerUnauthorized() *ActivateBuildTriggerUnauthorized {
 Session required
 */
 type ActivateBuildTriggerUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *ActivateBuildTriggerUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository/{repository}/trigger/{trigger_uuid}/activate][%d] activateBuildTriggerUnauthorized ", 401)
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/trigger/{trigger_uuid}/activate][%d] activateBuildTriggerUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ActivateBuildTriggerUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewActivateBuildTriggerForbidden() *ActivateBuildTriggerForbidden {
 Unauthorized access
 */
 type ActivateBuildTriggerForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *ActivateBuildTriggerForbidden) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository/{repository}/trigger/{trigger_uuid}/activate][%d] activateBuildTriggerForbidden ", 403)
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/trigger/{trigger_uuid}/activate][%d] activateBuildTriggerForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ActivateBuildTriggerForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewActivateBuildTriggerNotFound() *ActivateBuildTriggerNotFound {
 Not found
 */
 type ActivateBuildTriggerNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *ActivateBuildTriggerNotFound) Error() string {
-	return fmt.Sprintf("[POST /api/v1/repository/{repository}/trigger/{trigger_uuid}/activate][%d] activateBuildTriggerNotFound ", 404)
+	return fmt.Sprintf("[POST /api/v1/repository/{repository}/trigger/{trigger_uuid}/activate][%d] activateBuildTriggerNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ActivateBuildTriggerNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

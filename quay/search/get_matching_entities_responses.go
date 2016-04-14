@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *GetMatchingEntitiesReader) ReadResponse(response client.Response, consu
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewGetMatchingEntitiesBadRequest() *GetMatchingEntitiesBadRequest {
 Bad Request
 */
 type GetMatchingEntitiesBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *GetMatchingEntitiesBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *GetMatchingEntitiesBadRequest) Error() string {
 
 func (o *GetMatchingEntitiesBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewGetMatchingEntitiesUnauthorized() *GetMatchingEntitiesUnauthorized {
 Session required
 */
 type GetMatchingEntitiesUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *GetMatchingEntitiesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /api/v1/entities/{prefix}][%d] getMatchingEntitiesUnauthorized ", 401)
+	return fmt.Sprintf("[GET /api/v1/entities/{prefix}][%d] getMatchingEntitiesUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetMatchingEntitiesUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewGetMatchingEntitiesForbidden() *GetMatchingEntitiesForbidden {
 Unauthorized access
 */
 type GetMatchingEntitiesForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *GetMatchingEntitiesForbidden) Error() string {
-	return fmt.Sprintf("[GET /api/v1/entities/{prefix}][%d] getMatchingEntitiesForbidden ", 403)
+	return fmt.Sprintf("[GET /api/v1/entities/{prefix}][%d] getMatchingEntitiesForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetMatchingEntitiesForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewGetMatchingEntitiesNotFound() *GetMatchingEntitiesNotFound {
 Not found
 */
 type GetMatchingEntitiesNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *GetMatchingEntitiesNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/v1/entities/{prefix}][%d] getMatchingEntitiesNotFound ", 404)
+	return fmt.Sprintf("[GET /api/v1/entities/{prefix}][%d] getMatchingEntitiesNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetMatchingEntitiesNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

@@ -4,10 +4,9 @@ package build
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"fmt"
-
 	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 )
 
 // New creates a new build API client.
@@ -24,7 +23,7 @@ type Client struct {
 }
 
 /*
-Cancels a repository build if it has not yet been picked up by a build worker.
+CancelRepoBuild Cancels a repository build if it has not yet been picked up by a build worker.
 */
 func (a *Client) CancelRepoBuild(params *CancelRepoBuildParams, authInfo client.AuthInfoWriter) (*CancelRepoBuildNoContent, error) {
 	// TODO: Validate the params before sending
@@ -37,6 +36,7 @@ func (a *Client) CancelRepoBuild(params *CancelRepoBuildParams, authInfo client.
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/repository/{repository}/build/{build_uuid}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CancelRepoBuildReader{formats: a.formats},
@@ -49,7 +49,7 @@ func (a *Client) CancelRepoBuild(params *CancelRepoBuildParams, authInfo client.
 }
 
 /*
-Returns information about a build.
+GetRepoBuild Returns information about a build.
 */
 func (a *Client) GetRepoBuild(params *GetRepoBuildParams, authInfo client.AuthInfoWriter) (*GetRepoBuildOK, error) {
 	// TODO: Validate the params before sending
@@ -62,6 +62,7 @@ func (a *Client) GetRepoBuild(params *GetRepoBuildParams, authInfo client.AuthIn
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/build/{build_uuid}",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetRepoBuildReader{formats: a.formats},
@@ -74,7 +75,7 @@ func (a *Client) GetRepoBuild(params *GetRepoBuildParams, authInfo client.AuthIn
 }
 
 /*
-Return the build logs for the build specified by the build uuid.
+GetRepoBuildLogs Return the build logs for the build specified by the build uuid.
 */
 func (a *Client) GetRepoBuildLogs(params *GetRepoBuildLogsParams, authInfo client.AuthInfoWriter) (*GetRepoBuildLogsOK, error) {
 	// TODO: Validate the params before sending
@@ -87,6 +88,7 @@ func (a *Client) GetRepoBuildLogs(params *GetRepoBuildLogsParams, authInfo clien
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/build/{build_uuid}/logs",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetRepoBuildLogsReader{formats: a.formats},
@@ -99,7 +101,7 @@ func (a *Client) GetRepoBuildLogs(params *GetRepoBuildLogsParams, authInfo clien
 }
 
 /*
-Return the status for the builds specified by the build uuids.
+GetRepoBuildStatus Return the status for the builds specified by the build uuids.
 */
 func (a *Client) GetRepoBuildStatus(params *GetRepoBuildStatusParams, authInfo client.AuthInfoWriter) (*GetRepoBuildStatusOK, error) {
 	// TODO: Validate the params before sending
@@ -112,6 +114,7 @@ func (a *Client) GetRepoBuildStatus(params *GetRepoBuildStatusParams, authInfo c
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/build/{build_uuid}/status",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetRepoBuildStatusReader{formats: a.formats},
@@ -124,7 +127,7 @@ func (a *Client) GetRepoBuildStatus(params *GetRepoBuildStatusParams, authInfo c
 }
 
 /*
-Get the list of repository builds.
+GetRepoBuilds Get the list of repository builds.
 */
 func (a *Client) GetRepoBuilds(params *GetRepoBuildsParams, authInfo client.AuthInfoWriter) (*GetRepoBuildsOK, error) {
 	// TODO: Validate the params before sending
@@ -137,6 +140,7 @@ func (a *Client) GetRepoBuilds(params *GetRepoBuildsParams, authInfo client.Auth
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/build/",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetRepoBuildsReader{formats: a.formats},
@@ -149,9 +153,9 @@ func (a *Client) GetRepoBuilds(params *GetRepoBuildsParams, authInfo client.Auth
 }
 
 /*
-Request that a repository be built and pushed from the specified input.
+RequestRepoBuild Request that a repository be built and pushed from the specified input.
 */
-func (a *Client) RequestRepoBuild(params *RequestRepoBuildParams, authInfo client.AuthInfoWriter) (*RequestRepoBuildOK, error) {
+func (a *Client) RequestRepoBuild(params *RequestRepoBuildParams, authInfo client.AuthInfoWriter) (*RequestRepoBuildCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRequestRepoBuildParams()
@@ -162,6 +166,7 @@ func (a *Client) RequestRepoBuild(params *RequestRepoBuildParams, authInfo clien
 		Method:             "POST",
 		PathPattern:        "/api/v1/repository/{repository}/build/",
 		ProducesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RequestRepoBuildReader{formats: a.formats},
@@ -170,30 +175,10 @@ func (a *Client) RequestRepoBuild(params *RequestRepoBuildParams, authInfo clien
 	if err != nil {
 		return nil, err
 	}
-	return result.(*RequestRepoBuildOK), nil
+	return result.(*RequestRepoBuildCreated), nil
 }
 
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport client.Transport) {
 	a.transport = transport
-}
-
-// NewAPIError creates a new API error
-func NewAPIError(opName string, response interface{}, code int) APIError {
-	return APIError{
-		OperationName: opName,
-		Response:      response,
-		Code:          code,
-	}
-}
-
-// APIError wraps an error model and captures the status code
-type APIError struct {
-	OperationName string
-	Response      interface{}
-	Code          int
-}
-
-func (a APIError) Error() string {
-	return fmt.Sprintf("%s (status %d): %+v ", a.OperationName, a.Code, a.Response)
 }

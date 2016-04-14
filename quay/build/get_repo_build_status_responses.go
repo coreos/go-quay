@@ -9,7 +9,8 @@ import (
 
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -59,7 +60,7 @@ func (o *GetRepoBuildStatusReader) ReadResponse(response client.Response, consum
 		return nil, result
 
 	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, client.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -94,7 +95,7 @@ func NewGetRepoBuildStatusBadRequest() *GetRepoBuildStatusBadRequest {
 Bad Request
 */
 type GetRepoBuildStatusBadRequest struct {
-	Payload *models.GeneralError
+	Payload *models.APIError
 }
 
 func (o *GetRepoBuildStatusBadRequest) Error() string {
@@ -103,7 +104,7 @@ func (o *GetRepoBuildStatusBadRequest) Error() string {
 
 func (o *GetRepoBuildStatusBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.APIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,13 +124,21 @@ func NewGetRepoBuildStatusUnauthorized() *GetRepoBuildStatusUnauthorized {
 Session required
 */
 type GetRepoBuildStatusUnauthorized struct {
+	Payload *models.APIError
 }
 
 func (o *GetRepoBuildStatusUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /api/v1/repository/{repository}/build/{build_uuid}/status][%d] getRepoBuildStatusUnauthorized ", 401)
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/build/{build_uuid}/status][%d] getRepoBuildStatusUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetRepoBuildStatusUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -144,13 +153,21 @@ func NewGetRepoBuildStatusForbidden() *GetRepoBuildStatusForbidden {
 Unauthorized access
 */
 type GetRepoBuildStatusForbidden struct {
+	Payload *models.APIError
 }
 
 func (o *GetRepoBuildStatusForbidden) Error() string {
-	return fmt.Sprintf("[GET /api/v1/repository/{repository}/build/{build_uuid}/status][%d] getRepoBuildStatusForbidden ", 403)
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/build/{build_uuid}/status][%d] getRepoBuildStatusForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetRepoBuildStatusForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -165,13 +182,21 @@ func NewGetRepoBuildStatusNotFound() *GetRepoBuildStatusNotFound {
 Not found
 */
 type GetRepoBuildStatusNotFound struct {
+	Payload *models.APIError
 }
 
 func (o *GetRepoBuildStatusNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/v1/repository/{repository}/build/{build_uuid}/status][%d] getRepoBuildStatusNotFound ", 404)
+	return fmt.Sprintf("[GET /api/v1/repository/{repository}/build/{build_uuid}/status][%d] getRepoBuildStatusNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetRepoBuildStatusNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.APIError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
