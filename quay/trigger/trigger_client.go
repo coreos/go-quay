@@ -4,13 +4,13 @@ package trigger
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // New creates a new trigger API client.
-func New(transport client.Transport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -18,20 +18,20 @@ func New(transport client.Transport, formats strfmt.Registry) *Client {
 Client for trigger API
 */
 type Client struct {
-	transport client.Transport
+	transport runtime.ClientTransport
 	formats   strfmt.Registry
 }
 
 /*
 ActivateBuildTrigger Activate the specified build trigger.
 */
-func (a *Client) ActivateBuildTrigger(params *ActivateBuildTriggerParams, authInfo client.AuthInfoWriter) (*ActivateBuildTriggerCreated, error) {
+func (a *Client) ActivateBuildTrigger(params *ActivateBuildTriggerParams, authInfo runtime.ClientAuthInfoWriter) (*ActivateBuildTriggerCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewActivateBuildTriggerParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "activateBuildTrigger",
 		Method:             "POST",
 		PathPattern:        "/api/v1/repository/{repository}/trigger/{trigger_uuid}/activate",
@@ -51,13 +51,13 @@ func (a *Client) ActivateBuildTrigger(params *ActivateBuildTriggerParams, authIn
 /*
 DeleteBuildTrigger Delete the specified build trigger.
 */
-func (a *Client) DeleteBuildTrigger(params *DeleteBuildTriggerParams, authInfo client.AuthInfoWriter) (*DeleteBuildTriggerNoContent, error) {
+func (a *Client) DeleteBuildTrigger(params *DeleteBuildTriggerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteBuildTriggerNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteBuildTriggerParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteBuildTrigger",
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/repository/{repository}/trigger/{trigger_uuid}",
@@ -77,13 +77,13 @@ func (a *Client) DeleteBuildTrigger(params *DeleteBuildTriggerParams, authInfo c
 /*
 GetBuildTrigger Get information for the specified build trigger.
 */
-func (a *Client) GetBuildTrigger(params *GetBuildTriggerParams, authInfo client.AuthInfoWriter) (*GetBuildTriggerOK, error) {
+func (a *Client) GetBuildTrigger(params *GetBuildTriggerParams, authInfo runtime.ClientAuthInfoWriter) (*GetBuildTriggerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetBuildTriggerParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getBuildTrigger",
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/trigger/{trigger_uuid}",
@@ -103,13 +103,13 @@ func (a *Client) GetBuildTrigger(params *GetBuildTriggerParams, authInfo client.
 /*
 ListBuildTriggers List the triggers for the specified repository.
 */
-func (a *Client) ListBuildTriggers(params *ListBuildTriggersParams, authInfo client.AuthInfoWriter) (*ListBuildTriggersOK, error) {
+func (a *Client) ListBuildTriggers(params *ListBuildTriggersParams, authInfo runtime.ClientAuthInfoWriter) (*ListBuildTriggersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListBuildTriggersParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listBuildTriggers",
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/trigger/",
@@ -129,13 +129,13 @@ func (a *Client) ListBuildTriggers(params *ListBuildTriggersParams, authInfo cli
 /*
 ListTriggerRecentBuilds List the builds started by the specified trigger.
 */
-func (a *Client) ListTriggerRecentBuilds(params *ListTriggerRecentBuildsParams, authInfo client.AuthInfoWriter) (*ListTriggerRecentBuildsOK, error) {
+func (a *Client) ListTriggerRecentBuilds(params *ListTriggerRecentBuildsParams, authInfo runtime.ClientAuthInfoWriter) (*ListTriggerRecentBuildsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListTriggerRecentBuildsParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listTriggerRecentBuilds",
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/trigger/{trigger_uuid}/builds",
@@ -155,13 +155,13 @@ func (a *Client) ListTriggerRecentBuilds(params *ListTriggerRecentBuildsParams, 
 /*
 ManuallyStartBuildTrigger Manually start a build from the specified trigger.
 */
-func (a *Client) ManuallyStartBuildTrigger(params *ManuallyStartBuildTriggerParams, authInfo client.AuthInfoWriter) (*ManuallyStartBuildTriggerCreated, error) {
+func (a *Client) ManuallyStartBuildTrigger(params *ManuallyStartBuildTriggerParams, authInfo runtime.ClientAuthInfoWriter) (*ManuallyStartBuildTriggerCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewManuallyStartBuildTriggerParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "manuallyStartBuildTrigger",
 		Method:             "POST",
 		PathPattern:        "/api/v1/repository/{repository}/trigger/{trigger_uuid}/start",
@@ -179,6 +179,6 @@ func (a *Client) ManuallyStartBuildTrigger(params *ManuallyStartBuildTriggerPara
 }
 
 // SetTransport changes the transport on the client
-func (a *Client) SetTransport(transport client.Transport) {
+func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
 }

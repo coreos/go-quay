@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type GetAggregateOrgLogsReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *GetAggregateOrgLogsReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *GetAggregateOrgLogsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -60,7 +59,7 @@ func (o *GetAggregateOrgLogsReader) ReadResponse(response client.Response, consu
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *GetAggregateOrgLogsOK) Error() string {
 	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/aggregatelogs][%d] getAggregateOrgLogsOK ", 200)
 }
 
-func (o *GetAggregateOrgLogsOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetAggregateOrgLogsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *GetAggregateOrgLogsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/aggregatelogs][%d] getAggregateOrgLogsBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *GetAggregateOrgLogsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetAggregateOrgLogsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *GetAggregateOrgLogsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/aggregatelogs][%d] getAggregateOrgLogsUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *GetAggregateOrgLogsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetAggregateOrgLogsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *GetAggregateOrgLogsForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/aggregatelogs][%d] getAggregateOrgLogsForbidden  %+v", 403, o.Payload)
 }
 
-func (o *GetAggregateOrgLogsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetAggregateOrgLogsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *GetAggregateOrgLogsNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/aggregatelogs][%d] getAggregateOrgLogsNotFound  %+v", 404, o.Payload)
 }
 
-func (o *GetAggregateOrgLogsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetAggregateOrgLogsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

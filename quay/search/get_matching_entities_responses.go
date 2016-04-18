@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type GetMatchingEntitiesReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *GetMatchingEntitiesReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *GetMatchingEntitiesReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -60,7 +59,7 @@ func (o *GetMatchingEntitiesReader) ReadResponse(response client.Response, consu
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *GetMatchingEntitiesOK) Error() string {
 	return fmt.Sprintf("[GET /api/v1/entities/{prefix}][%d] getMatchingEntitiesOK ", 200)
 }
 
-func (o *GetMatchingEntitiesOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetMatchingEntitiesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *GetMatchingEntitiesBadRequest) Error() string {
 	return fmt.Sprintf("[GET /api/v1/entities/{prefix}][%d] getMatchingEntitiesBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *GetMatchingEntitiesBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetMatchingEntitiesBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *GetMatchingEntitiesUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/v1/entities/{prefix}][%d] getMatchingEntitiesUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *GetMatchingEntitiesUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetMatchingEntitiesUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *GetMatchingEntitiesForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/v1/entities/{prefix}][%d] getMatchingEntitiesForbidden  %+v", 403, o.Payload)
 }
 
-func (o *GetMatchingEntitiesForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetMatchingEntitiesForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *GetMatchingEntitiesNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/v1/entities/{prefix}][%d] getMatchingEntitiesNotFound  %+v", 404, o.Payload)
 }
 
-func (o *GetMatchingEntitiesNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetMatchingEntitiesNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

@@ -4,10 +4,10 @@ package team
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewDeleteOrganizationTeamParams creates a new DeleteOrganizationTeamParams object
@@ -35,19 +35,19 @@ type DeleteOrganizationTeamParams struct {
 }
 
 // WithOrgname adds the orgname to the delete organization team params
-func (o *DeleteOrganizationTeamParams) WithOrgname(orgname string) *DeleteOrganizationTeamParams {
-	o.Orgname = orgname
+func (o *DeleteOrganizationTeamParams) WithOrgname(Orgname string) *DeleteOrganizationTeamParams {
+	o.Orgname = Orgname
 	return o
 }
 
 // WithTeamname adds the teamname to the delete organization team params
-func (o *DeleteOrganizationTeamParams) WithTeamname(teamname string) *DeleteOrganizationTeamParams {
-	o.Teamname = teamname
+func (o *DeleteOrganizationTeamParams) WithTeamname(Teamname string) *DeleteOrganizationTeamParams {
+	o.Teamname = Teamname
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *DeleteOrganizationTeamParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *DeleteOrganizationTeamParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

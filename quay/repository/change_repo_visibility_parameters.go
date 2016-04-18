@@ -4,10 +4,10 @@ package repository
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -37,19 +37,19 @@ type ChangeRepoVisibilityParams struct {
 }
 
 // WithBody adds the body to the change repo visibility params
-func (o *ChangeRepoVisibilityParams) WithBody(body *models.ChangeVisibility) *ChangeRepoVisibilityParams {
-	o.Body = body
+func (o *ChangeRepoVisibilityParams) WithBody(Body *models.ChangeVisibility) *ChangeRepoVisibilityParams {
+	o.Body = Body
 	return o
 }
 
 // WithRepository adds the repository to the change repo visibility params
-func (o *ChangeRepoVisibilityParams) WithRepository(repository string) *ChangeRepoVisibilityParams {
-	o.Repository = repository
+func (o *ChangeRepoVisibilityParams) WithRepository(Repository string) *ChangeRepoVisibilityParams {
+	o.Repository = Repository
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *ChangeRepoVisibilityParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *ChangeRepoVisibilityParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

@@ -4,10 +4,10 @@ package build
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewCancelRepoBuildParams creates a new CancelRepoBuildParams object
@@ -35,19 +35,19 @@ type CancelRepoBuildParams struct {
 }
 
 // WithBuildUUID adds the buildUuid to the cancel repo build params
-func (o *CancelRepoBuildParams) WithBuildUUID(buildUuid string) *CancelRepoBuildParams {
-	o.BuildUUID = buildUuid
+func (o *CancelRepoBuildParams) WithBuildUUID(BuildUUID string) *CancelRepoBuildParams {
+	o.BuildUUID = BuildUUID
 	return o
 }
 
 // WithRepository adds the repository to the cancel repo build params
-func (o *CancelRepoBuildParams) WithRepository(repository string) *CancelRepoBuildParams {
-	o.Repository = repository
+func (o *CancelRepoBuildParams) WithRepository(Repository string) *CancelRepoBuildParams {
+	o.Repository = Repository
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *CancelRepoBuildParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *CancelRepoBuildParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

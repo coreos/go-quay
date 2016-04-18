@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type CreateOrganizationReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *CreateOrganizationReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *CreateOrganizationReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 201:
@@ -60,7 +59,7 @@ func (o *CreateOrganizationReader) ReadResponse(response client.Response, consum
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *CreateOrganizationCreated) Error() string {
 	return fmt.Sprintf("[POST /api/v1/organization/][%d] createOrganizationCreated ", 201)
 }
 
-func (o *CreateOrganizationCreated) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateOrganizationCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *CreateOrganizationBadRequest) Error() string {
 	return fmt.Sprintf("[POST /api/v1/organization/][%d] createOrganizationBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *CreateOrganizationBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateOrganizationBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *CreateOrganizationUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/v1/organization/][%d] createOrganizationUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *CreateOrganizationUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateOrganizationUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *CreateOrganizationForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/v1/organization/][%d] createOrganizationForbidden  %+v", 403, o.Payload)
 }
 
-func (o *CreateOrganizationForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateOrganizationForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *CreateOrganizationNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/v1/organization/][%d] createOrganizationNotFound  %+v", 404, o.Payload)
 }
 
-func (o *CreateOrganizationNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateOrganizationNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

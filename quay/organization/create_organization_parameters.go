@@ -4,10 +4,10 @@ package organization
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -32,13 +32,13 @@ type CreateOrganizationParams struct {
 }
 
 // WithBody adds the body to the create organization params
-func (o *CreateOrganizationParams) WithBody(body *models.NewOrg) *CreateOrganizationParams {
-	o.Body = body
+func (o *CreateOrganizationParams) WithBody(Body *models.NewOrg) *CreateOrganizationParams {
+	o.Body = Body
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *CreateOrganizationParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *CreateOrganizationParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

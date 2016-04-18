@@ -4,11 +4,11 @@ package team
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetOrganizationTeamMembersParams creates a new GetOrganizationTeamMembersParams object
@@ -41,25 +41,25 @@ type GetOrganizationTeamMembersParams struct {
 }
 
 // WithIncludePending adds the includePending to the get organization team members params
-func (o *GetOrganizationTeamMembersParams) WithIncludePending(includePending *bool) *GetOrganizationTeamMembersParams {
-	o.IncludePending = includePending
+func (o *GetOrganizationTeamMembersParams) WithIncludePending(IncludePending *bool) *GetOrganizationTeamMembersParams {
+	o.IncludePending = IncludePending
 	return o
 }
 
 // WithOrgname adds the orgname to the get organization team members params
-func (o *GetOrganizationTeamMembersParams) WithOrgname(orgname string) *GetOrganizationTeamMembersParams {
-	o.Orgname = orgname
+func (o *GetOrganizationTeamMembersParams) WithOrgname(Orgname string) *GetOrganizationTeamMembersParams {
+	o.Orgname = Orgname
 	return o
 }
 
 // WithTeamname adds the teamname to the get organization team members params
-func (o *GetOrganizationTeamMembersParams) WithTeamname(teamname string) *GetOrganizationTeamMembersParams {
-	o.Teamname = teamname
+func (o *GetOrganizationTeamMembersParams) WithTeamname(Teamname string) *GetOrganizationTeamMembersParams {
+	o.Teamname = Teamname
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetOrganizationTeamMembersParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetOrganizationTeamMembersParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

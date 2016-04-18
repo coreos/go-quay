@@ -4,10 +4,10 @@ package repository
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewDeleteRepositoryParams creates a new DeleteRepositoryParams object
@@ -30,13 +30,13 @@ type DeleteRepositoryParams struct {
 }
 
 // WithRepository adds the repository to the delete repository params
-func (o *DeleteRepositoryParams) WithRepository(repository string) *DeleteRepositoryParams {
-	o.Repository = repository
+func (o *DeleteRepositoryParams) WithRepository(Repository string) *DeleteRepositoryParams {
+	o.Repository = Repository
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *DeleteRepositoryParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *DeleteRepositoryParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

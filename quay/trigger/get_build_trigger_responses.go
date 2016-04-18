@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type GetBuildTriggerReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *GetBuildTriggerReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *GetBuildTriggerReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -60,7 +59,7 @@ func (o *GetBuildTriggerReader) ReadResponse(response client.Response, consumer 
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *GetBuildTriggerOK) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/trigger/{trigger_uuid}][%d] getBuildTriggerOK ", 200)
 }
 
-func (o *GetBuildTriggerOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetBuildTriggerOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *GetBuildTriggerBadRequest) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/trigger/{trigger_uuid}][%d] getBuildTriggerBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *GetBuildTriggerBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetBuildTriggerBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *GetBuildTriggerUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/trigger/{trigger_uuid}][%d] getBuildTriggerUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *GetBuildTriggerUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetBuildTriggerUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *GetBuildTriggerForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/trigger/{trigger_uuid}][%d] getBuildTriggerForbidden  %+v", 403, o.Payload)
 }
 
-func (o *GetBuildTriggerForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetBuildTriggerForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *GetBuildTriggerNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/trigger/{trigger_uuid}][%d] getBuildTriggerNotFound  %+v", 404, o.Payload)
 }
 
-func (o *GetBuildTriggerNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetBuildTriggerNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

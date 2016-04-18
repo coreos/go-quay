@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type RemoveOrganizationMemberReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *RemoveOrganizationMemberReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *RemoveOrganizationMemberReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 204:
@@ -60,7 +59,7 @@ func (o *RemoveOrganizationMemberReader) ReadResponse(response client.Response, 
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *RemoveOrganizationMemberNoContent) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/members/{membername}][%d] removeOrganizationMemberNoContent ", 204)
 }
 
-func (o *RemoveOrganizationMemberNoContent) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *RemoveOrganizationMemberNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *RemoveOrganizationMemberBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/members/{membername}][%d] removeOrganizationMemberBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *RemoveOrganizationMemberBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *RemoveOrganizationMemberBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *RemoveOrganizationMemberUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/members/{membername}][%d] removeOrganizationMemberUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *RemoveOrganizationMemberUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *RemoveOrganizationMemberUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *RemoveOrganizationMemberForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/members/{membername}][%d] removeOrganizationMemberForbidden  %+v", 403, o.Payload)
 }
 
-func (o *RemoveOrganizationMemberForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *RemoveOrganizationMemberForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *RemoveOrganizationMemberNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/members/{membername}][%d] removeOrganizationMemberNotFound  %+v", 404, o.Payload)
 }
 
-func (o *RemoveOrganizationMemberNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *RemoveOrganizationMemberNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

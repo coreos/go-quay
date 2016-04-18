@@ -4,13 +4,13 @@ package repository
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // New creates a new repository API client.
-func New(transport client.Transport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -18,20 +18,20 @@ func New(transport client.Transport, formats strfmt.Registry) *Client {
 Client for repository API
 */
 type Client struct {
-	transport client.Transport
+	transport runtime.ClientTransport
 	formats   strfmt.Registry
 }
 
 /*
 ChangeRepoVisibility Change the visibility of a repository.
 */
-func (a *Client) ChangeRepoVisibility(params *ChangeRepoVisibilityParams, authInfo client.AuthInfoWriter) (*ChangeRepoVisibilityCreated, error) {
+func (a *Client) ChangeRepoVisibility(params *ChangeRepoVisibilityParams, authInfo runtime.ClientAuthInfoWriter) (*ChangeRepoVisibilityCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewChangeRepoVisibilityParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "changeRepoVisibility",
 		Method:             "POST",
 		PathPattern:        "/api/v1/repository/{repository}/changevisibility",
@@ -51,13 +51,13 @@ func (a *Client) ChangeRepoVisibility(params *ChangeRepoVisibilityParams, authIn
 /*
 CreateRepo Create a new repository.
 */
-func (a *Client) CreateRepo(params *CreateRepoParams, authInfo client.AuthInfoWriter) (*CreateRepoCreated, error) {
+func (a *Client) CreateRepo(params *CreateRepoParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRepoCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateRepoParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createRepo",
 		Method:             "POST",
 		PathPattern:        "/api/v1/repository",
@@ -77,13 +77,13 @@ func (a *Client) CreateRepo(params *CreateRepoParams, authInfo client.AuthInfoWr
 /*
 DeleteRepository Delete a repository.
 */
-func (a *Client) DeleteRepository(params *DeleteRepositoryParams, authInfo client.AuthInfoWriter) (*DeleteRepositoryNoContent, error) {
+func (a *Client) DeleteRepository(params *DeleteRepositoryParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRepositoryNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteRepositoryParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteRepository",
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/repository/{repository}",
@@ -103,13 +103,13 @@ func (a *Client) DeleteRepository(params *DeleteRepositoryParams, authInfo clien
 /*
 GetRepo Fetch the specified repository.
 */
-func (a *Client) GetRepo(params *GetRepoParams, authInfo client.AuthInfoWriter) (*GetRepoOK, error) {
+func (a *Client) GetRepo(params *GetRepoParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepoOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetRepoParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getRepo",
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}",
@@ -129,13 +129,13 @@ func (a *Client) GetRepo(params *GetRepoParams, authInfo client.AuthInfoWriter) 
 /*
 ListRepos Fetch the list of repositories visible to the current user under a variety of situations.
 */
-func (a *Client) ListRepos(params *ListReposParams, authInfo client.AuthInfoWriter) (*ListReposOK, error) {
+func (a *Client) ListRepos(params *ListReposParams, authInfo runtime.ClientAuthInfoWriter) (*ListReposOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListReposParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listRepos",
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository",
@@ -155,13 +155,13 @@ func (a *Client) ListRepos(params *ListReposParams, authInfo client.AuthInfoWrit
 /*
 UpdateRepo Update the description in the specified repository.
 */
-func (a *Client) UpdateRepo(params *UpdateRepoParams, authInfo client.AuthInfoWriter) (*UpdateRepoOK, error) {
+func (a *Client) UpdateRepo(params *UpdateRepoParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRepoOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateRepoParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateRepo",
 		Method:             "PUT",
 		PathPattern:        "/api/v1/repository/{repository}",
@@ -179,6 +179,6 @@ func (a *Client) UpdateRepo(params *UpdateRepoParams, authInfo client.AuthInfoWr
 }
 
 // SetTransport changes the transport on the client
-func (a *Client) SetTransport(transport client.Transport) {
+func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
 }

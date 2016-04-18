@@ -4,10 +4,10 @@ package team
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewInviteTeamMemberEmailParams creates a new InviteTeamMemberEmailParams object
@@ -31,25 +31,25 @@ type InviteTeamMemberEmailParams struct {
 }
 
 // WithEmail adds the email to the invite team member email params
-func (o *InviteTeamMemberEmailParams) WithEmail(email string) *InviteTeamMemberEmailParams {
-	o.Email = email
+func (o *InviteTeamMemberEmailParams) WithEmail(Email string) *InviteTeamMemberEmailParams {
+	o.Email = Email
 	return o
 }
 
 // WithOrgname adds the orgname to the invite team member email params
-func (o *InviteTeamMemberEmailParams) WithOrgname(orgname string) *InviteTeamMemberEmailParams {
-	o.Orgname = orgname
+func (o *InviteTeamMemberEmailParams) WithOrgname(Orgname string) *InviteTeamMemberEmailParams {
+	o.Orgname = Orgname
 	return o
 }
 
 // WithTeamname adds the teamname to the invite team member email params
-func (o *InviteTeamMemberEmailParams) WithTeamname(teamname string) *InviteTeamMemberEmailParams {
-	o.Teamname = teamname
+func (o *InviteTeamMemberEmailParams) WithTeamname(Teamname string) *InviteTeamMemberEmailParams {
+	o.Teamname = Teamname
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *InviteTeamMemberEmailParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *InviteTeamMemberEmailParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

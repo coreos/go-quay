@@ -4,10 +4,10 @@ package logs
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetAggregateOrgLogsParams creates a new GetAggregateOrgLogsParams object
@@ -45,31 +45,31 @@ type GetAggregateOrgLogsParams struct {
 }
 
 // WithEndtime adds the endtime to the get aggregate org logs params
-func (o *GetAggregateOrgLogsParams) WithEndtime(endtime *string) *GetAggregateOrgLogsParams {
-	o.Endtime = endtime
+func (o *GetAggregateOrgLogsParams) WithEndtime(Endtime *string) *GetAggregateOrgLogsParams {
+	o.Endtime = Endtime
 	return o
 }
 
 // WithOrgname adds the orgname to the get aggregate org logs params
-func (o *GetAggregateOrgLogsParams) WithOrgname(orgname string) *GetAggregateOrgLogsParams {
-	o.Orgname = orgname
+func (o *GetAggregateOrgLogsParams) WithOrgname(Orgname string) *GetAggregateOrgLogsParams {
+	o.Orgname = Orgname
 	return o
 }
 
 // WithPerformer adds the performer to the get aggregate org logs params
-func (o *GetAggregateOrgLogsParams) WithPerformer(performer *string) *GetAggregateOrgLogsParams {
-	o.Performer = performer
+func (o *GetAggregateOrgLogsParams) WithPerformer(Performer *string) *GetAggregateOrgLogsParams {
+	o.Performer = Performer
 	return o
 }
 
 // WithStarttime adds the starttime to the get aggregate org logs params
-func (o *GetAggregateOrgLogsParams) WithStarttime(starttime *string) *GetAggregateOrgLogsParams {
-	o.Starttime = starttime
+func (o *GetAggregateOrgLogsParams) WithStarttime(Starttime *string) *GetAggregateOrgLogsParams {
+	o.Starttime = Starttime
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetAggregateOrgLogsParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetAggregateOrgLogsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

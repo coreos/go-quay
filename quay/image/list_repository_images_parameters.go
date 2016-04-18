@@ -4,10 +4,10 @@ package image
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewListRepositoryImagesParams creates a new ListRepositoryImagesParams object
@@ -30,13 +30,13 @@ type ListRepositoryImagesParams struct {
 }
 
 // WithRepository adds the repository to the list repository images params
-func (o *ListRepositoryImagesParams) WithRepository(repository string) *ListRepositoryImagesParams {
-	o.Repository = repository
+func (o *ListRepositoryImagesParams) WithRepository(Repository string) *ListRepositoryImagesParams {
+	o.Repository = Repository
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *ListRepositoryImagesParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *ListRepositoryImagesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

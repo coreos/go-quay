@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type DeleteOrgRobotReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *DeleteOrgRobotReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *DeleteOrgRobotReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 204:
@@ -60,7 +59,7 @@ func (o *DeleteOrgRobotReader) ReadResponse(response client.Response, consumer h
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *DeleteOrgRobotNoContent) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/robots/{robot_shortname}][%d] deleteOrgRobotNoContent ", 204)
 }
 
-func (o *DeleteOrgRobotNoContent) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteOrgRobotNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *DeleteOrgRobotBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/robots/{robot_shortname}][%d] deleteOrgRobotBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *DeleteOrgRobotBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteOrgRobotBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *DeleteOrgRobotUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/robots/{robot_shortname}][%d] deleteOrgRobotUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *DeleteOrgRobotUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteOrgRobotUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *DeleteOrgRobotForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/robots/{robot_shortname}][%d] deleteOrgRobotForbidden  %+v", 403, o.Payload)
 }
 
-func (o *DeleteOrgRobotForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteOrgRobotForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *DeleteOrgRobotNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/robots/{robot_shortname}][%d] deleteOrgRobotNotFound  %+v", 404, o.Payload)
 }
 
-func (o *DeleteOrgRobotNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteOrgRobotNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

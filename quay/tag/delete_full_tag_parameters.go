@@ -4,10 +4,10 @@ package tag
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewDeleteFullTagParams creates a new DeleteFullTagParams object
@@ -35,19 +35,19 @@ type DeleteFullTagParams struct {
 }
 
 // WithRepository adds the repository to the delete full tag params
-func (o *DeleteFullTagParams) WithRepository(repository string) *DeleteFullTagParams {
-	o.Repository = repository
+func (o *DeleteFullTagParams) WithRepository(Repository string) *DeleteFullTagParams {
+	o.Repository = Repository
 	return o
 }
 
 // WithTag adds the tag to the delete full tag params
-func (o *DeleteFullTagParams) WithTag(tag string) *DeleteFullTagParams {
-	o.Tag = tag
+func (o *DeleteFullTagParams) WithTag(Tag string) *DeleteFullTagParams {
+	o.Tag = Tag
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *DeleteFullTagParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *DeleteFullTagParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

@@ -4,10 +4,10 @@ package permission
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewDeleteTeamPermissionsParams creates a new DeleteTeamPermissionsParams object
@@ -35,19 +35,19 @@ type DeleteTeamPermissionsParams struct {
 }
 
 // WithRepository adds the repository to the delete team permissions params
-func (o *DeleteTeamPermissionsParams) WithRepository(repository string) *DeleteTeamPermissionsParams {
-	o.Repository = repository
+func (o *DeleteTeamPermissionsParams) WithRepository(Repository string) *DeleteTeamPermissionsParams {
+	o.Repository = Repository
 	return o
 }
 
 // WithTeamname adds the teamname to the delete team permissions params
-func (o *DeleteTeamPermissionsParams) WithTeamname(teamname string) *DeleteTeamPermissionsParams {
-	o.Teamname = teamname
+func (o *DeleteTeamPermissionsParams) WithTeamname(Teamname string) *DeleteTeamPermissionsParams {
+	o.Teamname = Teamname
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *DeleteTeamPermissionsParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *DeleteTeamPermissionsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

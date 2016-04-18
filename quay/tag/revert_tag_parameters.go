@@ -4,10 +4,10 @@ package tag
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -42,25 +42,25 @@ type RevertTagParams struct {
 }
 
 // WithBody adds the body to the revert tag params
-func (o *RevertTagParams) WithBody(body *models.RevertTag) *RevertTagParams {
-	o.Body = body
+func (o *RevertTagParams) WithBody(Body *models.RevertTag) *RevertTagParams {
+	o.Body = Body
 	return o
 }
 
 // WithRepository adds the repository to the revert tag params
-func (o *RevertTagParams) WithRepository(repository string) *RevertTagParams {
-	o.Repository = repository
+func (o *RevertTagParams) WithRepository(Repository string) *RevertTagParams {
+	o.Repository = Repository
 	return o
 }
 
 // WithTag adds the tag to the revert tag params
-func (o *RevertTagParams) WithTag(tag string) *RevertTagParams {
-	o.Tag = tag
+func (o *RevertTagParams) WithTag(Tag string) *RevertTagParams {
+	o.Tag = Tag
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *RevertTagParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *RevertTagParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

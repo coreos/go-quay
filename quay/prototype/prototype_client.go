@@ -4,13 +4,13 @@ package prototype
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // New creates a new prototype API client.
-func New(transport client.Transport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -18,20 +18,20 @@ func New(transport client.Transport, formats strfmt.Registry) *Client {
 Client for prototype API
 */
 type Client struct {
-	transport client.Transport
+	transport runtime.ClientTransport
 	formats   strfmt.Registry
 }
 
 /*
 CreateOrganizationPrototypePermission Create a new permission prototype.
 */
-func (a *Client) CreateOrganizationPrototypePermission(params *CreateOrganizationPrototypePermissionParams, authInfo client.AuthInfoWriter) (*CreateOrganizationPrototypePermissionCreated, error) {
+func (a *Client) CreateOrganizationPrototypePermission(params *CreateOrganizationPrototypePermissionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateOrganizationPrototypePermissionCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateOrganizationPrototypePermissionParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createOrganizationPrototypePermission",
 		Method:             "POST",
 		PathPattern:        "/api/v1/organization/{orgname}/prototypes",
@@ -51,13 +51,13 @@ func (a *Client) CreateOrganizationPrototypePermission(params *CreateOrganizatio
 /*
 DeleteOrganizationPrototypePermission Delete an existing permission prototype.
 */
-func (a *Client) DeleteOrganizationPrototypePermission(params *DeleteOrganizationPrototypePermissionParams, authInfo client.AuthInfoWriter) (*DeleteOrganizationPrototypePermissionNoContent, error) {
+func (a *Client) DeleteOrganizationPrototypePermission(params *DeleteOrganizationPrototypePermissionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteOrganizationPrototypePermissionNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteOrganizationPrototypePermissionParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteOrganizationPrototypePermission",
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/organization/{orgname}/prototypes/{prototypeid}",
@@ -77,13 +77,13 @@ func (a *Client) DeleteOrganizationPrototypePermission(params *DeleteOrganizatio
 /*
 GetOrganizationPrototypePermissions List the existing prototypes for this organization.
 */
-func (a *Client) GetOrganizationPrototypePermissions(params *GetOrganizationPrototypePermissionsParams, authInfo client.AuthInfoWriter) (*GetOrganizationPrototypePermissionsOK, error) {
+func (a *Client) GetOrganizationPrototypePermissions(params *GetOrganizationPrototypePermissionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetOrganizationPrototypePermissionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOrganizationPrototypePermissionsParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getOrganizationPrototypePermissions",
 		Method:             "GET",
 		PathPattern:        "/api/v1/organization/{orgname}/prototypes",
@@ -103,13 +103,13 @@ func (a *Client) GetOrganizationPrototypePermissions(params *GetOrganizationProt
 /*
 UpdateOrganizationPrototypePermission Update the role of an existing permission prototype.
 */
-func (a *Client) UpdateOrganizationPrototypePermission(params *UpdateOrganizationPrototypePermissionParams, authInfo client.AuthInfoWriter) (*UpdateOrganizationPrototypePermissionOK, error) {
+func (a *Client) UpdateOrganizationPrototypePermission(params *UpdateOrganizationPrototypePermissionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateOrganizationPrototypePermissionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateOrganizationPrototypePermissionParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateOrganizationPrototypePermission",
 		Method:             "PUT",
 		PathPattern:        "/api/v1/organization/{orgname}/prototypes/{prototypeid}",
@@ -127,6 +127,6 @@ func (a *Client) UpdateOrganizationPrototypePermission(params *UpdateOrganizatio
 }
 
 // SetTransport changes the transport on the client
-func (a *Client) SetTransport(transport client.Transport) {
+func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
 }

@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type CreateStarReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *CreateStarReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *CreateStarReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 201:
@@ -60,7 +59,7 @@ func (o *CreateStarReader) ReadResponse(response client.Response, consumer httpk
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *CreateStarCreated) Error() string {
 	return fmt.Sprintf("[POST /api/v1/user/starred][%d] createStarCreated ", 201)
 }
 
-func (o *CreateStarCreated) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateStarCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *CreateStarBadRequest) Error() string {
 	return fmt.Sprintf("[POST /api/v1/user/starred][%d] createStarBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *CreateStarBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateStarBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *CreateStarUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/v1/user/starred][%d] createStarUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *CreateStarUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateStarUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *CreateStarForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/v1/user/starred][%d] createStarForbidden  %+v", 403, o.Payload)
 }
 
-func (o *CreateStarForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateStarForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *CreateStarNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/v1/user/starred][%d] createStarNotFound  %+v", 404, o.Payload)
 }
 
-func (o *CreateStarNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateStarNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

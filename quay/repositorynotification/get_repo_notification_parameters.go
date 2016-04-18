@@ -4,10 +4,10 @@ package repositorynotification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetRepoNotificationParams creates a new GetRepoNotificationParams object
@@ -35,19 +35,19 @@ type GetRepoNotificationParams struct {
 }
 
 // WithRepository adds the repository to the get repo notification params
-func (o *GetRepoNotificationParams) WithRepository(repository string) *GetRepoNotificationParams {
-	o.Repository = repository
+func (o *GetRepoNotificationParams) WithRepository(Repository string) *GetRepoNotificationParams {
+	o.Repository = Repository
 	return o
 }
 
 // WithUUID adds the uuid to the get repo notification params
-func (o *GetRepoNotificationParams) WithUUID(uuid string) *GetRepoNotificationParams {
-	o.UUID = uuid
+func (o *GetRepoNotificationParams) WithUUID(UUID string) *GetRepoNotificationParams {
+	o.UUID = UUID
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetRepoNotificationParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetRepoNotificationParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

@@ -4,13 +4,13 @@ package organization
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // New creates a new organization API client.
-func New(transport client.Transport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -18,20 +18,20 @@ func New(transport client.Transport, formats strfmt.Registry) *Client {
 Client for organization API
 */
 type Client struct {
-	transport client.Transport
+	transport runtime.ClientTransport
 	formats   strfmt.Registry
 }
 
 /*
 ChangeOrganizationDetails Change the details for the specified organization.
 */
-func (a *Client) ChangeOrganizationDetails(params *ChangeOrganizationDetailsParams, authInfo client.AuthInfoWriter) (*ChangeOrganizationDetailsOK, error) {
+func (a *Client) ChangeOrganizationDetails(params *ChangeOrganizationDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*ChangeOrganizationDetailsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewChangeOrganizationDetailsParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "changeOrganizationDetails",
 		Method:             "PUT",
 		PathPattern:        "/api/v1/organization/{orgname}",
@@ -51,13 +51,13 @@ func (a *Client) ChangeOrganizationDetails(params *ChangeOrganizationDetailsPara
 /*
 CreateOrganization Create a new organization.
 */
-func (a *Client) CreateOrganization(params *CreateOrganizationParams, authInfo client.AuthInfoWriter) (*CreateOrganizationCreated, error) {
+func (a *Client) CreateOrganization(params *CreateOrganizationParams, authInfo runtime.ClientAuthInfoWriter) (*CreateOrganizationCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateOrganizationParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createOrganization",
 		Method:             "POST",
 		PathPattern:        "/api/v1/organization/",
@@ -77,13 +77,13 @@ func (a *Client) CreateOrganization(params *CreateOrganizationParams, authInfo c
 /*
 CreateOrganizationApplication Creates a new application under this organization.
 */
-func (a *Client) CreateOrganizationApplication(params *CreateOrganizationApplicationParams, authInfo client.AuthInfoWriter) (*CreateOrganizationApplicationCreated, error) {
+func (a *Client) CreateOrganizationApplication(params *CreateOrganizationApplicationParams, authInfo runtime.ClientAuthInfoWriter) (*CreateOrganizationApplicationCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateOrganizationApplicationParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createOrganizationApplication",
 		Method:             "POST",
 		PathPattern:        "/api/v1/organization/{orgname}/applications",
@@ -103,13 +103,13 @@ func (a *Client) CreateOrganizationApplication(params *CreateOrganizationApplica
 /*
 DeleteOrganizationApplication Deletes the application under this organization.
 */
-func (a *Client) DeleteOrganizationApplication(params *DeleteOrganizationApplicationParams, authInfo client.AuthInfoWriter) (*DeleteOrganizationApplicationNoContent, error) {
+func (a *Client) DeleteOrganizationApplication(params *DeleteOrganizationApplicationParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteOrganizationApplicationNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteOrganizationApplicationParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteOrganizationApplication",
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/organization/{orgname}/applications/{client_id}",
@@ -135,7 +135,7 @@ func (a *Client) GetApplicationInformation(params *GetApplicationInformationPara
 		params = NewGetApplicationInformationParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getApplicationInformation",
 		Method:             "GET",
 		PathPattern:        "/api/v1/app/{client_id}",
@@ -154,13 +154,13 @@ func (a *Client) GetApplicationInformation(params *GetApplicationInformationPara
 /*
 GetOrganization Get the details for the specified organization
 */
-func (a *Client) GetOrganization(params *GetOrganizationParams, authInfo client.AuthInfoWriter) (*GetOrganizationOK, error) {
+func (a *Client) GetOrganization(params *GetOrganizationParams, authInfo runtime.ClientAuthInfoWriter) (*GetOrganizationOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOrganizationParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getOrganization",
 		Method:             "GET",
 		PathPattern:        "/api/v1/organization/{orgname}",
@@ -180,13 +180,13 @@ func (a *Client) GetOrganization(params *GetOrganizationParams, authInfo client.
 /*
 GetOrganizationApplication Retrieves the application with the specified client_id under the specified organization
 */
-func (a *Client) GetOrganizationApplication(params *GetOrganizationApplicationParams, authInfo client.AuthInfoWriter) (*GetOrganizationApplicationOK, error) {
+func (a *Client) GetOrganizationApplication(params *GetOrganizationApplicationParams, authInfo runtime.ClientAuthInfoWriter) (*GetOrganizationApplicationOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOrganizationApplicationParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getOrganizationApplication",
 		Method:             "GET",
 		PathPattern:        "/api/v1/organization/{orgname}/applications/{client_id}",
@@ -206,13 +206,13 @@ func (a *Client) GetOrganizationApplication(params *GetOrganizationApplicationPa
 /*
 GetOrganizationApplications List the applications for the specified organization
 */
-func (a *Client) GetOrganizationApplications(params *GetOrganizationApplicationsParams, authInfo client.AuthInfoWriter) (*GetOrganizationApplicationsOK, error) {
+func (a *Client) GetOrganizationApplications(params *GetOrganizationApplicationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetOrganizationApplicationsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOrganizationApplicationsParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getOrganizationApplications",
 		Method:             "GET",
 		PathPattern:        "/api/v1/organization/{orgname}/applications",
@@ -232,13 +232,13 @@ func (a *Client) GetOrganizationApplications(params *GetOrganizationApplications
 /*
 GetOrganizationMember Retrieves the details of a member of the organization.
 */
-func (a *Client) GetOrganizationMember(params *GetOrganizationMemberParams, authInfo client.AuthInfoWriter) (*GetOrganizationMemberOK, error) {
+func (a *Client) GetOrganizationMember(params *GetOrganizationMemberParams, authInfo runtime.ClientAuthInfoWriter) (*GetOrganizationMemberOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOrganizationMemberParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getOrganizationMember",
 		Method:             "GET",
 		PathPattern:        "/api/v1/organization/{orgname}/members/{membername}",
@@ -258,13 +258,13 @@ func (a *Client) GetOrganizationMember(params *GetOrganizationMemberParams, auth
 /*
 GetOrganizationMembers List the human members of the specified organization.
 */
-func (a *Client) GetOrganizationMembers(params *GetOrganizationMembersParams, authInfo client.AuthInfoWriter) (*GetOrganizationMembersOK, error) {
+func (a *Client) GetOrganizationMembers(params *GetOrganizationMembersParams, authInfo runtime.ClientAuthInfoWriter) (*GetOrganizationMembersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOrganizationMembersParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getOrganizationMembers",
 		Method:             "GET",
 		PathPattern:        "/api/v1/organization/{orgname}/members",
@@ -285,13 +285,13 @@ func (a *Client) GetOrganizationMembers(params *GetOrganizationMembersParams, au
 RemoveOrganizationMember Removes a member from an organization, revoking all its repository
         priviledges and removing it from all teams in the organization.
 */
-func (a *Client) RemoveOrganizationMember(params *RemoveOrganizationMemberParams, authInfo client.AuthInfoWriter) (*RemoveOrganizationMemberNoContent, error) {
+func (a *Client) RemoveOrganizationMember(params *RemoveOrganizationMemberParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveOrganizationMemberNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRemoveOrganizationMemberParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "removeOrganizationMember",
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/organization/{orgname}/members/{membername}",
@@ -311,13 +311,13 @@ func (a *Client) RemoveOrganizationMember(params *RemoveOrganizationMemberParams
 /*
 UpdateOrganizationApplication Updates an application under this organization.
 */
-func (a *Client) UpdateOrganizationApplication(params *UpdateOrganizationApplicationParams, authInfo client.AuthInfoWriter) (*UpdateOrganizationApplicationOK, error) {
+func (a *Client) UpdateOrganizationApplication(params *UpdateOrganizationApplicationParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateOrganizationApplicationOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateOrganizationApplicationParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateOrganizationApplication",
 		Method:             "PUT",
 		PathPattern:        "/api/v1/organization/{orgname}/applications/{client_id}",
@@ -335,6 +335,6 @@ func (a *Client) UpdateOrganizationApplication(params *UpdateOrganizationApplica
 }
 
 // SetTransport changes the transport on the client
-func (a *Client) SetTransport(transport client.Transport) {
+func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
 }

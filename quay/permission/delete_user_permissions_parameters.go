@@ -4,10 +4,10 @@ package permission
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewDeleteUserPermissionsParams creates a new DeleteUserPermissionsParams object
@@ -35,19 +35,19 @@ type DeleteUserPermissionsParams struct {
 }
 
 // WithRepository adds the repository to the delete user permissions params
-func (o *DeleteUserPermissionsParams) WithRepository(repository string) *DeleteUserPermissionsParams {
-	o.Repository = repository
+func (o *DeleteUserPermissionsParams) WithRepository(Repository string) *DeleteUserPermissionsParams {
+	o.Repository = Repository
 	return o
 }
 
 // WithUsername adds the username to the delete user permissions params
-func (o *DeleteUserPermissionsParams) WithUsername(username string) *DeleteUserPermissionsParams {
-	o.Username = username
+func (o *DeleteUserPermissionsParams) WithUsername(Username string) *DeleteUserPermissionsParams {
+	o.Username = Username
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *DeleteUserPermissionsParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *DeleteUserPermissionsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

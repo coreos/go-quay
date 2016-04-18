@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type GetTeamPermissionsReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *GetTeamPermissionsReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *GetTeamPermissionsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -60,7 +59,7 @@ func (o *GetTeamPermissionsReader) ReadResponse(response client.Response, consum
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *GetTeamPermissionsOK) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/team/{teamname}][%d] getTeamPermissionsOK ", 200)
 }
 
-func (o *GetTeamPermissionsOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetTeamPermissionsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *GetTeamPermissionsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/team/{teamname}][%d] getTeamPermissionsBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *GetTeamPermissionsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetTeamPermissionsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *GetTeamPermissionsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/team/{teamname}][%d] getTeamPermissionsUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *GetTeamPermissionsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetTeamPermissionsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *GetTeamPermissionsForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/team/{teamname}][%d] getTeamPermissionsForbidden  %+v", 403, o.Payload)
 }
 
-func (o *GetTeamPermissionsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetTeamPermissionsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *GetTeamPermissionsNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/team/{teamname}][%d] getTeamPermissionsNotFound  %+v", 404, o.Payload)
 }
 
-func (o *GetTeamPermissionsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetTeamPermissionsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

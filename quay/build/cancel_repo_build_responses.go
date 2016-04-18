@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type CancelRepoBuildReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *CancelRepoBuildReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *CancelRepoBuildReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 204:
@@ -60,7 +59,7 @@ func (o *CancelRepoBuildReader) ReadResponse(response client.Response, consumer 
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *CancelRepoBuildNoContent) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/build/{build_uuid}][%d] cancelRepoBuildNoContent ", 204)
 }
 
-func (o *CancelRepoBuildNoContent) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CancelRepoBuildNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *CancelRepoBuildBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/build/{build_uuid}][%d] cancelRepoBuildBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *CancelRepoBuildBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CancelRepoBuildBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *CancelRepoBuildUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/build/{build_uuid}][%d] cancelRepoBuildUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *CancelRepoBuildUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CancelRepoBuildUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *CancelRepoBuildForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/build/{build_uuid}][%d] cancelRepoBuildForbidden  %+v", 403, o.Payload)
 }
 
-func (o *CancelRepoBuildForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CancelRepoBuildForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *CancelRepoBuildNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/build/{build_uuid}][%d] cancelRepoBuildNotFound  %+v", 404, o.Payload)
 }
 
-func (o *CancelRepoBuildNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CancelRepoBuildNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

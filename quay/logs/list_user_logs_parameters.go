@@ -4,10 +4,10 @@ package logs
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewListUserLogsParams creates a new ListUserLogsParams object
@@ -45,31 +45,31 @@ type ListUserLogsParams struct {
 }
 
 // WithEndtime adds the endtime to the list user logs params
-func (o *ListUserLogsParams) WithEndtime(endtime *string) *ListUserLogsParams {
-	o.Endtime = endtime
+func (o *ListUserLogsParams) WithEndtime(Endtime *string) *ListUserLogsParams {
+	o.Endtime = Endtime
 	return o
 }
 
 // WithNextPage adds the nextPage to the list user logs params
-func (o *ListUserLogsParams) WithNextPage(nextPage *string) *ListUserLogsParams {
-	o.NextPage = nextPage
+func (o *ListUserLogsParams) WithNextPage(NextPage *string) *ListUserLogsParams {
+	o.NextPage = NextPage
 	return o
 }
 
 // WithPerformer adds the performer to the list user logs params
-func (o *ListUserLogsParams) WithPerformer(performer *string) *ListUserLogsParams {
-	o.Performer = performer
+func (o *ListUserLogsParams) WithPerformer(Performer *string) *ListUserLogsParams {
+	o.Performer = Performer
 	return o
 }
 
 // WithStarttime adds the starttime to the list user logs params
-func (o *ListUserLogsParams) WithStarttime(starttime *string) *ListUserLogsParams {
-	o.Starttime = starttime
+func (o *ListUserLogsParams) WithStarttime(Starttime *string) *ListUserLogsParams {
+	o.Starttime = Starttime
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *ListUserLogsParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *ListUserLogsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

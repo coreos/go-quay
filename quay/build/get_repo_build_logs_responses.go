@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type GetRepoBuildLogsReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *GetRepoBuildLogsReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *GetRepoBuildLogsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -60,7 +59,7 @@ func (o *GetRepoBuildLogsReader) ReadResponse(response client.Response, consumer
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *GetRepoBuildLogsOK) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/build/{build_uuid}/logs][%d] getRepoBuildLogsOK ", 200)
 }
 
-func (o *GetRepoBuildLogsOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetRepoBuildLogsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *GetRepoBuildLogsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/build/{build_uuid}/logs][%d] getRepoBuildLogsBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *GetRepoBuildLogsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetRepoBuildLogsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *GetRepoBuildLogsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/build/{build_uuid}/logs][%d] getRepoBuildLogsUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *GetRepoBuildLogsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetRepoBuildLogsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *GetRepoBuildLogsForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/build/{build_uuid}/logs][%d] getRepoBuildLogsForbidden  %+v", 403, o.Payload)
 }
 
-func (o *GetRepoBuildLogsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetRepoBuildLogsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *GetRepoBuildLogsNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/build/{build_uuid}/logs][%d] getRepoBuildLogsNotFound  %+v", 404, o.Payload)
 }
 
-func (o *GetRepoBuildLogsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetRepoBuildLogsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

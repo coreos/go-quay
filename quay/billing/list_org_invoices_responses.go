@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type ListOrgInvoicesReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *ListOrgInvoicesReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *ListOrgInvoicesReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -60,7 +59,7 @@ func (o *ListOrgInvoicesReader) ReadResponse(response client.Response, consumer 
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *ListOrgInvoicesOK) Error() string {
 	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/invoices][%d] listOrgInvoicesOK ", 200)
 }
 
-func (o *ListOrgInvoicesOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ListOrgInvoicesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *ListOrgInvoicesBadRequest) Error() string {
 	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/invoices][%d] listOrgInvoicesBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *ListOrgInvoicesBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ListOrgInvoicesBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *ListOrgInvoicesUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/invoices][%d] listOrgInvoicesUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *ListOrgInvoicesUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ListOrgInvoicesUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *ListOrgInvoicesForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/invoices][%d] listOrgInvoicesForbidden  %+v", 403, o.Payload)
 }
 
-func (o *ListOrgInvoicesForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ListOrgInvoicesForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *ListOrgInvoicesNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/invoices][%d] listOrgInvoicesNotFound  %+v", 404, o.Payload)
 }
 
-func (o *ListOrgInvoicesNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ListOrgInvoicesNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

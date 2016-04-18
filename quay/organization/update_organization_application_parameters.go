@@ -4,10 +4,10 @@ package organization
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -42,25 +42,25 @@ type UpdateOrganizationApplicationParams struct {
 }
 
 // WithBody adds the body to the update organization application params
-func (o *UpdateOrganizationApplicationParams) WithBody(body *models.UpdateApp) *UpdateOrganizationApplicationParams {
-	o.Body = body
+func (o *UpdateOrganizationApplicationParams) WithBody(Body *models.UpdateApp) *UpdateOrganizationApplicationParams {
+	o.Body = Body
 	return o
 }
 
 // WithClientID adds the clientId to the update organization application params
-func (o *UpdateOrganizationApplicationParams) WithClientID(clientId string) *UpdateOrganizationApplicationParams {
-	o.ClientID = clientId
+func (o *UpdateOrganizationApplicationParams) WithClientID(ClientID string) *UpdateOrganizationApplicationParams {
+	o.ClientID = ClientID
 	return o
 }
 
 // WithOrgname adds the orgname to the update organization application params
-func (o *UpdateOrganizationApplicationParams) WithOrgname(orgname string) *UpdateOrganizationApplicationParams {
-	o.Orgname = orgname
+func (o *UpdateOrganizationApplicationParams) WithOrgname(Orgname string) *UpdateOrganizationApplicationParams {
+	o.Orgname = Orgname
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *UpdateOrganizationApplicationParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *UpdateOrganizationApplicationParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

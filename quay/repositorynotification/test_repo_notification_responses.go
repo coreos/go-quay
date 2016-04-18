@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type TestRepoNotificationReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *TestRepoNotificationReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *TestRepoNotificationReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 201:
@@ -60,7 +59,7 @@ func (o *TestRepoNotificationReader) ReadResponse(response client.Response, cons
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *TestRepoNotificationCreated) Error() string {
 	return fmt.Sprintf("[POST /api/v1/repository/{repository}/notification/{uuid}/test][%d] testRepoNotificationCreated ", 201)
 }
 
-func (o *TestRepoNotificationCreated) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *TestRepoNotificationCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *TestRepoNotificationBadRequest) Error() string {
 	return fmt.Sprintf("[POST /api/v1/repository/{repository}/notification/{uuid}/test][%d] testRepoNotificationBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *TestRepoNotificationBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *TestRepoNotificationBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *TestRepoNotificationUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/v1/repository/{repository}/notification/{uuid}/test][%d] testRepoNotificationUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *TestRepoNotificationUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *TestRepoNotificationUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *TestRepoNotificationForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/v1/repository/{repository}/notification/{uuid}/test][%d] testRepoNotificationForbidden  %+v", 403, o.Payload)
 }
 
-func (o *TestRepoNotificationForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *TestRepoNotificationForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *TestRepoNotificationNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/v1/repository/{repository}/notification/{uuid}/test][%d] testRepoNotificationNotFound  %+v", 404, o.Payload)
 }
 
-func (o *TestRepoNotificationNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *TestRepoNotificationNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type ListRepoUserPermissionsReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *ListRepoUserPermissionsReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *ListRepoUserPermissionsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -60,7 +59,7 @@ func (o *ListRepoUserPermissionsReader) ReadResponse(response client.Response, c
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *ListRepoUserPermissionsOK) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/user/][%d] listRepoUserPermissionsOK ", 200)
 }
 
-func (o *ListRepoUserPermissionsOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ListRepoUserPermissionsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *ListRepoUserPermissionsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/user/][%d] listRepoUserPermissionsBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *ListRepoUserPermissionsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ListRepoUserPermissionsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *ListRepoUserPermissionsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/user/][%d] listRepoUserPermissionsUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *ListRepoUserPermissionsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ListRepoUserPermissionsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *ListRepoUserPermissionsForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/user/][%d] listRepoUserPermissionsForbidden  %+v", 403, o.Payload)
 }
 
-func (o *ListRepoUserPermissionsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ListRepoUserPermissionsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *ListRepoUserPermissionsNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/user/][%d] listRepoUserPermissionsNotFound  %+v", 404, o.Payload)
 }
 
-func (o *ListRepoUserPermissionsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ListRepoUserPermissionsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

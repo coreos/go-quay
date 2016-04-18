@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type CreateOrgRobotReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *CreateOrgRobotReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *CreateOrgRobotReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -60,7 +59,7 @@ func (o *CreateOrgRobotReader) ReadResponse(response client.Response, consumer h
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -81,7 +80,7 @@ func (o *CreateOrgRobotOK) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/robots/{robot_shortname}][%d] createOrgRobotOK  %+v", 200, o.Payload)
 }
 
-func (o *CreateOrgRobotOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateOrgRobotOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.Robot)
 
@@ -110,7 +109,7 @@ func (o *CreateOrgRobotBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/robots/{robot_shortname}][%d] createOrgRobotBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *CreateOrgRobotBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateOrgRobotBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -139,7 +138,7 @@ func (o *CreateOrgRobotUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/robots/{robot_shortname}][%d] createOrgRobotUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *CreateOrgRobotUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateOrgRobotUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -168,7 +167,7 @@ func (o *CreateOrgRobotForbidden) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/robots/{robot_shortname}][%d] createOrgRobotForbidden  %+v", 403, o.Payload)
 }
 
-func (o *CreateOrgRobotForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateOrgRobotForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -197,7 +196,7 @@ func (o *CreateOrgRobotNotFound) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/robots/{robot_shortname}][%d] createOrgRobotNotFound  %+v", 404, o.Payload)
 }
 
-func (o *CreateOrgRobotNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateOrgRobotNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

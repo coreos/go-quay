@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type GetLoggedInUserReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *GetLoggedInUserReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *GetLoggedInUserReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -60,7 +59,7 @@ func (o *GetLoggedInUserReader) ReadResponse(response client.Response, consumer 
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -81,7 +80,7 @@ func (o *GetLoggedInUserOK) Error() string {
 	return fmt.Sprintf("[GET /api/v1/user/][%d] getLoggedInUserOK  %+v", 200, o.Payload)
 }
 
-func (o *GetLoggedInUserOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetLoggedInUserOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.UserView)
 
@@ -110,7 +109,7 @@ func (o *GetLoggedInUserBadRequest) Error() string {
 	return fmt.Sprintf("[GET /api/v1/user/][%d] getLoggedInUserBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *GetLoggedInUserBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetLoggedInUserBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -139,7 +138,7 @@ func (o *GetLoggedInUserUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/v1/user/][%d] getLoggedInUserUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *GetLoggedInUserUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetLoggedInUserUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -168,7 +167,7 @@ func (o *GetLoggedInUserForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/v1/user/][%d] getLoggedInUserForbidden  %+v", 403, o.Payload)
 }
 
-func (o *GetLoggedInUserForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetLoggedInUserForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -197,7 +196,7 @@ func (o *GetLoggedInUserNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/v1/user/][%d] getLoggedInUserNotFound  %+v", 404, o.Payload)
 }
 
-func (o *GetLoggedInUserNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetLoggedInUserNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

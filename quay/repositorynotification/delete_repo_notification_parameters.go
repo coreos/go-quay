@@ -4,10 +4,10 @@ package repositorynotification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewDeleteRepoNotificationParams creates a new DeleteRepoNotificationParams object
@@ -35,19 +35,19 @@ type DeleteRepoNotificationParams struct {
 }
 
 // WithRepository adds the repository to the delete repo notification params
-func (o *DeleteRepoNotificationParams) WithRepository(repository string) *DeleteRepoNotificationParams {
-	o.Repository = repository
+func (o *DeleteRepoNotificationParams) WithRepository(Repository string) *DeleteRepoNotificationParams {
+	o.Repository = Repository
 	return o
 }
 
 // WithUUID adds the uuid to the delete repo notification params
-func (o *DeleteRepoNotificationParams) WithUUID(uuid string) *DeleteRepoNotificationParams {
-	o.UUID = uuid
+func (o *DeleteRepoNotificationParams) WithUUID(UUID string) *DeleteRepoNotificationParams {
+	o.UUID = UUID
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *DeleteRepoNotificationParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *DeleteRepoNotificationParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

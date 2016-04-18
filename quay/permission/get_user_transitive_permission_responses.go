@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type GetUserTransitivePermissionReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *GetUserTransitivePermissionReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *GetUserTransitivePermissionReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -60,7 +59,7 @@ func (o *GetUserTransitivePermissionReader) ReadResponse(response client.Respons
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *GetUserTransitivePermissionOK) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/user/{username}/transitive][%d] getUserTransitivePermissionOK ", 200)
 }
 
-func (o *GetUserTransitivePermissionOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetUserTransitivePermissionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *GetUserTransitivePermissionBadRequest) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/user/{username}/transitive][%d] getUserTransitivePermissionBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *GetUserTransitivePermissionBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetUserTransitivePermissionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *GetUserTransitivePermissionUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/user/{username}/transitive][%d] getUserTransitivePermissionUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *GetUserTransitivePermissionUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetUserTransitivePermissionUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *GetUserTransitivePermissionForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/user/{username}/transitive][%d] getUserTransitivePermissionForbidden  %+v", 403, o.Payload)
 }
 
-func (o *GetUserTransitivePermissionForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetUserTransitivePermissionForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *GetUserTransitivePermissionNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/permissions/user/{username}/transitive][%d] getUserTransitivePermissionNotFound  %+v", 404, o.Payload)
 }
 
-func (o *GetUserTransitivePermissionNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetUserTransitivePermissionNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

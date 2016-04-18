@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type DeleteTeamPermissionsReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *DeleteTeamPermissionsReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *DeleteTeamPermissionsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 204:
@@ -60,7 +59,7 @@ func (o *DeleteTeamPermissionsReader) ReadResponse(response client.Response, con
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *DeleteTeamPermissionsNoContent) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/permissions/team/{teamname}][%d] deleteTeamPermissionsNoContent ", 204)
 }
 
-func (o *DeleteTeamPermissionsNoContent) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteTeamPermissionsNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *DeleteTeamPermissionsBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/permissions/team/{teamname}][%d] deleteTeamPermissionsBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *DeleteTeamPermissionsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteTeamPermissionsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *DeleteTeamPermissionsUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/permissions/team/{teamname}][%d] deleteTeamPermissionsUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *DeleteTeamPermissionsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteTeamPermissionsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *DeleteTeamPermissionsForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/permissions/team/{teamname}][%d] deleteTeamPermissionsForbidden  %+v", 403, o.Payload)
 }
 
-func (o *DeleteTeamPermissionsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteTeamPermissionsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *DeleteTeamPermissionsNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}/permissions/team/{teamname}][%d] deleteTeamPermissionsNotFound  %+v", 404, o.Payload)
 }
 
-func (o *DeleteTeamPermissionsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteTeamPermissionsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

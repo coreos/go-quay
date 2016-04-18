@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type ChangeTeamPermissionsReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *ChangeTeamPermissionsReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *ChangeTeamPermissionsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -60,7 +59,7 @@ func (o *ChangeTeamPermissionsReader) ReadResponse(response client.Response, con
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *ChangeTeamPermissionsOK) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/permissions/team/{teamname}][%d] changeTeamPermissionsOK ", 200)
 }
 
-func (o *ChangeTeamPermissionsOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ChangeTeamPermissionsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *ChangeTeamPermissionsBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/permissions/team/{teamname}][%d] changeTeamPermissionsBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *ChangeTeamPermissionsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ChangeTeamPermissionsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *ChangeTeamPermissionsUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/permissions/team/{teamname}][%d] changeTeamPermissionsUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *ChangeTeamPermissionsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ChangeTeamPermissionsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *ChangeTeamPermissionsForbidden) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/permissions/team/{teamname}][%d] changeTeamPermissionsForbidden  %+v", 403, o.Payload)
 }
 
-func (o *ChangeTeamPermissionsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ChangeTeamPermissionsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *ChangeTeamPermissionsNotFound) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/repository/{repository}/permissions/team/{teamname}][%d] changeTeamPermissionsNotFound  %+v", 404, o.Payload)
 }
 
-func (o *ChangeTeamPermissionsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ChangeTeamPermissionsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

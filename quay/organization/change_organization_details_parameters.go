@@ -4,10 +4,10 @@ package organization
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -37,19 +37,19 @@ type ChangeOrganizationDetailsParams struct {
 }
 
 // WithBody adds the body to the change organization details params
-func (o *ChangeOrganizationDetailsParams) WithBody(body *models.UpdateOrg) *ChangeOrganizationDetailsParams {
-	o.Body = body
+func (o *ChangeOrganizationDetailsParams) WithBody(Body *models.UpdateOrg) *ChangeOrganizationDetailsParams {
+	o.Body = Body
 	return o
 }
 
 // WithOrgname adds the orgname to the change organization details params
-func (o *ChangeOrganizationDetailsParams) WithOrgname(orgname string) *ChangeOrganizationDetailsParams {
-	o.Orgname = orgname
+func (o *ChangeOrganizationDetailsParams) WithOrgname(Orgname string) *ChangeOrganizationDetailsParams {
+	o.Orgname = Orgname
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *ChangeOrganizationDetailsParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *ChangeOrganizationDetailsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

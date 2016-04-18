@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type ChangeRepoVisibilityReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *ChangeRepoVisibilityReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *ChangeRepoVisibilityReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 201:
@@ -60,7 +59,7 @@ func (o *ChangeRepoVisibilityReader) ReadResponse(response client.Response, cons
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *ChangeRepoVisibilityCreated) Error() string {
 	return fmt.Sprintf("[POST /api/v1/repository/{repository}/changevisibility][%d] changeRepoVisibilityCreated ", 201)
 }
 
-func (o *ChangeRepoVisibilityCreated) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ChangeRepoVisibilityCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *ChangeRepoVisibilityBadRequest) Error() string {
 	return fmt.Sprintf("[POST /api/v1/repository/{repository}/changevisibility][%d] changeRepoVisibilityBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *ChangeRepoVisibilityBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ChangeRepoVisibilityBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *ChangeRepoVisibilityUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/v1/repository/{repository}/changevisibility][%d] changeRepoVisibilityUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *ChangeRepoVisibilityUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ChangeRepoVisibilityUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *ChangeRepoVisibilityForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/v1/repository/{repository}/changevisibility][%d] changeRepoVisibilityForbidden  %+v", 403, o.Payload)
 }
 
-func (o *ChangeRepoVisibilityForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ChangeRepoVisibilityForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *ChangeRepoVisibilityNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/v1/repository/{repository}/changevisibility][%d] changeRepoVisibilityNotFound  %+v", 404, o.Payload)
 }
 
-func (o *ChangeRepoVisibilityNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ChangeRepoVisibilityNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

@@ -4,10 +4,10 @@ package prototype
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewDeleteOrganizationPrototypePermissionParams creates a new DeleteOrganizationPrototypePermissionParams object
@@ -35,19 +35,19 @@ type DeleteOrganizationPrototypePermissionParams struct {
 }
 
 // WithOrgname adds the orgname to the delete organization prototype permission params
-func (o *DeleteOrganizationPrototypePermissionParams) WithOrgname(orgname string) *DeleteOrganizationPrototypePermissionParams {
-	o.Orgname = orgname
+func (o *DeleteOrganizationPrototypePermissionParams) WithOrgname(Orgname string) *DeleteOrganizationPrototypePermissionParams {
+	o.Orgname = Orgname
 	return o
 }
 
 // WithPrototypeid adds the prototypeid to the delete organization prototype permission params
-func (o *DeleteOrganizationPrototypePermissionParams) WithPrototypeid(prototypeid string) *DeleteOrganizationPrototypePermissionParams {
-	o.Prototypeid = prototypeid
+func (o *DeleteOrganizationPrototypePermissionParams) WithPrototypeid(Prototypeid string) *DeleteOrganizationPrototypePermissionParams {
+	o.Prototypeid = Prototypeid
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *DeleteOrganizationPrototypePermissionParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *DeleteOrganizationPrototypePermissionParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

@@ -4,13 +4,13 @@ package logs
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // New creates a new logs API client.
-func New(transport client.Transport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -18,20 +18,20 @@ func New(transport client.Transport, formats strfmt.Registry) *Client {
 Client for logs API
 */
 type Client struct {
-	transport client.Transport
+	transport runtime.ClientTransport
 	formats   strfmt.Registry
 }
 
 /*
 GetAggregateOrgLogs Gets the aggregated logs for the specified organization.
 */
-func (a *Client) GetAggregateOrgLogs(params *GetAggregateOrgLogsParams, authInfo client.AuthInfoWriter) (*GetAggregateOrgLogsOK, error) {
+func (a *Client) GetAggregateOrgLogs(params *GetAggregateOrgLogsParams, authInfo runtime.ClientAuthInfoWriter) (*GetAggregateOrgLogsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAggregateOrgLogsParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAggregateOrgLogs",
 		Method:             "GET",
 		PathPattern:        "/api/v1/organization/{orgname}/aggregatelogs",
@@ -51,13 +51,13 @@ func (a *Client) GetAggregateOrgLogs(params *GetAggregateOrgLogsParams, authInfo
 /*
 GetAggregateRepoLogs Returns the aggregated logs for the specified repository.
 */
-func (a *Client) GetAggregateRepoLogs(params *GetAggregateRepoLogsParams, authInfo client.AuthInfoWriter) (*GetAggregateRepoLogsOK, error) {
+func (a *Client) GetAggregateRepoLogs(params *GetAggregateRepoLogsParams, authInfo runtime.ClientAuthInfoWriter) (*GetAggregateRepoLogsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAggregateRepoLogsParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAggregateRepoLogs",
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/aggregatelogs",
@@ -77,13 +77,13 @@ func (a *Client) GetAggregateRepoLogs(params *GetAggregateRepoLogsParams, authIn
 /*
 GetAggregateUserLogs Returns the aggregated logs for the current user.
 */
-func (a *Client) GetAggregateUserLogs(params *GetAggregateUserLogsParams, authInfo client.AuthInfoWriter) (*GetAggregateUserLogsOK, error) {
+func (a *Client) GetAggregateUserLogs(params *GetAggregateUserLogsParams, authInfo runtime.ClientAuthInfoWriter) (*GetAggregateUserLogsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAggregateUserLogsParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAggregateUserLogs",
 		Method:             "GET",
 		PathPattern:        "/api/v1/user/aggregatelogs",
@@ -103,13 +103,13 @@ func (a *Client) GetAggregateUserLogs(params *GetAggregateUserLogsParams, authIn
 /*
 ListOrgLogs List the logs for the specified organization.
 */
-func (a *Client) ListOrgLogs(params *ListOrgLogsParams, authInfo client.AuthInfoWriter) (*ListOrgLogsOK, error) {
+func (a *Client) ListOrgLogs(params *ListOrgLogsParams, authInfo runtime.ClientAuthInfoWriter) (*ListOrgLogsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListOrgLogsParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listOrgLogs",
 		Method:             "GET",
 		PathPattern:        "/api/v1/organization/{orgname}/logs",
@@ -129,13 +129,13 @@ func (a *Client) ListOrgLogs(params *ListOrgLogsParams, authInfo client.AuthInfo
 /*
 ListRepoLogs List the logs for the specified repository.
 */
-func (a *Client) ListRepoLogs(params *ListRepoLogsParams, authInfo client.AuthInfoWriter) (*ListRepoLogsOK, error) {
+func (a *Client) ListRepoLogs(params *ListRepoLogsParams, authInfo runtime.ClientAuthInfoWriter) (*ListRepoLogsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListRepoLogsParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listRepoLogs",
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/logs",
@@ -155,13 +155,13 @@ func (a *Client) ListRepoLogs(params *ListRepoLogsParams, authInfo client.AuthIn
 /*
 ListUserLogs List the logs for the current user.
 */
-func (a *Client) ListUserLogs(params *ListUserLogsParams, authInfo client.AuthInfoWriter) (*ListUserLogsOK, error) {
+func (a *Client) ListUserLogs(params *ListUserLogsParams, authInfo runtime.ClientAuthInfoWriter) (*ListUserLogsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListUserLogsParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listUserLogs",
 		Method:             "GET",
 		PathPattern:        "/api/v1/user/logs",
@@ -179,6 +179,6 @@ func (a *Client) ListUserLogs(params *ListUserLogsParams, authInfo client.AuthIn
 }
 
 // SetTransport changes the transport on the client
-func (a *Client) SetTransport(transport client.Transport) {
+func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
 }

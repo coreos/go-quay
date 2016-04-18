@@ -4,10 +4,10 @@ package image
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetImageParams creates a new GetImageParams object
@@ -35,19 +35,19 @@ type GetImageParams struct {
 }
 
 // WithImageID adds the imageId to the get image params
-func (o *GetImageParams) WithImageID(imageId string) *GetImageParams {
-	o.ImageID = imageId
+func (o *GetImageParams) WithImageID(ImageID string) *GetImageParams {
+	o.ImageID = ImageID
 	return o
 }
 
 // WithRepository adds the repository to the get image params
-func (o *GetImageParams) WithRepository(repository string) *GetImageParams {
-	o.Repository = repository
+func (o *GetImageParams) WithRepository(Repository string) *GetImageParams {
+	o.Repository = Repository
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetImageParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetImageParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

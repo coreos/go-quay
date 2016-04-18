@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type DeleteRepositoryReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *DeleteRepositoryReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *DeleteRepositoryReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 204:
@@ -60,7 +59,7 @@ func (o *DeleteRepositoryReader) ReadResponse(response client.Response, consumer
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *DeleteRepositoryNoContent) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}][%d] deleteRepositoryNoContent ", 204)
 }
 
-func (o *DeleteRepositoryNoContent) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteRepositoryNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *DeleteRepositoryBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}][%d] deleteRepositoryBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *DeleteRepositoryBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteRepositoryBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *DeleteRepositoryUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}][%d] deleteRepositoryUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *DeleteRepositoryUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteRepositoryUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *DeleteRepositoryForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}][%d] deleteRepositoryForbidden  %+v", 403, o.Payload)
 }
 
-func (o *DeleteRepositoryForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteRepositoryForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *DeleteRepositoryNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/repository/{repository}][%d] deleteRepositoryNotFound  %+v", 404, o.Payload)
 }
 
-func (o *DeleteRepositoryNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteRepositoryNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

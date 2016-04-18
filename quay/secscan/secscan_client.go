@@ -4,13 +4,13 @@ package secscan
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // New creates a new secscan API client.
-func New(transport client.Transport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -18,20 +18,20 @@ func New(transport client.Transport, formats strfmt.Registry) *Client {
 Client for secscan API
 */
 type Client struct {
-	transport client.Transport
+	transport runtime.ClientTransport
 	formats   strfmt.Registry
 }
 
 /*
 GetRepoImageSecurity Fetches the features and vulnerabilities (if any) for a repository tag.
 */
-func (a *Client) GetRepoImageSecurity(params *GetRepoImageSecurityParams, authInfo client.AuthInfoWriter) (*GetRepoImageSecurityOK, error) {
+func (a *Client) GetRepoImageSecurity(params *GetRepoImageSecurityParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepoImageSecurityOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetRepoImageSecurityParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getRepoImageSecurity",
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/image/{imageid}/security",
@@ -49,6 +49,6 @@ func (a *Client) GetRepoImageSecurity(params *GetRepoImageSecurityParams, authIn
 }
 
 // SetTransport changes the transport on the client
-func (a *Client) SetTransport(transport client.Transport) {
+func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
 }

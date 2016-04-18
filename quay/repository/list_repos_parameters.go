@@ -4,11 +4,11 @@ package repository
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewListReposParams creates a new ListReposParams object
@@ -56,43 +56,43 @@ type ListReposParams struct {
 }
 
 // WithLastModified adds the lastModified to the list repos params
-func (o *ListReposParams) WithLastModified(lastModified *bool) *ListReposParams {
-	o.LastModified = lastModified
+func (o *ListReposParams) WithLastModified(LastModified *bool) *ListReposParams {
+	o.LastModified = LastModified
 	return o
 }
 
 // WithNamespace adds the namespace to the list repos params
-func (o *ListReposParams) WithNamespace(namespace *string) *ListReposParams {
-	o.Namespace = namespace
+func (o *ListReposParams) WithNamespace(Namespace *string) *ListReposParams {
+	o.Namespace = Namespace
 	return o
 }
 
 // WithNextPage adds the nextPage to the list repos params
-func (o *ListReposParams) WithNextPage(nextPage *string) *ListReposParams {
-	o.NextPage = nextPage
+func (o *ListReposParams) WithNextPage(NextPage *string) *ListReposParams {
+	o.NextPage = NextPage
 	return o
 }
 
 // WithPopularity adds the popularity to the list repos params
-func (o *ListReposParams) WithPopularity(popularity *bool) *ListReposParams {
-	o.Popularity = popularity
+func (o *ListReposParams) WithPopularity(Popularity *bool) *ListReposParams {
+	o.Popularity = Popularity
 	return o
 }
 
 // WithPublic adds the public to the list repos params
-func (o *ListReposParams) WithPublic(public *bool) *ListReposParams {
-	o.Public = public
+func (o *ListReposParams) WithPublic(Public *bool) *ListReposParams {
+	o.Public = Public
 	return o
 }
 
 // WithStarred adds the starred to the list repos params
-func (o *ListReposParams) WithStarred(starred *bool) *ListReposParams {
-	o.Starred = starred
+func (o *ListReposParams) WithStarred(Starred *bool) *ListReposParams {
+	o.Starred = Starred
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *ListReposParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *ListReposParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

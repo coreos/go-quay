@@ -4,11 +4,11 @@ package tag
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewListRepoTagsParams creates a new ListRepoTagsParams object
@@ -46,31 +46,31 @@ type ListRepoTagsParams struct {
 }
 
 // WithLimit adds the limit to the list repo tags params
-func (o *ListRepoTagsParams) WithLimit(limit *int64) *ListRepoTagsParams {
-	o.Limit = limit
+func (o *ListRepoTagsParams) WithLimit(Limit *int64) *ListRepoTagsParams {
+	o.Limit = Limit
 	return o
 }
 
 // WithPage adds the page to the list repo tags params
-func (o *ListRepoTagsParams) WithPage(page *int64) *ListRepoTagsParams {
-	o.Page = page
+func (o *ListRepoTagsParams) WithPage(Page *int64) *ListRepoTagsParams {
+	o.Page = Page
 	return o
 }
 
 // WithRepository adds the repository to the list repo tags params
-func (o *ListRepoTagsParams) WithRepository(repository string) *ListRepoTagsParams {
-	o.Repository = repository
+func (o *ListRepoTagsParams) WithRepository(Repository string) *ListRepoTagsParams {
+	o.Repository = Repository
 	return o
 }
 
 // WithSpecificTag adds the specificTag to the list repo tags params
-func (o *ListRepoTagsParams) WithSpecificTag(specificTag *string) *ListRepoTagsParams {
-	o.SpecificTag = specificTag
+func (o *ListRepoTagsParams) WithSpecificTag(SpecificTag *string) *ListRepoTagsParams {
+	o.SpecificTag = SpecificTag
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *ListRepoTagsParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *ListRepoTagsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

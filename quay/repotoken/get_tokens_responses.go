@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type GetTokensReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *GetTokensReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *GetTokensReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -60,7 +59,7 @@ func (o *GetTokensReader) ReadResponse(response client.Response, consumer httpki
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *GetTokensOK) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tokens/{code}][%d] getTokensOK ", 200)
 }
 
-func (o *GetTokensOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetTokensOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *GetTokensBadRequest) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tokens/{code}][%d] getTokensBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *GetTokensBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetTokensBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *GetTokensUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tokens/{code}][%d] getTokensUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *GetTokensUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetTokensUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *GetTokensForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tokens/{code}][%d] getTokensForbidden  %+v", 403, o.Payload)
 }
 
-func (o *GetTokensForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetTokensForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *GetTokensNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tokens/{code}][%d] getTokensNotFound  %+v", 404, o.Payload)
 }
 
-func (o *GetTokensNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetTokensNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

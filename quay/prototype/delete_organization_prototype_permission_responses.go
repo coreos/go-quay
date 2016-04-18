@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type DeleteOrganizationPrototypePermissionReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *DeleteOrganizationPrototypePermissionReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *DeleteOrganizationPrototypePermissionReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 204:
@@ -60,7 +59,7 @@ func (o *DeleteOrganizationPrototypePermissionReader) ReadResponse(response clie
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *DeleteOrganizationPrototypePermissionNoContent) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/prototypes/{prototypeid}][%d] deleteOrganizationPrototypePermissionNoContent ", 204)
 }
 
-func (o *DeleteOrganizationPrototypePermissionNoContent) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteOrganizationPrototypePermissionNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *DeleteOrganizationPrototypePermissionBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/prototypes/{prototypeid}][%d] deleteOrganizationPrototypePermissionBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *DeleteOrganizationPrototypePermissionBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteOrganizationPrototypePermissionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *DeleteOrganizationPrototypePermissionUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/prototypes/{prototypeid}][%d] deleteOrganizationPrototypePermissionUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *DeleteOrganizationPrototypePermissionUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteOrganizationPrototypePermissionUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *DeleteOrganizationPrototypePermissionForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/prototypes/{prototypeid}][%d] deleteOrganizationPrototypePermissionForbidden  %+v", 403, o.Payload)
 }
 
-func (o *DeleteOrganizationPrototypePermissionForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteOrganizationPrototypePermissionForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *DeleteOrganizationPrototypePermissionNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/prototypes/{prototypeid}][%d] deleteOrganizationPrototypePermissionNotFound  %+v", 404, o.Payload)
 }
 
-func (o *DeleteOrganizationPrototypePermissionNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteOrganizationPrototypePermissionNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

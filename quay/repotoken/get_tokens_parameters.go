@@ -4,10 +4,10 @@ package repotoken
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetTokensParams creates a new GetTokensParams object
@@ -35,19 +35,19 @@ type GetTokensParams struct {
 }
 
 // WithCode adds the code to the get tokens params
-func (o *GetTokensParams) WithCode(code string) *GetTokensParams {
-	o.Code = code
+func (o *GetTokensParams) WithCode(Code string) *GetTokensParams {
+	o.Code = Code
 	return o
 }
 
 // WithRepository adds the repository to the get tokens params
-func (o *GetTokensParams) WithRepository(repository string) *GetTokensParams {
-	o.Repository = repository
+func (o *GetTokensParams) WithRepository(Repository string) *GetTokensParams {
+	o.Repository = Repository
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetTokensParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetTokensParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

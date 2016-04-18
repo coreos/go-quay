@@ -4,10 +4,10 @@ package quay
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	httptransport "github.com/go-swagger/go-swagger/httpkit/client"
+	"github.com/go-openapi/runtime"
+	httptransport "github.com/go-openapi/runtime/client"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/quay/billing"
 	"github.com/coreos/go-quay/quay/build"
@@ -43,7 +43,7 @@ func NewHTTPClient(formats strfmt.Registry) *Client {
 }
 
 // New creates a new client client
-func New(transport client.Transport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
 	cli := new(Client)
 	cli.Transport = transport
 
@@ -128,11 +128,11 @@ type Client struct {
 
 	User *user.Client
 
-	Transport client.Transport
+	Transport runtime.ClientTransport
 }
 
 // SetTransport changes the transport on the client and all its subresources
-func (c *Client) SetTransport(transport client.Transport) {
+func (c *Client) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 
 	c.Billing.SetTransport(transport)

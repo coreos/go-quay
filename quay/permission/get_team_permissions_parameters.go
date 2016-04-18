@@ -4,10 +4,10 @@ package permission
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetTeamPermissionsParams creates a new GetTeamPermissionsParams object
@@ -35,19 +35,19 @@ type GetTeamPermissionsParams struct {
 }
 
 // WithRepository adds the repository to the get team permissions params
-func (o *GetTeamPermissionsParams) WithRepository(repository string) *GetTeamPermissionsParams {
-	o.Repository = repository
+func (o *GetTeamPermissionsParams) WithRepository(Repository string) *GetTeamPermissionsParams {
+	o.Repository = Repository
 	return o
 }
 
 // WithTeamname adds the teamname to the get team permissions params
-func (o *GetTeamPermissionsParams) WithTeamname(teamname string) *GetTeamPermissionsParams {
-	o.Teamname = teamname
+func (o *GetTeamPermissionsParams) WithTeamname(Teamname string) *GetTeamPermissionsParams {
+	o.Teamname = Teamname
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetTeamPermissionsParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetTeamPermissionsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

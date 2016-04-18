@@ -4,13 +4,13 @@ package repositorynotification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // New creates a new repositorynotification API client.
-func New(transport client.Transport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -18,20 +18,20 @@ func New(transport client.Transport, formats strfmt.Registry) *Client {
 Client for repositorynotification API
 */
 type Client struct {
-	transport client.Transport
+	transport runtime.ClientTransport
 	formats   strfmt.Registry
 }
 
 /*
 CreateRepoNotification Create a new notification for the specified repository.
 */
-func (a *Client) CreateRepoNotification(params *CreateRepoNotificationParams, authInfo client.AuthInfoWriter) (*CreateRepoNotificationCreated, error) {
+func (a *Client) CreateRepoNotification(params *CreateRepoNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRepoNotificationCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateRepoNotificationParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createRepoNotification",
 		Method:             "POST",
 		PathPattern:        "/api/v1/repository/{repository}/notification/",
@@ -51,13 +51,13 @@ func (a *Client) CreateRepoNotification(params *CreateRepoNotificationParams, au
 /*
 DeleteRepoNotification Deletes the specified notification.
 */
-func (a *Client) DeleteRepoNotification(params *DeleteRepoNotificationParams, authInfo client.AuthInfoWriter) (*DeleteRepoNotificationNoContent, error) {
+func (a *Client) DeleteRepoNotification(params *DeleteRepoNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRepoNotificationNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteRepoNotificationParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteRepoNotification",
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/repository/{repository}/notification/{uuid}",
@@ -77,13 +77,13 @@ func (a *Client) DeleteRepoNotification(params *DeleteRepoNotificationParams, au
 /*
 GetRepoNotification Get information for the specified notification.
 */
-func (a *Client) GetRepoNotification(params *GetRepoNotificationParams, authInfo client.AuthInfoWriter) (*GetRepoNotificationOK, error) {
+func (a *Client) GetRepoNotification(params *GetRepoNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepoNotificationOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetRepoNotificationParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getRepoNotification",
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/notification/{uuid}",
@@ -103,13 +103,13 @@ func (a *Client) GetRepoNotification(params *GetRepoNotificationParams, authInfo
 /*
 ListRepoNotifications List the notifications for the specified repository.
 */
-func (a *Client) ListRepoNotifications(params *ListRepoNotificationsParams, authInfo client.AuthInfoWriter) (*ListRepoNotificationsOK, error) {
+func (a *Client) ListRepoNotifications(params *ListRepoNotificationsParams, authInfo runtime.ClientAuthInfoWriter) (*ListRepoNotificationsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListRepoNotificationsParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listRepoNotifications",
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/notification/",
@@ -129,13 +129,13 @@ func (a *Client) ListRepoNotifications(params *ListRepoNotificationsParams, auth
 /*
 TestRepoNotification Queues a test notification for this repository.
 */
-func (a *Client) TestRepoNotification(params *TestRepoNotificationParams, authInfo client.AuthInfoWriter) (*TestRepoNotificationCreated, error) {
+func (a *Client) TestRepoNotification(params *TestRepoNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*TestRepoNotificationCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewTestRepoNotificationParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testRepoNotification",
 		Method:             "POST",
 		PathPattern:        "/api/v1/repository/{repository}/notification/{uuid}/test",
@@ -153,6 +153,6 @@ func (a *Client) TestRepoNotification(params *TestRepoNotificationParams, authIn
 }
 
 // SetTransport changes the transport on the client
-func (a *Client) SetTransport(transport client.Transport) {
+func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
 }

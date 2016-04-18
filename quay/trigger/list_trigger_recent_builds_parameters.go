@@ -4,11 +4,11 @@ package trigger
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewListTriggerRecentBuildsParams creates a new ListTriggerRecentBuildsParams object
@@ -41,25 +41,25 @@ type ListTriggerRecentBuildsParams struct {
 }
 
 // WithLimit adds the limit to the list trigger recent builds params
-func (o *ListTriggerRecentBuildsParams) WithLimit(limit *int64) *ListTriggerRecentBuildsParams {
-	o.Limit = limit
+func (o *ListTriggerRecentBuildsParams) WithLimit(Limit *int64) *ListTriggerRecentBuildsParams {
+	o.Limit = Limit
 	return o
 }
 
 // WithRepository adds the repository to the list trigger recent builds params
-func (o *ListTriggerRecentBuildsParams) WithRepository(repository string) *ListTriggerRecentBuildsParams {
-	o.Repository = repository
+func (o *ListTriggerRecentBuildsParams) WithRepository(Repository string) *ListTriggerRecentBuildsParams {
+	o.Repository = Repository
 	return o
 }
 
 // WithTriggerUUID adds the triggerUuid to the list trigger recent builds params
-func (o *ListTriggerRecentBuildsParams) WithTriggerUUID(triggerUuid string) *ListTriggerRecentBuildsParams {
-	o.TriggerUUID = triggerUuid
+func (o *ListTriggerRecentBuildsParams) WithTriggerUUID(TriggerUUID string) *ListTriggerRecentBuildsParams {
+	o.TriggerUUID = TriggerUUID
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *ListTriggerRecentBuildsParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *ListTriggerRecentBuildsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

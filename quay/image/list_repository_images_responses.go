@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type ListRepositoryImagesReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *ListRepositoryImagesReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *ListRepositoryImagesReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -60,7 +59,7 @@ func (o *ListRepositoryImagesReader) ReadResponse(response client.Response, cons
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *ListRepositoryImagesOK) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/][%d] listRepositoryImagesOK ", 200)
 }
 
-func (o *ListRepositoryImagesOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ListRepositoryImagesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *ListRepositoryImagesBadRequest) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/][%d] listRepositoryImagesBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *ListRepositoryImagesBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ListRepositoryImagesBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *ListRepositoryImagesUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/][%d] listRepositoryImagesUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *ListRepositoryImagesUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ListRepositoryImagesUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *ListRepositoryImagesForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/][%d] listRepositoryImagesForbidden  %+v", 403, o.Payload)
 }
 
-func (o *ListRepositoryImagesForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ListRepositoryImagesForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *ListRepositoryImagesNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/][%d] listRepositoryImagesNotFound  %+v", 404, o.Payload)
 }
 
-func (o *ListRepositoryImagesNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ListRepositoryImagesNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

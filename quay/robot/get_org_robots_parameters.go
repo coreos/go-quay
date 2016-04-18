@@ -4,11 +4,11 @@ package robot
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetOrgRobotsParams creates a new GetOrgRobotsParams object
@@ -36,19 +36,19 @@ type GetOrgRobotsParams struct {
 }
 
 // WithOrgname adds the orgname to the get org robots params
-func (o *GetOrgRobotsParams) WithOrgname(orgname string) *GetOrgRobotsParams {
-	o.Orgname = orgname
+func (o *GetOrgRobotsParams) WithOrgname(Orgname string) *GetOrgRobotsParams {
+	o.Orgname = Orgname
 	return o
 }
 
 // WithPermissions adds the permissions to the get org robots params
-func (o *GetOrgRobotsParams) WithPermissions(permissions *bool) *GetOrgRobotsParams {
-	o.Permissions = permissions
+func (o *GetOrgRobotsParams) WithPermissions(Permissions *bool) *GetOrgRobotsParams {
+	o.Permissions = Permissions
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetOrgRobotsParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetOrgRobotsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

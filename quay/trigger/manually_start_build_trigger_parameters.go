@@ -4,10 +4,10 @@ package trigger
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -42,25 +42,25 @@ type ManuallyStartBuildTriggerParams struct {
 }
 
 // WithBody adds the body to the manually start build trigger params
-func (o *ManuallyStartBuildTriggerParams) WithBody(body *models.RunParameters) *ManuallyStartBuildTriggerParams {
-	o.Body = body
+func (o *ManuallyStartBuildTriggerParams) WithBody(Body *models.RunParameters) *ManuallyStartBuildTriggerParams {
+	o.Body = Body
 	return o
 }
 
 // WithRepository adds the repository to the manually start build trigger params
-func (o *ManuallyStartBuildTriggerParams) WithRepository(repository string) *ManuallyStartBuildTriggerParams {
-	o.Repository = repository
+func (o *ManuallyStartBuildTriggerParams) WithRepository(Repository string) *ManuallyStartBuildTriggerParams {
+	o.Repository = Repository
 	return o
 }
 
 // WithTriggerUUID adds the triggerUuid to the manually start build trigger params
-func (o *ManuallyStartBuildTriggerParams) WithTriggerUUID(triggerUuid string) *ManuallyStartBuildTriggerParams {
-	o.TriggerUUID = triggerUuid
+func (o *ManuallyStartBuildTriggerParams) WithTriggerUUID(TriggerUUID string) *ManuallyStartBuildTriggerParams {
+	o.TriggerUUID = TriggerUUID
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *ManuallyStartBuildTriggerParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *ManuallyStartBuildTriggerParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

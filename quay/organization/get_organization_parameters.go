@@ -4,10 +4,10 @@ package organization
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetOrganizationParams creates a new GetOrganizationParams object
@@ -30,13 +30,13 @@ type GetOrganizationParams struct {
 }
 
 // WithOrgname adds the orgname to the get organization params
-func (o *GetOrganizationParams) WithOrgname(orgname string) *GetOrganizationParams {
-	o.Orgname = orgname
+func (o *GetOrganizationParams) WithOrgname(Orgname string) *GetOrganizationParams {
+	o.Orgname = Orgname
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetOrganizationParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetOrganizationParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

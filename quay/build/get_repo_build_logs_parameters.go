@@ -4,10 +4,10 @@ package build
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetRepoBuildLogsParams creates a new GetRepoBuildLogsParams object
@@ -35,19 +35,19 @@ type GetRepoBuildLogsParams struct {
 }
 
 // WithBuildUUID adds the buildUuid to the get repo build logs params
-func (o *GetRepoBuildLogsParams) WithBuildUUID(buildUuid string) *GetRepoBuildLogsParams {
-	o.BuildUUID = buildUuid
+func (o *GetRepoBuildLogsParams) WithBuildUUID(BuildUUID string) *GetRepoBuildLogsParams {
+	o.BuildUUID = BuildUUID
 	return o
 }
 
 // WithRepository adds the repository to the get repo build logs params
-func (o *GetRepoBuildLogsParams) WithRepository(repository string) *GetRepoBuildLogsParams {
-	o.Repository = repository
+func (o *GetRepoBuildLogsParams) WithRepository(Repository string) *GetRepoBuildLogsParams {
+	o.Repository = Repository
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetRepoBuildLogsParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetRepoBuildLogsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

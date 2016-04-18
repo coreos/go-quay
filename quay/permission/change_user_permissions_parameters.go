@@ -4,10 +4,10 @@ package permission
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -42,25 +42,25 @@ type ChangeUserPermissionsParams struct {
 }
 
 // WithBody adds the body to the change user permissions params
-func (o *ChangeUserPermissionsParams) WithBody(body *models.UserPermission) *ChangeUserPermissionsParams {
-	o.Body = body
+func (o *ChangeUserPermissionsParams) WithBody(Body *models.UserPermission) *ChangeUserPermissionsParams {
+	o.Body = Body
 	return o
 }
 
 // WithRepository adds the repository to the change user permissions params
-func (o *ChangeUserPermissionsParams) WithRepository(repository string) *ChangeUserPermissionsParams {
-	o.Repository = repository
+func (o *ChangeUserPermissionsParams) WithRepository(Repository string) *ChangeUserPermissionsParams {
+	o.Repository = Repository
 	return o
 }
 
 // WithUsername adds the username to the change user permissions params
-func (o *ChangeUserPermissionsParams) WithUsername(username string) *ChangeUserPermissionsParams {
-	o.Username = username
+func (o *ChangeUserPermissionsParams) WithUsername(Username string) *ChangeUserPermissionsParams {
+	o.Username = Username
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *ChangeUserPermissionsParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *ChangeUserPermissionsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

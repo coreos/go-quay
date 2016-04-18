@@ -4,10 +4,10 @@ package logs
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetAggregateUserLogsParams creates a new GetAggregateUserLogsParams object
@@ -40,25 +40,25 @@ type GetAggregateUserLogsParams struct {
 }
 
 // WithEndtime adds the endtime to the get aggregate user logs params
-func (o *GetAggregateUserLogsParams) WithEndtime(endtime *string) *GetAggregateUserLogsParams {
-	o.Endtime = endtime
+func (o *GetAggregateUserLogsParams) WithEndtime(Endtime *string) *GetAggregateUserLogsParams {
+	o.Endtime = Endtime
 	return o
 }
 
 // WithPerformer adds the performer to the get aggregate user logs params
-func (o *GetAggregateUserLogsParams) WithPerformer(performer *string) *GetAggregateUserLogsParams {
-	o.Performer = performer
+func (o *GetAggregateUserLogsParams) WithPerformer(Performer *string) *GetAggregateUserLogsParams {
+	o.Performer = Performer
 	return o
 }
 
 // WithStarttime adds the starttime to the get aggregate user logs params
-func (o *GetAggregateUserLogsParams) WithStarttime(starttime *string) *GetAggregateUserLogsParams {
-	o.Starttime = starttime
+func (o *GetAggregateUserLogsParams) WithStarttime(Starttime *string) *GetAggregateUserLogsParams {
+	o.Starttime = Starttime
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetAggregateUserLogsParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetAggregateUserLogsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

@@ -4,13 +4,13 @@ package team
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // New creates a new team API client.
-func New(transport client.Transport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -18,20 +18,20 @@ func New(transport client.Transport, formats strfmt.Registry) *Client {
 Client for team API
 */
 type Client struct {
-	transport client.Transport
+	transport runtime.ClientTransport
 	formats   strfmt.Registry
 }
 
 /*
 DeleteOrganizationTeam Delete the specified team.
 */
-func (a *Client) DeleteOrganizationTeam(params *DeleteOrganizationTeamParams, authInfo client.AuthInfoWriter) (*DeleteOrganizationTeamNoContent, error) {
+func (a *Client) DeleteOrganizationTeam(params *DeleteOrganizationTeamParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteOrganizationTeamNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteOrganizationTeamParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteOrganizationTeam",
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/organization/{orgname}/team/{teamname}",
@@ -52,13 +52,13 @@ func (a *Client) DeleteOrganizationTeam(params *DeleteOrganizationTeamParams, au
 DeleteOrganizationTeamMember Delete a member of a team. If the user is merely invited to join
         the team, then the invite is removed instead.
 */
-func (a *Client) DeleteOrganizationTeamMember(params *DeleteOrganizationTeamMemberParams, authInfo client.AuthInfoWriter) (*DeleteOrganizationTeamMemberNoContent, error) {
+func (a *Client) DeleteOrganizationTeamMember(params *DeleteOrganizationTeamMemberParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteOrganizationTeamMemberNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteOrganizationTeamMemberParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteOrganizationTeamMember",
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/organization/{orgname}/team/{teamname}/members/{membername}",
@@ -78,13 +78,13 @@ func (a *Client) DeleteOrganizationTeamMember(params *DeleteOrganizationTeamMemb
 /*
 DeleteTeamMemberEmailInvite Delete an invite of an email address to join a team.
 */
-func (a *Client) DeleteTeamMemberEmailInvite(params *DeleteTeamMemberEmailInviteParams, authInfo client.AuthInfoWriter) (*DeleteTeamMemberEmailInviteNoContent, error) {
+func (a *Client) DeleteTeamMemberEmailInvite(params *DeleteTeamMemberEmailInviteParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTeamMemberEmailInviteNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteTeamMemberEmailInviteParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteTeamMemberEmailInvite",
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/organization/{orgname}/team/{teamname}/invite/{email}",
@@ -104,13 +104,13 @@ func (a *Client) DeleteTeamMemberEmailInvite(params *DeleteTeamMemberEmailInvite
 /*
 GetOrganizationTeamMembers Retrieve the list of members for the specified team.
 */
-func (a *Client) GetOrganizationTeamMembers(params *GetOrganizationTeamMembersParams, authInfo client.AuthInfoWriter) (*GetOrganizationTeamMembersOK, error) {
+func (a *Client) GetOrganizationTeamMembers(params *GetOrganizationTeamMembersParams, authInfo runtime.ClientAuthInfoWriter) (*GetOrganizationTeamMembersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOrganizationTeamMembersParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getOrganizationTeamMembers",
 		Method:             "GET",
 		PathPattern:        "/api/v1/organization/{orgname}/team/{teamname}/members",
@@ -130,13 +130,13 @@ func (a *Client) GetOrganizationTeamMembers(params *GetOrganizationTeamMembersPa
 /*
 InviteTeamMemberEmail Invites an email address to an existing team.
 */
-func (a *Client) InviteTeamMemberEmail(params *InviteTeamMemberEmailParams, authInfo client.AuthInfoWriter) (*InviteTeamMemberEmailOK, error) {
+func (a *Client) InviteTeamMemberEmail(params *InviteTeamMemberEmailParams, authInfo runtime.ClientAuthInfoWriter) (*InviteTeamMemberEmailOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewInviteTeamMemberEmailParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "inviteTeamMemberEmail",
 		Method:             "PUT",
 		PathPattern:        "/api/v1/organization/{orgname}/team/{teamname}/invite/{email}",
@@ -156,13 +156,13 @@ func (a *Client) InviteTeamMemberEmail(params *InviteTeamMemberEmailParams, auth
 /*
 UpdateOrganizationTeam Update the org-wide permission for the specified team.
 */
-func (a *Client) UpdateOrganizationTeam(params *UpdateOrganizationTeamParams, authInfo client.AuthInfoWriter) (*UpdateOrganizationTeamOK, error) {
+func (a *Client) UpdateOrganizationTeam(params *UpdateOrganizationTeamParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateOrganizationTeamOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateOrganizationTeamParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateOrganizationTeam",
 		Method:             "PUT",
 		PathPattern:        "/api/v1/organization/{orgname}/team/{teamname}",
@@ -182,13 +182,13 @@ func (a *Client) UpdateOrganizationTeam(params *UpdateOrganizationTeamParams, au
 /*
 UpdateOrganizationTeamMember Adds or invites a member to an existing team.
 */
-func (a *Client) UpdateOrganizationTeamMember(params *UpdateOrganizationTeamMemberParams, authInfo client.AuthInfoWriter) (*UpdateOrganizationTeamMemberOK, error) {
+func (a *Client) UpdateOrganizationTeamMember(params *UpdateOrganizationTeamMemberParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateOrganizationTeamMemberOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateOrganizationTeamMemberParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateOrganizationTeamMember",
 		Method:             "PUT",
 		PathPattern:        "/api/v1/organization/{orgname}/team/{teamname}/members/{membername}",
@@ -206,6 +206,6 @@ func (a *Client) UpdateOrganizationTeamMember(params *UpdateOrganizationTeamMemb
 }
 
 // SetTransport changes the transport on the client
-func (a *Client) SetTransport(transport client.Transport) {
+func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
 }

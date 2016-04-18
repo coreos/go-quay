@@ -4,10 +4,10 @@ package trigger
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -42,25 +42,25 @@ type ActivateBuildTriggerParams struct {
 }
 
 // WithBody adds the body to the activate build trigger params
-func (o *ActivateBuildTriggerParams) WithBody(body *models.BuildTriggerActivateRequest) *ActivateBuildTriggerParams {
-	o.Body = body
+func (o *ActivateBuildTriggerParams) WithBody(Body *models.BuildTriggerActivateRequest) *ActivateBuildTriggerParams {
+	o.Body = Body
 	return o
 }
 
 // WithRepository adds the repository to the activate build trigger params
-func (o *ActivateBuildTriggerParams) WithRepository(repository string) *ActivateBuildTriggerParams {
-	o.Repository = repository
+func (o *ActivateBuildTriggerParams) WithRepository(Repository string) *ActivateBuildTriggerParams {
+	o.Repository = Repository
 	return o
 }
 
 // WithTriggerUUID adds the triggerUuid to the activate build trigger params
-func (o *ActivateBuildTriggerParams) WithTriggerUUID(triggerUuid string) *ActivateBuildTriggerParams {
-	o.TriggerUUID = triggerUuid
+func (o *ActivateBuildTriggerParams) WithTriggerUUID(TriggerUUID string) *ActivateBuildTriggerParams {
+	o.TriggerUUID = TriggerUUID
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *ActivateBuildTriggerParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *ActivateBuildTriggerParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

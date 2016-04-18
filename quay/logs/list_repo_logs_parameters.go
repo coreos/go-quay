@@ -4,11 +4,11 @@ package logs
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewListRepoLogsParams creates a new ListRepoLogsParams object
@@ -51,37 +51,37 @@ type ListRepoLogsParams struct {
 }
 
 // WithEndtime adds the endtime to the list repo logs params
-func (o *ListRepoLogsParams) WithEndtime(endtime *string) *ListRepoLogsParams {
-	o.Endtime = endtime
+func (o *ListRepoLogsParams) WithEndtime(Endtime *string) *ListRepoLogsParams {
+	o.Endtime = Endtime
 	return o
 }
 
 // WithNextPage adds the nextPage to the list repo logs params
-func (o *ListRepoLogsParams) WithNextPage(nextPage *string) *ListRepoLogsParams {
-	o.NextPage = nextPage
+func (o *ListRepoLogsParams) WithNextPage(NextPage *string) *ListRepoLogsParams {
+	o.NextPage = NextPage
 	return o
 }
 
 // WithPage adds the page to the list repo logs params
-func (o *ListRepoLogsParams) WithPage(page *int64) *ListRepoLogsParams {
-	o.Page = page
+func (o *ListRepoLogsParams) WithPage(Page *int64) *ListRepoLogsParams {
+	o.Page = Page
 	return o
 }
 
 // WithRepository adds the repository to the list repo logs params
-func (o *ListRepoLogsParams) WithRepository(repository string) *ListRepoLogsParams {
-	o.Repository = repository
+func (o *ListRepoLogsParams) WithRepository(Repository string) *ListRepoLogsParams {
+	o.Repository = Repository
 	return o
 }
 
 // WithStarttime adds the starttime to the list repo logs params
-func (o *ListRepoLogsParams) WithStarttime(starttime *string) *ListRepoLogsParams {
-	o.Starttime = starttime
+func (o *ListRepoLogsParams) WithStarttime(Starttime *string) *ListRepoLogsParams {
+	o.Starttime = Starttime
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *ListRepoLogsParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *ListRepoLogsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

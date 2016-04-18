@@ -4,10 +4,10 @@ package repotoken
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -42,25 +42,25 @@ type ChangeTokenParams struct {
 }
 
 // WithBody adds the body to the change token params
-func (o *ChangeTokenParams) WithBody(body *models.TokenPermission) *ChangeTokenParams {
-	o.Body = body
+func (o *ChangeTokenParams) WithBody(Body *models.TokenPermission) *ChangeTokenParams {
+	o.Body = Body
 	return o
 }
 
 // WithCode adds the code to the change token params
-func (o *ChangeTokenParams) WithCode(code string) *ChangeTokenParams {
-	o.Code = code
+func (o *ChangeTokenParams) WithCode(Code string) *ChangeTokenParams {
+	o.Code = Code
 	return o
 }
 
 // WithRepository adds the repository to the change token params
-func (o *ChangeTokenParams) WithRepository(repository string) *ChangeTokenParams {
-	o.Repository = repository
+func (o *ChangeTokenParams) WithRepository(Repository string) *ChangeTokenParams {
+	o.Repository = Repository
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *ChangeTokenParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *ChangeTokenParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

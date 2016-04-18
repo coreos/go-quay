@@ -4,13 +4,13 @@ package repotoken
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // New creates a new repotoken API client.
-func New(transport client.Transport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -18,20 +18,20 @@ func New(transport client.Transport, formats strfmt.Registry) *Client {
 Client for repotoken API
 */
 type Client struct {
-	transport client.Transport
+	transport runtime.ClientTransport
 	formats   strfmt.Registry
 }
 
 /*
 ChangeToken Update the permissions for the specified repository token.
 */
-func (a *Client) ChangeToken(params *ChangeTokenParams, authInfo client.AuthInfoWriter) (*ChangeTokenOK, error) {
+func (a *Client) ChangeToken(params *ChangeTokenParams, authInfo runtime.ClientAuthInfoWriter) (*ChangeTokenOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewChangeTokenParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "changeToken",
 		Method:             "PUT",
 		PathPattern:        "/api/v1/repository/{repository}/tokens/{code}",
@@ -51,13 +51,13 @@ func (a *Client) ChangeToken(params *ChangeTokenParams, authInfo client.AuthInfo
 /*
 CreateToken Create a new repository token.
 */
-func (a *Client) CreateToken(params *CreateTokenParams, authInfo client.AuthInfoWriter) (*CreateTokenCreated, error) {
+func (a *Client) CreateToken(params *CreateTokenParams, authInfo runtime.ClientAuthInfoWriter) (*CreateTokenCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateTokenParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createToken",
 		Method:             "POST",
 		PathPattern:        "/api/v1/repository/{repository}/tokens/",
@@ -77,13 +77,13 @@ func (a *Client) CreateToken(params *CreateTokenParams, authInfo client.AuthInfo
 /*
 DeleteToken Delete the repository token.
 */
-func (a *Client) DeleteToken(params *DeleteTokenParams, authInfo client.AuthInfoWriter) (*DeleteTokenNoContent, error) {
+func (a *Client) DeleteToken(params *DeleteTokenParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTokenNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteTokenParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteToken",
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/repository/{repository}/tokens/{code}",
@@ -103,13 +103,13 @@ func (a *Client) DeleteToken(params *DeleteTokenParams, authInfo client.AuthInfo
 /*
 GetTokens Fetch the specified repository token information.
 */
-func (a *Client) GetTokens(params *GetTokensParams, authInfo client.AuthInfoWriter) (*GetTokensOK, error) {
+func (a *Client) GetTokens(params *GetTokensParams, authInfo runtime.ClientAuthInfoWriter) (*GetTokensOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetTokensParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getTokens",
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/tokens/{code}",
@@ -129,13 +129,13 @@ func (a *Client) GetTokens(params *GetTokensParams, authInfo client.AuthInfoWrit
 /*
 ListRepoTokens List the tokens for the specified repository.
 */
-func (a *Client) ListRepoTokens(params *ListRepoTokensParams, authInfo client.AuthInfoWriter) (*ListRepoTokensOK, error) {
+func (a *Client) ListRepoTokens(params *ListRepoTokensParams, authInfo runtime.ClientAuthInfoWriter) (*ListRepoTokensOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListRepoTokensParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listRepoTokens",
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/tokens/",
@@ -153,6 +153,6 @@ func (a *Client) ListRepoTokens(params *ListRepoTokensParams, authInfo client.Au
 }
 
 // SetTransport changes the transport on the client
-func (a *Client) SetTransport(transport client.Transport) {
+func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
 }

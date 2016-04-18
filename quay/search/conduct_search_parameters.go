@@ -4,10 +4,10 @@ package search
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewConductSearchParams creates a new ConductSearchParams object
@@ -30,13 +30,13 @@ type ConductSearchParams struct {
 }
 
 // WithQuery adds the query to the conduct search params
-func (o *ConductSearchParams) WithQuery(query *string) *ConductSearchParams {
-	o.Query = query
+func (o *ConductSearchParams) WithQuery(Query *string) *ConductSearchParams {
+	o.Query = Query
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *ConductSearchParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *ConductSearchParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

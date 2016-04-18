@@ -4,11 +4,11 @@ package build
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetRepoBuildsParams creates a new GetRepoBuildsParams object
@@ -41,25 +41,25 @@ type GetRepoBuildsParams struct {
 }
 
 // WithLimit adds the limit to the get repo builds params
-func (o *GetRepoBuildsParams) WithLimit(limit *int64) *GetRepoBuildsParams {
-	o.Limit = limit
+func (o *GetRepoBuildsParams) WithLimit(Limit *int64) *GetRepoBuildsParams {
+	o.Limit = Limit
 	return o
 }
 
 // WithRepository adds the repository to the get repo builds params
-func (o *GetRepoBuildsParams) WithRepository(repository string) *GetRepoBuildsParams {
-	o.Repository = repository
+func (o *GetRepoBuildsParams) WithRepository(Repository string) *GetRepoBuildsParams {
+	o.Repository = Repository
 	return o
 }
 
 // WithSince adds the since to the get repo builds params
-func (o *GetRepoBuildsParams) WithSince(since *int64) *GetRepoBuildsParams {
-	o.Since = since
+func (o *GetRepoBuildsParams) WithSince(Since *int64) *GetRepoBuildsParams {
+	o.Since = Since
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetRepoBuildsParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetRepoBuildsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

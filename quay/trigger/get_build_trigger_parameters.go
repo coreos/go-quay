@@ -4,10 +4,10 @@ package trigger
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetBuildTriggerParams creates a new GetBuildTriggerParams object
@@ -35,19 +35,19 @@ type GetBuildTriggerParams struct {
 }
 
 // WithRepository adds the repository to the get build trigger params
-func (o *GetBuildTriggerParams) WithRepository(repository string) *GetBuildTriggerParams {
-	o.Repository = repository
+func (o *GetBuildTriggerParams) WithRepository(Repository string) *GetBuildTriggerParams {
+	o.Repository = Repository
 	return o
 }
 
 // WithTriggerUUID adds the triggerUuid to the get build trigger params
-func (o *GetBuildTriggerParams) WithTriggerUUID(triggerUuid string) *GetBuildTriggerParams {
-	o.TriggerUUID = triggerUuid
+func (o *GetBuildTriggerParams) WithTriggerUUID(TriggerUUID string) *GetBuildTriggerParams {
+	o.TriggerUUID = TriggerUUID
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetBuildTriggerParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetBuildTriggerParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

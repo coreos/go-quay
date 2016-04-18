@@ -4,13 +4,13 @@ package image
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // New creates a new image API client.
-func New(transport client.Transport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -18,20 +18,20 @@ func New(transport client.Transport, formats strfmt.Registry) *Client {
 Client for image API
 */
 type Client struct {
-	transport client.Transport
+	transport runtime.ClientTransport
 	formats   strfmt.Registry
 }
 
 /*
 GetImage Get the information available for the specified image.
 */
-func (a *Client) GetImage(params *GetImageParams, authInfo client.AuthInfoWriter) (*GetImageOK, error) {
+func (a *Client) GetImage(params *GetImageParams, authInfo runtime.ClientAuthInfoWriter) (*GetImageOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetImageParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getImage",
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/image/{image_id}",
@@ -51,13 +51,13 @@ func (a *Client) GetImage(params *GetImageParams, authInfo client.AuthInfoWriter
 /*
 ListRepositoryImages List the images for the specified repository.
 */
-func (a *Client) ListRepositoryImages(params *ListRepositoryImagesParams, authInfo client.AuthInfoWriter) (*ListRepositoryImagesOK, error) {
+func (a *Client) ListRepositoryImages(params *ListRepositoryImagesParams, authInfo runtime.ClientAuthInfoWriter) (*ListRepositoryImagesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListRepositoryImagesParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listRepositoryImages",
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/image/",
@@ -75,6 +75,6 @@ func (a *Client) ListRepositoryImages(params *ListRepositoryImagesParams, authIn
 }
 
 // SetTransport changes the transport on the client
-func (a *Client) SetTransport(transport client.Transport) {
+func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
 }

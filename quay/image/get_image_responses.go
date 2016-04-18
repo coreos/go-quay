@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type GetImageReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *GetImageReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *GetImageReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -60,7 +59,7 @@ func (o *GetImageReader) ReadResponse(response client.Response, consumer httpkit
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *GetImageOK) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/{image_id}][%d] getImageOK ", 200)
 }
 
-func (o *GetImageOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetImageOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *GetImageBadRequest) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/{image_id}][%d] getImageBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *GetImageBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetImageBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *GetImageUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/{image_id}][%d] getImageUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *GetImageUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetImageUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *GetImageForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/{image_id}][%d] getImageForbidden  %+v", 403, o.Payload)
 }
 
-func (o *GetImageForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetImageForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *GetImageNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/image/{image_id}][%d] getImageNotFound  %+v", 404, o.Payload)
 }
 
-func (o *GetImageNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetImageNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

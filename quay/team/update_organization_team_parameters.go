@@ -4,10 +4,10 @@ package team
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -42,25 +42,25 @@ type UpdateOrganizationTeamParams struct {
 }
 
 // WithBody adds the body to the update organization team params
-func (o *UpdateOrganizationTeamParams) WithBody(body *models.TeamDescription) *UpdateOrganizationTeamParams {
-	o.Body = body
+func (o *UpdateOrganizationTeamParams) WithBody(Body *models.TeamDescription) *UpdateOrganizationTeamParams {
+	o.Body = Body
 	return o
 }
 
 // WithOrgname adds the orgname to the update organization team params
-func (o *UpdateOrganizationTeamParams) WithOrgname(orgname string) *UpdateOrganizationTeamParams {
-	o.Orgname = orgname
+func (o *UpdateOrganizationTeamParams) WithOrgname(Orgname string) *UpdateOrganizationTeamParams {
+	o.Orgname = Orgname
 	return o
 }
 
 // WithTeamname adds the teamname to the update organization team params
-func (o *UpdateOrganizationTeamParams) WithTeamname(teamname string) *UpdateOrganizationTeamParams {
-	o.Teamname = teamname
+func (o *UpdateOrganizationTeamParams) WithTeamname(Teamname string) *UpdateOrganizationTeamParams {
+	o.Teamname = Teamname
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *UpdateOrganizationTeamParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *UpdateOrganizationTeamParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

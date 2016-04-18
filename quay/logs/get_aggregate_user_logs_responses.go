@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type GetAggregateUserLogsReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *GetAggregateUserLogsReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *GetAggregateUserLogsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -60,7 +59,7 @@ func (o *GetAggregateUserLogsReader) ReadResponse(response client.Response, cons
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *GetAggregateUserLogsOK) Error() string {
 	return fmt.Sprintf("[GET /api/v1/user/aggregatelogs][%d] getAggregateUserLogsOK ", 200)
 }
 
-func (o *GetAggregateUserLogsOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetAggregateUserLogsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *GetAggregateUserLogsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /api/v1/user/aggregatelogs][%d] getAggregateUserLogsBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *GetAggregateUserLogsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetAggregateUserLogsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *GetAggregateUserLogsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/v1/user/aggregatelogs][%d] getAggregateUserLogsUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *GetAggregateUserLogsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetAggregateUserLogsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *GetAggregateUserLogsForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/v1/user/aggregatelogs][%d] getAggregateUserLogsForbidden  %+v", 403, o.Payload)
 }
 
-func (o *GetAggregateUserLogsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetAggregateUserLogsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *GetAggregateUserLogsNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/v1/user/aggregatelogs][%d] getAggregateUserLogsNotFound  %+v", 404, o.Payload)
 }
 
-func (o *GetAggregateUserLogsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetAggregateUserLogsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

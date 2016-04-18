@@ -4,13 +4,13 @@ package build
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // New creates a new build API client.
-func New(transport client.Transport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -18,20 +18,20 @@ func New(transport client.Transport, formats strfmt.Registry) *Client {
 Client for build API
 */
 type Client struct {
-	transport client.Transport
+	transport runtime.ClientTransport
 	formats   strfmt.Registry
 }
 
 /*
 CancelRepoBuild Cancels a repository build if it has not yet been picked up by a build worker.
 */
-func (a *Client) CancelRepoBuild(params *CancelRepoBuildParams, authInfo client.AuthInfoWriter) (*CancelRepoBuildNoContent, error) {
+func (a *Client) CancelRepoBuild(params *CancelRepoBuildParams, authInfo runtime.ClientAuthInfoWriter) (*CancelRepoBuildNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCancelRepoBuildParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "cancelRepoBuild",
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/repository/{repository}/build/{build_uuid}",
@@ -51,13 +51,13 @@ func (a *Client) CancelRepoBuild(params *CancelRepoBuildParams, authInfo client.
 /*
 GetRepoBuild Returns information about a build.
 */
-func (a *Client) GetRepoBuild(params *GetRepoBuildParams, authInfo client.AuthInfoWriter) (*GetRepoBuildOK, error) {
+func (a *Client) GetRepoBuild(params *GetRepoBuildParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepoBuildOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetRepoBuildParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getRepoBuild",
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/build/{build_uuid}",
@@ -77,13 +77,13 @@ func (a *Client) GetRepoBuild(params *GetRepoBuildParams, authInfo client.AuthIn
 /*
 GetRepoBuildLogs Return the build logs for the build specified by the build uuid.
 */
-func (a *Client) GetRepoBuildLogs(params *GetRepoBuildLogsParams, authInfo client.AuthInfoWriter) (*GetRepoBuildLogsOK, error) {
+func (a *Client) GetRepoBuildLogs(params *GetRepoBuildLogsParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepoBuildLogsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetRepoBuildLogsParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getRepoBuildLogs",
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/build/{build_uuid}/logs",
@@ -103,13 +103,13 @@ func (a *Client) GetRepoBuildLogs(params *GetRepoBuildLogsParams, authInfo clien
 /*
 GetRepoBuildStatus Return the status for the builds specified by the build uuids.
 */
-func (a *Client) GetRepoBuildStatus(params *GetRepoBuildStatusParams, authInfo client.AuthInfoWriter) (*GetRepoBuildStatusOK, error) {
+func (a *Client) GetRepoBuildStatus(params *GetRepoBuildStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepoBuildStatusOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetRepoBuildStatusParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getRepoBuildStatus",
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/build/{build_uuid}/status",
@@ -129,13 +129,13 @@ func (a *Client) GetRepoBuildStatus(params *GetRepoBuildStatusParams, authInfo c
 /*
 GetRepoBuilds Get the list of repository builds.
 */
-func (a *Client) GetRepoBuilds(params *GetRepoBuildsParams, authInfo client.AuthInfoWriter) (*GetRepoBuildsOK, error) {
+func (a *Client) GetRepoBuilds(params *GetRepoBuildsParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepoBuildsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetRepoBuildsParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getRepoBuilds",
 		Method:             "GET",
 		PathPattern:        "/api/v1/repository/{repository}/build/",
@@ -155,13 +155,13 @@ func (a *Client) GetRepoBuilds(params *GetRepoBuildsParams, authInfo client.Auth
 /*
 RequestRepoBuild Request that a repository be built and pushed from the specified input.
 */
-func (a *Client) RequestRepoBuild(params *RequestRepoBuildParams, authInfo client.AuthInfoWriter) (*RequestRepoBuildCreated, error) {
+func (a *Client) RequestRepoBuild(params *RequestRepoBuildParams, authInfo runtime.ClientAuthInfoWriter) (*RequestRepoBuildCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRequestRepoBuildParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "requestRepoBuild",
 		Method:             "POST",
 		PathPattern:        "/api/v1/repository/{repository}/build/",
@@ -179,6 +179,6 @@ func (a *Client) RequestRepoBuild(params *RequestRepoBuildParams, authInfo clien
 }
 
 // SetTransport changes the transport on the client
-func (a *Client) SetTransport(transport client.Transport) {
+func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
 }

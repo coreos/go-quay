@@ -4,11 +4,11 @@ package search
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetMatchingEntitiesParams creates a new GetMatchingEntitiesParams object
@@ -43,31 +43,31 @@ type GetMatchingEntitiesParams struct {
 }
 
 // WithIncludeOrgs adds the includeOrgs to the get matching entities params
-func (o *GetMatchingEntitiesParams) WithIncludeOrgs(includeOrgs *bool) *GetMatchingEntitiesParams {
-	o.IncludeOrgs = includeOrgs
+func (o *GetMatchingEntitiesParams) WithIncludeOrgs(IncludeOrgs *bool) *GetMatchingEntitiesParams {
+	o.IncludeOrgs = IncludeOrgs
 	return o
 }
 
 // WithIncludeTeams adds the includeTeams to the get matching entities params
-func (o *GetMatchingEntitiesParams) WithIncludeTeams(includeTeams *bool) *GetMatchingEntitiesParams {
-	o.IncludeTeams = includeTeams
+func (o *GetMatchingEntitiesParams) WithIncludeTeams(IncludeTeams *bool) *GetMatchingEntitiesParams {
+	o.IncludeTeams = IncludeTeams
 	return o
 }
 
 // WithNamespace adds the namespace to the get matching entities params
-func (o *GetMatchingEntitiesParams) WithNamespace(namespace *string) *GetMatchingEntitiesParams {
-	o.Namespace = namespace
+func (o *GetMatchingEntitiesParams) WithNamespace(Namespace *string) *GetMatchingEntitiesParams {
+	o.Namespace = Namespace
 	return o
 }
 
 // WithPrefix adds the prefix to the get matching entities params
-func (o *GetMatchingEntitiesParams) WithPrefix(prefix string) *GetMatchingEntitiesParams {
-	o.Prefix = prefix
+func (o *GetMatchingEntitiesParams) WithPrefix(Prefix string) *GetMatchingEntitiesParams {
+	o.Prefix = Prefix
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetMatchingEntitiesParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetMatchingEntitiesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

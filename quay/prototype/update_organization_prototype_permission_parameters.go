@@ -4,10 +4,10 @@ package prototype
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -42,25 +42,25 @@ type UpdateOrganizationPrototypePermissionParams struct {
 }
 
 // WithBody adds the body to the update organization prototype permission params
-func (o *UpdateOrganizationPrototypePermissionParams) WithBody(body *models.PrototypeUpdate) *UpdateOrganizationPrototypePermissionParams {
-	o.Body = body
+func (o *UpdateOrganizationPrototypePermissionParams) WithBody(Body *models.PrototypeUpdate) *UpdateOrganizationPrototypePermissionParams {
+	o.Body = Body
 	return o
 }
 
 // WithOrgname adds the orgname to the update organization prototype permission params
-func (o *UpdateOrganizationPrototypePermissionParams) WithOrgname(orgname string) *UpdateOrganizationPrototypePermissionParams {
-	o.Orgname = orgname
+func (o *UpdateOrganizationPrototypePermissionParams) WithOrgname(Orgname string) *UpdateOrganizationPrototypePermissionParams {
+	o.Orgname = Orgname
 	return o
 }
 
 // WithPrototypeid adds the prototypeid to the update organization prototype permission params
-func (o *UpdateOrganizationPrototypePermissionParams) WithPrototypeid(prototypeid string) *UpdateOrganizationPrototypePermissionParams {
-	o.Prototypeid = prototypeid
+func (o *UpdateOrganizationPrototypePermissionParams) WithPrototypeid(Prototypeid string) *UpdateOrganizationPrototypePermissionParams {
+	o.Prototypeid = Prototypeid
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *UpdateOrganizationPrototypePermissionParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *UpdateOrganizationPrototypePermissionParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

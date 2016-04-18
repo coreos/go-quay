@@ -4,10 +4,10 @@ package organization
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetApplicationInformationParams creates a new GetApplicationInformationParams object
@@ -30,13 +30,13 @@ type GetApplicationInformationParams struct {
 }
 
 // WithClientID adds the clientId to the get application information params
-func (o *GetApplicationInformationParams) WithClientID(clientId string) *GetApplicationInformationParams {
-	o.ClientID = clientId
+func (o *GetApplicationInformationParams) WithClientID(ClientID string) *GetApplicationInformationParams {
+	o.ClientID = ClientID
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetApplicationInformationParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetApplicationInformationParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

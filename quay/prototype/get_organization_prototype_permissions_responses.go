@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type GetOrganizationPrototypePermissionsReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *GetOrganizationPrototypePermissionsReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *GetOrganizationPrototypePermissionsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -60,7 +59,7 @@ func (o *GetOrganizationPrototypePermissionsReader) ReadResponse(response client
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *GetOrganizationPrototypePermissionsOK) Error() string {
 	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/prototypes][%d] getOrganizationPrototypePermissionsOK ", 200)
 }
 
-func (o *GetOrganizationPrototypePermissionsOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetOrganizationPrototypePermissionsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *GetOrganizationPrototypePermissionsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/prototypes][%d] getOrganizationPrototypePermissionsBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *GetOrganizationPrototypePermissionsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetOrganizationPrototypePermissionsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *GetOrganizationPrototypePermissionsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/prototypes][%d] getOrganizationPrototypePermissionsUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *GetOrganizationPrototypePermissionsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetOrganizationPrototypePermissionsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *GetOrganizationPrototypePermissionsForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/prototypes][%d] getOrganizationPrototypePermissionsForbidden  %+v", 403, o.Payload)
 }
 
-func (o *GetOrganizationPrototypePermissionsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetOrganizationPrototypePermissionsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *GetOrganizationPrototypePermissionsNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/v1/organization/{orgname}/prototypes][%d] getOrganizationPrototypePermissionsNotFound  %+v", 404, o.Payload)
 }
 
-func (o *GetOrganizationPrototypePermissionsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetOrganizationPrototypePermissionsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

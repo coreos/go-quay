@@ -4,13 +4,13 @@ package error
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // New creates a new error API client.
-func New(transport client.Transport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -18,7 +18,7 @@ func New(transport client.Transport, formats strfmt.Registry) *Client {
 Client for error API
 */
 type Client struct {
-	transport client.Transport
+	transport runtime.ClientTransport
 	formats   strfmt.Registry
 }
 
@@ -31,7 +31,7 @@ func (a *Client) GetErrorDescription(params *GetErrorDescriptionParams) (*GetErr
 		params = NewGetErrorDescriptionParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getErrorDescription",
 		Method:             "GET",
 		PathPattern:        "/api/v1/error/{error_type}",
@@ -48,6 +48,6 @@ func (a *Client) GetErrorDescription(params *GetErrorDescriptionParams) (*GetErr
 }
 
 // SetTransport changes the transport on the client
-func (a *Client) SetTransport(transport client.Transport) {
+func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
 }

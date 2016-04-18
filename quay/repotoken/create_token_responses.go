@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type CreateTokenReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *CreateTokenReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *CreateTokenReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 201:
@@ -60,7 +59,7 @@ func (o *CreateTokenReader) ReadResponse(response client.Response, consumer http
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *CreateTokenCreated) Error() string {
 	return fmt.Sprintf("[POST /api/v1/repository/{repository}/tokens/][%d] createTokenCreated ", 201)
 }
 
-func (o *CreateTokenCreated) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateTokenCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *CreateTokenBadRequest) Error() string {
 	return fmt.Sprintf("[POST /api/v1/repository/{repository}/tokens/][%d] createTokenBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *CreateTokenBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateTokenBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *CreateTokenUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/v1/repository/{repository}/tokens/][%d] createTokenUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *CreateTokenUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateTokenUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *CreateTokenForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/v1/repository/{repository}/tokens/][%d] createTokenForbidden  %+v", 403, o.Payload)
 }
 
-func (o *CreateTokenForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateTokenForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *CreateTokenNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/v1/repository/{repository}/tokens/][%d] createTokenNotFound  %+v", 404, o.Payload)
 }
 
-func (o *CreateTokenNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateTokenNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

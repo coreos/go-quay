@@ -4,11 +4,11 @@ package logs
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewListOrgLogsParams creates a new ListOrgLogsParams object
@@ -56,43 +56,43 @@ type ListOrgLogsParams struct {
 }
 
 // WithEndtime adds the endtime to the list org logs params
-func (o *ListOrgLogsParams) WithEndtime(endtime *string) *ListOrgLogsParams {
-	o.Endtime = endtime
+func (o *ListOrgLogsParams) WithEndtime(Endtime *string) *ListOrgLogsParams {
+	o.Endtime = Endtime
 	return o
 }
 
 // WithNextPage adds the nextPage to the list org logs params
-func (o *ListOrgLogsParams) WithNextPage(nextPage *string) *ListOrgLogsParams {
-	o.NextPage = nextPage
+func (o *ListOrgLogsParams) WithNextPage(NextPage *string) *ListOrgLogsParams {
+	o.NextPage = NextPage
 	return o
 }
 
 // WithOrgname adds the orgname to the list org logs params
-func (o *ListOrgLogsParams) WithOrgname(orgname string) *ListOrgLogsParams {
-	o.Orgname = orgname
+func (o *ListOrgLogsParams) WithOrgname(Orgname string) *ListOrgLogsParams {
+	o.Orgname = Orgname
 	return o
 }
 
 // WithPage adds the page to the list org logs params
-func (o *ListOrgLogsParams) WithPage(page *int64) *ListOrgLogsParams {
-	o.Page = page
+func (o *ListOrgLogsParams) WithPage(Page *int64) *ListOrgLogsParams {
+	o.Page = Page
 	return o
 }
 
 // WithPerformer adds the performer to the list org logs params
-func (o *ListOrgLogsParams) WithPerformer(performer *string) *ListOrgLogsParams {
-	o.Performer = performer
+func (o *ListOrgLogsParams) WithPerformer(Performer *string) *ListOrgLogsParams {
+	o.Performer = Performer
 	return o
 }
 
 // WithStarttime adds the starttime to the list org logs params
-func (o *ListOrgLogsParams) WithStarttime(starttime *string) *ListOrgLogsParams {
-	o.Starttime = starttime
+func (o *ListOrgLogsParams) WithStarttime(Starttime *string) *ListOrgLogsParams {
+	o.Starttime = Starttime
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *ListOrgLogsParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *ListOrgLogsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

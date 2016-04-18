@@ -4,10 +4,10 @@ package team
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewUpdateOrganizationTeamMemberParams creates a new UpdateOrganizationTeamMemberParams object
@@ -40,25 +40,25 @@ type UpdateOrganizationTeamMemberParams struct {
 }
 
 // WithMembername adds the membername to the update organization team member params
-func (o *UpdateOrganizationTeamMemberParams) WithMembername(membername string) *UpdateOrganizationTeamMemberParams {
-	o.Membername = membername
+func (o *UpdateOrganizationTeamMemberParams) WithMembername(Membername string) *UpdateOrganizationTeamMemberParams {
+	o.Membername = Membername
 	return o
 }
 
 // WithOrgname adds the orgname to the update organization team member params
-func (o *UpdateOrganizationTeamMemberParams) WithOrgname(orgname string) *UpdateOrganizationTeamMemberParams {
-	o.Orgname = orgname
+func (o *UpdateOrganizationTeamMemberParams) WithOrgname(Orgname string) *UpdateOrganizationTeamMemberParams {
+	o.Orgname = Orgname
 	return o
 }
 
 // WithTeamname adds the teamname to the update organization team member params
-func (o *UpdateOrganizationTeamMemberParams) WithTeamname(teamname string) *UpdateOrganizationTeamMemberParams {
-	o.Teamname = teamname
+func (o *UpdateOrganizationTeamMemberParams) WithTeamname(Teamname string) *UpdateOrganizationTeamMemberParams {
+	o.Teamname = Teamname
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *UpdateOrganizationTeamMemberParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *UpdateOrganizationTeamMemberParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

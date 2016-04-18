@@ -4,10 +4,10 @@ package repositorynotification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewListRepoNotificationsParams creates a new ListRepoNotificationsParams object
@@ -30,13 +30,13 @@ type ListRepoNotificationsParams struct {
 }
 
 // WithRepository adds the repository to the list repo notifications params
-func (o *ListRepoNotificationsParams) WithRepository(repository string) *ListRepoNotificationsParams {
-	o.Repository = repository
+func (o *ListRepoNotificationsParams) WithRepository(Repository string) *ListRepoNotificationsParams {
+	o.Repository = Repository
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *ListRepoNotificationsParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *ListRepoNotificationsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

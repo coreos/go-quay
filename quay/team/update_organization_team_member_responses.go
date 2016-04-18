@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type UpdateOrganizationTeamMemberReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *UpdateOrganizationTeamMemberReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *UpdateOrganizationTeamMemberReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -60,7 +59,7 @@ func (o *UpdateOrganizationTeamMemberReader) ReadResponse(response client.Respon
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *UpdateOrganizationTeamMemberOK) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}/members/{membername}][%d] updateOrganizationTeamMemberOK ", 200)
 }
 
-func (o *UpdateOrganizationTeamMemberOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *UpdateOrganizationTeamMemberOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *UpdateOrganizationTeamMemberBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}/members/{membername}][%d] updateOrganizationTeamMemberBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *UpdateOrganizationTeamMemberBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *UpdateOrganizationTeamMemberBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *UpdateOrganizationTeamMemberUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}/members/{membername}][%d] updateOrganizationTeamMemberUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *UpdateOrganizationTeamMemberUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *UpdateOrganizationTeamMemberUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *UpdateOrganizationTeamMemberForbidden) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}/members/{membername}][%d] updateOrganizationTeamMemberForbidden  %+v", 403, o.Payload)
 }
 
-func (o *UpdateOrganizationTeamMemberForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *UpdateOrganizationTeamMemberForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *UpdateOrganizationTeamMemberNotFound) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}/members/{membername}][%d] updateOrganizationTeamMemberNotFound  %+v", 404, o.Payload)
 }
 
-func (o *UpdateOrganizationTeamMemberNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *UpdateOrganizationTeamMemberNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

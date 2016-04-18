@@ -4,10 +4,10 @@ package robot
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewCreateUserRobotParams creates a new CreateUserRobotParams object
@@ -30,13 +30,13 @@ type CreateUserRobotParams struct {
 }
 
 // WithRobotShortname adds the robotShortname to the create user robot params
-func (o *CreateUserRobotParams) WithRobotShortname(robotShortname string) *CreateUserRobotParams {
-	o.RobotShortname = robotShortname
+func (o *CreateUserRobotParams) WithRobotShortname(RobotShortname string) *CreateUserRobotParams {
+	o.RobotShortname = RobotShortname
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *CreateUserRobotParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *CreateUserRobotParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

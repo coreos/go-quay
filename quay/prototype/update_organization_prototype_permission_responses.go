@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type UpdateOrganizationPrototypePermissionReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *UpdateOrganizationPrototypePermissionReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *UpdateOrganizationPrototypePermissionReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -60,7 +59,7 @@ func (o *UpdateOrganizationPrototypePermissionReader) ReadResponse(response clie
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *UpdateOrganizationPrototypePermissionOK) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/prototypes/{prototypeid}][%d] updateOrganizationPrototypePermissionOK ", 200)
 }
 
-func (o *UpdateOrganizationPrototypePermissionOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *UpdateOrganizationPrototypePermissionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *UpdateOrganizationPrototypePermissionBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/prototypes/{prototypeid}][%d] updateOrganizationPrototypePermissionBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *UpdateOrganizationPrototypePermissionBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *UpdateOrganizationPrototypePermissionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *UpdateOrganizationPrototypePermissionUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/prototypes/{prototypeid}][%d] updateOrganizationPrototypePermissionUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *UpdateOrganizationPrototypePermissionUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *UpdateOrganizationPrototypePermissionUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *UpdateOrganizationPrototypePermissionForbidden) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/prototypes/{prototypeid}][%d] updateOrganizationPrototypePermissionForbidden  %+v", 403, o.Payload)
 }
 
-func (o *UpdateOrganizationPrototypePermissionForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *UpdateOrganizationPrototypePermissionForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *UpdateOrganizationPrototypePermissionNotFound) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/prototypes/{prototypeid}][%d] updateOrganizationPrototypePermissionNotFound  %+v", 404, o.Payload)
 }
 
-func (o *UpdateOrganizationPrototypePermissionNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *UpdateOrganizationPrototypePermissionNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

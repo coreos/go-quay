@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type InviteTeamMemberEmailReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *InviteTeamMemberEmailReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *InviteTeamMemberEmailReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -60,7 +59,7 @@ func (o *InviteTeamMemberEmailReader) ReadResponse(response client.Response, con
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *InviteTeamMemberEmailOK) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}/invite/{email}][%d] inviteTeamMemberEmailOK ", 200)
 }
 
-func (o *InviteTeamMemberEmailOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *InviteTeamMemberEmailOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *InviteTeamMemberEmailBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}/invite/{email}][%d] inviteTeamMemberEmailBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *InviteTeamMemberEmailBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *InviteTeamMemberEmailBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *InviteTeamMemberEmailUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}/invite/{email}][%d] inviteTeamMemberEmailUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *InviteTeamMemberEmailUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *InviteTeamMemberEmailUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *InviteTeamMemberEmailForbidden) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}/invite/{email}][%d] inviteTeamMemberEmailForbidden  %+v", 403, o.Payload)
 }
 
-func (o *InviteTeamMemberEmailForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *InviteTeamMemberEmailForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *InviteTeamMemberEmailNotFound) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/team/{teamname}/invite/{email}][%d] inviteTeamMemberEmailNotFound  %+v", 404, o.Payload)
 }
 
-func (o *InviteTeamMemberEmailNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *InviteTeamMemberEmailNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

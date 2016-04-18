@@ -4,11 +4,11 @@ package secscan
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetRepoImageSecurityParams creates a new GetRepoImageSecurityParams object
@@ -41,25 +41,25 @@ type GetRepoImageSecurityParams struct {
 }
 
 // WithImageid adds the imageid to the get repo image security params
-func (o *GetRepoImageSecurityParams) WithImageid(imageid string) *GetRepoImageSecurityParams {
-	o.Imageid = imageid
+func (o *GetRepoImageSecurityParams) WithImageid(Imageid string) *GetRepoImageSecurityParams {
+	o.Imageid = Imageid
 	return o
 }
 
 // WithRepository adds the repository to the get repo image security params
-func (o *GetRepoImageSecurityParams) WithRepository(repository string) *GetRepoImageSecurityParams {
-	o.Repository = repository
+func (o *GetRepoImageSecurityParams) WithRepository(Repository string) *GetRepoImageSecurityParams {
+	o.Repository = Repository
 	return o
 }
 
 // WithVulnerabilities adds the vulnerabilities to the get repo image security params
-func (o *GetRepoImageSecurityParams) WithVulnerabilities(vulnerabilities *bool) *GetRepoImageSecurityParams {
-	o.Vulnerabilities = vulnerabilities
+func (o *GetRepoImageSecurityParams) WithVulnerabilities(Vulnerabilities *bool) *GetRepoImageSecurityParams {
+	o.Vulnerabilities = Vulnerabilities
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetRepoImageSecurityParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetRepoImageSecurityParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

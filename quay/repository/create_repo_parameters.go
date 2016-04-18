@@ -4,10 +4,10 @@ package repository
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -32,13 +32,13 @@ type CreateRepoParams struct {
 }
 
 // WithBody adds the body to the create repo params
-func (o *CreateRepoParams) WithBody(body *models.NewRepo) *CreateRepoParams {
-	o.Body = body
+func (o *CreateRepoParams) WithBody(Body *models.NewRepo) *CreateRepoParams {
+	o.Body = Body
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *CreateRepoParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *CreateRepoParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

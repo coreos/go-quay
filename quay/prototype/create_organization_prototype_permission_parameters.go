@@ -4,10 +4,10 @@ package prototype
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -37,19 +37,19 @@ type CreateOrganizationPrototypePermissionParams struct {
 }
 
 // WithBody adds the body to the create organization prototype permission params
-func (o *CreateOrganizationPrototypePermissionParams) WithBody(body *models.NewPrototype) *CreateOrganizationPrototypePermissionParams {
-	o.Body = body
+func (o *CreateOrganizationPrototypePermissionParams) WithBody(Body *models.NewPrototype) *CreateOrganizationPrototypePermissionParams {
+	o.Body = Body
 	return o
 }
 
 // WithOrgname adds the orgname to the create organization prototype permission params
-func (o *CreateOrganizationPrototypePermissionParams) WithOrgname(orgname string) *CreateOrganizationPrototypePermissionParams {
-	o.Orgname = orgname
+func (o *CreateOrganizationPrototypePermissionParams) WithOrgname(Orgname string) *CreateOrganizationPrototypePermissionParams {
+	o.Orgname = Orgname
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *CreateOrganizationPrototypePermissionParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *CreateOrganizationPrototypePermissionParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

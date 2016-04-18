@@ -4,13 +4,13 @@ package user
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // New creates a new user API client.
-func New(transport client.Transport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -18,20 +18,20 @@ func New(transport client.Transport, formats strfmt.Registry) *Client {
 Client for user API
 */
 type Client struct {
-	transport client.Transport
+	transport runtime.ClientTransport
 	formats   strfmt.Registry
 }
 
 /*
 CreateStar Star a repository.
 */
-func (a *Client) CreateStar(params *CreateStarParams, authInfo client.AuthInfoWriter) (*CreateStarCreated, error) {
+func (a *Client) CreateStar(params *CreateStarParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStarCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateStarParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createStar",
 		Method:             "POST",
 		PathPattern:        "/api/v1/user/starred",
@@ -51,13 +51,13 @@ func (a *Client) CreateStar(params *CreateStarParams, authInfo client.AuthInfoWr
 /*
 DeleteStar Removes a star from a repository.
 */
-func (a *Client) DeleteStar(params *DeleteStarParams, authInfo client.AuthInfoWriter) (*DeleteStarNoContent, error) {
+func (a *Client) DeleteStar(params *DeleteStarParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStarNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteStarParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteStar",
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/user/starred/{repository}",
@@ -77,13 +77,13 @@ func (a *Client) DeleteStar(params *DeleteStarParams, authInfo client.AuthInfoWr
 /*
 GetLoggedInUser Get user information for the authenticated user.
 */
-func (a *Client) GetLoggedInUser(params *GetLoggedInUserParams, authInfo client.AuthInfoWriter) (*GetLoggedInUserOK, error) {
+func (a *Client) GetLoggedInUser(params *GetLoggedInUserParams, authInfo runtime.ClientAuthInfoWriter) (*GetLoggedInUserOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetLoggedInUserParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getLoggedInUser",
 		Method:             "GET",
 		PathPattern:        "/api/v1/user/",
@@ -109,7 +109,7 @@ func (a *Client) GetUserInformation(params *GetUserInformationParams) (*GetUserI
 		params = NewGetUserInformationParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserInformation",
 		Method:             "GET",
 		PathPattern:        "/api/v1/users/{username}",
@@ -128,13 +128,13 @@ func (a *Client) GetUserInformation(params *GetUserInformationParams) (*GetUserI
 /*
 ListStarredRepos List all starred repositories.
 */
-func (a *Client) ListStarredRepos(params *ListStarredReposParams, authInfo client.AuthInfoWriter) (*ListStarredReposOK, error) {
+func (a *Client) ListStarredRepos(params *ListStarredReposParams, authInfo runtime.ClientAuthInfoWriter) (*ListStarredReposOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListStarredReposParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listStarredRepos",
 		Method:             "GET",
 		PathPattern:        "/api/v1/user/starred",
@@ -152,6 +152,6 @@ func (a *Client) ListStarredRepos(params *ListStarredReposParams, authInfo clien
 }
 
 // SetTransport changes the transport on the client
-func (a *Client) SetTransport(transport client.Transport) {
+func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
 }

@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type CreateUserRobotReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *CreateUserRobotReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *CreateUserRobotReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -60,7 +59,7 @@ func (o *CreateUserRobotReader) ReadResponse(response client.Response, consumer 
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *CreateUserRobotOK) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/user/robots/{robot_shortname}][%d] createUserRobotOK ", 200)
 }
 
-func (o *CreateUserRobotOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateUserRobotOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *CreateUserRobotBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/user/robots/{robot_shortname}][%d] createUserRobotBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *CreateUserRobotBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateUserRobotBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *CreateUserRobotUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/user/robots/{robot_shortname}][%d] createUserRobotUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *CreateUserRobotUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateUserRobotUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *CreateUserRobotForbidden) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/user/robots/{robot_shortname}][%d] createUserRobotForbidden  %+v", 403, o.Payload)
 }
 
-func (o *CreateUserRobotForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateUserRobotForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *CreateUserRobotNotFound) Error() string {
 	return fmt.Sprintf("[PUT /api/v1/user/robots/{robot_shortname}][%d] createUserRobotNotFound  %+v", 404, o.Payload)
 }
 
-func (o *CreateUserRobotNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateUserRobotNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

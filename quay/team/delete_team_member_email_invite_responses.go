@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type DeleteTeamMemberEmailInviteReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *DeleteTeamMemberEmailInviteReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *DeleteTeamMemberEmailInviteReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 204:
@@ -60,7 +59,7 @@ func (o *DeleteTeamMemberEmailInviteReader) ReadResponse(response client.Respons
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *DeleteTeamMemberEmailInviteNoContent) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/team/{teamname}/invite/{email}][%d] deleteTeamMemberEmailInviteNoContent ", 204)
 }
 
-func (o *DeleteTeamMemberEmailInviteNoContent) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteTeamMemberEmailInviteNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *DeleteTeamMemberEmailInviteBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/team/{teamname}/invite/{email}][%d] deleteTeamMemberEmailInviteBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *DeleteTeamMemberEmailInviteBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteTeamMemberEmailInviteBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *DeleteTeamMemberEmailInviteUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/team/{teamname}/invite/{email}][%d] deleteTeamMemberEmailInviteUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *DeleteTeamMemberEmailInviteUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteTeamMemberEmailInviteUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *DeleteTeamMemberEmailInviteForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/team/{teamname}/invite/{email}][%d] deleteTeamMemberEmailInviteForbidden  %+v", 403, o.Payload)
 }
 
-func (o *DeleteTeamMemberEmailInviteForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteTeamMemberEmailInviteForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *DeleteTeamMemberEmailInviteNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /api/v1/organization/{orgname}/team/{teamname}/invite/{email}][%d] deleteTeamMemberEmailInviteNotFound  %+v", 404, o.Payload)
 }
 
-func (o *DeleteTeamMemberEmailInviteNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteTeamMemberEmailInviteNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

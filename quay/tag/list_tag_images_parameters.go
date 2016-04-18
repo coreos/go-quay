@@ -4,11 +4,11 @@ package tag
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewListTagImagesParams creates a new ListTagImagesParams object
@@ -41,25 +41,25 @@ type ListTagImagesParams struct {
 }
 
 // WithOwned adds the owned to the list tag images params
-func (o *ListTagImagesParams) WithOwned(owned *bool) *ListTagImagesParams {
-	o.Owned = owned
+func (o *ListTagImagesParams) WithOwned(Owned *bool) *ListTagImagesParams {
+	o.Owned = Owned
 	return o
 }
 
 // WithRepository adds the repository to the list tag images params
-func (o *ListTagImagesParams) WithRepository(repository string) *ListTagImagesParams {
-	o.Repository = repository
+func (o *ListTagImagesParams) WithRepository(Repository string) *ListTagImagesParams {
+	o.Repository = Repository
 	return o
 }
 
 // WithTag adds the tag to the list tag images params
-func (o *ListTagImagesParams) WithTag(tag string) *ListTagImagesParams {
-	o.Tag = tag
+func (o *ListTagImagesParams) WithTag(Tag string) *ListTagImagesParams {
+	o.Tag = Tag
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *ListTagImagesParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *ListTagImagesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

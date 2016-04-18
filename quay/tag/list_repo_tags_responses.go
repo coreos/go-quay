@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/coreos/go-quay/models"
 )
@@ -21,7 +20,7 @@ type ListRepoTagsReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *ListRepoTagsReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *ListRepoTagsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -60,7 +59,7 @@ func (o *ListRepoTagsReader) ReadResponse(response client.Response, consumer htt
 		return nil, result
 
 	default:
-		return nil, client.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("unknown error", response, response.Code())
 	}
 }
 
@@ -80,7 +79,7 @@ func (o *ListRepoTagsOK) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tag/][%d] listRepoTagsOK ", 200)
 }
 
-func (o *ListRepoTagsOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ListRepoTagsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,7 +101,7 @@ func (o *ListRepoTagsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tag/][%d] listRepoTagsBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *ListRepoTagsBadRequest) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ListRepoTagsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -131,7 +130,7 @@ func (o *ListRepoTagsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tag/][%d] listRepoTagsUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *ListRepoTagsUnauthorized) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ListRepoTagsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -160,7 +159,7 @@ func (o *ListRepoTagsForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tag/][%d] listRepoTagsForbidden  %+v", 403, o.Payload)
 }
 
-func (o *ListRepoTagsForbidden) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ListRepoTagsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 
@@ -189,7 +188,7 @@ func (o *ListRepoTagsNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/v1/repository/{repository}/tag/][%d] listRepoTagsNotFound  %+v", 404, o.Payload)
 }
 
-func (o *ListRepoTagsNotFound) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ListRepoTagsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.APIError)
 

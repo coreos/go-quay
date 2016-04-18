@@ -4,10 +4,10 @@ package logs
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetAggregateRepoLogsParams creates a new GetAggregateRepoLogsParams object
@@ -40,25 +40,25 @@ type GetAggregateRepoLogsParams struct {
 }
 
 // WithEndtime adds the endtime to the get aggregate repo logs params
-func (o *GetAggregateRepoLogsParams) WithEndtime(endtime *string) *GetAggregateRepoLogsParams {
-	o.Endtime = endtime
+func (o *GetAggregateRepoLogsParams) WithEndtime(Endtime *string) *GetAggregateRepoLogsParams {
+	o.Endtime = Endtime
 	return o
 }
 
 // WithRepository adds the repository to the get aggregate repo logs params
-func (o *GetAggregateRepoLogsParams) WithRepository(repository string) *GetAggregateRepoLogsParams {
-	o.Repository = repository
+func (o *GetAggregateRepoLogsParams) WithRepository(Repository string) *GetAggregateRepoLogsParams {
+	o.Repository = Repository
 	return o
 }
 
 // WithStarttime adds the starttime to the get aggregate repo logs params
-func (o *GetAggregateRepoLogsParams) WithStarttime(starttime *string) *GetAggregateRepoLogsParams {
-	o.Starttime = starttime
+func (o *GetAggregateRepoLogsParams) WithStarttime(Starttime *string) *GetAggregateRepoLogsParams {
+	o.Starttime = Starttime
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetAggregateRepoLogsParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetAggregateRepoLogsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 
