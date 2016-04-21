@@ -4611,6 +4611,12 @@
                 "$ref": "#/definitions/Robot"
             }
           },
+          "201": {
+            "description": "Successful invocation",
+            "schema": {
+                "$ref": "#/definitions/Robot"
+            }
+          },
           "404": {
             "description": "Not found",
             "schema": {
