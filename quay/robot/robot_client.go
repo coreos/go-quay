@@ -25,7 +25,7 @@ type Client struct {
 /*
 CreateOrgRobot Create a new robot in the organization.
 */
-func (a *Client) CreateOrgRobot(params *CreateOrgRobotParams, authInfo runtime.ClientAuthInfoWriter) (*CreateOrgRobotOK, error) {
+func (a *Client) CreateOrgRobot(params *CreateOrgRobotParams, authInfo runtime.ClientAuthInfoWriter) (*CreateOrgRobotCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateOrgRobotParams()
@@ -45,7 +45,7 @@ func (a *Client) CreateOrgRobot(params *CreateOrgRobotParams, authInfo runtime.C
 	if err != nil {
 		return nil, err
 	}
-	return result.(*CreateOrgRobotOK), nil
+	return result.(*CreateOrgRobotCreated), nil
 }
 
 /*

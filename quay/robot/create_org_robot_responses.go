@@ -30,6 +30,13 @@ func (o *CreateOrgRobotReader) ReadResponse(response runtime.ClientResponse, con
 		}
 		return result, nil
 
+	case 201:
+		result := NewCreateOrgRobotCreated()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+
 	case 400:
 		result := NewCreateOrgRobotBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -81,6 +88,35 @@ func (o *CreateOrgRobotOK) Error() string {
 }
 
 func (o *CreateOrgRobotOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Robot)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewCreateOrgRobotCreated creates a CreateOrgRobotCreated with default headers values
+func NewCreateOrgRobotCreated() *CreateOrgRobotCreated {
+	return &CreateOrgRobotCreated{}
+}
+
+/*CreateOrgRobotCreated handles this case with default header values.
+
+Successful invocation
+*/
+type CreateOrgRobotCreated struct {
+	Payload *models.Robot
+}
+
+func (o *CreateOrgRobotCreated) Error() string {
+	return fmt.Sprintf("[PUT /api/v1/organization/{orgname}/robots/{robot_shortname}][%d] createOrgRobotCreated  %+v", 201, o.Payload)
+}
+
+func (o *CreateOrgRobotCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.Robot)
 
