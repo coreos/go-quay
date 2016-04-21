@@ -7282,6 +7282,10 @@
           "type": "integer",
           "description": "Status code of the response."
         },
+        "message": {
+          "type": "string",
+          "description": "Deprecated; alias for detail"
+        },
         "error_message": {
           "type": "string",
           "description": "Deprecated; alias for detail"
