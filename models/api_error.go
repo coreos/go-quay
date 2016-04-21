@@ -28,6 +28,10 @@ type APIError struct {
 	 */
 	ErrorType string `json:"error_type,omitempty"`
 
+	/* Deprecated; alias for detail
+	 */
+	Message string `json:"message,omitempty"`
+
 	/* Status code of the response.
 
 	Required: true
