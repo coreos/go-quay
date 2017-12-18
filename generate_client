@@ -1,3 +1,4 @@
 #!/bin/bash
 
+# curl -L https://quay.io/api/v1/discovery | jq . > swagger.json
 swagger generate client -f $(dirname $0)/swagger.json -A client -c quay -a quay

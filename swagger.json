@@ -9,11 +9,6 @@
     "title": "Quay Frontend"
   },
   "paths": {
-    "/logarchive/{file_id}": {
-      "x-name": "data.archivedlogs.LogArchiveHandlers",
-      "x-tag": "archivedlogs",
-      "x-path": "/logarchive/{file_id}"
-    },
     "/api/v1/organization/{orgname}/invoices": {
       "x-name": "endpoints.api.billing.OrganizationInvoiceList",
       "parameters": [
@@ -479,7 +474,7 @@
           }
         ],
         "operationId": "cancelRepoBuild",
-        "description": "Cancels a repository build if it has not yet been picked up by a build worker."
+        "description": "Cancels a repository build."
       }
     },
     "/api/v1/repository/{repository}/build/{build_uuid}/logs": {
@@ -554,7 +549,7 @@
         "security": [
           {
             "oauth2_implicit": [
-              "repo:write"
+              "repo:read"
             ]
           }
         ],
@@ -672,6 +667,102 @@
           }
         ],
         "operationId": "getErrorDescription"
+      }
+    },
+    "/api/v1/messages": {
+      "post": {
+        "responses": {
+          "201": {
+            "description": "Successful creation"
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "401": {
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/CreateMessage"
+            },
+            "description": "Request body contents.",
+            "required": true,
+            "name": "body",
+            "in": "body"
+          }
+        ],
+        "tags": [
+          "globalmessages"
+        ],
+        "security": [
+          {
+            "oauth2_implicit": [
+              "super:user"
+            ]
+          }
+        ],
+        "operationId": "createGlobalMessage",
+        "description": "Create a message"
+      },
+      "x-name": "endpoints.api.globalmessages.GlobalUserMessages",
+      "x-tag": "globalmessages",
+      "x-path": "/api/v1/messages",
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Successful invocation"
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "401": {
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          }
+        },
+        "tags": [
+          "globalmessages"
+        ],
+        "description": "Return a super users messages",
+        "parameters": [],
+        "operationId": "getGlobalMessages"
       }
     },
     "/api/v1/repository/{repository}/image/{image_id}": {
@@ -1331,6 +1422,321 @@
         "description": "Returns the aggregated logs for the specified repository."
       }
     },
+    "/api/v1/repository/{repository}/manifest/{manifestref}/labels": {
+      "x-name": "endpoints.api.manifest.RepositoryManifestLabels",
+      "parameters": [
+        {
+          "description": "The digest of the manifest",
+          "required": true,
+          "type": "string",
+          "name": "manifestref",
+          "in": "path"
+        },
+        {
+          "description": "The full path of the repository. e.g. namespace/name",
+          "required": true,
+          "type": "string",
+          "name": "repository",
+          "in": "path"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Successful invocation"
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "401": {
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The digest of the manifest",
+            "required": true,
+            "type": "string",
+            "name": "manifestref",
+            "in": "path"
+          },
+          {
+            "description": "The full path of the repository. e.g. namespace/name",
+            "required": true,
+            "type": "string",
+            "name": "repository",
+            "in": "path"
+          },
+          {
+            "description": "If specified, only labels matching the given prefix will be returned",
+            "required": false,
+            "type": "string",
+            "name": "filter",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "manifest"
+        ],
+        "security": [
+          {
+            "oauth2_implicit": [
+              "repo:read"
+            ]
+          }
+        ],
+        "operationId": "listManifestLabels",
+        "description": ""
+      },
+      "x-path": "/api/v1/repository/{repository}/manifest/{manifestref}/labels",
+      "x-tag": "manifest",
+      "post": {
+        "responses": {
+          "201": {
+            "description": "Successful creation"
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "401": {
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The digest of the manifest",
+            "required": true,
+            "type": "string",
+            "name": "manifestref",
+            "in": "path"
+          },
+          {
+            "description": "The full path of the repository. e.g. namespace/name",
+            "required": true,
+            "type": "string",
+            "name": "repository",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/AddLabel"
+            },
+            "description": "Request body contents.",
+            "required": true,
+            "name": "body",
+            "in": "body"
+          }
+        ],
+        "tags": [
+          "manifest"
+        ],
+        "security": [
+          {
+            "oauth2_implicit": [
+              "repo:write"
+            ]
+          }
+        ],
+        "operationId": "addManifestLabel",
+        "description": "Adds a new label into the tag manifest."
+      }
+    },
+    "/api/v1/repository/{repository}/manifest/{manifestref}/labels/{labelid}": {
+      "x-name": "endpoints.api.manifest.ManageRepositoryManifestLabel",
+      "parameters": [
+        {
+          "description": "The full path of the repository. e.g. namespace/name",
+          "required": true,
+          "type": "string",
+          "name": "repository",
+          "in": "path"
+        },
+        {
+          "description": "The digest of the manifest",
+          "required": true,
+          "type": "string",
+          "name": "manifestref",
+          "in": "path"
+        },
+        {
+          "description": "The ID of the label",
+          "required": true,
+          "type": "string",
+          "name": "labelid",
+          "in": "path"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Successful invocation"
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "401": {
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The ID of the label",
+            "required": true,
+            "type": "string",
+            "name": "labelid",
+            "in": "path"
+          },
+          {
+            "description": "The digest of the manifest",
+            "required": true,
+            "type": "string",
+            "name": "manifestref",
+            "in": "path"
+          },
+          {
+            "description": "The full path of the repository. e.g. namespace/name",
+            "required": true,
+            "type": "string",
+            "name": "repository",
+            "in": "path"
+          }
+        ],
+        "tags": [
+          "manifest"
+        ],
+        "security": [
+          {
+            "oauth2_implicit": [
+              "repo:read"
+            ]
+          }
+        ],
+        "operationId": "getManifestLabel",
+        "description": "Retrieves the label with the specific ID under the manifest."
+      },
+      "x-path": "/api/v1/repository/{repository}/manifest/{manifestref}/labels/{labelid}",
+      "x-tag": "manifest",
+      "delete": {
+        "responses": {
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "204": {
+            "description": "Deleted"
+          },
+          "401": {
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The ID of the label",
+            "required": true,
+            "type": "string",
+            "name": "labelid",
+            "in": "path"
+          },
+          {
+            "description": "The digest of the manifest",
+            "required": true,
+            "type": "string",
+            "name": "manifestref",
+            "in": "path"
+          },
+          {
+            "description": "The full path of the repository. e.g. namespace/name",
+            "required": true,
+            "type": "string",
+            "name": "repository",
+            "in": "path"
+          }
+        ],
+        "tags": [
+          "manifest"
+        ],
+        "security": [
+          {
+            "oauth2_implicit": [
+              "repo:write"
+            ]
+          }
+        ],
+        "operationId": "deleteManifestLabel",
+        "description": "Deletes an existing label from a manifest."
+      }
+    },
     "/api/v1/organization/{orgname}/members/{membername}": {
       "x-name": "endpoints.api.organization.OrganizationMember",
       "parameters": [
@@ -1352,10 +1758,7 @@
       "get": {
         "responses": {
           "200": {
-            "description": "Successful invocation",
-            "schema": {
-              "$ref": "#/definitions/Member"
-            }
+            "description": "Successful invocation"
           },
           "404": {
             "description": "Not found",
@@ -1514,6 +1917,10 @@
             }
           }
         },
+        "tags": [
+          "organization"
+        ],
+        "description": "Get the details for the specified organization",
         "parameters": [
           {
             "description": "The name of the organization",
@@ -1523,18 +1930,7 @@
             "in": "path"
           }
         ],
-        "tags": [
-          "organization"
-        ],
-        "security": [
-          {
-            "oauth2_implicit": [
-              "org:admin"
-            ]
-          }
-        ],
-        "operationId": "getOrganization",
-        "description": "Get the details for the specified organization"
+        "operationId": "getOrganization"
       },
       "x-path": "/api/v1/organization/{orgname}",
       "x-tag": "organization",
@@ -1598,6 +1994,58 @@
         ],
         "operationId": "changeOrganizationDetails",
         "description": "Change the details for the specified organization."
+      },
+      "delete": {
+        "responses": {
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "204": {
+            "description": "Deleted"
+          },
+          "401": {
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The name of the organization",
+            "required": true,
+            "type": "string",
+            "name": "orgname",
+            "in": "path"
+          }
+        ],
+        "tags": [
+          "organization"
+        ],
+        "security": [
+          {
+            "oauth2_implicit": [
+              "org:admin"
+            ]
+          }
+        ],
+        "operationId": "deleteAdminedOrganization",
+        "description": "Deletes the specified organization."
       }
     },
     "/api/v1/organization/{orgname}/applications/{client_id}": {
@@ -2532,7 +2980,7 @@
           }
         ],
         "operationId": "getUserPermissions",
-        "description": "Get the Fetch the permission for the specified user."
+        "description": "Get the permission for the specified user."
       },
       "x-path": "/api/v1/repository/{repository}/permissions/user/{username}",
       "x-tag": "permission",
@@ -3116,6 +3564,13 @@
             "in": "query"
           },
           {
+            "description": "The kind of repositories to return",
+            "required": false,
+            "type": "string",
+            "name": "repo_kind",
+            "in": "query"
+          },
+          {
             "description": "Whether to include the repository's popularity metric.",
             "required": false,
             "type": "boolean",
@@ -3288,6 +3743,13 @@
             "type": "string",
             "name": "repository",
             "in": "path"
+          },
+          {
+            "description": "Whether to include action statistics",
+            "required": false,
+            "type": "boolean",
+            "name": "includeStats",
+            "in": "query"
           }
         ],
         "tags": [
@@ -3418,6 +3880,81 @@
         "operationId": "deleteRepository",
         "description": "Delete a repository."
       }
+    },
+    "/api/v1/repository/{repository}/changetrust": {
+      "post": {
+        "responses": {
+          "201": {
+            "description": "Successful creation"
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "401": {
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The full path of the repository. e.g. namespace/name",
+            "required": true,
+            "type": "string",
+            "name": "repository",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/ChangeRepoTrust"
+            },
+            "description": "Request body contents.",
+            "required": true,
+            "name": "body",
+            "in": "body"
+          }
+        ],
+        "tags": [
+          "repository"
+        ],
+        "security": [
+          {
+            "oauth2_implicit": [
+              "repo:admin"
+            ]
+          }
+        ],
+        "operationId": "changeRepoTrust",
+        "description": "Change the visibility of a repository."
+      },
+      "x-name": "endpoints.api.repository.RepositoryTrust",
+      "parameters": [
+        {
+          "description": "The full path of the repository. e.g. namespace/name",
+          "required": true,
+          "type": "string",
+          "name": "repository",
+          "in": "path"
+        }
+      ],
+      "x-tag": "repository",
+      "x-path": "/api/v1/repository/{repository}/changetrust"
     },
     "/api/v1/repository/{repository}/notification/{uuid}/test": {
       "post": {
@@ -3623,7 +4160,7 @@
           }
         ],
         "operationId": "createRepoNotification",
-        "description": "Create a new notification for the specified repository."
+        "description": ""
       }
     },
     "/api/v1/repository/{repository}/notification/{uuid}": {
@@ -3705,6 +4242,65 @@
       },
       "x-path": "/api/v1/repository/{repository}/notification/{uuid}",
       "x-tag": "repositorynotification",
+      "post": {
+        "responses": {
+          "201": {
+            "description": "Successful creation"
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "401": {
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The UUID of the notification",
+            "required": true,
+            "type": "string",
+            "name": "uuid",
+            "in": "path"
+          },
+          {
+            "description": "The full path of the repository. e.g. namespace/name",
+            "required": true,
+            "type": "string",
+            "name": "repository",
+            "in": "path"
+          }
+        ],
+        "tags": [
+          "repositorynotification"
+        ],
+        "security": [
+          {
+            "oauth2_implicit": [
+              "repo:admin"
+            ]
+          }
+        ],
+        "operationId": "resetRepositoryNotificationFailures",
+        "description": "Resets repository notification to 0 failures."
+      },
       "delete": {
         "responses": {
           "404": {
@@ -4135,7 +4731,7 @@
         },
         "parameters": [
           {
-            "description": "Whether to include repostories and teams in which the robots have permission.",
+            "description": "Whether to include repositories and teams in which the robots have permission.",
             "required": false,
             "type": "boolean",
             "name": "permissions",
@@ -4542,10 +5138,7 @@
       "get": {
         "responses": {
           "200": {
-            "description": "Successful invocation",
-            "schema": {
-                "$ref": "#/definitions/Robot"
-            }
+            "description": "Successful invocation"
           },
           "404": {
             "description": "Not found",
@@ -4606,16 +5199,7 @@
       "put": {
         "responses": {
           "200": {
-            "description": "Successful invocation",
-            "schema": {
-                "$ref": "#/definitions/Robot"
-            }
-          },
-          "201": {
-            "description": "Successful invocation",
-            "schema": {
-                "$ref": "#/definitions/Robot"
-            }
+            "description": "Successful invocation"
           },
           "404": {
             "description": "Not found",
@@ -4958,6 +5542,63 @@
         "description": "Get a list of entities and resources that match the specified query."
       }
     },
+    "/api/v1/find/repositories": {
+      "x-name": "endpoints.api.search.ConductRepositorySearch",
+      "x-tag": "search",
+      "x-path": "/api/v1/find/repositories",
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Successful invocation"
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "401": {
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          }
+        },
+        "tags": [
+          "search"
+        ],
+        "description": "Get a list of apps and repositories that match the specified query.",
+        "parameters": [
+          {
+            "description": "The page.",
+            "required": false,
+            "type": "integer",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "description": "The search query.",
+            "required": false,
+            "type": "string",
+            "name": "query",
+            "in": "query"
+          }
+        ],
+        "operationId": "conductRepoSearch"
+      }
+    },
     "/api/v1/entities/{prefix}": {
       "x-name": "endpoints.api.search.EntitySearch",
       "x-tag": "search",
@@ -5027,6 +5668,93 @@
           }
         ],
         "operationId": "getMatchingEntities"
+      }
+    },
+    "/api/v1/repository/{repository}/manifest/{manifestref}/security": {
+      "x-name": "endpoints.api.secscan.RepositoryManifestSecurity",
+      "parameters": [
+        {
+          "description": "The digest of the manifest",
+          "required": true,
+          "type": "string",
+          "name": "manifestref",
+          "in": "path"
+        },
+        {
+          "description": "The full path of the repository. e.g. namespace/name",
+          "required": true,
+          "type": "string",
+          "name": "repository",
+          "in": "path"
+        }
+      ],
+      "x-tag": "secscan",
+      "x-path": "/api/v1/repository/{repository}/manifest/{manifestref}/security",
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Successful invocation"
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "401": {
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The digest of the manifest",
+            "required": true,
+            "type": "string",
+            "name": "manifestref",
+            "in": "path"
+          },
+          {
+            "description": "The full path of the repository. e.g. namespace/name",
+            "required": true,
+            "type": "string",
+            "name": "repository",
+            "in": "path"
+          },
+          {
+            "description": "Include vulnerabilities informations",
+            "required": false,
+            "type": "boolean",
+            "name": "vulnerabilities",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "secscan"
+        ],
+        "security": [
+          {
+            "oauth2_implicit": [
+              "repo:read"
+            ]
+          }
+        ],
+        "operationId": "getRepoManifestSecurity",
+        "description": ""
       }
     },
     "/api/v1/repository/{repository}/image/{imageid}/security": {
@@ -5113,14 +5841,26 @@
           }
         ],
         "operationId": "getRepoImageSecurity",
-        "description": "Fetches the features and vulnerabilities (if any) for a repository tag."
+        "description": "Fetches the features and vulnerabilities (if any) for a repository image."
       }
     },
-    "/api/v1/repository/{repository}/tag/{tag}/revert": {
-      "post": {
+    "/api/v1/repository/{repository}/signatures": {
+      "x-name": "endpoints.api.signing.RepositorySignatures",
+      "parameters": [
+        {
+          "description": "The full path of the repository. e.g. namespace/name",
+          "required": true,
+          "type": "string",
+          "name": "repository",
+          "in": "path"
+        }
+      ],
+      "x-tag": "signing",
+      "x-path": "/api/v1/repository/{repository}/signatures",
+      "get": {
         "responses": {
-          "201": {
-            "description": "Successful creation"
+          "200": {
+            "description": "Successful invocation"
           },
           "404": {
             "description": "Not found",
@@ -5149,61 +5889,26 @@
         },
         "parameters": [
           {
-            "description": "The name of the tag",
-            "required": true,
-            "type": "string",
-            "name": "tag",
-            "in": "path"
-          },
-          {
             "description": "The full path of the repository. e.g. namespace/name",
             "required": true,
             "type": "string",
             "name": "repository",
             "in": "path"
-          },
-          {
-            "schema": {
-              "$ref": "#/definitions/RevertTag"
-            },
-            "description": "Request body contents.",
-            "required": true,
-            "name": "body",
-            "in": "body"
           }
         ],
         "tags": [
-          "tag"
+          "signing"
         ],
         "security": [
           {
             "oauth2_implicit": [
-              "repo:write"
+              "repo:read"
             ]
           }
         ],
-        "operationId": "revertTag",
-        "description": "Reverts a repository tag back to a previous image in the repository."
-      },
-      "x-name": "endpoints.api.tag.RevertTag",
-      "parameters": [
-        {
-          "description": "The name of the tag",
-          "required": true,
-          "type": "string",
-          "name": "tag",
-          "in": "path"
-        },
-        {
-          "description": "The full path of the repository. e.g. namespace/name",
-          "required": true,
-          "type": "string",
-          "name": "repository",
-          "in": "path"
-        }
-      ],
-      "x-tag": "tag",
-      "x-path": "/api/v1/repository/{repository}/tag/{tag}/revert"
+        "operationId": "getRepoSignatures",
+        "description": "Fetches the list of signed tags for the repository."
+      }
     },
     "/api/v1/repository/{repository}/tag/{tag}/images": {
       "x-name": "endpoints.api.tag.RepositoryTagImages",
@@ -5292,6 +5997,95 @@
         "description": "List the images for the specified repository tag."
       }
     },
+    "/api/v1/repository/{repository}/tag/{tag}/restore": {
+      "post": {
+        "responses": {
+          "201": {
+            "description": "Successful creation"
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "401": {
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The name of the tag",
+            "required": true,
+            "type": "string",
+            "name": "tag",
+            "in": "path"
+          },
+          {
+            "description": "The full path of the repository. e.g. namespace/name",
+            "required": true,
+            "type": "string",
+            "name": "repository",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/RestoreTag"
+            },
+            "description": "Request body contents.",
+            "required": true,
+            "name": "body",
+            "in": "body"
+          }
+        ],
+        "tags": [
+          "tag"
+        ],
+        "security": [
+          {
+            "oauth2_implicit": [
+              "repo:write"
+            ]
+          }
+        ],
+        "operationId": "restoreTag",
+        "description": "Restores a repository tag back to a previous image in the repository."
+      },
+      "x-name": "endpoints.api.tag.RestoreTag",
+      "parameters": [
+        {
+          "description": "The name of the tag",
+          "required": true,
+          "type": "string",
+          "name": "tag",
+          "in": "path"
+        },
+        {
+          "description": "The full path of the repository. e.g. namespace/name",
+          "required": true,
+          "type": "string",
+          "name": "repository",
+          "in": "path"
+        }
+      ],
+      "x-tag": "tag",
+      "x-path": "/api/v1/repository/{repository}/tag/{tag}/restore"
+    },
     "/api/v1/repository/{repository}/tag/{tag}": {
       "x-name": "endpoints.api.tag.RepositoryTag",
       "parameters": [
@@ -5359,7 +6153,7 @@
           },
           {
             "schema": {
-              "$ref": "#/definitions/MoveTag"
+              "$ref": "#/definitions/ChangeTag"
             },
             "description": "Request body contents.",
             "required": true,
@@ -5377,7 +6171,7 @@
             ]
           }
         ],
-        "operationId": "changeTagImage",
+        "operationId": "changeTag",
         "description": "Change which image a tag points to or create a new tag."
       },
       "delete": {
@@ -5612,6 +6406,79 @@
         ],
         "operationId": "getOrganizationTeamMembers",
         "description": "Retrieve the list of members for the specified team."
+      }
+    },
+    "/api/v1/organization/{orgname}/team/{teamname}/permissions": {
+      "x-name": "endpoints.api.team.TeamPermissions",
+      "parameters": [
+        {
+          "description": "The name of the organization",
+          "required": true,
+          "type": "string",
+          "name": "orgname",
+          "in": "path"
+        },
+        {
+          "description": "The name of the team",
+          "required": true,
+          "type": "string",
+          "name": "teamname",
+          "in": "path"
+        }
+      ],
+      "x-tag": "team",
+      "x-path": "/api/v1/organization/{orgname}/team/{teamname}/permissions",
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Successful invocation"
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "401": {
+            "description": "Session required",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            }
+          }
+        },
+        "tags": [
+          "team"
+        ],
+        "description": "Returns the list of repository permissions for the org's team.",
+        "parameters": [
+          {
+            "description": "The name of the organization",
+            "required": true,
+            "type": "string",
+            "name": "orgname",
+            "in": "path"
+          },
+          {
+            "description": "The name of the team",
+            "required": true,
+            "type": "string",
+            "name": "teamname",
+            "in": "path"
+          }
+        ],
+        "operationId": "getOrganizationTeamPermissions"
       }
     },
     "/api/v1/organization/{orgname}/team/{teamname}/invite/{email}": {
@@ -6820,10 +7687,6 @@
   ],
   "tags": [
     {
-      "name": "archivedlogs",
-      "description": ""
-    },
-    {
       "name": "billing",
       "description": "Billing information, subscriptions, and plan information."
     },
@@ -6840,12 +7703,20 @@
       "description": "Error details API"
     },
     {
+      "name": "globalmessages",
+      "description": "Messages API."
+    },
+    {
       "name": "image",
       "description": "List and lookup repository images."
     },
     {
       "name": "logs",
       "description": "Access usage logs for organizations or repositories."
+    },
+    {
+      "name": "manifest",
+      "description": "Manage the manifests of a repository."
     },
     {
       "name": "organization",
@@ -6884,6 +7755,10 @@
       "description": "List and manage repository vulnerabilities and other security information."
     },
     {
+      "name": "signing",
+      "description": "List and manage repository signing information"
+    },
+    {
       "name": "tag",
       "description": "Manage the tags of a repository."
     },
@@ -6909,6 +7784,14 @@
       "type": "object",
       "description": "Description of a new repository build.",
       "properties": {
+        "subdirectory": {
+          "type": "string",
+          "description": "Subdirectory in which the Dockerfile can be found. You can only specify this or dockerfile_path"
+        },
+        "archive_url": {
+          "type": "string",
+          "description": "The URL of the .tar.gz to build. Must start with \"http\" or \"https\"."
+        },
         "docker_tags": {
           "minItems": 1,
           "items": {
@@ -6922,49 +7805,50 @@
           "type": "string",
           "description": "Username of a Quay robot account to use as pull credentials"
         },
-        "subdirectory": {
-          "type": "string",
-          "description": "Subdirectory in which the Dockerfile can be found"
-        },
         "file_id": {
           "type": "string",
           "description": "The file id that was generated when the build spec was uploaded"
         },
-        "archive_url": {
+        "context": {
           "type": "string",
-          "description": "The URL of the .tar.gz to build. Must start with \"http\" or \"https\"."
+          "description": "Pass in the context for the dockerfile. This is optional."
+        },
+        "dockerfile_path": {
+          "type": "string",
+          "description": "Path to a dockerfile. You can only specify this or subdirectory."
         }
       }
     },
-    "NotificationCreateRequest": {
+    "NewToken": {
       "required": [
-        "event",
-        "method",
-        "config",
-        "eventConfig"
+        "friendlyName"
       ],
       "type": "object",
-      "description": "Information for creating a notification on a repository",
+      "description": "Description of a new token.",
       "properties": {
-        "eventConfig": {
-          "type": "object",
-          "description": "JSON config information for the specific event of notification"
-        },
-        "title": {
+        "friendlyName": {
           "type": "string",
-          "description": "The human-readable title of the notification"
+          "description": "Friendly name to help identify the token"
+        }
+      }
+    },
+    "ChangeTag": {
+      "type": "object",
+      "description": "Makes changes to a specific tag",
+      "properties": {
+        "image": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "(If specified) Image identifier to which the tag should point"
         },
-        "config": {
-          "type": "object",
-          "description": "JSON config information for the specific method of notification"
-        },
-        "event": {
-          "type": "string",
-          "description": "The event on which the notification will respond"
-        },
-        "method": {
-          "type": "string",
-          "description": "The method of notification (such as email or web callback)"
+        "expiration": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "(If specified) The expiration for the image"
         }
       }
     },
@@ -7003,19 +7887,6 @@
         }
       }
     },
-    "MoveTag": {
-      "required": [
-        "image"
-      ],
-      "type": "object",
-      "description": "Description of to which image a new or existing tag should point",
-      "properties": {
-        "image": {
-          "type": "string",
-          "description": "Image identifier to which the tag should point"
-        }
-      }
-    },
     "UpdateUser": {
       "type": "object",
       "description": "Fields which can be updated in a user.",
@@ -7023,6 +7894,14 @@
         "username": {
           "type": "string",
           "description": "The user's username"
+        },
+        "family_name": {
+          "type": "string",
+          "description": "The optional entered family name for the user"
+        },
+        "given_name": {
+          "type": "string",
+          "description": "The optional entered given name for the user"
         },
         "invoice_email_address": {
           "type": [
@@ -7035,6 +7914,10 @@
           "type": "boolean",
           "description": "Whether the user desires to receive an invoice email."
         },
+        "company": {
+          "type": "string",
+          "description": "The optional entered company for the user"
+        },
         "password": {
           "type": "string",
           "description": "The user's password"
@@ -7043,10 +7926,10 @@
           "type": "string",
           "description": "The user's email address"
         },
-        "tag_expiration": {
+        "tag_expiration_s": {
           "minimum": 0,
           "type": "integer",
-          "maximum": 2592000
+          "description": "The number of seconds for tag expiration"
         }
       }
     },
@@ -7138,8 +8021,7 @@
     },
     "NewOrg": {
       "required": [
-        "name",
-        "email"
+        "name"
       ],
       "type": "object",
       "description": "Description of a new organization.",
@@ -7236,12 +8118,28 @@
           "description": "(SCM only) If specified, the name of the branch to build."
         },
         "refs": {
-          "type": "object",
+          "type": [
+            "object",
+            "null"
+          ],
           "description": "(SCM Only) If specified, the ref to build."
         },
         "commit_sha": {
           "type": "string",
           "description": "(Custom Only) If specified, the ref/SHA1 used to checkout a git repository."
+        }
+      }
+    },
+    "RepoUpdate": {
+      "required": [
+        "description"
+      ],
+      "type": "object",
+      "description": "Fields which can be updated in a repository.",
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Markdown encoded description for the repository"
         }
       }
     },
@@ -7254,6 +8152,18 @@
       "type": "object",
       "description": "Description of a new repository",
       "properties": {
+        "repo_kind": {
+          "enum": [
+            "image",
+            "application",
+            null
+          ],
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The kind of repository"
+        },
         "namespace": {
           "type": "string",
           "description": "Namespace in which the repository should be created. If omitted, the username of the caller is used"
@@ -7288,10 +8198,6 @@
           "type": "integer",
           "description": "Status code of the response."
         },
-        "message": {
-          "type": "string",
-          "description": "Deprecated; alias for detail"
-        },
         "error_message": {
           "type": "string",
           "description": "Deprecated; alias for detail"
@@ -7314,16 +8220,59 @@
         }
       }
     },
-    "RevertTag": {
+    "CreateMessage": {
+      "properties": {
+        "message": {
+          "required": [
+            "content",
+            "media_type",
+            "severity"
+          ],
+          "type": "object",
+          "description": "A single message",
+          "properties": {
+            "content": {
+              "type": "string",
+              "description": "The actual message"
+            },
+            "media_type": {
+              "enum": [
+                "text/plain",
+                "text/markdown"
+              ],
+              "type": "string",
+              "description": "The media type of the message"
+            },
+            "severity": {
+              "enum": [
+                "info",
+                "warning",
+                "error"
+              ],
+              "type": "string",
+              "description": "The severity of the message"
+            }
+          }
+        }
+      },
+      "type": "object",
+      "id": "CreateMessage",
+      "description": "Create a new message"
+    },
+    "RestoreTag": {
       "required": [
         "image"
       ],
       "type": "object",
-      "description": "Reverts a tag to a specific image",
+      "description": "Restores a tag to a specific image",
       "properties": {
         "image": {
           "type": "string",
           "description": "Image identifier to which the tag should point"
+        },
+        "manifest_digest": {
+          "type": "string",
+          "description": "If specified, the manifest digest that should be used"
         }
       }
     },
@@ -7362,52 +8311,21 @@
         }
       }
     },
-    "UserView": {
+    "PrototypeUpdate": {
       "required": [
-        "verified",
-        "anonymous",
-        "avatar"
+        "role"
       ],
       "type": "object",
-      "description": "Describes a user",
+      "description": "Description of a the new prototype role",
       "properties": {
-        "organizations": {
-          "items": {
-            "type": "object"
-          },
-          "type": "array",
-          "description": "Information about the organizations in which the user is a member"
-        },
-        "verified": {
-          "type": "boolean",
-          "description": "Whether the user's email address has been verified"
-        },
-        "avatar": {
-          "type": "object",
-          "description": "Avatar data representing the user's icon"
-        },
-        "anonymous": {
-          "type": "boolean",
-          "description": "true if this user data represents a guest user"
-        },
-        "logins": {
-          "items": {
-            "type": "object"
-          },
-          "type": "array",
-          "description": "The list of external login providers against which the user has authenticated"
-        },
-        "can_create_repo": {
-          "type": "boolean",
-          "description": "Whether the user has permission to create repositories"
-        },
-        "preferred_namespace": {
-          "type": "boolean",
-          "description": "If true, the user's namespace is the preferred namespace to display"
-        },
-        "email": {
+        "role": {
+          "enum": [
+            "read",
+            "write",
+            "admin"
+          ],
           "type": "string",
-          "description": "The user's email address"
+          "description": "Role that should be applied to the permission"
         }
       }
     },
@@ -7459,31 +8377,49 @@
           "type": "string",
           "description": "Organization contact email"
         },
-        "tag_expiration": {
+        "tag_expiration_s": {
           "minimum": 0,
           "type": "integer",
-          "maximum": 2592000
+          "description": "The number of seconds for tag expiration"
         }
       }
     },
-    "NewToken": {
+    "NotificationCreateRequest": {
       "required": [
-        "friendlyName"
+        "event",
+        "method",
+        "config",
+        "eventConfig"
       ],
       "type": "object",
-      "description": "Description of a new token.",
+      "description": "Information for creating a notification on a repository",
       "properties": {
-        "friendlyName": {
+        "eventConfig": {
+          "type": "object",
+          "description": "JSON config information for the specific event of notification"
+        },
+        "title": {
           "type": "string",
-          "description": "Friendly name to help identify the token"
+          "description": "The human-readable title of the notification"
+        },
+        "config": {
+          "type": "object",
+          "description": "JSON config information for the specific method of notification"
+        },
+        "event": {
+          "type": "string",
+          "description": "The event on which the notification will respond"
+        },
+        "method": {
+          "type": "string",
+          "description": "The method of notification (such as email or web callback)"
         }
       }
     },
     "NewUser": {
       "required": [
         "username",
-        "password",
-        "email"
+        "password"
       ],
       "type": "object",
       "description": "Fields which must be specified for a new user.",
@@ -7503,37 +8439,102 @@
         "invite_code": {
           "type": "string",
           "description": "The optional invite code"
-        }
-      }
-    },
-    "RepoUpdate": {
-      "required": [
-        "description"
-      ],
-      "type": "object",
-      "description": "Fields which can be updated in a repository.",
-      "properties": {
-        "description": {
+        },
+        "recaptcha_response": {
           "type": "string",
-          "description": "Markdown encoded description for the repository"
+          "description": "The (may be disabled) recaptcha response code for verification"
         }
       }
     },
-    "PrototypeUpdate": {
+    "AddLabel": {
       "required": [
-        "role"
+        "key",
+        "value",
+        "media_type"
       ],
       "type": "object",
-      "description": "Description of a the new prototype role",
+      "description": "Adds a label to a manifest",
       "properties": {
-        "role": {
+        "media_type": {
           "enum": [
-            "read",
-            "write",
-            "admin"
+            "text/plain",
+            "application/json",
+            null
           ],
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The media type for this label"
+        },
+        "value": {
           "type": "string",
-          "description": "Role that should be applied to the permission"
+          "description": "The value for the label"
+        },
+        "key": {
+          "type": "string",
+          "description": "The key for the label"
+        }
+      }
+    },
+    "ChangeRepoTrust": {
+      "required": [
+        "trust_enabled"
+      ],
+      "type": "object",
+      "description": "Change the trust settings for the repository.",
+      "properties": {
+        "trust_enabled": {
+          "type": "boolean",
+          "description": "Whether or not signing is enabled for the repository."
+        }
+      }
+    },
+    "UserView": {
+      "required": [
+        "anonymous",
+        "avatar"
+      ],
+      "type": "object",
+      "description": "Describes a user",
+      "properties": {
+        "organizations": {
+          "items": {
+            "type": "object"
+          },
+          "type": "array",
+          "description": "Information about the organizations in which the user is a member"
+        },
+        "verified": {
+          "type": "boolean",
+          "description": "Whether the user's email address has been verified"
+        },
+        "avatar": {
+          "type": "object",
+          "description": "Avatar data representing the user's icon"
+        },
+        "anonymous": {
+          "type": "boolean",
+          "description": "true if this user data represents a guest user"
+        },
+        "logins": {
+          "items": {
+            "type": "object"
+          },
+          "type": "array",
+          "description": "The list of external login providers against which the user has authenticated"
+        },
+        "can_create_repo": {
+          "type": "boolean",
+          "description": "Whether the user has permission to create repositories"
+        },
+        "preferred_namespace": {
+          "type": "boolean",
+          "description": "If true, the user's namespace is the preferred namespace to display"
+        },
+        "email": {
+          "type": "string",
+          "description": "The user's email address"
         }
       }
     },
@@ -7554,98 +8555,7 @@
           "description": "Role to use for the team"
         }
       }
-    },
-    "Avatar": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "color": {
-          "type": "string"
-        },
-        "kind": {
-          "type": "string"
-        },
-        "hash": {
-          "type": "string"
-        }
-      }
-    },
-    "Team": {
-      "type": "object",
-      "required": [
-        "name"
-      ],
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "avatar": {
-          "$ref": "#/definitions/Avatar"
-        }
-      }
-    },
-    "Member": {
-      "type": "object",
-      "required": [
-        "name"
-      ],
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "avatar": {
-          "$ref": "#/definitions/Avatar"
-        },
-        "teams": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Team"
-          }
-        },
-        "repositories": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "Robot": {
-      "type": "object",
-      "description": "A robot account",
-      "properties": {
-        "token": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        }
-      }
     }
-  },
-  "parameters": {
-    "OrgName": {
-      "description": "The name of the organization",
-      "required": true,
-      "type": "string",
-      "name": "orgname",
-      "in": "path",
-      "minLength": 4,
-      "maxLength": 30,
-      "pattern": "[a-z0-9_]+"
-    },
-    "RobotShortName": {
-      "description": "The short name for the robot, without any user or organization prefix",
-      "required": true,
-      "type": "string",
-      "name": "robot_shortname",
-      "in": "path",
-      "minLength": 4,
-      "maxLength": 30,
-      "pattern": "[a-z0-9_]+"
-     }
   },
   "basePath": "/",
   "swagger": "2.0",
