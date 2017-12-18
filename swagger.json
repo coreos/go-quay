@@ -8155,13 +8155,9 @@
         "repo_kind": {
           "enum": [
             "image",
-            "application",
-            null
+            "application"
           ],
-          "type": [
-            "string",
-            "null"
-          ],
+          "type": "string",
           "description": "The kind of repository"
         },
         "namespace": {
@@ -8458,13 +8454,9 @@
         "media_type": {
           "enum": [
             "text/plain",
-            "application/json",
-            null
+            "application/json"
           ],
-          "type": [
-            "string",
-            "null"
-          ],
+          "type": "string",
           "description": "The media type for this label"
         },
         "value": {
